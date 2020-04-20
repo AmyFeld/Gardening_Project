@@ -32,39 +32,27 @@ public class View {
 		//double yMouse;
 		
 	
-	/*
-	 * Input: none
-	 * Output: 
-	 * Function: 
-	 */
-	public void uploadImage() {
-		
-	}
+	
 	
 	/*
-	 * Input: 
-	 * Output: 
-	 * Function: 
+	 * Input: What Page Currently on? or None
+	 * Output: None
+	 * Function: takes in the information that was used to update and fixes the page and what should be seen
 	 */
 	public void update() {
 		
 	}
 	
 	/*
-	 * Input: 
-	 * Output: 
-	 * Function: 
+	 * Input: None
+	 * Output: None
+	 * Function: imports that images based on the page that the user is on and the images needed
 	 */
-	public void updatePlant(Plant p) {
+	public void importImages(){
 		
 	}
 	
-	/*
-	 * Input: 
-	 * Output: 
-	 * Function: 
-	 */
-	public void ()
+	
 	
 
 }
