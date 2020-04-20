@@ -20,7 +20,7 @@ public class View {
 
 	    Image background;
 		// array of wide png images
-	    Image[] animationSequence;
+	    Image[] img;
 
 		
 		
