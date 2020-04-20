@@ -5,7 +5,7 @@ public class Controller {
 	Model model;
 	
 	Controller(){
-		this.view = new view1;
+		this.view = new ViewPage1();
 		this.model = new Model();
 	}
 	
