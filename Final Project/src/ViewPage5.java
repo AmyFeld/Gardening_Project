@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
 public class ViewPage5 extends View{
 	String title;
 	
