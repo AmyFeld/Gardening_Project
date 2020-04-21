@@ -2,6 +2,8 @@ import org.junit.Test;
 import org.junit.Ignore;
 import static org.junit.Assert.assertEquals;
 
+// The class is meant to test non void functions found in the model
+
 public class ModelTest {
 	
 	Garden G = new Garden();
