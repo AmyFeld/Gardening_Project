@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// This class presents the plant information page when a plant is selected and includes a slider to show back and forth between times
 public class ViewPage3 extends View{
 	String title;
 	
