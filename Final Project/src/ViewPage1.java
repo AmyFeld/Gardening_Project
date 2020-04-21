@@ -6,6 +6,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// This class is a subclass of view that will draw out the home page with proper buttons
+
 public class ViewPage1 extends View{
 	String title;
 	
