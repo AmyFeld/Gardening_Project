@@ -19,6 +19,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
+
+// This class presents the garden and includes the drag and drop feature to add new items to the garden
 public class ViewPage4 {
 
 private ImgController1 imc1;
