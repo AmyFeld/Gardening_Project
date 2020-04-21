@@ -50,7 +50,7 @@ public class Model {
 	 * Function: sets the computer-generated rating and returns an int of the overall
 	 */
 	public int rateGarden(Garden g) {
-		
+		return 0;
 	}
 	
 	/*
