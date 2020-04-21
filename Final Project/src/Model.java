@@ -7,6 +7,44 @@ public class Model {
 	Plant currentPlant;
 	
 	/*
+	 * Input: the Garden 
+	 * Output: none
+	 * Function: sets the current garden
+	 */
+	public void setGarden(Garden g){
+		currentGarden = g;
+	}
+	
+	/*
+	 * Input: the plant
+	 * Output: none
+	 * Function: sets the current plant
+	 */
+	public void setPlant(Plant p){
+		currentPlant = p;
+	}
+	
+	/*
+	 * Input: none
+	 * Output: currentPlant
+	 * Function: returns the currentPlant as a getter
+	 */
+	public Plant getPlant(){
+		return currentPlant;
+	}
+	
+	/*
+	 * Input: none
+	 * Output: currentGarden
+	 * Function: returns the currentGarden as a getter
+	 */
+	
+	public Garden getGarden(){
+		return currentGarden;
+	}
+	
+	
+	/*
 	 * Input: the Garden class g
 	 * Output: none
 	 * Function: sets the computer-generated rating
