@@ -3,6 +3,8 @@ import java.beans.EventHandler;
 import java.util.HashMap;
 import java.util.Map;
 
+// This class is a subclass of view that will draw out the greenery tour page
+
 public class ViewPage2 {
 	
 	Plant p;
