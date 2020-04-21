@@ -1,4 +1,4 @@
-
+// This class communicates with the controller to tell the view the current state of the Garden, the current plant and the triggering of garden
 public class Model {
 	
 	Boolean startGardening;
