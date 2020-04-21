@@ -4,10 +4,10 @@ public class Plant {
 
 	
 	int height;
-	bool hasFruit;
+	boolean hasFruit;
 	String waterUse;
 	String color;
-	bool inGarden;
+	boolean inGarden;
 	
 	/*
 	 * Input: none
