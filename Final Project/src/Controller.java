@@ -11,6 +11,12 @@ public class Controller implements MouseListener{
 		this.model = new Model();
 	}
 	
+	/*
+	 * Input: Stage
+	 * Output: running program
+	 * Function: takes in the updates from the model or view and presents to the screen/ user
+	 */
+	
 	@Override
 	public void start(Stage theStage) {
 		model.updateGarden();
@@ -25,22 +31,47 @@ public class Controller implements MouseListener{
 		
 	}
 	
+	/*
+	 * Input: Mouse event
+	 * Output: None
+	 * Function: tells program what to do when mouse is pressed 
+	 */
 	public void mousePressed(MouseEvent e) {
        		
     	}
 
+	/*
+	 * Input: Mouse event
+	 * Output: None
+	 * Function: tells program what to do when mouse is released 
+	 */
     	public void mouseReleased(MouseEvent e) {
 
     	}
 
+	/*
+	 * Input: Mouse event
+	 * Output: None
+	 * Function: tells program what to do when mouse is entered 
+	 */
     	public void mouseEntered(MouseEvent e) {
 
     	}
 
+	/*
+	 * Input: Mouse event
+	 * Output: None
+	 * Function: tells program what to do when mouse is exited 
+	 */
     	public void mouseExited(MouseEvent e) {
        
     	}
 
+	/*
+	 * Input: Mouse event
+	 * Output: None
+	 * Function: tells program what to do when mouse is clicked 
+	 */
     	public void mouseClicked(MouseEvent e) {
        
     	}
