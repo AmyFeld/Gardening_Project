@@ -7,14 +7,14 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 
-// This class is used to present the Resources tab and include the information and buttons that will present the information
+// This class is used to present the Tips to Start tab and include the information and buttons that will present the information
 public class ViewPage9 extends View {
 	String title;
 	
 
 	
 	public ViewPage9(Stage theStage, EventHandler<ActionEvent> SSButton) {
-        theStage.setTitle("Resources");
+        theStage.setTitle("Tips to Start");
 
         Button unhappy = new Button("Unhappy?");
         unhappy.setOnAction(SSButton);
