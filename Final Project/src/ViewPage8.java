@@ -6,6 +6,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// This class is used to present the Benefits of a Garden tab and include the information and buttons that will present the information
+
 public class ViewPage8 extends View{
 	String title;
 	
