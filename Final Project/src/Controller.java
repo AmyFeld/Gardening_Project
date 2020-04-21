@@ -19,8 +19,8 @@ public class Controller implements MouseListener{
 	
 	@Override
 	public void start(Stage theStage) {
-		model.updateGarden(Plant p);
-		view.update(Garden G, Plant p);
+		model.updateGarden();
+		view.update();
 		
 		/*
 	 	* Input: Action Event
