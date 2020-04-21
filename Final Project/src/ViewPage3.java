@@ -12,7 +12,7 @@ public class ViewPage3 extends View{
 
 	
 	public ViewPage3(Stage theStage, EventHandler<ActionEvent> SSButton) {
-        theStage.setTitle("Rate My Garden");
+        theStage.setTitle("Plant Information");
     
       slider = new JSlider();
       // have to finish uploading information about this
