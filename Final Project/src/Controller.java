@@ -19,8 +19,14 @@ public class Controller implements MouseListener{
 	
 	@Override
 	public void start(Stage theStage) {
-		model.updateGarden();
-		view.update();
+		model.updateGarden(Plant p);
+		view.update(Garden G, Plant p);
+		
+		/*
+	 	* Input: Action Event
+	 	* Output: Change of screen
+	 	* Function: takes in a button press, checks which button it is and changes the view to the appropriate page
+	 	*/
 		
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
