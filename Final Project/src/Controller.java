@@ -1,5 +1,7 @@
 import javafx.stage.Stage;
 
+// This class is meant to hold the main and communicate between the selected view and model
+
 public class Controller implements MouseListener{
 	View view;
 	Model model;
