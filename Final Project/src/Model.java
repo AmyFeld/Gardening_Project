@@ -46,10 +46,10 @@ public class Model {
 	
 	/*
 	 * Input: the Garden class g
-	 * Output: none
-	 * Function: sets the computer-generated rating
+	 * Output: the overall rating as an int
+	 * Function: sets the computer-generated rating and returns an int of the overall
 	 */
-	public void rateGarden(Garden g) {
+	public int rateGarden(Garden g) {
 		
 	}
 	
