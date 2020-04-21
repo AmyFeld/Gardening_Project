@@ -6,6 +6,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// This class is used to present the Resources tab and include the information and buttons that will present the information
+
 public class ViewPage7 extends View {
 	String title;
 	
