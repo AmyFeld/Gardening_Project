@@ -1,4 +1,4 @@
-
+// This class is used for garden ratings and using this in the view to draw out the garden
 public class Garden {
 	
 	Plant plantList[];
