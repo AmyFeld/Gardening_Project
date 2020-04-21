@@ -9,6 +9,8 @@ public class GardenTest {
 	Garden G = new Garden();
   
   @Test
-  public void test
-    
+  public void testCalculateHappiness(){
+	  System.out.println("Testing HappinessRating");
+	  assert.equals(0, calculateHappinessRating(G));
+  }
 }
