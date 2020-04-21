@@ -58,7 +58,7 @@ public class Model {
 	 * Output: sets the rating
 	 * Function: the rating is updated from rateGarden()
 	 */
-	public void update() {
+	public void updateGarden() {
 		
 	}
 	
