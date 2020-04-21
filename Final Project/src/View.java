@@ -1,6 +1,7 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+// This class is an abstract class used as a framework for all other views
 
 public class View {
   
