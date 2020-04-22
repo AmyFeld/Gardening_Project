@@ -1,16 +1,24 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 // This class is meant to hold the main and communicate between the selected view and model
 
-public class Controller implements MouseListener{
+public class Controller extends Application implements MouseListener {
 	View view;
 	Model model;
-	view.addMouseListener(this);
-	addMouseListener(this);
 	
-	Controller(){
-		this.view = new ViewPage1();
+	public Controller() {
+
 		this.model = new Model();
+		
+		view.addMouseListener(this);
+		addMouseListener(this);
 	}
 	
 	/*
@@ -18,24 +26,39 @@ public class Controller implements MouseListener{
 	 * Output: running program
 	 * Function: takes in the updates from the model or view and presents to the screen/ user
 	 */
-	
-	@Override
+
+    @Override
 	public void start(Stage theStage) {
-		model.updateGarden();
-		view.update();
+        view = new View(theStage);
+        
+		//model = new Model(view.getWidth(), view.getHeight(), 
+           //     view.getImageWidth(), view.getImageHeight());
 		
-		/*
-	 	* Input: Action Event
-	 	* Output: Change of screen
-	 	* Function: takes in a button press, checks which button it is and changes the view to the appropriate page
-	 	*/
-		
-		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				
-			}
-		}
-		view.b.setOnAction(event);
+ 	new EventHandler<ActionEvent>() {
+ 		@Override 
+ 		public void handle(ActionEvent event) {
+            System.out.print("Hello World !!");
+            view.setOnAction(event);
+            }		 	     
+    };
+    
+    new AnimationTimer() {
+        public void handle(long currentNanoTime) {
+        	
+         
+            try {
+                Thread.sleep(100);
+                
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }.start();
+    theStage.show();
+}
+    
+    
+	private void addMouseListener(Controller controller) {
 		
 	}
 	
@@ -44,6 +67,8 @@ public class Controller implements MouseListener{
 	 * Output: None
 	 * Function: tells program what to do when mouse is pressed 
 	 */
+	
+	@Override
 	public void mousePressed(MouseEvent e) {
        		
     	}
@@ -53,6 +78,7 @@ public class Controller implements MouseListener{
 	 * Output: None
 	 * Function: tells program what to do when mouse is released 
 	 */
+	@Override
     	public void mouseReleased(MouseEvent e) {
 
     	}
@@ -62,6 +88,7 @@ public class Controller implements MouseListener{
 	 * Output: None
 	 * Function: tells program what to do when mouse is entered 
 	 */
+	@Override
     	public void mouseEntered(MouseEvent e) {
 
     	}
@@ -71,6 +98,7 @@ public class Controller implements MouseListener{
 	 * Output: None
 	 * Function: tells program what to do when mouse is exited 
 	 */
+	@Override
     	public void mouseExited(MouseEvent e) {
        
     	}
@@ -80,11 +108,16 @@ public class Controller implements MouseListener{
 	 * Output: None
 	 * Function: tells program what to do when mouse is clicked 
 	 */
+	@Override
     	public void mouseClicked(MouseEvent e) {
        
     	}
 	
 	public static void main(String[] args) {
-        launch(args);
+        System.out.println("WORK");
+		launch(args);
     }
+	
+
+
 }
