@@ -49,6 +49,13 @@ public class ViewPage9 extends View {
 	 * Function: Will read in a .txt file and upload it onto the canvas
 	 */
 	public void uploadText() {
+		// generic of what it should be 
+		// later add a part that "when unhappy button = clicked"
+		 File file = new File("\SLIDE9.txt"); 
+    		Scanner sc = new Scanner(file); 
+  
+    		while (sc.hasNextLine()) 
+      			System.out.println(sc.nextLine()); 
 		
 	}
 
