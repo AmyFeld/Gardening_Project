@@ -4,7 +4,8 @@ import java.util.Collection;
 
 public class Plant {
 
-	
+	String name;
+	String type;
 	int height;
 	boolean hasFruit;
 	String waterUse;
