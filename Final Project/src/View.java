@@ -1,16 +1,21 @@
 
+import javafx.application.Application;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 // This class is an abstract class used as a framework for all other views
 
-public class View {
+public class View extends Application {
   	
 	// value of the height and width of screen
 		int canvasWidth = 1380;
@@ -24,6 +29,7 @@ public class View {
 		int imgHeight = 300;
 	    
 	    Scene theScene;
+	    Stage theStage;
 
 	    GraphicsContext gc;
 
@@ -33,9 +39,22 @@ public class View {
 		//variables to determine the location of image
 		double x = 0;
 		double y = 0;
+		Text t = new Text(); // as a title for each page
+		Button prevButton;
+		Button nextButton;
+		Button homeButton;
+		View ViewPage1;
+		View ViewPage2;
+		View ViewPage3;
+		View ViewPage4;
+		View ViewPage5;
+		View ViewPage6;
+		View ViewPage7;
+		View currView;
+
 
 	
-	public View(Stage theStage) {
+	/*public View(Stage theStage) {
 		
 		theStage.setTitle("Create a Garden");
 		Group root = new Group();
@@ -47,7 +66,69 @@ public class View {
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
       		
-		}
+		}*/
+	
+
+	@Override
+	public void start(Stage theStage) throws Exception {
+		this.theStage = theStage;
+		
+	      Group group = new Group();  
+	      Scene scene = new Scene(group ,600, 300); 
+	      
+	      scene.setFill(Color.LIGHTGREEN); 
+	      //group.addChildren(t);
+		  Text t = new Text("hihob"); // as a title for each page
+		  
+		  
+		  // home button if fired
+		  homeButton.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent e) {
+					
+					System.out.println("Home button is clicked");
+					 setViewPage(ViewPage1);
+			 
+				}
+			});
+		  
+		  // back button if fired
+		  prevButton.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent e) {
+					System.out.println("Back button is clicked");
+					// setViewPage(get);
+			 
+				}
+			});
+		  
+		  
+		  // next button if fired
+		  nextButton.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent e) {
+					System.out.println("Next button is clicked");
+
+				}
+			});
+		  
+	      theStage.setTitle("Build Your Garden"); 
+	   	  theStage.setScene(scene); 
+	   	  theStage.show(); 		
+	}
+	
+	public void setViewPage(View view) {
+		currView = view;
+		
+	}
+	
+	
+	 public static void main(String args[]){          
+	      launch(args);     
+	   } 
 	
 	public void addMouseListener(Controller controller) {
 		// TODO Auto-generated method stub
@@ -105,7 +186,4 @@ public class View {
 		return imgHeight;
 	}
 	
-	
-	
-
 }
