@@ -17,7 +17,7 @@ public class Garden {
 			String line = reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				String[] plantInfo = line.split(",");
-				temp.add(plantInfo[0], plantInfo[1], Integer.parseInt(plantInfo[2]), Boolean.parseBoolean(plantInfo[3]), plantInfo[4], plantInfo[5], false);
+				temp.add(plantInfo[0], plantInfo[1], Integer.parseInt(plantInfo[2]), Boolean.parseBoolean(plantInfo[3]), plantInfo[4], plantInfo[5]);
 				}
 			reader.close();
 		} catch (Exception e) {
