@@ -1,7 +1,7 @@
 // This class is used for garden ratings and using this in the view to draw out the garden
 public class Garden {
 	
-	ArrayList<Plant> allPlants = new ArrayList<>();
+	ArrayList<Plant> allPlants = readAllPlants();
 	
 	Plant plantList[];
 	int happinessRating;
@@ -10,20 +10,21 @@ public class Garden {
 	int compatibilityRating;
 	int transitionRating;
 	
-	public Garden(){
+	public ArrayList<Plant> readAllPlants(){
+		ArrayList<Plant> temp = new ArrayList<Plant>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("plant.txt"));
 			String line = reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				String[] plantInfo = line.split(",");
-				this.allPlants.add(
+				temp.add(plantInfo[0], plantInfo[1], Integer.parseInt(plantInfo[2]), Boolean.parseBoolean(plantInfo[3]), plantInfo[4], plantInfo[5], false);
 				}
 			reader.close();
 		} catch (Exception e) {
-			System.err.format("Exception occurred trying to read '%s'.", "morse.txt");
+			System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
 			e.printStackTrace();
 			}
-		return 
+		return temp;
 	}
 	
 	/*
