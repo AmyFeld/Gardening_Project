@@ -11,6 +11,7 @@ public class Plant {
 	String waterUse;
 	String color;
 	boolean inGarden;
+	BufferedImage img;
 	
 	/*
 	 * Input: none
