@@ -10,8 +10,17 @@ public class Plant {
 	boolean hasFruit;
 	String waterUse;
 	String color;
-	boolean inGarden;
+	boolean inGarden = false;
 	BufferedImage img;
+	
+	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color){
+		this.name = name;
+		this.type = type;
+		this.height = height;
+		this.hasFruit = hasFruit;
+		this.waterUse = waterUse;
+		this.color = color;
+	}
 	
 	/*
 	 * Input: none
