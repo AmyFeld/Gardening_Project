@@ -8,8 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,7 +33,6 @@ public class View extends Application {
 		int imgHeight = 300;
 	    
 	    Scene theScene;
-	    Stage theStage;
 
 	    GraphicsContext gc;
 
@@ -39,97 +42,43 @@ public class View extends Application {
 		//variables to determine the location of image
 		double x = 0;
 		double y = 0;
-		Text t = new Text(); // as a title for each page
 		Button prevButton;
 		Button nextButton;
-		Button homeButton;
-		View ViewPage1;
-		View ViewPage2;
-		View ViewPage3;
-		View ViewPage4;
-		View ViewPage5;
-		View ViewPage6;
-		View ViewPage7;
+		
+	    Image home = new Image("icons/home.png", 50, 50, false, false);
+	    Button homeButton = new Button("home", new ImageView(home));
+
 		View currView;
-
-
-	
-	/*public View(Stage theStage) {
+		//ViewPage1 vp1;
 		
-		theStage.setTitle("Create a Garden");
-		Group root = new Group();
 		
-		theScene = new Scene(root);
-        theStage.setScene(theScene);
-
-        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-        root.getChildren().add(canvas);
-        gc = canvas.getGraphicsContext2D();
-      		
-		}*/
-	
+		 Scene scene1;
+		//Scene scene2;
 
 	@Override
 	public void start(Stage theStage) throws Exception {
-		this.theStage = theStage;
+
+		theStage.setTitle("Create a Garden");
 		
-	      Group group = new Group();  
-	      Scene scene = new Scene(group ,600, 300); 
-	      
-	      scene.setFill(Color.LIGHTGREEN); 
-	      //group.addChildren(t);
-		  Text t = new Text("hihob"); // as a title for each page
-		  
-		  
-		  // home button if fired
-		  homeButton.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent e) {
-					
-					System.out.println("Home button is clicked");
-					 setViewPage(ViewPage1);
-			 
-				}
-			});
-		  
-		  // back button if fired
-		  prevButton.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent e) {
-					System.out.println("Back button is clicked");
-					// setViewPage(get);
-			 
-				}
-			});
-		  
-		  
-		  // next button if fired
-		  nextButton.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent e) {
-					System.out.println("Next button is clicked");
-
-				}
-			});
-		  
-	      theStage.setTitle("Build Your Garden"); 
-	   	  theStage.setScene(scene); 
-	   	  theStage.show(); 		
+		theStage.setScene(new ViewPage1(theStage).getScene1()); 
+		theStage.show(); 		
 	}
+	
+	public static void main(String args[]){   
+	      launch(args);     
+	   } 
+	
 	
 	public void setViewPage(View view) {
 		currView = view;
 		
 	}
 	
+	public void getScene(Scene scene) {
+		scene1 = scene;
+	}
 	
-	 public static void main(String args[]){          
-	      launch(args);     
-	   } 
-	
+
 	public void addMouseListener(Controller controller) {
 		// TODO Auto-generated method stub
 		
