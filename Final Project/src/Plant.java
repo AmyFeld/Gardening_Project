@@ -10,19 +10,19 @@ public class Plant {
 	boolean hasFruit;
 	String waterUse;
 	String color;
-	Month start;
-	Month end;
+	int start;
+	int end;
 	boolean inGarden = false;
 	
-	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color, String start, String end){
+	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color, int start, int end){
 		this.name = name;
 		this.type = type;
 		this.height = height;
 		this.hasFruit = hasFruit;
 		this.waterUse = waterUse;
 		this.color = color;
-		this.start = Month.valueOf(start);
-		this.end = Month.valueOf(end);
+		this.start = start;
+		this.end = end;
 	}
 	
 	/*
