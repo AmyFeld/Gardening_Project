@@ -10,16 +10,19 @@ public class Plant {
 	boolean hasFruit;
 	String waterUse;
 	String color;
+	Month start;
+	Month end;
 	boolean inGarden = false;
-	BufferedImage img;
 	
-	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color){
+	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color, String start, String end){
 		this.name = name;
 		this.type = type;
 		this.height = height;
 		this.hasFruit = hasFruit;
 		this.waterUse = waterUse;
 		this.color = color;
+		this.start = Month.valueOf(start);
+		this.end = Month.valueOf(end);
 	}
 	
 	/*
