@@ -20,12 +20,20 @@ public class ViewPage1 extends View {
 		VBox layout1 = new VBox(20);     
 	    Label label1 = new Label("Create Your Own Garden");
 	  	Button button1 = new Button("Start Planting");
-	  	layout1.getChildren().addAll(label1, button1);
+	  	Button page6 = new Button("About Arden");
+	  	Button page7 = new Button("Resources");
+	  	Button page8 = new Button("Benefits of a Garden");
+	  	Button page9 = new Button("Tips to Start");
+	  	layout1.getChildren().addAll(label1, button1, page6, page7, page8, page9);
 		
 	  	scene1 = new Scene(layout1, 600, 300); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
-	    button1.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));	 
+	  	button1.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));	 
+	  	page6.setOnAction(e-> theStage.setScene(new ViewPage6(theStage).getScene6()));
+	  	page7.setOnAction(e-> theStage.setScene(new ViewPage7(theStage).getScene7()));
+	  	page8.setOnAction(e-> theStage.setScene(new ViewPage8(theStage).getScene8()));
+	  	page9.setOnAction(e-> theStage.setScene(new ViewPage9(theStage).getScene9()));
 	  	
 	   	 theStage.setScene(scene1); 
 	   	 theStage.show(); 	
