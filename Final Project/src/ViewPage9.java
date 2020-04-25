@@ -4,12 +4,48 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
 // This class is used to present the Tips to Start tab and include the information and buttons that will present the information
 public class ViewPage9 extends View {
-	String title;
+	
+	Scene scene1;
+
+	public ViewPage9(Stage theStage) {
+				
+		  // home button if fired
+		VBox layout1 = new VBox(20);     
+	    Label label1 = new Label("Tips to Start");
+	  	Button home = new Button("Home");
+	  	Button where = new Button("Where to Buy");
+	  	Button faq = new Button("Frequently Asked Questions");
+	  	
+	  	
+	  	layout1.getChildren().addAll(label1, home,where,faq);
+		
+	  	scene1 = new Scene(layout1, 600, 300); // the button and label
+		 //   scene1.setFill(Color.LIGHTGREEN);
+	  		  	
+	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	  	
+	   	 theStage.setScene(scene1); 
+	   	 theStage.show(); 	
+
+	}	
+	
+	public Scene getScene9() {
+		return scene1;
+	}
+
+	 public static void main(String args[]){          
+	      launch(args);     
+	   }
+	
+	
+	/*String title;
 	
 
 	
@@ -41,7 +77,7 @@ public class ViewPage9 extends View {
 		//importImages();
 		
 	
-	}
+	}*/
 	
 	/*
 	 * Input: None
@@ -51,11 +87,11 @@ public class ViewPage9 extends View {
 	public void uploadText() {
 		// generic of what it should be 
 		// later add a part that "when unhappy button = clicked"
-		 File file = new File("\SLIDE9.txt"); 
-    		Scanner sc = new Scanner(file); 
+		// File file = new File("\SLIDE9.txt"); 
+    	//	Scanner sc = new Scanner(file); 
   
-    		while (sc.hasNextLine()) 
-      			System.out.println(sc.nextLine()); 
+    	//	while (sc.hasNextLine()) 
+      		//	System.out.println(sc.nextLine()); 
 		
 	}
 
