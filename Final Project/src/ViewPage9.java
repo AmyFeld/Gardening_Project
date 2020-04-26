@@ -20,11 +20,12 @@ public class ViewPage9 extends View {
 		VBox layout1 = new VBox(20);     
 	    Label label1 = new Label("Tips to Start");
 	  	Button home = new Button("Home");
-	  	Button where = new Button("Where to Buy");
-	  	Button faq = new Button("Frequently Asked Questions");
+	  	Button unhappy = new Button("Unhappy");
+	  	Button best = new Button("Best Places");
+		Button start = new Button("Start with");
 	  	
 	  	
-	  	layout1.getChildren().addAll(label1, home,where,faq);
+	  	layout1.getChildren().addAll(label1, home,unhappy,best,start);
 		
 	  	scene1 = new Scene(layout1, 600, 300); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
