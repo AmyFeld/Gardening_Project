@@ -72,7 +72,7 @@ public class ViewPage7 extends View {
 	 * Function: Will read in a .txt file and upload it onto the canvas
 	 */
 	 public String uploadText(String name) throws Exception {
-		 String file = new String("textFiles/" + name + ".txt"); 
+		 String file = new String("textFiles/Page7/" + name + ".txt"); 
 		 String data = ""; 
 		 
 		 data = new String(Files.readAllBytes(Paths.get(file))); 
