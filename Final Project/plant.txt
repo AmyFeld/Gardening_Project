@@ -1,11 +1,11 @@
 plantList
-Dogwood,tree,240,false,medium,pink,3,5
+Dogwood,tree,240,true,medium,pink,3,5
 Maple-leaf Arrowwood,shrub,60,true,medium,white,4,8
 Oakleaf Hydrangea,shrub,108,false,medium,white,6,7
 Ninebark,shrub,72,true,low,pink,5,6
 Christmas Fern,fern,24,false,meidum,none,13,13
-Ironwood,tree,288,false,medium,pink,3,5
-Spice Bush,shrub,72,false,medium,red,4,10
+Ironwood,tree,288,true,medium,pink,3,5
+Spice Bush,shrub,72,true,medium,red,4,10
 Sweet Spire,shrub,42,false,high,white,4,6
 Green & Gold,herb,6,false,low,yellow,4,10
 White Oak,tree,1200,false,medium,green,4,5
