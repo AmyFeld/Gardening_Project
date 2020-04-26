@@ -80,5 +80,6 @@ public class Model {
 		setStartGardening(false);
 		currentPlant = null;
 		inGarden.removeAll();
+	}
 
 }
