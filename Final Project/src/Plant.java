@@ -76,15 +76,15 @@ public class Plant {
 	 * Function: gets the name of the corresponding image file based on plant name
 	 */
 	
-	public String getImgName(String s) {
-		String temp = s.replace(" ", "_");
+	public String getImgName() {
+		String temp = this.name.replace(" ", "_");
 		temp = temp + ".jpg";
 		return temp; 
 	}
 	
-	public String getDesc(Plant p) {
+	public String getDesc() {
 		String s = "";
-		String name = p.name.replace(" ", "_");
+		String name = this.name.replace(" ", "_");
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(name+".txt"));
