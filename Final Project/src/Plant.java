@@ -12,7 +12,6 @@ public class Plant {
 	String color;
 	int start;
 	int end;
-	boolean inGarden = false;
 	
 	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color, int start, int end){
 		this.name = name;
