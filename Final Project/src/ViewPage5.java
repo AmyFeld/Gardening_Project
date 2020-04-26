@@ -1,208 +1,148 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
-import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-//This class presents the garden and includes the drag and drop feature to add new items to the garden
+// This class is a subclass of view that will draw out the greenery tour page
 
-public class ViewPage4 extends View {
-	Scene scene4;
-	private FlowPane flow;
-	private BorderPane border;
-	private TilePane tile;
+public class ViewPage2 extends View {
+	Scene scene2;	
+	int count = 0;
 
-
-	public ViewPage4(Stage theStage) {
-				
-		  // home button if fired
-		HBox layout1 = new HBox(20);     
-	    Label label1 = new Label("Edit Your Garden");
-	    Button rate = new Button("Rate My Garden");
-	  //	Button home = new Button("Home");
-	  //	Button where = new Button("Where to Buy");
-	  //	Button faq = new Button("Frequently Asked Questions");
-	  	
-	  	
-	  	layout1.getChildren().addAll(label1, homeButton, rate);
+	
+	public ViewPage2(Stage theStage) {
 		
-	  	scene4 = new Scene(layout1, 600, 300); // the button and label
-		 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	    rate.setOnAction(e-> theStage.setScene(new ViewPage5(theStage).getScene5()));
+		Image back = new Image("file:bg2.png");
+		ImageView bg = new ImageView(back);
+		System.out.println(Screen.getPrimary().getVisualBounds().getWidth());
+		bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+		bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		BackgroundImage myBG= new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
+		
+		VBox layout2 = new VBox(20); // assembles the title, tabs, and button vertically
+		HBox layout3 = new HBox(20);
+		
+		FlowPane flow = new FlowPane();
+		
+		flow.setTranslateX(30);
+		flow.setTranslateY(120);
+		
+		flow.setVgap(100);
+	    flow.setHgap(100);
+	    flow.setPrefWrapLength(200);
+		
+	    TabPane tabPane = new TabPane();
 	    
+	    Tab nTab = new Tab(); // main tab
+	    nTab.setText("Nursery Plant Selection");
+
+	    // creates tabs for all the plants linked with button
+	    for (int i = 0; i < 15; i++) {
+	    	Button b1 = new Button("Plant" + ++count); // modify for the correct name of plant
+	    	flow.getChildren().addAll(b1);
+	    	//flow.getChildren().add(add);
+	    	
+	    	
+			Tab t = new Tab(); 
+			t.setText("Plant" + count);
+			//At.getTabPane().add
+	        b1.setOnAction(e -> tabPane.getTabs().addAll(t));
+	
+	    }
 	    
-	    tile = new TilePane(Orientation.VERTICAL);
-		flow = new FlowPane(Orientation.VERTICAL);
-		border = new BorderPane();
+	    // Tab tab1 = tabPane.getTabs().get(0); // access the tabs individually and add info
+	    // another method is to use a for loop for the arraylist of plant images, names, etc
+	    // gives errors for now (out of bounds)
+	    
+    	//Button add = new Button("Add to Garden");
 
-		 //tile.setFill(Color.LIGHTGREEN); 
-	  	//tile.setBackground(new Background(new BackgroundFill(Color.web("#" + FFFFFF), CornerRadii.EMPTY, Insets.EMPTY)));
-		tile.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-		  
-	   	 theStage.setScene(scene4); 
-	   	 theStage.show(); 	
+	    
+	    tabPane.getTabs().add(nTab);
+	    
+		nTab.setContent(flow);
+		//nTab.setContent(add);
 
-	}	
+
+		Label label2 = new Label("Greenery Tour");
+		label2.setFont(new Font("Arial", 20));
+		label2.setTranslateX(400);
+	 	label2.setTranslateY(10);
+	 	
+	 	 Button homeButton = new Button("home");
+	 	
+	 	Button go = new Button("Go to Garden");
+				
+	 	layout3.getChildren().addAll(homeButton, go);
+		 layout2.getChildren().addAll(label2, tabPane, layout3); 
+		 layout2.setBackground(new Background(myBG));
+		 
+
+		 
+		 homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); // go back to the original screen
+		 go.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));//System.out.println("Go Pressed"));//theStage.setScene(new ViewPage4(theStage).getScene4()));
+		 scene2 = new Scene(layout2, 900, 600);	
+		
+	   	theStage.setScene(scene2); 
+	   	  theStage.show(); 		
+
+		
+	} 
 	
-	public Scene getScene4() {
-		return scene4;
+	public Scene getScene2() {
+		return scene2;
 	}
-
-	 public static void main(String args[]){          
-	      launch(args);     
-	   }
-}
-
-
-
-/*
-
-
-public class ViewPage4 extends View{
-
-//private ImgController1 imc1;
-private ImageView iv2;
-
-private FlowPane flow;
-private BorderPane border;
-private TilePane tile;
-
-
-private final double WIDTH = 800;
-private final double HEIGHT = 600;
-
-Scene scene4;
-
-
-/*
-public void MyMovingImageView1(){
 	
-
-
-iv2 = new ImageView();
-//imc1 = new ImgController1(this);
-
-}
 
 	/*
-	 * Input: stage
-	 * Output: None
-	 * Function: Starts the view and sets the image and creates the basic outline and functioning of the canvas when the screen is initialized to have the panes
-	 */
-   
- /*   @Override
-    public void start(Stage stage) {
-		//code from Lab8 to edit and change for our lab
-    Image im1; //= new Image(getClass().getResourceAsStream("milkWeed.png"), 100, 100, true, true);
-   
-  //  iv2.setImage(im1);
-    iv2.setPreserveRatio(true);
-    iv2.setFitHeight(100);
-   // iv2.setOnMouseDragged(imc1.getHandlerForDrag());   
-
-    	tile.setTileAlignment(Pos.CENTER_LEFT);
-        tile.setPrefRows(5);
-        tile.getChildren().add(iv2);
-        
-        flow.setColumnHalignment(HPos.CENTER);
-        flow.setPrefWrapLength(3*WIDTH/4);
-        border.setLeft(tile);
-        border.setRight(flow);
-        
-        
-        Scene scene1 = new Scene(border, WIDTH, HEIGHT);
-   
-        stage.setScene(scene1);
-        
-
- 
-iv2.setOnDragDetected((MouseEvent event) -> {
+	Map<String, Plant> plantCollection = new HashMap<String, Plant>();	
 	
-    //ImageView iv1 = new ImageView(im1);
-    
-    try {
-		Thread.sleep(500);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
+	/*
+	 * Input: takes in a name
+	 * Output: none
+	 * Function: the chosen plant is added to the collection
+	 
+	public void chosenPlant(String name) {		
+		Plant plant = getPlant(name);
+		plantCollection.put(name, plant);
+		
 	}
-    
-	System.out.println("eventX:" + event.getX() + " > tile X:" + 7*tile.getWidth()/12); // debugging
-
-    
-    if(event.getX() > 7*tile.getWidth()/12) { //boundaries to whether is plant is dragged in flow pane
-    	    	
-    //	flow.getChildren().add(iv1); 
-
-        //   Dragboard db = iv1.startDragAndDrop(TransferMode.COPY); 
-           ClipboardContent content = new ClipboardContent();
-           
-           // Store node ID in order to know what is dragged.
-         //  content.putString(iv1.getId());
-           //db.setContent(content);
-           event.consume();
-    }
-      
-  }); 
-
-
-        stage.show();
-    }
 	
 	/*
-	 * Input: double value
-	 * Output: None
-	 * Function: sets the x value of the layout of image view
-	 */
-   
- /*  public void setX(double x) {
-    iv2.setTranslateX(iv2.getLayoutX() - WIDTH/2 + x);
-    }
+	 * Input: the color
+	 * Output: string of color
+	 * Function: sorts on the color of the plant 
+	 
+	public String selectColor(String color) {
+		//iterate through icons of color and displays plants of color selected
+	}
 	
 	/*
-	 * Input: double value
-	 * Output: None
-	 * Function: sets the y value of the layout of image view
-	 */
-   
-   /* public void setY(double y) {
-    iv2.setTranslateY(iv2.getLayoutY() - HEIGHT/2 + y);
-    }
+	 * Input: none
+	 * Output: none
+	 * Function: getter for the plant 
+	 
+	public Plant getPlant() {
+		return p;
+	}
+	*/
+	
+	 
 
-    */
-//}
+}
