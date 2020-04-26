@@ -1,7 +1,7 @@
 // This class communicates with the controller to tell the view the current state of the Garden, the current plant and the triggering of garden
 public class Model {
 	
-	Boolean startGardening;
+	Boolean startGardening = false;
 	
 	Garden currentGarden = new Garden();
 	Plant currentPlant;
@@ -63,12 +63,16 @@ public class Model {
 	}
 	
 	public Plant getPlantByName(String s) {
-		for (Plant p : this.currentGarden.hello) {
+		for (Plant p : this.currentGarden.allPlants) {
 			if(p.name.equals(s)) {
 				return p;
 			}
 		}
 		return null;
+	}
+	
+	public void setStartGardening(Boolean b){
+		setStartGardening = b;
 	}
 
 }
