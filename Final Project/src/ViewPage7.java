@@ -1,85 +1,80 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 // This class is used to present the Resources tab and include the information and buttons that will present the information
 
 public class ViewPage7 extends View {
-	Scene scene1;
+	Scene scene7;
 
-	public ViewPage7(Stage theStage) {
-				
-		  // home button if fired
-		VBox layout1 = new VBox(20);     
-	    Label label1 = new Label("Resources");
-	  	Button home = new Button("Home");
-	  	Button where = new Button("Where to Buy");
-	  	Button faq = new Button("Frequently Asked Questions");
-	  	
-	  	
-	  	layout1.getChildren().addAll(label1, home,where,faq);
+	public ViewPage7(Stage theStage) {			
 		
-	  	scene1 = new Scene(layout1, 600, 300); // the button and label
-		 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+		VBox layout = new VBox(20);     
+	    Label label = new Label("Resources");
+	    Text whereText = new Text();
+	    Text faqText = new Text();
+	    
+	    try {
+			whereText.setText(uploadText("where"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	    
+	    try {
+			faqText.setText(uploadText("faq"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	    
+
+	  	Button home = new Button("Home");
+	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+
+	  	Tab where = new Tab();
+	  	where.setText("Where to Buy");
+	  	where.setContent(whereText);
+	
 	  	
-	   	 theStage.setScene(scene1); 
+	  	Tab faq = new Tab();
+	  	faq.setText("FAQ");
+	  	faq.setContent(faqText);
+
+		TabPane tabPane = new TabPane();
+		tabPane.getTabs().addAll(where, faq);
+		
+	  	layout.getChildren().addAll(label, tabPane, home); 
+	  	scene7 = new Scene(layout, 900, 600); 
+	  	
+	   	 theStage.setScene(scene7); 
 	   	 theStage.show(); 	
 
 	}	
 	
 	public Scene getScene7() {
-		return scene1;
+		return scene7;
 	}
 
 	 public static void main(String args[]){          
 	      launch(args);     
 	   }
 	
-	/*String title;
-	
-
-	
-	public ViewPage7(Stage theStage, EventHandler<ActionEvent> SSButton) {
-        theStage.setTitle("Resources");
-
-        Button buy = new Button("Where to buy");
-        buy.setOnAction(SSButton);
-
-        Button faq = new Button("Frequently Asked Questions");
-        faq.setOnAction(SSButton);
-        
-     
-        
-        Group root = new Group();
-        Scene theScene = new Scene(root);
-        theStage.setScene(theScene);
-
-        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-        root.getChildren().add(canvas);
-        root.getChildren().add(buy);
-        root.getChildren().add(faq);
-        gc = canvas.getGraphicsContext2D();
-
-		
-		//importImages();
-		
-	
-	}*/
-
-	/*
-	 * Input: None
+	/* Input: None
 	 * Output: None
 	 * Function: Will read in a .txt file and upload it onto the canvas
 	 */
-public void uploadText() {
-		
-	}
+	 public String uploadText(String name) throws Exception {
+		 String file = new String("textFiles/" + name + ".txt"); 
+		 String data = ""; 
+		 
+		 data = new String(Files.readAllBytes(Paths.get(file))); 
+		 return data;
+	  }
+
 }
