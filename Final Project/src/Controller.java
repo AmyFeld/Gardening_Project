@@ -30,6 +30,15 @@ public class Controller extends Application implements MouseListener {
     @Override
 	public void start(Stage theStage) {
         view = new View(theStage);
+		/*
+		  this.view = new View();
+       		 this.model = new Model();
+		try {
+			this.view.start(theStage);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
         
 		//model = new Model(view.getWidth(), view.getHeight(), 
            //     view.getImageWidth(), view.getImageHeight());
