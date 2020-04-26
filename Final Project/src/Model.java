@@ -75,5 +75,10 @@ public class Model {
 	public void setStartGardening(Boolean b){
 		setStartGardening = b;
 	}
+	
+	public void reset(){
+		setStartGardening(false);
+		currentPlant = null;
+		inGarden.removeAll();
 
 }
