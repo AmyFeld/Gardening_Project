@@ -48,6 +48,11 @@ public class ViewPage4 extends View {
 
 
 	public ViewPage4(Stage theStage) {
+		Image house = new Image("file:house.png", 50, 50, false, false);
+		Image plant1 = new Image("file:plant1.png", 50, 50, false, false);
+		Image plant2 = new Image("file:plant2.png", 50, 50, false, false);
+		
+		
 				
 		  // home button if fired
 		HBox layout1 = new HBox(20);     
@@ -60,21 +65,23 @@ public class ViewPage4 extends View {
 	  	
 	  	layout1.getChildren().addAll(label1, homeButton, rate);
 		
-	  	scene4 = new Scene(layout1, 600, 300); // the button and label
-		 //   scene1.setFill(Color.LIGHTGREEN);
+	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    rate.setOnAction(e-> theStage.setScene(new ViewPage5(theStage).getScene5()));
 	    
-	    
+	//    tile.getChildren().addAll(house, plant1, plant2);
+	    //tile.getChildren().
 	    tile = new TilePane(Orientation.VERTICAL);
-		flow = new FlowPane(Orientation.VERTICAL);
-		border = new BorderPane();
-
-		 //tile.setFill(Color.LIGHTGREEN); 
-	  	//tile.setBackground(new Background(new BackgroundFill(Color.web("#" + FFFFFF), CornerRadii.EMPTY, Insets.EMPTY)));
-		tile.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-		  
+	    VBox layout2 = new VBox();
+	    layout2.getChildren().addAll(house, plant1, plant2);
+	    
+	    
+	    flow = new FlowPane(Orientation.VERTICAL);
+	
+		start(theStage);
+		scene4 = new Scene(border, 600, 300); // the button and label
+		
 	   	 theStage.setScene(scene4); 
 	   	 theStage.show(); 	
 
@@ -82,6 +89,30 @@ public class ViewPage4 extends View {
 	
 	public Scene getScene4() {
 		return scene4;
+	}
+	
+	public void start(Stage myStage) {
+		
+	    tile.setAlignment(Pos.CENTER_LEFT);
+	    tile.setPrefRows(5);
+	    
+		
+	    flow.setColumnHalignment(HPos.CENTER);
+	    flow.setPrefWrapLength(3* canvasWidth/ 4);
+	    //tile.getChildren().add();
+		
+		border = new BorderPane();
+		border.setLeft(tile);
+		border.setRight(flow);
+		border.setTop(layout1);
+		//VBox layout2 = new VBox();
+		//layout2.getChildren().addAll(tile, flow);
+
+		 //tile.setFill(Color.LIGHTGREEN); 
+	  	//tile.setBackground(new Background(new BackgroundFill(Color.web("#" + FFFFFF), CornerRadii.EMPTY, Insets.EMPTY)));
+		flow.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+		
+		
 	}
 
 	 public static void main(String args[]){          
