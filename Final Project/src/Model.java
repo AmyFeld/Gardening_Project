@@ -5,6 +5,7 @@ public class Model {
 	
 	Garden currentGarden = new Garden();
 	Plant currentPlant;
+	ArrayList<Plant> inGarden = new ArrayList<Plant>();
 	
 	/*
 	 * Input: the Garden 
@@ -59,7 +60,7 @@ public class Model {
 	 * Function: the rating is updated from rateGarden()
 	 */
 	public void updateGarden() {
-		
+		inGarden.add(currentPlant);
 	}
 	
 	public Plant getPlantByName(String s) {
