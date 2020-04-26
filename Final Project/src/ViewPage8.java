@@ -22,6 +22,8 @@ public class ViewPage8 extends View {
 	    Text edgeText = new Text();
 	    Text appearText = new Text();
 	    
+	 // textFiles folder: animals.txt, edge.txt, appear.txt	
+		
 	    try {
 			animalText.setText(uploadText("animals"));
 		} catch (Exception e2) {
