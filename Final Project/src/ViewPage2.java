@@ -19,6 +19,8 @@ public class ViewPage2 extends View {
 	
 	public ViewPage2(Stage theStage) {
 		VBox layout2 = new VBox(20); // assembles the title, tabs, and button vertically
+		HBox layout3 = new HBox(20);
+		
 		FlowPane flow = new FlowPane();
 		
 		flow.setTranslateX(30);
@@ -57,12 +59,20 @@ public class ViewPage2 extends View {
 		label2.setFont(new Font("Arial", 20));
 		label2.setTranslateX(400);
 	 	label2.setTranslateY(10);
+			
+		Button homeButton = new Button("home");
+	 	
+	 	Button go = new Button("Go to Garden");
 				
+	 	layout3.getChildren().addAll(homeButton, go);
+		
 		 layout2.getChildren().addAll(label2, tabPane, homeButton); 
 
 		 
 		 homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); // go back to the original screen
-		 scene2 = new Scene(layout2, 900, 600);	
+		 go.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));//System.out.println("Go Pressed"));//theStage.setScene(new ViewPage4(theStage).getScene4()));
+ 
+		scene2 = new Scene(layout2, 900, 600);	
 		
 	   	theStage.setScene(scene2); 
 	   	  theStage.show(); 		
