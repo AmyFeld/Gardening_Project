@@ -1,91 +1,97 @@
- import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
+ import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 
 // This class is used to present the About Arden tab and include the information and buttons that will present the information
 
-public class ViewPage6 extends View{
+public class ViewPage6 extends View {
 	
-	Scene scene1;
+	Scene scene6;
+
 
 	public ViewPage6(Stage theStage) {
 				
-		  // home button if fired
 		VBox layout1 = new VBox(20);     
 	    Label label1 = new Label("About Arden");
+	    Text msText = new Text();
+	    Text purpText = new Text();
+	    Text histText = new Text();
+	    
+	    try {
+			msText.setText(uploadText("ms"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	    
+	    try {
+			purpText.setText(uploadText("purp"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	    
+	    try {
+			histText.setText(uploadText("hist"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
 	  	Button home = new Button("Home");
-	  	Button ms = new Button("Mission Statement");
-	  	Button purp = new Button("Purpose");
-	  	Button hist = new Button("History");
+	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+
+	  	Tab ms = new Tab();
+	  	ms.setText("Mission Statement");
+	  	ms.setContent(msText);
+	
 	  	
-	  	layout1.getChildren().addAll(label1, home,ms,purp,hist);
+	  	Tab purp = new Tab();
+	  	purp.setText("Purpose");
+	  	purp.setContent(purpText);
+
+	  	
+	  	Tab hist = new Tab();
+	  	hist.setText("History");
+	  	hist.setContent(histText);
+
+	    
+		TabPane tabPane = new TabPane();
+		tabPane.getTabs().addAll(ms, purp, hist);
 		
-	  	scene1 = new Scene(layout1, 600, 300); // the button and label
-		 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	  	layout1.getChildren().addAll(label1, tabPane, home); 
+	  	scene6 = new Scene(layout1, 900, 600); 
+
 	  	
-	   	 theStage.setScene(scene1); 
+	   	 theStage.setScene(scene6); 
 	   	 theStage.show(); 	
 
 	}	
 	
 	public Scene getScene6() {
-		return scene1;
+		return scene6;
 	}
-
-	 public static void main(String args[]){          
-	      launch(args);     
-	   }
-	
-	/*String title;
-	
-
-	
-	public ViewPage6(Stage theStage, EventHandler<ActionEvent> SSButton) {
-        theStage.setTitle("AboutArden");
-
-        Button missionStatement = new Button("Mission Statement");
-        missionStatement.setOnAction(SSButton);
-        
-        Button purpose = new Button("Purpose");
-        purpose.setOnAction(SSButton);
-        
-        Button history = new Button("History");
-        history.setOnAction(SSButton);
-        
-        Group root = new Group();
-        Scene theScene = new Scene(root);
-        theStage.setScene(theScene);
-
-        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-        root.getChildren().add(canvas);
-        root.getChildren().add(missionStatement);
-        root.getChildren().add(purpose);
-        root.getChildren().add(history);
-
-        gc = canvas.getGraphicsContext2D();
-
-		
-		//importImages();
-		
-	
-	}
-	*/
 
 	/*
 	 * Input: None
 	 * Output: None
-	 * Function: Will read in a .txt file and upload it onto the canvas
+	 * Function: Reads in text file and upload it onto the canvas
 	 */
-public void uploadText() {
-		
-	}
+	 public String uploadText(String name) throws Exception {
+		 String file = new String("textFiles/" + name + ".txt"); 
+		 String data = ""; 
+		 
+		 data = new String(Files.readAllBytes(Paths.get(file))); 
+		 return data;
+	  }
+
+
 }
