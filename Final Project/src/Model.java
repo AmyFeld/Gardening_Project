@@ -73,7 +73,7 @@ public class Model {
 	}
 	
 	public void setStartGardening(Boolean b){
-		setStartGardening = b;
+		startGardening = b;
 	}
 	
 	public void reset(){
