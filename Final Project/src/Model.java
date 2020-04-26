@@ -62,5 +62,13 @@ public class Model {
 		
 	}
 	
+	public Plant getPlantByName(String s) {
+		for (Plant p : this.currentGarden.hello) {
+			if(p.name.equals(s)) {
+				return p;
+			}
+		}
+		return null;
+	}
 
 }
