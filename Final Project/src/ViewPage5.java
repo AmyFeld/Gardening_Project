@@ -1,8 +1,10 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -10,139 +12,211 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-// This class is a subclass of view that will draw out the greenery tour page
 
-public class ViewPage2 extends View {
-	Scene scene2;	
-	int count = 0;
-
+// This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
+public class ViewPage5 extends View{
+	//String title;
+	//private Text buttonPressed;
 	
-	public ViewPage2(Stage theStage) {
+	int canvasWidth ;
+	int canvasHeight ;
+	
+	
+	//practice numbers for now
+	
+	int happyStars = 3;
+	int bloomStars = 4; 
+	int animalStars = 2; 
+	int compatStars = 5; 
+	int transitStars = 1; 
+	
+	 VBox layout2 = new VBox();
+	
+	
+
+	Scene scene5;
+	
+	public ViewPage5(Stage theStage) {
 		
-		Image back = new Image("file:bg2.png");
+		
+		Image back = new Image("file:bg2.png", 1000, 1000, true, true);
 		ImageView bg = new ImageView(back);
-		System.out.println(Screen.getPrimary().getVisualBounds().getWidth());
-		bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
-		bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		//bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+		//bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
 		BackgroundImage myBG= new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
-		VBox layout2 = new VBox(20); // assembles the title, tabs, and button vertically
-		HBox layout3 = new HBox(20);
-		
-		FlowPane flow = new FlowPane();
-		
-		flow.setTranslateX(30);
-		flow.setTranslateY(120);
-		
-		flow.setVgap(100);
-	    flow.setHgap(100);
-	    flow.setPrefWrapLength(200);
-		
-	    TabPane tabPane = new TabPane();
-	    
-	    Tab nTab = new Tab(); // main tab
-	    nTab.setText("Nursery Plant Selection");
+        theStage.setTitle("Rate My Garden");
 
-	    // creates tabs for all the plants linked with button
-	    for (int i = 0; i < 15; i++) {
-	    	Button b1 = new Button("Plant" + ++count); // modify for the correct name of plant
-	    	flow.getChildren().addAll(b1);
-	    	//flow.getChildren().add(add);
-	    	
-	    	
-			Tab t = new Tab(); 
-			t.setText("Plant" + count);
-			//At.getTabPane().add
-	        b1.setOnAction(e -> tabPane.getTabs().addAll(t));
+        HBox layout1 = new HBox(20);     
+	    Label label1 = new Label("Rate My Garden");
+	  	//Button home = new Button("Home");
+	  	Button save = new Button("Save to");
+	  	//Button faq = new Button("Frequently Asked Questions");
+	  	Label buttonPressed = new Label("");
+	  	
+	  	layout1.getChildren().addAll(label1, homeButton,save, buttonPressed);
+		
+	  	Group root = new Group();
+	  	//root.getChildren().addAll(layout1);
+	  	
+	  	scene5 = new Scene(root, 600, 300); // the button and label
+		 //   scene1.setFill(Color.LIGHTGREEN);
+	  		  	
+	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	    
+	    
+	    
+	    EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+                buttonPressed.setText("Here you will able to save to computer to share :)"); 
+            } 
+        };
+        
+        save.setOnAction(event);
+	    
+	    /*save.setOnAction(e -> { 
+	  		buttonPressed.setText("Here you will be able to save to email and share...");
+	  		});
+	    */
+        layout2.getChildren().add(layout1);
+        start(theStage);
+        
+        root.getChildren().add(layout2);
+        layout2.setBackground(new Background(myBG));
+		
+	  // 	 layout2.getChildren();
+	   	 
+        theStage.setScene(scene5); 
+	   	 theStage.show(); 	
+	   	 
+	   	// start();
+		
+	   	 //layout2.getChildren();
 	
-	    }
-	    
-	    // Tab tab1 = tabPane.getTabs().get(0); // access the tabs individually and add info
-	    // another method is to use a for loop for the arraylist of plant images, names, etc
-	    // gives errors for now (out of bounds)
-	    
-    	//Button add = new Button("Add to Garden");
+	}
 
-	    
-	    tabPane.getTabs().add(nTab);
-	    
-		nTab.setContent(flow);
-		//nTab.setContent(add);
+	public Scene getScene5() {
+		return scene5;
+	}
 
+  /*
+   * Input: int 
+   * Output: None
+   * Function: presents happiness using some form of icon
+   */
+  public void presentHappiness(int happy){
+	  happyStars = happy;
+  }
+  
+  /*
+   * Input: int 
+   * Output: None
+   * Function: presents cont bloom rating using some form of icon
+   */
+  public void presentContBloom(int bloom){
+    bloomStars = bloom;
+  }
+  
+    /*
+   * Input: int 
+   * Output: None
+   * Function: presents animals fed rating  using some form of icon
+   */
+  
+  public void presentAnimalsFedRating(int animal){
+	  animalStars = animal;
+  }
+  
+    /*
+   * Input: int 
+   * Output: None
+   * Function: presents compatibility rating using some form of icon
+   */
+  public void presentCompatibilityRating(int compat){
+    compatStars = compat;
+  }
+  
+    /*
+   * Input: int 
+   * Output: None
+   * Function: presents transition rating using some form of icon
+   */
+  
+  public void presentTransitionRating(int transit){
+    transitStars = transit;
+  }
 
-		Label label2 = new Label("Greenery Tour");
-		label2.setFont(new Font("Arial", 20));
-		label2.setTranslateX(400);
-	 	label2.setTranslateY(10);
-	 	
-	 	 Button homeButton = new Button("home");
-	 	
-	 	Button go = new Button("Go to Garden");
-				
-	 	layout3.getChildren().addAll(homeButton, go);
-		 layout2.getChildren().addAll(label2, tabPane, layout3); 
-		 layout2.setBackground(new Background(myBG));
+  
+  /*
+   * Input: None 
+   * Output: None
+   * Function: Starts up view Page
+   */
+  public void start(Stage theStage){
+	  Image image = new Image("file:starD.png", 50, 50, true, true);
+	  //ImageView imageView = new ImageView(image);
+	  Label hapl = new Label("Happiness Rating");
+	  Label blol = new Label("Continuous Bloom Rating");
+	  Label anil = new Label("Animal Rating");
+	  Label coml = new Label("Compatablity Rating");
+	  Label tral = new Label("Transitional Rating (from Edge)");
+	  
+	  HBox hap = new HBox();
+	  HBox blo = new HBox();
+	  HBox ani = new HBox();
+	  HBox com = new HBox();
+	  HBox tra = new HBox();
+	  
+	  for(int i = 0; i<happyStars; i++) {
+		  System.out.print("*");
+		  ImageView imageView = new ImageView(image);
+		  hap.getChildren().add(imageView);
 		 
-
+	  }
+	  System.out.println("");
+	  
+	  for(int i = 0; i<bloomStars; i++) {
+		  System.out.print("*");
+		  ImageView imageView = new ImageView(image);
+		  blo.getChildren().add(imageView);
+	  }
+	  System.out.println("");
+	  
+	  for(int i = 0; i<animalStars; i++) {
+		  System.out.print("*");
+		  ImageView imageView = new ImageView(image);
+		  ani.getChildren().add(imageView);
 		 
-		 homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); // go back to the original screen
-		 go.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));//System.out.println("Go Pressed"));//theStage.setScene(new ViewPage4(theStage).getScene4()));
-		 scene2 = new Scene(layout2, 900, 600);	
-		
-	   	theStage.setScene(scene2); 
-	   	  theStage.show(); 		
+	  }
+	  System.out.println("");
+	  
+	  for(int i = 0; i<compatStars; i++) {
+		  System.out.print("*");
+		  ImageView imageView = new ImageView(image);
+		  com.getChildren().add(imageView);
+		 
+	  }
+	  System.out.println("");
+	  
+	  for(int i = 0; i<transitStars; i++) {
+		  System.out.print("*");
+		  ImageView imageView = new ImageView(image);
+		  tra.getChildren().add(imageView);
+		 
+	  }
+	 //System.out.println("Hi");
+	  layout2.getChildren().addAll(hapl,hap,blol,blo,anil,ani,coml,com,tral,tra);
+	  
+	  
+  }
 
-		
-	} 
-	
-	public Scene getScene2() {
-		return scene2;
-	}
-	
-
-	/*
-	Map<String, Plant> plantCollection = new HashMap<String, Plant>();	
-	
-	/*
-	 * Input: takes in a name
-	 * Output: none
-	 * Function: the chosen plant is added to the collection
-	 
-	public void chosenPlant(String name) {		
-		Plant plant = getPlant(name);
-		plantCollection.put(name, plant);
-		
-	}
-	
-	/*
-	 * Input: the color
-	 * Output: string of color
-	 * Function: sorts on the color of the plant 
-	 
-	public String selectColor(String color) {
-		//iterate through icons of color and displays plants of color selected
-	}
-	
-	/*
-	 * Input: none
-	 * Output: none
-	 * Function: getter for the plant 
-	 
-	public Plant getPlant() {
-		return p;
-	}
-	*/
-	
-	 
 
 }
