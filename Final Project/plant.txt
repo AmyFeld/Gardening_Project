@@ -4,7 +4,7 @@ Maple-leaf Arrowwood,shrub,60,true,medium,white,4,8
 Oakleaf Hydrangea,shrub,108,false,medium,white,6,7
 Ninebark,shrub,72,true,low,pink,5,6
 Christmas Fern,fern,24,false,meidum,none,13,13
-Ironwood,tree,288,false,medium,green,3,5
+Ironwood,tree,288,false,medium,pink,3,5
 Spice Bush,shrub,72,false,medium,red,4,10
 Sweet Spire,shrub,42,false,high,white,4,6
 Green & Gold,herb,6,false,low,yellow,4,10
@@ -12,11 +12,11 @@ White Oak,tree,1200,false,medium,green,4,5
 Shagbark Hickory,tree,1020,true,medium,green,3,6
 Red Maple,tree,1020,false,high,red,3,4
 Sassafras,tree,288,true,low,yellow,3,5
-Blackgum,tree,1020,true,medium,white,4,6
+Blackgum,tree,1020,true,medium,green,4,6
 Serviceberry,tree,288,false,medium,white,1,12
 Red-Twig Dogwood,shrub,108,false,low,white,5,6
-Sweet pepperbush,shrub,288,true,high,white,6,8
-Winterberry Holly,tree,108,true,high,yellow,4,7
+Sweet Pepperbush,shrub,288,true,high,white,6,8
+Winterberry Holly,tree,108,true,high,white,4,7
 Inkberry,shrub,288,true,high,white,3,5
 Milkweed,herb,35,false,low,purple,5,8
 Butterfly Weed,herb,24,false,low,orange,5,9
@@ -26,7 +26,6 @@ Goldenrod,shrub,36,false,medium,yellow,9,11
 Zigzag Goldenrod,herb,54,true,medium,yellow,7,10
 Joe Pye Weed,herb,60,false,high,pink,7,10
 Blue Flag Iris,herb,36,false,medium,blue,5,6
-Little Joe,herb,42,false,medium,pink,7,9
 Black-Eyed Susans,herb,24,false,medium,yellow,6,10
 Golden Alexanders,herb,36,false,medium,yellow,4,6
 Moss Phlox,herb,6,false,medium,purple,3,5
