@@ -1,99 +1,89 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 // This class is used to present the Tips to Start tab and include the information and buttons that will present the information
 public class ViewPage9 extends View {
 	
-	Scene scene1;
+	Scene scene9;
 
 	public ViewPage9(Stage theStage) {
-				
-		  // home button if fired
-		VBox layout1 = new VBox(20);     
-	    Label label1 = new Label("Tips to Start");
+			
+	    // textFiles folder: .txt, .txt, .txt
+		VBox layout = new VBox(20);     
+	    Label label = new Label("Tips to Start");
+	    Text unhappyText = new Text();
+	    Text bestText = new Text();
+	    Text startText = new Text();
+	    
+	    // textFiles folder: unhappy.txt, best.txt, start.txt
+
+	    try {
+			unhappyText.setText(uploadText("unhappy"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+ 	    
+	    try {
+			bestText.setText(uploadText("best"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	    try {
+			startText.setText(uploadText("start"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	    
+
 	  	Button home = new Button("Home");
-	  	Button unhappy = new Button("Unhappy");
-	  	Button best = new Button("Best Places");
-		Button start = new Button("Start with");
+	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+
+	  	Tab unhappy = new Tab();
+	  	unhappy.setText("Unhappy?");
+	  	unhappy.setContent(unhappyText);
 	  	
+	  	Tab best = new Tab();
+	  	best.setText("Best Places To Go");
+	  	best.setContent(bestText);
 	  	
-	  	layout1.getChildren().addAll(label1, home,unhappy,best,start);
+		Tab start = new Tab();
+	  	start.setText("Start With");
+	  	start.setContent(startText);
+
+		TabPane tabPane = new TabPane();
+		tabPane.getTabs().addAll(unhappy, best, start);
 		
-	  	scene1 = new Scene(layout1, 600, 300); // the button and label
-		 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	  	layout.getChildren().addAll(label, tabPane, home); 
+	  	scene9 = new Scene(layout, 900, 600); 
 	  	
-	   	 theStage.setScene(scene1); 
+	   	 theStage.setScene(scene9); 
 	   	 theStage.show(); 	
 
 	}	
 	
 	public Scene getScene9() {
-		return scene1;
+		return scene9;
 	}
-
-	 public static void main(String args[]){          
-	      launch(args);     
-	   }
-	
-	
-	/*String title;
-	
-
-	
-	public ViewPage9(Stage theStage, EventHandler<ActionEvent> SSButton) {
-        theStage.setTitle("Tips to Start");
-
-        Button unhappy = new Button("Unhappy?");
-        unhappy.setOnAction(SSButton);
-        
-        Button bestPlace = new Button("Best Place to Start");
-        bestPlace.setOnAction(SSButton);
-        
-        Button start = new Button("Start with");
-        start.setOnAction(SSButton);
-        
-        Group root = new Group();
-        Scene theScene = new Scene(root);
-        theStage.setScene(theScene);
-
-        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-        root.getChildren().add(canvas);
-        root.getChildren().add(unhappy);
-        root.getChildren().add(bestPlace);
-        root.getChildren().add(start);
-
-        gc = canvas.getGraphicsContext2D();
-
-	
-		//importImages();
-		
-	
-	}*/
-	
-	/*
-	 * Input: None
-	 * Output: None
-	 * Function: Will read in a .txt file and upload it onto the canvas
-	 */
-	public void uploadText() {
-		// generic of what it should be 
-		// later add a part that "when unhappy button = clicked"
-		// File file = new File("\SLIDE9.txt"); 
-    	//	Scanner sc = new Scanner(file); 
-  
-    	//	while (sc.hasNextLine()) 
-      		//	System.out.println(sc.nextLine()); 
-		
+	 
+		/* Input: None
+		 * Output: None
+		 * Function: Will read in a .txt file and upload it onto the canvas
+		 */
+		 public String uploadText(String name) throws Exception {
+			 String file = new String("textFiles/" + name + ".txt"); 
+			 String data = ""; 
+			 
+			 data = new String(Files.readAllBytes(Paths.get(file))); 
+			 return data;	  
 	}
 
 }
