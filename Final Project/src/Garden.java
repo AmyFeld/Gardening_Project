@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 // This class is used for garden ratings and using this in the view to draw out the garden
 public class Garden {
 	
@@ -17,7 +21,10 @@ public class Garden {
 			String line = reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				String[] plantInfo = line.split(",");
-				temp.add(new Plant(plantInfo[0], plantInfo[1], Integer.parseInt(plantInfo[2]), Boolean.parseBoolean(plantInfo[3]), plantInfo[4], plantInfo[5], Integer.parseInt(plantInfo[6]), Integer.parseInt(plantInfo[7])));
+				temp.add(new Plant(plantInfo[0], plantInfo[1], Integer.parseInt(plantInfo[2]),
+						Boolean.parseBoolean(plantInfo[3]), plantInfo[4], plantInfo[5], Integer.parseInt(plantInfo[6]), 
+						Integer.parseInt(plantInfo[7])));
+
 				}
 			reader.close();
 		} catch (Exception e) {
