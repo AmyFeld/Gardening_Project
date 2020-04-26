@@ -1,1 +1,1 @@
-README for PlantImg
+README for general images
