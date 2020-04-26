@@ -70,4 +70,16 @@ public class Plant {
 		
 	}
 	
+	/*
+	 * Input: a String 
+	 * Output: an altered String
+	 * Function: gets the name of the corresponding image file based on plant name
+	 */
+	
+	public String getImgName(String s) {
+		String temp = s.replace(" ", "_");
+		temp = temp + ".jpg";
+		return temp; 
+	}
+	
 }
