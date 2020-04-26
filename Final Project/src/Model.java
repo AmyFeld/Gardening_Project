@@ -3,7 +3,7 @@ public class Model {
 	
 	Boolean startGardening;
 	
-	Garden currentGarden;
+	Garden currentGarden = new Garden();
 	Plant currentPlant;
 	
 	/*
