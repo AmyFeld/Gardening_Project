@@ -28,6 +28,8 @@ public class ViewPage6 extends View {
 	    Text purpText = new Text();
 	    Text histText = new Text();
 	    
+	// textFiles folder: ms.txt, purp.txt, hist.txt
+
 	    try {
 			msText.setText(uploadText("ms"));
 		} catch (Exception e2) {
