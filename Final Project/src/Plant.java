@@ -82,4 +82,22 @@ public class Plant {
 		return temp; 
 	}
 	
+	public String getDesc(Plant p) {
+		String s = "";
+		String name = p.name.replace(" ", "_");
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(name+".txt"));
+			   String line = null;
+			   while ((line = br.readLine()) != null) {
+			       s = s+line+"\n";
+			   }
+			   
+			}catch (Exception e) {
+				System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
+				e.printStackTrace();
+				}
+		return s;
+	}
+	
 }
