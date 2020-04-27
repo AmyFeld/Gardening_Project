@@ -1,11 +1,22 @@
-Make sure you are in a good location
-Depending on your location will show what you should plant as well as when to start planting. Also, the actual location of the garden is very determinable. 
-Get to know what soil you have
-Depending on the soil that you have, you might not be able to plant specific types of plants. Also, you might have to do specific things to improve your soil so it is better to plant. 
-Organize the plants strategically 
-Specific plants grow better next to each other. Also, it’s easier to keep track of what and where you planted the items by making some form of charting system. 
-Make sure to wear gloves!
-This may seem obvious, but make sure to wear some gloves and use some basic tools like a trowel, hoe, and more. 
-Morning is the best time to water
-Depending on where you live or the season, you might need water daily, on top of the normal rain cycles. 
+
+
+	- Make sure you are in a good location
+	
+	- Depending on your location will show what you should plant as well as when to start planting. The actual location of the garden is
+	  very determinable. 
+	  
+	- Get to know what soil you have
+	
+	- Depending on the soil type, you might not be able to plant specific types of plants. Also, you might have to do specific things 
+	  to improve your soil so it is better to plant. 
+	  
+	- Organize the plants strategically 
+	
+	- Specific plants grow better next to each other. Also, it’s easier to keep track of what and where you planted the items
+	  by making some form of charting system. 
+	  
+	- This may seem obvious, but make sure to wear some gloves and use some basic tools like a trowel, hoe, and more. 
+	
+	- Morning is the best time to water. Depending on where you live or the season, you might need water daily, on top of the 
+	  normal rain cycles. 
 
