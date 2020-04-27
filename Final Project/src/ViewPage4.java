@@ -1,26 +1,39 @@
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 
 
 //This class presents the garden and includes the drag and drop feature to add new items to the garden
 
 public class ViewPage4 extends View {
 	Scene scene4;
-	private FlowPane flow;
+	private GridPane grid;
 	private BorderPane border;
 	private TilePane tile;
+	
 
 
 	public ViewPage4(Stage theStage) {
@@ -30,28 +43,72 @@ public class ViewPage4 extends View {
 	    Label label1 = new Label("Edit Your Garden");
 	    Button rate = new Button("Rate My Garden");
 	  	
-	  	
+	    tile = new TilePane(Orientation.VERTICAL);
+		grid = new GridPane();
+		border = new BorderPane();
+		
 	  	layout1.getChildren().addAll(label1, homeButton, rate);
 		
-	  	scene4 = new Scene(layout1, 900, 600); // the button and label
+	  	//scene4 = new Scene(layout1, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    rate.setOnAction(e-> theStage.setScene(new ViewPage5(theStage).getScene5()));
 	    
 	    
-	    tile = new TilePane(Orientation.VERTICAL);
-		flow = new FlowPane(Orientation.VERTICAL);
-		border = new BorderPane();
+	    
+		start(theStage);
+	    layout1.setAlignment(Pos.TOP_CENTER);
+		border.setTop(layout1);;
+		
+		scene4 = new Scene(border, 900, 600); // the
 
 		 //tile.setFill(Color.LIGHTGREEN); 
 	  	//tile.setBackground(new Background(new BackgroundFill(Color.web("#" + FFFFFF), CornerRadii.EMPTY, Insets.EMPTY)));
-		tile.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+		
 		  
 	   	 theStage.setScene(scene4); 
 	   	 theStage.show(); 	
 
 	}	
+	public void start(Stage stage) {
+		//Image back = new Image("file:lawn.png", 600, 600, false, false);
+	//	ImageView flowBG = new ImageView(back);
+		//BackgroundImage flowBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
+		Image house = new Image("file:backup_house.png", 100, 100, false, false);
+		ImageView iv = new ImageView(house);
+		Image plant1 = new Image("file:plant1.png", 100, 100, false, false);
+		ImageView iv2 = new ImageView(plant1);
+		Image plant2 = new Image("file:plant2.png", 100, 100, false, false);
+		ImageView iv3 = new ImageView(plant2);
+		
+		Rectangle r = new Rectangle(600, 600);
+		r.setFill(Color.LIGHTGREEN);
+		
+		tile.setTileAlignment(Pos.CENTER_LEFT);
+        tile.setPrefRows(5);
+        
+        tile.getChildren().addAll(iv, iv2, iv3);
+        
+        //flow.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        //flow.setStyle()
+     //   grid.setBackground(new Background(flowBG));
+        grid.setPrefHeight(600);
+        grid.getChildren().add(r);
+        //flow.setColumnHalignment(HPos.CENTER);
+       //flow.setPrefWrapLength(3*canvasWidth/4);
+        border.setLeft(tile);
+        border.setCenter(grid);
+        
+       // border.getRight().setStyle("-fx-border-color: lightgreen;");
+       
+      //  flow.setStyle("-fx-border-color: POWDERBLUE;");
+        
+        
+        
+		
+	}
 	
 	public Scene getScene4() {
 		return scene4;
