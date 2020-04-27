@@ -1,0 +1,9 @@
+Name: Shagbark Hickory
+Scientific Name: Cornus florida
+Type: Tree
+Size: 10 to 25 feet
+Bloom Time: March to May
+Fruit: Red Berries
+Bloom Color: Pink
+
+Synopsis:
