@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -24,10 +25,13 @@ import javafx.stage.Stage;
 
 // This class is a subclass of view that will draw out the greenery tour page
 //This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
-public class ViewPage5 extends View {
+public class ViewPage5 extends View{
+	//String title;
+	//private Text buttonPressed;
 	
 	int canvasWidth ;
 	int canvasHeight ;
+	
 	
 	//practice numbers for now
 	
@@ -45,7 +49,7 @@ public class ViewPage5 extends View {
 	public ViewPage5(Stage theStage) {
 		
 		
-		Image back = new Image("file:bg2.png", 1000, 1000, true, true);
+		Image back = new Image("file:bg2.png", canvasWidth, canvasHeight, false, false);
 		ImageView bg = new ImageView(back);
 		//bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
 		//bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
@@ -63,10 +67,10 @@ public class ViewPage5 extends View {
 	  	
 	  	layout1.getChildren().addAll(label1, homeButton,save, buttonPressed);
 		
-	  	Group root = new Group();
+	  	//Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
 	  	
-	  	scene5 = new Scene(root, 900, 600); // the button and label
+	  	scene5 = new Scene(layout2, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
@@ -89,9 +93,9 @@ public class ViewPage5 extends View {
      layout2.getChildren().add(layout1);
      start(theStage);
      
-     root.getChildren().add(layout2);
+     //root.getChildren().add(layout2);
      layout2.setBackground(new Background(myBG));
-		
+	//root.setEffect(new Effect(myBG));	
 	  // 	 layout2.getChildren();
 	   	 
      theStage.setScene(scene5); 
