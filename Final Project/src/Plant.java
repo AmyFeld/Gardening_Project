@@ -95,7 +95,7 @@ public class Plant {
 			   }
 			   
 			}catch (Exception e) {
-				System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
+				System.err.format("Exception occurred trying to read '%s'.", "name+.txt");
 				e.printStackTrace();
 				}
 		return s;
