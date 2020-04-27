@@ -79,7 +79,7 @@ public class Plant {
 	
 	public String getImgName() {
 		String temp = this.name.replace(" ", "_");
-		temp = temp + ".jpg";
+		temp = "file:"temp + ".jpg";
 		return temp; 
 	}
 	
@@ -88,7 +88,7 @@ public class Plant {
 		String name = this.name.replace(" ", "_");
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(name+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader("file:"name+".txt"));
 			   String line = null;
 			   while ((line = br.readLine()) != null) {
 			       s = s+line+"\n";
