@@ -11,31 +11,31 @@ public class GardenTest {
   @Test
   public void testCalculateHappiness(){
 	  System.out.println("Testing HappinessRating");
-	  assertEquals(0, calculateHappinessRating(G));
+	  assertEquals(0, G.calculateHappinessRating(G));
   }
 
   @Test
   public void testCalculateContBloomRating(){
 	  System.out.println("Testing ContBloomRating");
-	  assertEquals(0, calculateContBloomRating(G));
+	  assertEquals(0, G.calculateContBloomRating(G));
   }
 	
   @Test
   public void testCalculateAnimalsFedRating(){
 	  System.out.println("Testing AnimalsFedRating");
-	  assertEquals(0, calculateAnimalsFedRating(G));
+	  assertEquals(0, G.calculateAnimalsFedRating(G));
   }
 
   @Test
   public void testCalculateCompatibilityRating(){
 	  System.out.println("Testing CompatibilityRating");
-	  assertEquals(0, calculateCompatibilityRating(G));
+	  assertEquals(0, G.calculateCompatibilityRating(G));
   }
 	
   @Test
   public void testCalculateTransitionRating(){
 	  System.out.println("Testing TransitionRating");
-	  assertEquals(0, calculateTransitionRating(G));
+	  assertEquals(0, G.calculateTransitionRating(G));
   }	
 	
 }
