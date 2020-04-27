@@ -1,15 +1,15 @@
- import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -19,16 +19,22 @@ public class ViewPage6 extends View {
 	
 	Scene scene6;
 
-
 	public ViewPage6(Stage theStage) {
 				
 		VBox layout1 = new VBox(20);     
-	    Label label1 = new Label("About Arden");
-	    Text msText = new Text();
+	    Text label1 = new Text("About Arden");
+		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
+	    label1.setTranslateX(300);
+	    label1.setTranslateY(15);
+	    label1.setFill(Color.WHITE); 
+	    label1.setStrokeWidth(2); 
+	    label1.setStroke(Color.BLUE);	  
+	     Text msText = new Text();
+	    msText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
 	    Text purpText = new Text();
 	    Text histText = new Text();
 	    
-	// textFiles folder: ms.txt, purp.txt, hist.txt
+	    // textFiles folder: ms.txt, purp.txt, hist.txt
 
 	    try {
 			msText.setText(uploadText("ms"));
@@ -82,8 +88,7 @@ public class ViewPage6 extends View {
 		return scene6;
 	}
 
-	/*
-	 * Input: None
+	/* Input: None
 	 * Output: None
 	 * Function: Reads in text file and upload it onto the canvas
 	 */

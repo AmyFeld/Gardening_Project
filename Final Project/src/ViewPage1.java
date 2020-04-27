@@ -30,7 +30,7 @@ public class ViewPage1 extends View {
 		  // home button if fired
 		Image back = new Image("file:bg.png", 900, 600, false, false);
 		ImageView bg = new ImageView(back);
-		BackgroundImage myBG= new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		VBox layout2 = new VBox(20);
 		

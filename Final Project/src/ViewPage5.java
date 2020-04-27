@@ -2,9 +2,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -12,21 +13,21 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-
-// This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
-public class ViewPage5 extends View{
-	//String title;
-	//private Text buttonPressed;
+// This class is a subclass of view that will draw out the greenery tour page
+//This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
+public class ViewPage5 extends View {
 	
 	int canvasWidth ;
 	int canvasHeight ;
-	
 	
 	//practice numbers for now
 	
@@ -37,7 +38,6 @@ public class ViewPage5 extends View{
 	int transitStars = 1; 
 	
 	 VBox layout2 = new VBox();
-	
 	
 
 	Scene scene5;
@@ -52,9 +52,9 @@ public class ViewPage5 extends View{
 		BackgroundImage myBG= new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
-        theStage.setTitle("Rate My Garden");
+     theStage.setTitle("Rate My Garden");
 
-        HBox layout1 = new HBox(20);     
+     HBox layout1 = new HBox(20);     
 	    Label label1 = new Label("Rate My Garden");
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
@@ -66,7 +66,7 @@ public class ViewPage5 extends View{
 	  	Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
 	  	
-	  	scene5 = new Scene(root, 600, 300); // the button and label
+	  	scene5 = new Scene(root, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
@@ -74,27 +74,27 @@ public class ViewPage5 extends View{
 	    
 	    
 	    EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-                buttonPressed.setText("Here you will able to save to computer to share :)"); 
-            } 
-        };
-        
-        save.setOnAction(event);
+         public void handle(ActionEvent e) 
+         { 
+             buttonPressed.setText("Here you will able to save to computer to share :)"); 
+         } 
+     };
+     
+     save.setOnAction(event);
 	    
 	    /*save.setOnAction(e -> { 
 	  		buttonPressed.setText("Here you will be able to save to email and share...");
 	  		});
 	    */
-        layout2.getChildren().add(layout1);
-        start(theStage);
-        
-        root.getChildren().add(layout2);
-        layout2.setBackground(new Background(myBG));
+     layout2.getChildren().add(layout1);
+     start(theStage);
+     
+     root.getChildren().add(layout2);
+     layout2.setBackground(new Background(myBG));
 		
 	  // 	 layout2.getChildren();
 	   	 
-        theStage.setScene(scene5); 
+     theStage.setScene(scene5); 
 	   	 theStage.show(); 	
 	   	 
 	   	// start();
@@ -107,60 +107,60 @@ public class ViewPage5 extends View{
 		return scene5;
 	}
 
-  /*
-   * Input: int 
-   * Output: None
-   * Function: presents happiness using some form of icon
-   */
-  public void presentHappiness(int happy){
+/*
+* Input: int 
+* Output: None
+* Function: presents happiness using some form of icon
+*/
+public void presentHappiness(int happy){
 	  happyStars = happy;
-  }
-  
-  /*
-   * Input: int 
-   * Output: None
-   * Function: presents cont bloom rating using some form of icon
-   */
-  public void presentContBloom(int bloom){
-    bloomStars = bloom;
-  }
-  
-    /*
-   * Input: int 
-   * Output: None
-   * Function: presents animals fed rating  using some form of icon
-   */
-  
-  public void presentAnimalsFedRating(int animal){
-	  animalStars = animal;
-  }
-  
-    /*
-   * Input: int 
-   * Output: None
-   * Function: presents compatibility rating using some form of icon
-   */
-  public void presentCompatibilityRating(int compat){
-    compatStars = compat;
-  }
-  
-    /*
-   * Input: int 
-   * Output: None
-   * Function: presents transition rating using some form of icon
-   */
-  
-  public void presentTransitionRating(int transit){
-    transitStars = transit;
-  }
+}
 
-  
-  /*
-   * Input: None 
-   * Output: None
-   * Function: Starts up view Page
-   */
-  public void start(Stage theStage){
+/*
+* Input: int 
+* Output: None
+* Function: presents cont bloom rating using some form of icon
+*/
+public void presentContBloom(int bloom){
+ bloomStars = bloom;
+}
+
+ /*
+* Input: int 
+* Output: None
+* Function: presents animals fed rating  using some form of icon
+*/
+
+public void presentAnimalsFedRating(int animal){
+	  animalStars = animal;
+}
+
+ /*
+* Input: int 
+* Output: None
+* Function: presents compatibility rating using some form of icon
+*/
+public void presentCompatibilityRating(int compat){
+ compatStars = compat;
+}
+
+ /*
+* Input: int 
+* Output: None
+* Function: presents transition rating using some form of icon
+*/
+
+public void presentTransitionRating(int transit){
+ transitStars = transit;
+}
+
+
+/*
+* Input: None 
+* Output: None
+* Function: Starts up view Page
+*/
+public void start(Stage theStage){
 	  Image image = new Image("file:starD.png", 50, 50, true, true);
 	  //ImageView imageView = new ImageView(image);
 	  Label hapl = new Label("Happiness Rating");
@@ -216,7 +216,7 @@ public class ViewPage5 extends View{
 	  layout2.getChildren().addAll(hapl,hap,blol,blo,anil,ani,coml,com,tral,tra);
 	  
 	  
-  }
+}
 
 
 }

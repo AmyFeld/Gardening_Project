@@ -21,7 +21,7 @@ public class ViewPage7 extends View {
 	    Text whereText = new Text();
 	    Text faqText = new Text();
 	    
-  // textFiles folder: where.txt and faq.txt
+	    // textFiles folder: where.txt and faq.txt
 
 	    try {
 			whereText.setText(uploadText("where"));

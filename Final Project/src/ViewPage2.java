@@ -13,8 +13,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -54,7 +52,7 @@ public class ViewPage2 extends View {
 	    nTab.setText("Nursery Plant Selection");
 
 	    // creates tabs for all the plants linked with button
-	    for (int i = 0; i < 15; i++) {
+	    for (int i = 0; i < 18; i++) {
 	    	Button b1 = new Button("Plant" + ++count); // modify for the correct name of plant
 	    	flow.getChildren().addAll(b1);
 	    	//flow.getChildren().add(add);

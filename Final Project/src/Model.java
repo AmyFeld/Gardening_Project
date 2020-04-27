@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+
 // This class communicates with the controller to tell the view the current state of the Garden, the current plant and the triggering of garden
+
 public class Model {
 	
 	Boolean startGardening = false;
@@ -73,13 +76,13 @@ public class Model {
 	}
 	
 	public void setStartGardening(Boolean b){
-		startGardening = b;
+	  startGardening = b;
 	}
 	
 	public void reset(){
 		setStartGardening(false);
 		currentPlant = null;
-		inGarden.removeAll();
+		inGarden.clear(); // removeAll?
 	}
 
 }

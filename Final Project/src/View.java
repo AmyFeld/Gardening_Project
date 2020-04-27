@@ -1,4 +1,3 @@
-
 import javafx.application.Application;
 
 import javafx.event.ActionEvent;
@@ -45,8 +44,8 @@ public class View extends Application {
 		Button prevButton;
 		Button nextButton;
 		
-	    Image home = new Image("icons/home.png", 50, 50, false, false);
-	    Button homeButton = new Button("home", new ImageView(home));
+	   // Image home = new Image("icons/home.png", 50, 50, false, false);
+	    Button homeButton = new Button("home");//, new ImageView(home));
 
 		View currView;
 		//ViewPage1 vp1;
@@ -54,9 +53,17 @@ public class View extends Application {
 		
 		 Scene scene1;
 		//Scene scene2;
-
+		 
+		 
 	@Override
 	public void start(Stage theStage) throws Exception {
+		Image back = new Image("file:bg.png");
+		ImageView bg = new ImageView(back);
+		
+		Group root = new Group();
+		root.getChildren().add(bg);
+
+		
 
 		theStage.setTitle("Create a Garden");
 		

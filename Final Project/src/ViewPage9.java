@@ -17,7 +17,6 @@ public class ViewPage9 extends View {
 
 	public ViewPage9(Stage theStage) {
 			
-	    // textFiles folder: .txt, .txt, .txt
 		VBox layout = new VBox(20);     
 	    Label label = new Label("Tips to Start");
 	    Text unhappyText = new Text();
