@@ -20,15 +20,30 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-// This class is used to present the Tips to Start tab and include the information and buttons that will present the information
+/**
+ * This class is used to present the Tips to Start tab and include the information and
+ * buttons that will present the information
+ * 
+ * @author Lisa Pathania
+ *
+ */
+ 
 public class ViewPage9 extends View {
 	
 	Scene scene9;
 	//int fontSize = 40; 
-	int labelX = 300;
-	int labelY = 15;
+	//int labelX = 300;
+	//int labelY = 15;
 
+
+
+	/**
+	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
+	 * 
+	 * @param Stage  Holds tabs that will read out information to the user
+	 * @return none  Creates an application displaying the graphics and tabs of the information
+	 *
+	 */
 	public ViewPage9(Stage theStage) {
 		Image back = new Image("file:images/bg2.png", canvasWidth, canvasHeight, false, false);
 		ImageView bg = new ImageView(back);
@@ -94,14 +109,24 @@ public class ViewPage9 extends View {
 
 	}	
 	
+	/**
+	 * Description: basic getter for the scene in order to receive it when buttons are pressed on screens 
+	 * 
+	 * 
+	 * @return scene9
+	 */
+	
 	public Scene getScene9() {
 		return scene9;
 	}
-	 
-		/* Input: None
-		 * Output: None
-		 * Function: Will read in a .txt file and upload it onto the canvas
-		 */
+	
+	/**
+	 * Description: takes in the text file to present to the user the basic information for that tab 
+	 * 
+	 * @param name a string of what the file is called
+	 * @return none
+	 * @throws Exception
+	 */
 		 public String uploadText(String name) throws Exception {
 			 String file = new String("textFiles/Page9/" + name + ".txt"); 
 			 String data = ""; 
