@@ -25,12 +25,22 @@ import javafx.stage.Stage;
 // information page when a plant is selected and includes a slider to show back and forth between times
 
 
-/*
+ /**
+ * This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
+ * information page when a plant is selected and includes a slider to show back and forth between times
+ * 
+ * @author Lisa Pathania & Tara Fishman
+ *
+ */
+
+/* Additional info: 
 * in plant class, the function getDescr will be used to determine how this class will be presented 
 * the button will also have to set model's current plant model.setCurrenPlant() model.getCurrentPlant().getDesc
 * model.getCurrentPlant().inGarden = True; <-- will add to garden tile pane 
 * getImage -- take image and get name or correspondfing img you want to read in
 */
+
+
 
 public class ViewPage2 extends View {
 	Scene scene2;	
@@ -38,6 +48,13 @@ public class ViewPage2 extends View {
 	int plaWidth = 100;
 	int plaHeight = 100;
 		
+	/**
+	 * Description: Sets up the another stage of the application with background
+	 * image & title. Adds Scene2 scene to the stage and creates the plant nursery as well as the apllication fo creating new tabs
+	 * that will hold plant information
+	 *
+	 *@param Stage  a platform container to hold scene2 
+	 */
 	public ViewPage2(Stage theStage) {
 		
 		Garden g = new Garden();
@@ -123,10 +140,24 @@ public class ViewPage2 extends View {
 		
 	} 
 	
+	/**
+	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
+	 * 
+	 * 
+	 * @return scene1
+	 */
 	public Scene getScene2() {
 		return scene2;
 	}
 	
+	/**
+	 * Description: This function takes in the current plant and creates a file and image that
+	 * will be presented as a button
+	 * 
+	 * @param name based on the plant currently on
+	 * @return String of data based on the plant
+	 * @throws Exception
+	 */
 	 public String createImage(String name) throws Exception {
 		 String file = new String("plantImg/" + name + ".txt"); 
 		 String data = ""; 
