@@ -38,7 +38,7 @@ public class ViewPage1 extends View {
 		
 		HBox layout1 = new HBox(20); 
 		Text label1 = new Text("Create Your Own Garden");
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
+		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	     label1.setFill(Color.WHITE); 
 	     label1.setStrokeWidth(2); 
 	     label1.setStroke(Color.BLUE);    
