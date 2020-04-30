@@ -24,6 +24,13 @@ public class View extends Application {
 		int canvasWidth = 1380;
 		int canvasHeight = 940;
 		
+		int fontSize = 40;
+		
+		int sceneWidth = 900;
+		int sceneHeight = 600;
+		int labelX = 300;
+		int labelY = 15;
+		
 	// value of the size of the image
 		static final int imgWidthOrig = 100;
 		static final int imgHeightOrig = 100;
@@ -45,7 +52,7 @@ public class View extends Application {
 		Button nextButton;
 		
 	   // Image home = new Image("icons/home.png", 50, 50, false, false);
-	    Button homeButton = new Button("home");//, new ImageView(home));
+	    Button homeButton = new Button("Home");//, new ImageView(home));
 
 		View currView;
 		//ViewPage1 vp1;
