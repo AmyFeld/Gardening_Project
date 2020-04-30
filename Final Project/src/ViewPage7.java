@@ -5,7 +5,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -14,10 +25,20 @@ import javafx.stage.Stage;
 public class ViewPage7 extends View {
 	Scene scene7;
 
-	public ViewPage7(Stage theStage) {			
+	public ViewPage7(Stage theStage) {		
+		Image back = new Image("file:images/bg2.png",canvasWidth, canvasHeight, false, false);
+		ImageView bg = new ImageView(back);
+		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
 		
 		VBox layout = new VBox(20);     
-	    Label label = new Label("Resources");
+	    Text label1 = new Text("Resources");
+		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    label1.setTranslateX(labelX);
+	    label1.setTranslateY(labelY);
+	    label1.setFill(Color.WHITE); 
+	    label1.setStrokeWidth(2); 
+	    label1.setStroke(Color.BLUE);
 	    Text whereText = new Text();
 	    Text faqText = new Text();
 	    
@@ -36,8 +57,8 @@ public class ViewPage7 extends View {
 		}
 	    
 
-	  	Button home = new Button("Home");
-	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+	  	//Button home = new Button("Home");
+	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
 	  	Tab where = new Tab();
 	  	where.setText("Where to Buy");
@@ -51,8 +72,9 @@ public class ViewPage7 extends View {
 		TabPane tabPane = new TabPane();
 		tabPane.getTabs().addAll(where, faq);
 		
-	  	layout.getChildren().addAll(label, tabPane, home); 
-	  	scene7 = new Scene(layout, 900, 600); 
+	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
+	  	layout.setBackground(new Background(myBG));
+	  	scene7 = new Scene(layout, sceneWidth, sceneHeight); 
 	  	
 	   	 theStage.setScene(scene7); 
 	   	 theStage.show(); 	
