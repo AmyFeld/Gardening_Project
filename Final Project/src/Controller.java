@@ -52,7 +52,8 @@ public class Controller extends Application implements MouseListener {
     };
     
     new AnimationTimer() {
-        public void handle(long currentNanoTime) {	
+        public void handle(long currentNanoTime) {
+        	
          
             try {
                 Thread.sleep(100);
