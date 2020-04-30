@@ -28,7 +28,8 @@ public class ViewPage1 extends View {
 	public ViewPage1(Stage theStage) {
 				
 		  // home button if fired
-		Image back = new Image("file:bg.png", 900, 600, false, false);
+		
+		Image back = new Image("file:images/bg.png", canvasWidth, canvasHeight, false, false);
 		ImageView bg = new ImageView(back);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
@@ -61,7 +62,7 @@ public class ViewPage1 extends View {
 		//root.getChildren().addAll(layout1, layout2);
 		layout2.getChildren().add(layout1);
 		
-	  	scene1 = new Scene(layout2, 900, 600); // the button and label
+	  	scene1 = new Scene(layout2,sceneWidth, sceneHeight); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    button1.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));	 
