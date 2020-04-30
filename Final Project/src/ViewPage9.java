@@ -5,7 +5,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -14,11 +25,24 @@ import javafx.stage.Stage;
 public class ViewPage9 extends View {
 	
 	Scene scene9;
+	//int fontSize = 40; 
+	int labelX = 300;
+	int labelY = 15;
 
 	public ViewPage9(Stage theStage) {
+		Image back = new Image("file:images/bg2.png", canvasWidth, canvasHeight, false, false);
+		ImageView bg = new ImageView(back);
+		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
 			
 		VBox layout = new VBox(20);     
-	    Label label = new Label("Tips to Start");
+	    Text label1 = new Text("Tips to Start");
+		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    label1.setTranslateX(labelX);
+	    label1.setTranslateY(labelY);
+	    label1.setFill(Color.WHITE); 
+	    label1.setStrokeWidth(2); 
+	    label1.setStroke(Color.BLUE);
 	    Text unhappyText = new Text();
 	    Text bestText = new Text();
 	    Text startText = new Text();
@@ -43,8 +67,8 @@ public class ViewPage9 extends View {
 		}
 	    
 
-	  	Button home = new Button("Home");
-	    home.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+	  //	Button home = new Button("Home");
+	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
 	  	Tab unhappy = new Tab();
 	  	unhappy.setText("Unhappy?");
@@ -61,8 +85,9 @@ public class ViewPage9 extends View {
 		TabPane tabPane = new TabPane();
 		tabPane.getTabs().addAll(unhappy, best, start);
 		
-	  	layout.getChildren().addAll(label, tabPane, home); 
-	  	scene9 = new Scene(layout, 900, 600); 
+	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
+	  	layout.setBackground(new Background(myBG));
+	  	scene9 = new Scene(layout, sceneWidth, sceneHeight); 
 	  	
 	   	 theStage.setScene(scene9); 
 	   	 theStage.show(); 	
