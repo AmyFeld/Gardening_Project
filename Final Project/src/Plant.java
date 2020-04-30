@@ -25,42 +25,55 @@ public class Plant {
 		this.start = start;
 		this.end = end;
 	}
-	
+	/*
+	 * Description: getName takes in a Plant and returns its name
+	 * @param none
+	 * @return. String which represents the name stored in a plant
+	 * @throws nothing
+	 */
 	public String getName() {
 		return name;
 	}
 	
 	/*
-	 * Input: none
-	 * Output: none
-	 * Function: sorts based on the type of plant 
+	 * Description: sortByType takes in nothing and returns nothing but is meant to be used on an array of plants
+	 * to sort it in order of type tree, shrub, herb
+	 * @param none
+	 * @return. nothing
+	 * @throws nothing
 	 */
 	public void sortByType() {	
 	
 	}
 	
 	/*
-	 * Input: none
-	 * Output: none
-	 * Function: sorts based on the type of fruit 
+	 * Description: sortByFruition takes in nothing and returns nothing but is meant to be used on an array of plants
+	 * to sort it in order of hasFruit is true to hasFruit is false
+	 * @param none
+	 * @return. nothing
+	 * @throws nothing
 	 */
 	public void sortByFruition() {
 	
 	}
 	
 	/*
-	 * Input: none
-	 * Output: none
-	 * Function: sorts based on how the plant needs water (high, medium, low)
+	 * Description: sortByWaterUse takes in nothing and returns nothing but is meant to be used on an array of plants
+	 * to sort it in order of low wateruse, medium wateruse and high wateruse
+	 * @param none
+	 * @return. nothing
+	 * @throws nothing
 	 */
 	public void sortByWaterUse() {
 		
 	}
 	
 	/*
-	 * Input: none
-	 * Output: none
-	 * Function: sorts based on how the plant's color (red, green, etc)
+	 * Description: sortByColor takes in nothing and returns nothing but is meant to be used on an array of plants
+	 * to sort it in order of the rainbow
+	 * @param none
+	 * @return. nothing
+	 * @throws nothing
 	 */
 	public void sortByColor() {
 		
@@ -76,9 +89,10 @@ public class Plant {
 	}
 	
 	/*
-	 * Input: a String 
-	 * Output: an altered String
-	 * Function: gets the name of the corresponding image file based on plant name
+	 * Description: getImgName uses a plant's name to return the name of the img file that has the plant
+	 * @param none
+	 * @return. String that represents the name of the apporpriate img file
+	 * @throws nothing
 	 */
 	
 	public String getImgName() {
@@ -86,7 +100,12 @@ public class Plant {
 		temp = "file:plantImg/" + temp + ".jpg";
 		return temp; 
 	}
-	
+	/*
+	 * Description: getDesc uses a plant's name to return the contents of the appropriate description file
+	 * @param none
+	 * @return. String that is teh contents of the appropriate txt file
+	 * @throws filenotfound Exception
+	 */
 	public String getDesc() {
 		String s = "";
 		String name = this.name.replace(" ", "_");
