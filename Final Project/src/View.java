@@ -57,7 +57,7 @@ public class View extends Application {
 		 
 	@Override
 	public void start(Stage theStage) throws Exception {
-		Image back = new Image("file:bg.png");
+		Image back = new Image("file:images/bg.png");
 		ImageView bg = new ImageView(back);
 		
 		Group root = new Group();
