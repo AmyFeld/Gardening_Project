@@ -22,6 +22,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/**
+ * This class is a subclass of view that will draw out the greenery tour page. It also presents the
+ * Rate My Garden page and takes in the ratings to present each topic using different icons.
+ * 
+ * @author Amy Feldman & Lisa Pathania
+ *
+ */
 
 //This class is a subclass of view that will draw out the greenery tour page
 //This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
@@ -50,6 +57,13 @@ public class ViewPage5 extends View {
 
 	Scene scene5;
 	
+	/**
+	 * For the user to get results of their garden rating this class will consume numbers to show based on stars and also be able to share further
+	 * 
+	 * @param Stage  Holds the image of the garden and plants
+	 * @return none  Creates an application displaying the graphics 
+	 *
+	 */
 	public ViewPage5(Stage theStage) {
 		
 		
@@ -107,64 +121,78 @@ public class ViewPage5 extends View {
 	   	 //layout2.getChildren();
 	
 	}
-
+	
+	
+	/**
+	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
+	 * 
+	 * 
+	 * @return scene4
+	 */
 	public Scene getScene5() {
 		return scene5;
 	}
 
-/*
-* Input: int 
-* Output: None
-* Function: presents happiness using some form of icon
-*/
+	/**
+	 * Description: basic setter for taking in int from View that consumes from Model
+	 * 
+	 * @param int happy rating int calculated
+	 * @return none
+	 */
+	
 public void presentHappiness(int happy){
 	  happyStars = happy;
 }
 
-/*
-* Input: int 
-* Output: None
-* Function: presents cont bloom rating using some form of icon
-*/
+/**
+ * Description: basic setter for taking in int from View that consumes from Model
+ * 
+ * @param int bloom rating int calculated
+ * @return none
+ */
 public void presentContBloom(int bloom){
 bloomStars = bloom;
 }
 
-/*
-* Input: int 
-* Output: None
-* Function: presents animals fed rating  using some form of icon
-*/
+/**
+ * Description: basic setter for taking in int from View that consumes from Model
+ * 
+ * @param int animal rating int calculated
+ * @return none
+ */
 
 public void presentAnimalsFedRating(int animal){
 	  animalStars = animal;
 }
 
-/*
-* Input: int 
-* Output: None
-* Function: presents compatibility rating using some form of icon
-*/
+/**
+ * Description: basic setter for taking in int from View that consumes from Model
+ * 
+ * @param int compatibility rating int calculated
+ * @return none
+ */
 public void presentCompatibilityRating(int compat){
 compatStars = compat;
 }
 
-/*
-* Input: int 
-* Output: None
-* Function: presents transition rating using some form of icon
-*/
-
+/**
+ * Description: basic setter for taking in int from View that consumes from Model
+ * 
+ * @param int transition rating int calculated
+ * @return none
+ */
 public void presentTransitionRating(int transit){
 transitStars = transit;
 }
 
 
-/*
-* Input: None 
-* Output: None
-* Function: Starts up view Page
-*/
+/**
+ * Description: takes in the integer and presents each of the ratings and overall evaluation as 
+ * a star added to a layout to be presented to the user
+ * 
+ * @param theStage 
+ * @return none
+ */
 public void start(Stage theStage){
 	  Image image = new Image("file:starD.png", STARH, STARW, true, true);
 	  //ImageView imageView = new ImageView(image);
