@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -23,16 +22,17 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-// This class is a subclass of view that will draw out the greenery tour page
+
+//This class is a subclass of view that will draw out the greenery tour page
 //This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
-public class ViewPage5 extends View{
+
+public class ViewPage5 extends View {
 	//String title;
 	//private Text buttonPressed;
 	
 	int canvasWidth ;
 	int canvasHeight ;
-	
-	
+
 	//practice numbers for now
 	
 	int happyStars = 3;
@@ -40,6 +40,10 @@ public class ViewPage5 extends View{
 	int animalStars = 2; 
 	int compatStars = 5; 
 	int transitStars = 1; 
+	int overallStars = 4; // have to add to model
+	
+	int STARH = 75;
+	int STARW = 75;
 	
 	 VBox layout2 = new VBox();
 	
@@ -49,56 +53,53 @@ public class ViewPage5 extends View{
 	public ViewPage5(Stage theStage) {
 		
 		
-		Image back = new Image("file:bg2.png", canvasWidth, canvasHeight, false, false);
+		Image back = new Image("file:images/bg2.png", canvasWidth, canvasHeight, false, false);
 		ImageView bg = new ImageView(back);
 		//bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
 		//bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-		BackgroundImage myBG= new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
-     theStage.setTitle("Rate My Garden");
+  theStage.setTitle("Rate My Garden");
 
-     HBox layout1 = new HBox(20);     
+  HBox layout1 = new HBox(20);     
 	    Label label1 = new Label("Rate My Garden");
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
 	  	Label buttonPressed = new Label("");
 	  	
-	  	layout1.getChildren().addAll(label1, homeButton,save, buttonPressed);
+	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
 		
 	  	//Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
-	  	
-	  	scene5 = new Scene(layout2, 900, 600); // the button and label
-		 //   scene1.setFill(Color.LIGHTGREEN);
+	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    
 	    
 	    
 	    EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-         public void handle(ActionEvent e) 
-         { 
-             buttonPressed.setText("Here you will able to save to computer to share :)"); 
-         } 
-     };
-     
-     save.setOnAction(event);
+      public void handle(ActionEvent e)  { 
+          buttonPressed.setText("Here you will able to save to computer to share :)"); 
+      } 
+  };
+  
+  save.setOnAction(event);
 	    
 	    /*save.setOnAction(e -> { 
 	  		buttonPressed.setText("Here you will be able to save to email and share...");
 	  		});
 	    */
-     layout2.getChildren().add(layout1);
-     start(theStage);
-     
-     //root.getChildren().add(layout2);
-     layout2.setBackground(new Background(myBG));
+  layout2.getChildren().add(layout1);
+  start(theStage);
+  
+  //root.getChildren().add(layout2);
+  layout2.setBackground(new Background(myBG));
 	//root.setEffect(new Effect(myBG));	
 	  // 	 layout2.getChildren();
-	   	 
-     theStage.setScene(scene5); 
+	scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
+  theStage.setScene(scene5); 
 	   	 theStage.show(); 	
 	   	 
 	   	// start();
@@ -126,10 +127,10 @@ public void presentHappiness(int happy){
 * Function: presents cont bloom rating using some form of icon
 */
 public void presentContBloom(int bloom){
- bloomStars = bloom;
+bloomStars = bloom;
 }
 
- /*
+/*
 * Input: int 
 * Output: None
 * Function: presents animals fed rating  using some form of icon
@@ -139,23 +140,23 @@ public void presentAnimalsFedRating(int animal){
 	  animalStars = animal;
 }
 
- /*
+/*
 * Input: int 
 * Output: None
 * Function: presents compatibility rating using some form of icon
 */
 public void presentCompatibilityRating(int compat){
- compatStars = compat;
+compatStars = compat;
 }
 
- /*
+/*
 * Input: int 
 * Output: None
 * Function: presents transition rating using some form of icon
 */
 
 public void presentTransitionRating(int transit){
- transitStars = transit;
+transitStars = transit;
 }
 
 
@@ -165,19 +166,21 @@ public void presentTransitionRating(int transit){
 * Function: Starts up view Page
 */
 public void start(Stage theStage){
-	  Image image = new Image("file:starD.png", 50, 50, true, true);
+	  Image image = new Image("file:starD.png", STARH, STARW, true, true);
 	  //ImageView imageView = new ImageView(image);
-	  Label hapl = new Label("Happiness Rating");
+	  Label hapl = new Label("Plant Happiness Rating");
 	  Label blol = new Label("Continuous Bloom Rating");
 	  Label anil = new Label("Animal Rating");
 	  Label coml = new Label("Compatablity Rating");
 	  Label tral = new Label("Transitional Rating (from Edge)");
+	  Label overl = new Label("Overall Rating");
 	  
 	  HBox hap = new HBox();
 	  HBox blo = new HBox();
 	  HBox ani = new HBox();
 	  HBox com = new HBox();
 	  HBox tra = new HBox();
+	  HBox over = new HBox();
 	  
 	  for(int i = 0; i<happyStars; i++) {
 		  System.out.print("*");
@@ -216,11 +219,17 @@ public void start(Stage theStage){
 		  tra.getChildren().add(imageView);
 		 
 	  }
+	  
+	  for(int i = 0; i<overallStars; i++) {
+		  System.out.print("*");
+		  ImageView imageView = new ImageView(image);
+		  over.getChildren().add(imageView);
+		 
+	  }
 	 //System.out.println("Hi");
-	  layout2.getChildren().addAll(hapl,hap,blol,blo,anil,ani,coml,com,tral,tra);
+	  layout2.getChildren().addAll(hapl,hap,blol,blo,anil,ani,coml,com,tral,tra, overl, over);
 	  
 	  
 }
-
 
 }
