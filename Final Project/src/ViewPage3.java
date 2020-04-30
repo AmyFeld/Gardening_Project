@@ -1,4 +1,4 @@
-import javafx.event.ActionEvent;
+/*import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,17 +15,20 @@ import javafx.stage.Stage;
  * model.getCurrentPlant().inGarden = True; <-- will add to garden tile pane 
  * getImage -- take image and get name or correspondfing img you want to read in
  */
-public class ViewPage3 extends View {
+/*
+public class ViewPage3 extends View{
 	String title;
 	
 
 	
-	public ViewPage3(Stage theStage) {
+	public ViewPage3(Stage theStage, EventHandler<ActionEvent> SSButton) {
         theStage.setTitle("Plant Information");
     
-      //slider = new JSlider();
+      slider = new JSlider();
       // have to finish uploading information about this
-          
+    
+
+       
         
         Group root = new Group();
         Scene theScene = new Scene(root);
@@ -40,8 +43,8 @@ public class ViewPage3 extends View {
 		
 		//importImages();
 		
+	
 	}
-}
   
   /*
    * Input: None
