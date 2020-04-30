@@ -14,6 +14,16 @@ public class Garden {
 	int compatibilityRating;
 	int transitionRating;
 	
+	
+	/**
+	 * Description: The readAllPlants is a function that will read in information from a text file to group
+	 * together all possible plants into Plant objects for the Garden to store.
+	 * @param None.
+	 * @return. ArrayList<Plant> for storing all read in plants for the Garden object
+	 * @throws IOException  Caused by file not foudn exception
+	 */
+
+
 	public ArrayList<Plant> readAllPlants(){
 		ArrayList<Plant> temp = new ArrayList<Plant>();
 		try {
@@ -34,46 +44,55 @@ public class Garden {
 		return temp;
 	}
 	
-	/*
-	 * Input: garden 
-	 * Output: returns a calculated number out of 5 (1:low, 5:high)
-	 * Function: calculation based on how good the garden is overall 
+	/**
+	 * Description: calculateHappinessRating is a function that analyzes a garden and based on what plants are present,
+	 * returns its rating from 1-5 stars.
+	 * @param A garden to check it's contained plants
+	 * @return int. whihc represents a number of stars from 1-5.
+	 * @throws no exceptions
 	 */
 	public int calculateHappinessRating(Garden g){
 		return 0;
 	}
 	
-	/*
-	 * Input: garden 
-	 * Output: returns calculated number out of 5  (1:low, 5:high)
-	 * Function: calculation based on garden on the number of blooms
+	/**
+	 * Description: calculateContBloomRating is a function that analyzes a garden and based on what plants are present,
+	 * returns its rating from 1-5 stars.
+	 * @param A garden to check it's contained plants
+	 * @return int. whihc represents a number of stars from 1-5.
+	 * @throws no exceptions
 	 */
 	public int calculateContBloomRating(Garden g){
 		return 0;
 	}
-	
-	/*
-	 * Input: garden 
-	 * Output: calculated number out of 5  (1:low, 5:high)
-	 * Function: calculation based on how many animals fed  
+	/**
+	 * Description: calculateAnimalsFedRating is a function that analyzes a garden and based on what plants are present,
+	 * returns its rating from 1-5 stars.
+	 * @param A garden to check it's contained plants
+	 * @return int. whihc represents a number of stars from 1-5.
+	 * @throws no exceptions
 	 */
 	public int calculateAnimalsFedRating(Garden g){
 		return 0;
 	}
 	
-	/*
-	 * Input: garden 
-	 * Output: returns a calculated number out of 5  (1:low, 5:high) 
-	 * Function: calculation based on garden of how compatible the plants 
+	/**
+	 * Description: calculateCompatibilityRating is a function that analyzes a garden and based on what plants are present,
+	 * returns its rating from 1-5 stars.
+	 * @param A garden to check it's contained plants
+	 * @return int. whihc represents a number of stars from 1-5.
+	 * @throws no exceptions
 	 */	
 	public int calculateCompatibilityRating(Garden g){
 		return 0;
 	}
 	
-	/*
-	 * Input: garden 
-	 * Output: returns a calculated number out of 5 (1:low, 5:high)
-	 * Function: calculation based on how well the grass goes to forest (edge)
+	/**
+	 * Description: calculateTransitionRating is a function that analyzes a garden and based on what plants are present,
+	 * returns its rating from 1-5 stars.
+	 * @param A garden to check it's contained plants
+	 * @return int. whihc represents a number of stars from 1-5.
+	 * @throws no exceptions
 	 */
 	public int calculateTransitionRating(Garden g) {
 		return 0;
