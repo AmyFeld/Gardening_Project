@@ -26,6 +26,10 @@ public class Plant {
 		this.end = end;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	/*
 	 * Input: none
 	 * Output: none
@@ -79,7 +83,7 @@ public class Plant {
 	
 	public String getImgName() {
 		String temp = this.name.replace(" ", "_");
-		temp = "file:"temp + ".jpg";
+		temp = "file:plantImg/" + temp + ".jpg";
 		return temp; 
 	}
 	
@@ -88,14 +92,14 @@ public class Plant {
 		String name = this.name.replace(" ", "_");
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("file:"name+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader("file:plantDesc/" + name+".txt"));
 			   String line = null;
 			   while ((line = br.readLine()) != null) {
 			       s = s+line+"\n";
 			   }
 			   
 			}catch (Exception e) {
-				System.err.format("Exception occurred trying to read '%s'.", "name+.txt");
+				System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
 				e.printStackTrace();
 				}
 		return s;
