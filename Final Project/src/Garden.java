@@ -2,8 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-// This class is used for garden ratings and using this in the view to draw out the garden
-public class Garden {
+/**
+ * This class is used for garden ratings and using this in the view to draw out the garden
+ * 
+ * @author Tara Fishman
+ *
+ */public class Garden {
 	
 	ArrayList<Plant> allPlants = readAllPlants();
 	
