@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 
-// This class communicates with the controller to tell the view the current state of the Garden, the current plant and the triggering of garden
+/**
+ * This class communicates with the controller to tell the view the current state of the Garden,
+ *  the current plant and the triggering of garden
+ * 
+ * @author Tara Fishman
+ *
+ */
 
 public class Model {
 	
