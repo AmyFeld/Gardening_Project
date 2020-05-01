@@ -2,8 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Collection;
 
-// This class is meant to handle the types of plants and handle plant sorting/filtering
-
+/**
+ * This class is meant to handle the types of plants and handle plant sorting/filtering
+ * 
+ * @author Tara Fishman 
+ *
+ */
 public class Plant {
 
 	String name;
