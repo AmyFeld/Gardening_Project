@@ -49,19 +49,21 @@ public class ViewPage4 extends View {
 		HBox layout1 = new HBox(20);     
 	    Label label1 = new Label("Edit Your Garden");
 	    Button rate = new Button("Rate My Garden");
-	  	
+	 Button back = new Button("Plant Nursery");
+
 	    tile = new TilePane(Orientation.VERTICAL);
 		grid = new GridPane();
 		border = new BorderPane();
 		
-	  	layout1.getChildren().addAll(label1, homeButton, rate);
+	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
 		
 	  	//scene4 = new Scene(layout1, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    rate.setOnAction(e-> theStage.setScene(new ViewPage5(theStage).getScene5()));
-	    
+	    back.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));
+
 	    
 	    
 		start(theStage);

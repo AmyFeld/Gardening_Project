@@ -82,14 +82,15 @@ public class ViewPage5 extends View {
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
 	  	Label buttonPressed = new Label("");
-	  	
-	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
+		Button back2g = new Button("Back to Garden");	  	
+	  	layout1.getChildren().addAll(label1, homeButton, back2g, save, buttonPressed);
 		
 	  	//Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
 	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	    back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
 	    
 	    
 	    
