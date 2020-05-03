@@ -1,14 +1,23 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -23,7 +32,6 @@ import javafx.stage.Stage;
 
 // This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
 // information page when a plant is selected and includes a slider to show back and forth between times
-
 
  /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
@@ -43,7 +51,9 @@ import javafx.stage.Stage;
 
 
 public class ViewPage2 extends View {
-	Scene scene2;	
+	
+	Scene scene2;
+	
 	int count = 0;
 	int plaWidth = 100;
 	int plaHeight = 100;
@@ -59,41 +69,45 @@ public class ViewPage2 extends View {
 		
 		Garden g = new Garden();
 		ArrayList<Plant> allPlants = g.allPlants;		
-		ArrayList<Plant> myPlants = new ArrayList<Plant>();
+	//	ArrayList<Plant> myPlants = new ArrayList<Plant>();
 		
 		Image back = new Image("file:images/bg2.png");
 		ImageView bg = new ImageView(back);
-		System.out.println(Screen.getPrimary().getVisualBounds().getWidth());
+		
+
 		bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
 		bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
-		VBox layout2 = new VBox(20); // assembles the title, tabs, and button vertically
-		HBox layout3 = new HBox(20);
+		VBox vb = new VBox(20); // assembles the title, tabs, and button 
+		HBox hb = new HBox(20); // home button and go to garden button
 		
-		FlowPane flow = new FlowPane();
+		FlowPane flow = new FlowPane(); // assembles the plant buttons
 		
 		flow.setTranslateX(30);
-		flow.setTranslateY(120);
+		flow.setTranslateY(20);
 		
-		flow.setVgap(50);
-	    flow.setHgap(50);
-	    flow.setPrefWrapLength(200);
-		
-	    TabPane tabPane = new TabPane();
+		flow.setVgap(20);
+	    flow.setHgap(35);
+	    flow.setPrefWrapLength(sceneWidth-23);
+	    flow.setPrefHeight(sceneHeight+200);
 	    
-	    Tab nTab = new Tab(); // main tab
+	    
+	    TabPane tabPane = new TabPane();
+	    Tab nTab = new Tab(); // main tab with Nursery
 	    nTab.setText("Nursery Plant Selection");
 	    
-	    System.out.println(allPlants.get(0).getImgName());
-
 	    // creates tabs for all the plants linked with button
-	    for (int i = 0; i < 18; i++) {
-	    	Button b1 = new Button(allPlants.get(i).getName(), new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false))); 
-	    	flow.getChildren().addAll(b1);
-	    	//flow.getChildren().add(add);
+	    for (int i = 1; i < 31; i++) {
 	    	
+	    	Button b1 = new Button();
+	    	
+	    	b1.setGraphic(new ImageView(new Image(allPlants.get(i).getImgName(), 
+	    			plaWidth, plaHeight, false, false))); 
+	    	
+	    	flow.getChildren().addAll(b1);	    	
 	    	
 			Tab t = new Tab(); 
 			t.setText(allPlants.get(i).getName());
@@ -108,37 +122,37 @@ public class ViewPage2 extends View {
 	    
     	//Button add = new Button("Add to Garden");
 
-	    
 	    tabPane.getTabs().add(nTab);
 	    
 		nTab.setContent(flow);
-		//nTab.setContent(add);
-
+		
+		ScrollPane sc = new ScrollPane(vb);
+		sc.setPrefViewportHeight(sceneHeight + 100);
+		sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
 		Label label2 = new Label("Greenery Tour");
 		label2.setFont(new Font("Arial", 20));
 		label2.setTranslateX(400);
 	 	label2.setTranslateY(10);
-	 	
-	 	// Button homeButton = new Button("home");
-	 	
+	 		 	
 	 	Button go = new Button("Go to Garden");
-				
-	 	layout3.getChildren().addAll(homeButton, go);
-		 layout2.getChildren().addAll(label2, tabPane, layout3); 
-		 layout2.setBackground(new Background(myBG));
-		 
+	 	
+	 	hb.getChildren().addAll(label2, homeButton, go);
+		vb.getChildren().addAll(hb, tabPane); 
+		sc.setContent(vb);
 
+		vb.setBackground(new Background(myBG));
+
+		 homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
+		 go.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));
 		 
-		 homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); // go back to the original screen
-		 go.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));//System.out.println("Go Pressed"));//theStage.setScene(new ViewPage4(theStage).getScene4()));
-		 scene2 = new Scene(layout2, sceneWidth, sceneHeight);	
+		 scene2 = new Scene(sc, sceneWidth, sceneHeight);	
 		
 	   	theStage.setScene(scene2); 
 	   	  theStage.show(); 		
 
 		
-	} 
+	}  
 	
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
