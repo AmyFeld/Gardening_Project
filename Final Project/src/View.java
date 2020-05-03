@@ -1,22 +1,11 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import javafx.application.Application;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -28,45 +17,22 @@ import javafx.stage.Stage;
 public class View extends Application {
   	
 	// value of the height and width of screen
-		int canvasWidth = 1380;
-		int canvasHeight = 940;
-		
-		int fontSize = 40;
-		
+		int canvasWidth = 900;
+		int canvasHeight = 600;
 		int sceneWidth = 900;
 		int sceneHeight = 600;
+		
+		int fontSize = 40;
+
 		int labelX = 300;
 		int labelY = 15;
-		
-	// value of the size of the image
-		static final int imgWidthOrig = 100;
-		static final int imgHeightOrig = 100;
-
-		int imgWidth = 300;
-		int imgHeight = 300;
-	    
-	    Scene theScene;
-
-	    GraphicsContext gc;
-
-	    Image background;
-	    Image[] img;		
-		
-		//variables to determine the location of image
-		double x = 0;
-		double y = 0;
+	
 		Button prevButton;
 		Button nextButton;
 		
-	   // Image home = new Image("icons/home.png", 50, 50, false, false);
-	    Button homeButton = new Button("Home");//, new ImageView(home));
-
-		View currView;
-		//ViewPage1 vp1;
-		
-		
-		 Scene scene1;
-		//Scene scene2;
+	    Image home = new Image("file:images/home.png", 20, 20, false, false);
+	    Button homeButton = new Button("Home", new ImageView(home));
+		Scene scene1;
 		 
 		 /**
 			 * Sets up the first stage of the application with background
@@ -76,14 +42,12 @@ public class View extends Application {
 			 *
 			 */
 	@Override
-	public void start(Stage theStage) throws Exception {
+	public void start(Stage theStage) {
 		Image back = new Image("file:images/bg.png");
 		ImageView bg = new ImageView(back);
 		
 		Group root = new Group();
 		root.getChildren().add(bg);
-
-		
 
 		theStage.setTitle("Create a Garden");
 		
@@ -126,45 +90,4 @@ public class View extends Application {
 	 * Output: None
 	 * Function: takes in the information that was used to update and fixes the page and what should be seen
 	 */
-	///public void update() {
-		
-	//}
-	
-	/*
-	 * Input: None
-	 * Output: None
-	 * Function: imports that images based on the page that the user is on and the images needed
-	 */
-	//public void importImages() {
-		
-	//}
-	
-	
-    //Read image from file and return
-    /*private Image createImage(String image_file) {
-        Image img = new Image(image_file);
-        return img;   	
-    } 
-    
-	public Scene getScene() {
-		return theScene;
-	}
-	
-	//getter methods to get the frame dimensions and image dimensions
-	public int getWidth() {
-		return canvasWidth;
-	}
-	
-	public int getHeight() {
-		return canvasHeight;
-	}
-	
-	public int getImageWidth() {
-		return imgWidth;
-	}
-	
-	public int getImageHeight() {
-		return imgHeight;
-	}
-	*/
 }
