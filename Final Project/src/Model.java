@@ -14,7 +14,6 @@ public class Model {
 	
 	Garden currentGarden = new Garden();
 	Plant currentPlant;
-	ArrayList<Plant> inGarden = new ArrayList<Plant>();
 	
 	/**
 	 * Description: This is a setter for the Garden attribute in Model
@@ -81,7 +80,7 @@ public class Model {
 	 * @throws no exception
 	 */
 	public void updateGarden() {
-		inGarden.add(currentPlant);
+		currentGarden.inGarden.add(currentPlant);
 	}
 	/**
 	 * Description: getPlantByName takes in a string from a view button and finds the corresponding plant in the currentGarden
@@ -116,7 +115,7 @@ public class Model {
 	public void reset(){
 		setStartGardening(false);
 		currentPlant = null;
-		inGarden.clear(); // removeAll?
+		currentGarden = new Garden(); // removeAll?
 	}
 
 }

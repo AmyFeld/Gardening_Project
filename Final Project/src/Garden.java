@@ -10,8 +10,7 @@ import java.util.ArrayList;
  */public class Garden {
 	
 	ArrayList<Plant> allPlants = readAllPlants();
-	
-	Plant plantList[];
+	ArrayList<Plant> inGarden = new ArrayList<Plant>();
 	int happinessRating;
 	int contBloomRating;
 	int animalsFedRating;
@@ -100,6 +99,70 @@ import java.util.ArrayList;
 	 */
 	public int calculateTransitionRating(Garden g) {
 		return 0;
+	}
+	
+	public ArrayList<Plant> Filter(String category, String type){
+		ArrayList<Plant> temp = new ArrayList<Plant>();
+		switch(category) {
+		case "name":
+			for(Plant p : this.allPlants) {
+				if(p.name.equals(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "type":
+			for(Plant p : this.allPlants) {
+				if(p.type.equals(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "height":
+			for(Plant p : this.allPlants) {
+				if(p.height == Integer.parseInt(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "hasFruit":
+			for(Plant p : this.allPlants) {
+				if(p.hasFruit == Boolean.parseBoolean(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "waterUse":
+			for(Plant p : this.allPlants) {
+				if(p.waterUse.equals(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "color":
+			for(Plant p : this.allPlants) {
+				if(p.color.equals(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "start":
+			for(Plant p : this.allPlants) {
+				if(p.start == Integer.parseInt(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		case "end":
+			for(Plant p : this.allPlants) {
+				if(p.end == Integer.parseInt(type)) {
+					temp.add(p);
+				}
+			}
+			return temp;
+		}
+		return temp;
+		
 	}
 	
 
