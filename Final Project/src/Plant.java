@@ -29,6 +29,9 @@ public class Plant {
 		this.start = start;
 		this.end = end;
 	}
+	public Plant() {
+		// TODO Auto-generated constructor stub
+	}
 	/*
 	 * Description: getName takes in a Plant and returns its name
 	 * @param none
