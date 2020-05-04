@@ -45,7 +45,7 @@ public class ViewPage9 extends View {
 	 *
 	 */
 	public ViewPage9(Stage theStage) {
-		Image back = new Image("file:images/bg2.png", canvasWidth, canvasHeight, false, false);
+		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
 		ImageView bg = new ImageView(back);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
@@ -80,9 +80,12 @@ public class ViewPage9 extends View {
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-	    
-
-	  //	Button home = new Button("Home");
+	    try {
+	 			startText.setText(uploadText("invasive"));
+	 		} catch (Exception e2) {
+	 			e2.printStackTrace();
+	 		}
+	 	    
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
 	  	Tab unhappy = new Tab();
@@ -96,9 +99,13 @@ public class ViewPage9 extends View {
 		Tab start = new Tab();
 	  	start.setText("Start With");
 	  	start.setContent(startText);
+	  	
+		Tab invasive = new Tab();
+	  	invasive.setText("Invasive Plants");
+	  	invasive.setContent(startText);
 
 		TabPane tabPane = new TabPane();
-		tabPane.getTabs().addAll(unhappy, best, start);
+		tabPane.getTabs().addAll(unhappy, best, start, invasive);
 		
 	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
 	  	layout.setBackground(new Background(myBG));
