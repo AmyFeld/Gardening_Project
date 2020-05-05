@@ -26,7 +26,11 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -49,14 +53,16 @@ import javafx.stage.Stage;
 */
 
 
-
 public class ViewPage2 extends View {
 	
 	Scene scene2;
 	
 	int count = 0;
-	int plaWidth = 100;
-	int plaHeight = 100;
+	int buttonWidth = 100;
+	int buttonHeight= 100;
+	
+	int plantImgW = 300;
+	int plantImgH = 300;
 		
 	/**
 	 * Description: Sets up the another stage of the application with background
@@ -91,8 +97,8 @@ public class ViewPage2 extends View {
 		
 		flow.setVgap(20);
 	    flow.setHgap(35);
-	    flow.setPrefWrapLength(sceneWidth-23);
-	    flow.setPrefHeight(sceneHeight+200);
+	    flow.setPrefWrapLength(sceneWidth - 20);
+	    flow.setPrefHeight(sceneHeight + 200);
 	    
 	    
 	    TabPane tabPane = new TabPane();
@@ -105,14 +111,21 @@ public class ViewPage2 extends View {
 	    	Button b1 = new Button();
 	    	
 	    	b1.setGraphic(new ImageView(new Image(allPlants.get(i).getImgName(), 
-	    			plaWidth, plaHeight, false, false))); 
+	    			buttonWidth, buttonHeight, false, false))); 
 	    	
 	    	flow.getChildren().addAll(b1);	    	
 	    	
 			Tab t = new Tab(); 
+			b1.setOnAction(e -> tabPane.getTabs().addAll(t));
+			setTabInfo(allPlants.get(i), t);
+			
+			// idea: use the button or get tab in a method parameter that creates a tab with the title, pic, and details
+		/*	Text tex = new Text(allPlants.get(i).getName()); 
 			t.setText(allPlants.get(i).getName());
-			//At.getTabPane().add
-	        b1.setOnAction(e -> tabPane.getTabs().addAll(t));
+			
+			pInfo.getChildren().addAll(tex, new ImageView(new Image(allPlants.get(i).getImgName(), 
+	    			plaWidth, plaHeight, false, false)));
+			t.setContent(pInfo); // adds all plant info */
 	
 	    }
 	    
@@ -152,7 +165,37 @@ public class ViewPage2 extends View {
 	   	  theStage.show(); 		
 
 		
-	}  
+	} 
+	
+	public void setTabInfo(Plant p, Tab t) {
+		VBox pInfo = new VBox(20);
+
+		Text name = new Text(p.getName());
+		name.setTranslateX(250);
+		name.setTranslateY(20);
+
+		name.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+		name.setFill(Color.WHITE); 
+		name.setStrokeWidth(2); 
+		name.setStroke(Color.BLUE);
+		    
+		t.setText(p.getName());
+
+		// desc is not working?
+		//Text desc = new Text();
+		//t.setText(p.getDesc());
+		
+		// System.out.println(p.getDesc());
+		
+		ImageView planImg =  new ImageView(new Image(p.getImgName(), 
+    			plantImgW, plantImgH, false, false));
+		
+		planImg.setTranslateX(plantImgW);
+
+		pInfo.getChildren().addAll(name, planImg /*, p.getDesc() */);
+		
+		t.setContent(pInfo); // adds all plant info
+	}
 	
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
