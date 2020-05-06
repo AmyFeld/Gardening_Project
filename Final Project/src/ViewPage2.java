@@ -57,12 +57,17 @@ public class ViewPage2 extends View {
 	
 	Scene scene2;
 	
-	int count = 0;
 	int buttonWidth = 100;
-	int buttonHeight= 100;
+	int buttonHeight = 100;
 	
 	int plantImgW = 300;
 	int plantImgH = 300;
+	
+	int gButtonX = 400;
+	
+	Garden g = new Garden();
+	ArrayList<Plant> allPlants = g.allPlants;		
+	
 		
 	/**
 	 * Description: Sets up the another stage of the application with background
@@ -72,10 +77,6 @@ public class ViewPage2 extends View {
 	 *@param Stage  a platform container to hold scene2 
 	 */
 	public ViewPage2(Stage theStage) {
-		
-		Garden g = new Garden();
-		ArrayList<Plant> allPlants = g.allPlants;		
-	//	ArrayList<Plant> myPlants = new ArrayList<Plant>();
 		
 		Image back = new Image("file:images/bg2.png");
 		ImageView bg = new ImageView(back);
@@ -106,7 +107,7 @@ public class ViewPage2 extends View {
 	    nTab.setText("Nursery Plant Selection");
 	    
 	    // creates tabs for all the plants linked with button
-	    for (int i = 1; i < 31; i++) {
+	    for (int i = 1; i < allPlants.size(); i++) {
 	    	
 	    	Button b1 = new Button();
 	    	
@@ -119,22 +120,8 @@ public class ViewPage2 extends View {
 			b1.setOnAction(e -> tabPane.getTabs().addAll(t));
 			setTabInfo(allPlants.get(i), t);
 			
-			// idea: use the button or get tab in a method parameter that creates a tab with the title, pic, and details
-		/*	Text tex = new Text(allPlants.get(i).getName()); 
-			t.setText(allPlants.get(i).getName());
-			
-			pInfo.getChildren().addAll(tex, new ImageView(new Image(allPlants.get(i).getImgName(), 
-	    			plaWidth, plaHeight, false, false)));
-			t.setContent(pInfo); // adds all plant info */
-	
 	    }
 	    
-	    // Tab tab1 = tabPane.getTabs().get(0); // access the tabs individually and add info
-	    // another method is to use a for loop for the arraylist of plant images, names, etc
-	    // gives errors for now (out of bounds)
-	    
-    	//Button add = new Button("Add to Garden");
-
 	    tabPane.getTabs().add(nTab);
 	    
 		nTab.setContent(flow);
@@ -142,6 +129,7 @@ public class ViewPage2 extends View {
 		ScrollPane sc = new ScrollPane(vb);
 		sc.setPrefViewportHeight(sceneHeight + 100);
 		sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
 
 		Label label2 = new Label("Greenery Tour");
 		label2.setFont(new Font("Arial", 20));
@@ -167,6 +155,14 @@ public class ViewPage2 extends View {
 		
 	} 
 	
+	/**
+	 * Description: Creates a new tab with plant info when specified plant button is clicked
+	 * 
+	 * @param	Plant Calls a plant's name, image, and description
+	 * 		 	Tab  Holds the plant information
+	 * 
+	 * @return none
+	 */
 	public void setTabInfo(Plant p, Tab t) {
 		VBox pInfo = new VBox(20);
 
@@ -180,28 +176,51 @@ public class ViewPage2 extends View {
 		name.setStroke(Color.BLUE);
 		    
 		t.setText(p.getName());
-
-		// desc is not working?
-		//Text desc = new Text();
-		//t.setText(p.getDesc());
-		
-		// System.out.println(p.getDesc());
 		
 		ImageView planImg =  new ImageView(new Image(p.getImgName(), 
     			plantImgW, plantImgH, false, false));
 		
 		planImg.setTranslateX(plantImgW);
 
-		pInfo.getChildren().addAll(name, planImg /*, p.getDesc() */);
+		Text desc = new Text(p.getDesc());
 		
-		t.setContent(pInfo); // adds all plant info
+		Button g = new Button("Add to Garden");
+		g.setTranslateX(gButtonX);
+		// g.setOnAction(e -> );
+		
+
+		pInfo.getChildren().addAll(name, planImg, g, desc);
+		
+		t.setContent(pInfo); // adds all plant info to tab
+	}
+	
+	public void setFilters() {
+		VBox v = new VBox(20);
+		
+		// drop down: name, type, height, hasFruit, waterUse, color, start, end
+		// what are all the types? heights? hasFruits (T/F)?, 
+	}
+	
+	/**
+	 *  Iterate through icons of color and displays plants of color selected
+	 *  Input: the color
+	 * Output: string of color
+	 *   */
+	 
+	public ArrayList<Plant> selectColor(String color) {
+		
+		ArrayList<Plant> cList = new ArrayList<>();
+		
+		/* cList = g.Filter("type", "herb"); */
+		
+		return cList;  
+		
 	}
 	
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
 	 * 
-	 * 
-	 * @return scene1
+	 * @return scene2
 	 */
 	public Scene getScene2() {
 		return scene2;
@@ -233,15 +252,6 @@ public class ViewPage2 extends View {
 		Plant plant = getPlant(name);
 		plantCollection.put(name, plant);
 		
-	}
-	
-	/*
-	 * Input: the color
-	 * Output: string of color
-	 * Function: sorts on the color of the plant 
-	 
-	public String selectColor(String color) {
-		//iterate through icons of color and displays plants of color selected
 	}
 	
 	/*
