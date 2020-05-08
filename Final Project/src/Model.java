@@ -90,7 +90,7 @@ public class Model {
 	 * @throws no exception
 	 */
 	public void updateGarden() {
-		//currentGarden.inGarden.add(currentPlant);
+		currentGarden.inGarden.add(currentPlant);
 	}
 	/**
 	 * Description: getPlantByName takes in a string from a view button and finds the corresponding plant in the currentGarden
