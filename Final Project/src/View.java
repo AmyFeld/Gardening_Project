@@ -15,7 +15,9 @@ import javafx.stage.Stage;
  *
  */
 public class View extends Application {
-  	
+  				Controller control;
+
+	
 	// value of the height and width of screen
 		int canvasWidth = 900;
 		int canvasHeight = 600;
@@ -30,6 +32,27 @@ public class View extends Application {
 		Button prevButton;
 		Button nextButton;
 		
+		//Variables for ViewPage4
+		 //GridPane grid
+		 TilePane tile;
+		 
+		 GridPane grid;
+	//		private BorderPane border;
+			//private TilePane tile;
+			
+
+			Garden g = new Garden();
+			ArrayList<Plant> allPlants = g.allPlants;		
+			ArrayList<Plant> myPlants = new ArrayList<Plant>();
+			ArrayList<Plant> gridPlants = new ArrayList<Plant>();
+			
+			int plaWidth = 100;
+			int plaHeight = 100;
+
+		    ImageView imageView;
+		    Image im1; 
+		    int i;
+		    int l;
 	    Image home = new Image("file:images/home.png", 20, 20, false, false);
 	    Button homeButton = new Button("Home", new ImageView(home));
 		Scene scene1;
@@ -41,6 +64,10 @@ public class View extends Application {
 			 *@param Stage  a platform container to hold scene1 
 			 *
 			 */
+	public View(){
+		control = new Controller(this);
+	}
+	
 	@Override
 	public void start(Stage theStage) {
 		Image back = new Image("file:images/bg.png");
@@ -90,4 +117,37 @@ public class View extends Application {
 	 * Output: None
 	 * Function: takes in the information that was used to update and fixes the page and what should be seen
 	 */
+	
+	//Add Image and image view for drag and drop
+	
+	public void setImageView(ImageView iv) {
+		imageView = iv;
+	}
+	 public void addImage(double x,double y, int i, ImageView iv) {//, MouseEvent e) {
+			iv.setTranslateX(x);
+			iv.setTranslateY(y);
+	    	ImageView ivg = new ImageView();
+	    
+	    	//Image im2 = ;
+	    	ivg.setImage((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+	    	ivg.setPreserveRatio(true);
+	    	ivg.setFitHeight(100);
+	    	System.out.println("Hi:)");
+	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
+	    	ivg.setOnMousePressed(control.getHandlerForClick());
+	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
+	    	//ivg.setX(x);
+	    	//ivg.setY(y);
+	    	ivg.setTranslateX(x);
+	    	ivg.setTranslateY(y);
+	    	System.out.println(grid.getChildren());
+	    	grid.getChildren().add(ivg);
+	    	//System.out.println(i);
+	    	gridPlants.add(allPlants.get(i));
+	    	System.out.println(grid.getChildren());
+	    	for(int j=0; j< gridPlants.size(); j++) {
+	    		System.out.print(gridPlants.get(j).getName());
+	    	}
+	    	//border.getChildren().add(ivg);
+	    }
 }
