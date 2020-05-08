@@ -1,6 +1,10 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
+import javafx.scs.image.ImageView;
 
 /**
  *  This class is meant to hold the main and communicate between the selected view and model
@@ -13,10 +17,13 @@ public class Controller extends Application {
 	
 	View view;
 	Model model;
+	double contX;
+	double contY;
+
 	
-	public Controller() {
+	public Controller(View view) {
 		
-	     this.view = new View();	
+	     this.view = view;	
        	 this.model = new Model();
 	}
 
@@ -58,5 +65,68 @@ public class Controller extends Application {
         System.out.println("WORK");
 		launch(args);
     }
+
+// Mouse Events 
+// Javadoc to follow once fully functioning
+//
+	public void drag(MouseEvent event){
+		Node n = (Node)event.getSource();
+		model.setX(model.getX() + event.getX());
+		model.setY(model.getY() + event.getY());
+		model.setImage(n);
+		//System.out.println("DRAG");
+	}
+
+	public EventHandler<MouseEvent> getHandlerForDrag(){
+		return event -> drag((MouseEvent) event);
+	}
+
+	public void release(Mouseevent event){
+		Node n = (Node) event.getSource();
+		if(n.getTranslateX() >=view.tile.getLayoutX()){
+			//System.out.println("First Part of If");
+			view.addImage(n.getTranslatX(), n.getTranslateY(), view.i, view.imageView);
+		}
+		else{
+			n.setVisible(false);
+			//System.out.println("Second part of if");
+		}
+		System.out.println("RELEASE");
+	}
+
+	public EventHandler<MouseEvent> getHandlerForRelease(){
+		return event -> release((MouseEvent) event);
+	}
+
+	public void click(MouseEvent event){
+		Node n = (Node) event.getSource();
+		n.setMouseTransparent(true);
+		model.setX(n.getTranslateX());
+		model.setY(n.getTranslateY());
+		contX = n.getTranslateX();
+		contY = n.getTranslateY();
+
+		//System.out.println("CLICK");
+	}
 	
+	public EventHandler<MouseEvent> getHandlerForClick(){
+		return event -> click((MouseEvent) event);
+	}
+
+	public double getStartingX(){
+		return model.getX();
+	}
+
+	public double getStartingY(){
+		return model.getY();
+	}
+
+	public double getOriginX(){
+		return contX;
+	}
+
+	public double getOriginY(){
+		return contY;
+	}
+
 }
