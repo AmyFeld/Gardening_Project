@@ -1,14 +1,18 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
@@ -33,9 +37,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-// This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
-// information page when a plant is selected and includes a slider to show back and forth between times
 
  /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
@@ -66,7 +67,10 @@ public class ViewPage2 extends View {
 	int gButtonX = 400;
 	
 	Garden g = new Garden();
-	ArrayList<Plant> allPlants = g.allPlants;		
+	ArrayList<Plant> allPlants = g.allPlants;	
+	ArrayList<Plant> cList = new ArrayList<>();
+	ArrayList<Plant> tList = new ArrayList<>();
+
 	
 		
 	/**
@@ -91,6 +95,8 @@ public class ViewPage2 extends View {
 		VBox vb = new VBox(20); // assembles the title, tabs, and button 
 		HBox hb = new HBox(20); // home button and go to garden button
 		
+		HBox tBox = new HBox(20); // holds flow pane & combo boxes (drop down)
+		
 		FlowPane flow = new FlowPane(); // assembles the plant buttons
 		
 		flow.setTranslateX(30);
@@ -98,12 +104,12 @@ public class ViewPage2 extends View {
 		
 		flow.setVgap(20);
 	    flow.setHgap(35);
-	    flow.setPrefWrapLength(sceneWidth - 20);
+	    flow.setPrefWrapLength(sceneWidth - 130);
 	    flow.setPrefHeight(sceneHeight + 200);
 	    
 	    
 	    TabPane tabPane = new TabPane();
-	    Tab nTab = new Tab(); // main tab with Nursery
+	    Tab nTab = new Tab(); 
 	    nTab.setText("Nursery Plant Selection");
 	    
 	    // creates tabs for all the plants linked with button
@@ -122,9 +128,11 @@ public class ViewPage2 extends View {
 			
 	    }
 	    
-	    tabPane.getTabs().add(nTab);
+	    tabPane.getTabs().add(nTab); // main tab with plant buttons
 	    
-		nTab.setContent(flow);
+	    tBox.getChildren().addAll(flow, getDropDown());
+	    
+		nTab.setContent(tBox);
 		
 		ScrollPane sc = new ScrollPane(vb);
 		sc.setPrefViewportHeight(sceneHeight + 100);
@@ -160,8 +168,6 @@ public class ViewPage2 extends View {
 	 * 
 	 * @param	Plant Calls a plant's name, image, and description
 	 * 		 	Tab  Holds the plant information
-	 * 
-	 * @return none
 	 */
 	public void setTabInfo(Plant p, Tab t) {
 		VBox pInfo = new VBox(20);
@@ -186,37 +192,84 @@ public class ViewPage2 extends View {
 		
 		Button g = new Button("Add to Garden");
 		g.setTranslateX(gButtonX);
-		// g.setOnAction(e -> );
+		g.setOnAction(e -> myPlants.add(p)); // adds to the user's plant arraylist
 		
-
 		pInfo.getChildren().addAll(name, planImg, g, desc);
 		
 		t.setContent(pInfo); // adds all plant info to tab
-	}
-	
-	public void setFilters() {
-		VBox v = new VBox(20);
 		
-		// drop down: name, type, height, hasFruit, waterUse, color, start, end
-		// what are all the types? heights? hasFruits (T/F)?, 
 	}
-	
 	/**
-	 *  Iterate through icons of color and displays plants of color selected
-	 *  Input: the color
-	 * Output: string of color
-	 *   */
-	 
-	public ArrayList<Plant> selectColor(String color) {
+	 * Description: Creates a VBox with contents of all filter options for plants
+	 * 
+	 * @return	VBox  Returns all the Combo boxes in a vertical format
+	 */
+	Boolean color;
+	Boolean type;
+	Boolean ht;
+	Boolean fruit;
+	Boolean water;
+	Boolean month;
+
+
+	public VBox getDropDown() {
+		VBox v = new VBox(20);
+
+		// a combo box = drop down to select a choice
+		ComboBox<String> colorBox = new ComboBox<>();
+		colorBox.getItems().addAll("white", "red", "pink", "orange", "yellow", "green", "blue", "purple", "none");
+		colorBox.setValue("Color");
+		colorBox.valueProperty().addListener(new ChangeListener<String>() {
+           
+			@Override 
+            public void changed(ObservableValue ov, String t, String t1) {                
+        		cList = g.Filter("color", (String) ov.getValue());
+        		color = true;
+        		for (Plant c: cList) {
+            		System.out.println(c.getName());
+                }            }    
+        });
 		
-		ArrayList<Plant> cList = new ArrayList<>();
+		ComboBox<String> typeBox = new ComboBox<>();
+		typeBox.getItems().addAll("herb", "shrub", "tree");
+		typeBox.setValue("Type");
+		typeBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override 
+            public void changed(ObservableValue ov, String t, String t1) {                
+        		cList = g.Filter("type", (String) ov.getValue());
+        		type = true;
+        		
+        		for (Plant c: cList) {
+        		System.out.println(c.getName());
+            }    
+            }
+        });
 		
-		/* cList = g.Filter("type", "herb"); */
+		ComboBox<String> htBox = new ComboBox<>();
+		htBox.getItems().addAll("0-10", "10-20", "20-30", "30-40", "40+");
+		htBox.setValue("Height");
+
+		ComboBox<String> fruitBox = new ComboBox<>();
+		fruitBox.getItems().addAll("Fruit", "No Fruit");
+		fruitBox.setValue("Fruit");
 		
-		return cList;  
+		ComboBox<String> waterBox = new ComboBox<>();	
+		waterBox.getItems().addAll("Low", "Medium", "High");
+		waterBox.setValue("Water Usage");
+
+		ComboBox<String> monthBox = new ComboBox<>();	
+		monthBox.getItems().addAll("Jan", "Feb", "March",
+				"April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec");
+		monthBox.setValue("Start Month");
+
+		v.getChildren().addAll(colorBox, typeBox, htBox, fruitBox, waterBox, monthBox);
+		
+		
+		return v;
 		
 	}
 	
+	 
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
 	 * 
@@ -233,6 +286,7 @@ public class ViewPage2 extends View {
 	 * @param name based on the plant currently on
 	 * @return String of data based on the plant
 	 * @throws Exception
+	 * 
 	 */
 	 public String createImage(String name) throws Exception {
 		 String file = new String("plantImg/" + name + ".txt"); 
@@ -242,28 +296,6 @@ public class ViewPage2 extends View {
 		 return data;
 	  }
 
-		
-	/*
-	 * Input: takes in a name
-	 * Output: none
-	 * Function: the chosen plant is added to the collection
-	 
-	public void chosenPlant(String name) {		
-		Plant plant = getPlant(name);
-		plantCollection.put(name, plant);
-		
-	}
-	
-	/*
-	 * Input: none
-	 * Output: none
-	 * Function: getter for the plant 
-	 
-	public Plant getPlant() {
-		return p;
-	}
-	*/
-	
 	 
 
 }
