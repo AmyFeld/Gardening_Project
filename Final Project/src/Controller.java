@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scs.image.ImageView;
+import javafx.scene.image.ImageView;
 
 /**
  *  This class is meant to hold the main and communicate between the selected view and model
@@ -81,11 +81,11 @@ public class Controller extends Application {
 		return event -> drag((MouseEvent) event);
 	}
 
-	public void release(Mouseevent event){
+	public void release(MouseEvent event){
 		Node n = (Node) event.getSource();
 		if(n.getTranslateX() >=view.tile.getLayoutX()){
 			//System.out.println("First Part of If");
-			view.addImage(n.getTranslatX(), n.getTranslateY(), view.i, view.imageView);
+			view.addImage(n.getTranslateX(), n.getTranslateY());
 		}
 		else{
 			n.setVisible(false);
@@ -99,14 +99,19 @@ public class Controller extends Application {
 	}
 
 	public void click(MouseEvent event){
-		Node n = (Node) event.getSource();
+		Node n = (Node)event.getSource();
 		n.setMouseTransparent(true);
+		
+		view.imageView = (ImageView)n;
+		view.setI(view.imageView);
+	
 		model.setX(n.getTranslateX());
 		model.setY(n.getTranslateY());
 		contX = n.getTranslateX();
 		contY = n.getTranslateY();
-
-		//System.out.println("CLICK");
+		
+		System.out.println("click");
+		
 	}
 	
 	public EventHandler<MouseEvent> getHandlerForClick(){
