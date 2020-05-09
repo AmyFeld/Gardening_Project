@@ -1,11 +1,26 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+
 import javafx.application.Application;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -15,24 +30,48 @@ import javafx.stage.Stage;
  *
  */
 public class View extends Application {
-  				Controller control;
-
-	
+  	
 	// value of the height and width of screen
-		int canvasWidth = 900;
-		int canvasHeight = 600;
+		int canvasWidth = 1380;
+		int canvasHeight = 940;
 		int sceneWidth = 900;
 		int sceneHeight = 600;
 		
 		int fontSize = 40;
-
+			
 		int labelX = 300;
 		int labelY = 15;
-	
+		
+	// value of the size of the image
+		static final int imgWidthOrig = 100;
+		static final int imgHeightOrig = 100;
+
+		int imgWidth = 300;
+		int imgHeight = 300;
+	    
+	    Scene theScene;
+
+	    GraphicsContext gc;
+
+	    Image background;
+	    Image[] img;		
+		
+		//variables to determine the location of image
+		double x = 0;
+		double y = 0;
 		Button prevButton;
 		Button nextButton;
 		
-		//Variables for ViewPage4
+	   // Image home = new Image("icons/home.png", 50, 50, false, false);
+	    Button homeButton = new Button("Home");//, new ImageView(home));
+
+		View currView;
+		//ViewPage1 vp1;
+		Controller control;
+		
+		 Scene scene1;
+		 
+		 //grid shindig
 		 //GridPane grid
 		 TilePane tile;
 		 
@@ -40,7 +79,7 @@ public class View extends Application {
 	//		private BorderPane border;
 			//private TilePane tile;
 			
-
+		 	VBox tileBox;
 			Garden g = new Garden();
 			ArrayList<Plant> allPlants = g.allPlants;		
 			ArrayList<Plant> myPlants = new ArrayList<Plant>();
@@ -53,9 +92,14 @@ public class View extends Application {
 		    Image im1; 
 		    int i;
 		    int l;
-	    Image home = new Image("file:images/home.png", 20, 20, false, false);
-	    Button homeButton = new Button("Home", new ImageView(home));
-		Scene scene1;
+		 
+		    //ImageView[] ivArr;
+		    ArrayList<ImageView> ivArr = new ArrayList<ImageView>();
+		//Scene scene2;
+		 
+	public View() {
+		control = new Controller(this);
+	}
 		 
 		 /**
 			 * Sets up the first stage of the application with background
@@ -64,18 +108,17 @@ public class View extends Application {
 			 *@param Stage  a platform container to hold scene1 
 			 *
 			 */
-	public View(){
-		control = new Controller(this);
-	}
-	
 	@Override
-	public void start(Stage theStage) {
+	public void start(Stage theStage) throws Exception {
 		Image back = new Image("file:images/bg.png");
 		ImageView bg = new ImageView(back);
 		
 		Group root = new Group();
 		root.getChildren().add(bg);
-
+		
+		
+		
+		
 		theStage.setTitle("Create a Garden");
 		
 		theStage.setScene(new ViewPage1(theStage).getScene1()); 
@@ -110,44 +153,76 @@ public class View extends Application {
 	 * Takes in the information that was used to update and fixes the page and what should be seen
 	 * 
 	 */
-	public void update() {} 
-
-	/*
-	 * Input: What Page Currently on? or None
-	 * Output: None
-	 * Function: takes in the information that was used to update and fixes the page and what should be seen
-	 */
-	
-	//Add Image and image view for drag and drop
+	public void update() {
+	//	control = new Controller();
+	} 
 	
 	public void setImageView(ImageView iv) {
 		imageView = iv;
 	}
-	 public void addImage(double x,double y, int i, ImageView iv) {//, MouseEvent e) {
-			iv.setTranslateX(x);
-			iv.setTranslateY(y);
-	    	ImageView ivg = new ImageView();
-	    
-	    	//Image im2 = ;
-	    	ivg.setImage((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+	 public void addImage(double x,double y) {//, MouseEvent e) {
+			imageView.setTranslateX(x);
+			imageView.setTranslateY(y);
+
+	    	
+	    	
+			System.out.println(imageView.getTranslateX());
+			System.out.println(imageView.getTranslateY());
+			//System.out.println(tile.getChildren());
+	    	//System.out.println("Hi "+ iv.getId());
+			ImageView ivg = new ImageView((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+			
+	    	//ivg.setImage((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+	    	//ivg.setImage(im);
 	    	ivg.setPreserveRatio(true);
 	    	ivg.setFitHeight(100);
+	    	//ivg.setX(x);
+	    	//ivg.setY(y);
 	    	System.out.println("Hi:)");
 	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
 	    	ivg.setOnMousePressed(control.getHandlerForClick());
 	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
 	    	//ivg.setX(x);
 	    	//ivg.setY(y);
-	    	ivg.setTranslateX(x);
-	    	ivg.setTranslateY(y);
-	    	System.out.println(grid.getChildren());
-	    	grid.getChildren().add(ivg);
-	    	//System.out.println(i);
+	    	ivg.setTranslateX(control.getOriginX());
+	    	ivg.setTranslateY(control.getOriginY());
+	    	//System.out.println(grid.getChildren());
+	    	//ivg.toFront();
+	    	//tileBox.getChildren().add(ivg);
+	    	tileBox.getChildren().add(i, ivg);
+	    	
+	    	grid.getChildren().add(imageView);
+	    	grid.getChildren().add(imageView);
 	    	gridPlants.add(allPlants.get(i));
-	    	System.out.println(grid.getChildren());
+	    	//System.out.println(i);
+	    	//gridPlants.add();
+	    	//System.out.println(grid.getChildren());
 	    	for(int j=0; j< gridPlants.size(); j++) {
-	    		System.out.print(gridPlants.get(j).getName());
+	    		System.out.print(gridPlants.get(j).getName()+ " "+ j);
 	    	}
+	    	
+	    	//System.out.println(im.toString());
 	    	//border.getChildren().add(ivg);
 	    }
+	 
+	
+	
+	 public boolean setI(ImageView imgview) {
+		/*	for(int m= 0; m< ivArr.size(); m++ ) {
+				//if(ivArr.contains(imgview)) {
+					
+					i =m;
+					System.out.println(i);
+					return true;
+				}
+			}*/
+		 if(ivArr.contains(imgview)) {
+			 i = ivArr.indexOf(imgview);
+		 	return true;
+	 }
+	 
+			return false;
+		}
+
+
 }
