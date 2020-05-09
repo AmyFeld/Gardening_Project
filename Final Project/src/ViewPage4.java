@@ -49,6 +49,20 @@ public class ViewPage4 extends View {
 	Scene scene4;
 	private BorderPane border;
 	
+	/* ImageView iv0;
+	 ImageView iv1;
+	 ImageView iv2;
+	 ImageView iv3;
+	 ImageView iv4;
+	 ImageView iv5;
+	 ImageView iv6;
+	 ImageView iv7;
+	 ImageView iv8;
+	 ImageView iv9;
+	 ImageView iv10;
+	 ImageView iv11;
+	 ImageView iv12;
+	*/
 /*	 GridPane grid;
 	
 	//private TilePane tile;
@@ -83,7 +97,7 @@ public class ViewPage4 extends View {
 	    Label label1 = new Label("Edit Your Garden");
 	    Button rate = new Button("Rate My Garden");
 	  	Button back = new Button("Plant Nursery");
-	    
+	    // set tile pane height/?
 	    tile = new TilePane(Orientation.VERTICAL);
 		grid = new GridPane();
 		border = new BorderPane();
@@ -125,11 +139,11 @@ public class ViewPage4 extends View {
 	public void start(Stage stage) {
 	//Pretend Images
 		Image backup_house = new Image("file:backup_house.png", 100, 100, false, false);
-		ImageView iv = new ImageView(backup_house);
+		ImageView iv;// = new ImageView(backup_house);
 		Image plant1 = new Image("file:plant1.png", 100, 100, false, false);
-		ImageView iv2 = new ImageView(plant1);
+		//ImageView iv2 = new ImageView(plant1);
 		Image plant2 = new Image("file:plant2.png", 100, 100, false, false);
-		ImageView iv3 = new ImageView(plant2);
+		//ImageView iv3 = new ImageView(plant2);
 	
 	//Pretend lawn for grid
 		Rectangle r = new Rectangle(600, 600);
@@ -139,7 +153,7 @@ public class ViewPage4 extends View {
 	 // tile.setTileAlignment(Pos.CENTER_LEFT);
       //tile.setPrefRows(5);
       tile.setMaxWidth(plaWidth);
-      VBox tileBox = new VBox(20);
+      tileBox = new VBox(20);
       
       //create scroll pane :)
       
@@ -148,6 +162,7 @@ public class ViewPage4 extends View {
       ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(sceneHeight);
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+      sc.autosize();
       
       
       	//sp.setContent(tile);
@@ -156,6 +171,9 @@ public class ViewPage4 extends View {
       	//   grid.setBackground(new Background(flowBG));
       	//  grid.setBackground(new Background(r));
       	grid.setPrefHeight(600);
+    	Image back = new Image("file:images/bg2.png",canvasWidth, canvasHeight, false, false);
+    	ImageView bg = new ImageView(back);
+    	//grid.setBackground(bg);
       	//grid.getChildren().add(r);
       	//flow.setColumnHalignment(HPos.CENTER);
       	//flow.setPrefWrapLength(3*canvasWidth/4);
@@ -164,49 +182,80 @@ public class ViewPage4 extends View {
         grid.setGridLinesVisible(true);
  
 
+       /*  iv0 = new ImageView(new Image(allPlants.get(0).getImgName(), plaWidth, plaHeight, false, false));
+         iv1 = new ImageView(new Image(allPlants.get(1).getImgName(), plaWidth, plaHeight, false, false));
+         iv2 = new ImageView(new Image(allPlants.get(2).getImgName(), plaWidth, plaHeight, false, false));
+         iv3 = new ImageView(new Image(allPlants.get(3).getImgName(), plaWidth, plaHeight, false, false));
+         iv4 = new ImageView(new Image(allPlants.get(4).getImgName(), plaWidth, plaHeight, false, false));
+         iv5 = new ImageView(new Image(allPlants.get(5).getImgName(), plaWidth, plaHeight, false, false));
+         iv6 = new ImageView(new Image(allPlants.get(6).getImgName(), plaWidth, plaHeight, false, false));
+         iv7 = new ImageView(new Image(allPlants.get(7).getImgName(), plaWidth, plaHeight, false, false));
+         iv8 = new ImageView(new Image(allPlants.get(8).getImgName(), plaWidth, plaHeight, false, false));
+         iv9 = new ImageView(new Image(allPlants.get(9).getImgName(), plaWidth, plaHeight, false, false));
+         iv10 = new ImageView(new Image(allPlants.get(10).getImgName(), plaWidth, plaHeight, false, false));
+         iv11 = new ImageView(new Image(allPlants.get(11).getImgName(), plaWidth, plaHeight, false, false));
+         iv12= new ImageView(new Image(allPlants.get(12).getImgName(), plaWidth, plaHeight, false, false));
         
+        ivArr = new ImageView[]{iv0, iv1, iv2, iv3, iv4, iv5, iv6, iv7, iv8, iv9, iv10, iv11, iv12};
+   */
    //Setting up the image views and moving them 
         //while(i<myPlants.length())
-      for(  i=0; i< 18; i++) {
-    	   im1 = new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false);
-    	  ImageView iv1  = new ImageView(im1);
-    	  setImageView(iv1);
-    	  	control.model.setX(iv.getTranslateX());
-    	  	control.model.setY(iv.getTranslateY());
-    	  
-    		iv1.setPreserveRatio(true);
-        	iv1.setFitHeight(100);
+       // ivArr = new ImageView[] {} ;
+      for(  i=0; i< 13; i++) {
+    	  //tileBox.getChildren().add(ivArr[i]);
+    	  // im1 = new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false);
+    	  //ImageView iv1  = new ImageView(im1);
+    	  //setImageView(iv1);
+    	  //	control.model.setX(iv.getTranslateX());
+    	  //	control.model.setY(iv.getTranslateY());
+    	  	
+    	  	// so when making don't take in i get plant name and then take that name to get image? we shall see -- notes for me for tonight
+    	//  img[i].
+    	  	
+    	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+    		
+    		//ivArr.insert(i, iv);
+    	//  	ivArr.
+
+    	  	iv.setPreserveRatio(true);
+    	  	iv.setFitHeight(100);
         	
-        	iv1.setOnMouseDragged(control.getHandlerForDrag());
-        	iv1.setOnMousePressed(control.getHandlerForClick());
-        	iv1.setOnMouseReleased(control.getHandlerForRelease());
+        	iv.setOnMouseDragged(control.getHandlerForDrag());
+        	iv.setOnMousePressed(control.getHandlerForClick());
+        	iv.setOnMouseReleased(control.getHandlerForRelease());
+    	  	// FIX to be an array list
+    	  //	ivArr.add(i, iv);
+    	  	//ivArr.add(iv);
         	
+        	System.out.println(ivArr.add(iv));
+        	System.out.println(ivArr.indexOf(iv));
+        	//addImage(control.getOriginX(), control.getOriginY(), 1, iv1);
         	System.out.println("ADDING IMAGE " + i);
         	//addImage(iv1.getTranslateX(), iv1.getTranslateY(), i, iv1);
         	//iv1.setTranslateX(control.getStartingX());
     		//iv1.setTranslateY(control.getStartingY());
     	  
 
-    	  tileBox.getChildren().add(iv1);
+        	tileBox.getChildren().add(iv);
     	   // tile.getChildren().add(iv1);
       } 
      
+      
+
       System.out.println("Grid Children: "+ grid.getChildren());
       
+     
+      System.out.println(tileBox.getChildren());
+     
      //tile.getChildren().addAll(imageView);
-      tile.getChildren().add(tileBox);
+     //tile.getChildren().add(iv0);
+       tile.getChildren().add(tileBox);
       sc.setContent(tile);
      
       
       //EXTRA CODE THAT I THOUGHT MIGHT WORK 
       
-      //Setting Tile Scroll
-      /*tile.setOnScroll(new EventHandler<ScrollEvent>(){
-    	  public void handle(ScrollEvent event) {
-    		  tile.setTranslateX(tile.getTranslateX()+ event.getDeltaX());
-    		  tile.setTranslateY(tile.getTranslateY() + event.getDeltaY());
-    	  }});
-      }*/
+      
      
       //   	  iv1.set
 	  //Working on the IV to select images to drag and drop
@@ -399,6 +448,12 @@ if(event.getX() > 7 * tile.getWidth()/12) { //boundaries to whether is plant is 
 	    }
 	 */
 	
+/*	public void setI(ImageView imgview) {
+		for(int m= 0; m< ivArr.length; m++ ) {
+			if(ivArr[m].equals(imgview))
+				i =m;
+		}
+	}*/
 
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
