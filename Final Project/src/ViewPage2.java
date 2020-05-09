@@ -1,32 +1,16 @@
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,7 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
  /**
@@ -50,28 +33,45 @@ import javafx.stage.Stage;
 * in plant class, the function getDescr will be used to determine how this class will be presented 
 * the button will also have to set model's current plant model.setCurrenPlant() model.getCurrentPlant().getDesc
 * model.getCurrentPlant().inGarden = True; <-- will add to garden tile pane 
-* getImage -- take image and get name or correspondfing img you want to read in
 */
-
 
 public class ViewPage2 extends View {
 	
 	Scene scene2;
+		
+	int flowX = 30;
+	int flowY = 20;
+	int flowGapV = 20;
+	int flowGapH = 35;
+	int flowWrap = sceneWidth - 130;
+	int flowPrefH = sceneHeight + 200;
 	
-	int buttonWidth = 100;
-	int buttonHeight = 100;
+	int scrollPrefH = sceneHeight + 100;
+	int addButtonX = 400;
 	
-	int plantImgW = 300;
-	int plantImgH = 300;
+	int nameX = 250;
+	int nameY = 20;
 	
-	int gButtonX = 400;
+	int titleX = 400;
+	int titleY = 10;
 	
-	Garden g = new Garden();
-	ArrayList<Plant> allPlants = g.allPlants;	
+	Boolean color;
+	Boolean type;
+	Boolean ht;
+	Boolean fruit;
+	Boolean water;
+	Boolean month;
+		
 	ArrayList<Plant> cList = new ArrayList<>();
-	ArrayList<Plant> tList = new ArrayList<>();
-
-	
+ 	Button garButton = new Button("Go to Garden");
+ 	
+	VBox vb = new VBox(boxSize); // assembles the title, tabs, and button 
+	HBox hb = new HBox(boxSize); // home button and go to garden button
+	HBox dropBox = new HBox(boxSize); // holds flow pane & combo boxes (drop down)
+    
+    TabPane tabPane = new TabPane();
+    Tab mainTab = new Tab(); 
+    
 		
 	/**
 	 * Description: Sets up the another stage of the application with background
@@ -82,37 +82,59 @@ public class ViewPage2 extends View {
 	 */
 	public ViewPage2(Stage theStage) {
 		
-		Image back = new Image("file:images/bg2.png");
-		ImageView bg = new ImageView(back);
+	    mainTab.setText("Nursery Plant Selection");
+	    tabPane.getTabs().add(mainTab); // main tab with plant buttons
+	    
+	    dropBox.getChildren().addAll(setButtons(tabPane), getDropDown());
+		mainTab.setContent(dropBox);
 		
+		ScrollPane sc = new ScrollPane(vb);
+		sc.setPrefViewportHeight(scrollPrefH);
+		sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
-		bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
-				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		Label title = new Label("Greenery Tour");
+		title.setFont(new Font("Arial", fontSize));
+		title.setTranslateX(titleX);
+	 	title.setTranslateY(titleY);
+	 		 	
+	 	hb.getChildren().addAll(title, homeButton, garButton);
+		vb.getChildren().addAll(hb, tabPane); 
+		sc.setContent(vb);
 		
+		vb.setBackground(new Background(myBG));
 		
-		VBox vb = new VBox(20); // assembles the title, tabs, and button 
-		HBox hb = new HBox(20); // home button and go to garden button
+		homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
+		garButton.setTranslateX(labelX);
+		garButton.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));
 		
-		HBox tBox = new HBox(20); // holds flow pane & combo boxes (drop down)
+		scene2 = new Scene(sc, sceneWidth, sceneHeight);	
+	   	theStage.setScene(scene2);
+	   	theStage.show(); 		
 		
-		FlowPane flow = new FlowPane(); // assembles the plant buttons
+	} 
+	
+	/**
+	 * Description: Creates tabs for all the plants linked with button
+	 * 
+	 * @param	TabPane   Contains main tab and all tabs created for each plant 
+	 * @return 	FlowPane  Organizes the layout of plant buttons on the main tab
+	 * 
+	 * 	 */
+	public FlowPane setButtons(TabPane tabPane) {
 		
-		flow.setTranslateX(30);
-		flow.setTranslateY(20);
+		FlowPane flow = new FlowPane(); 
 		
-		flow.setVgap(20);
-	    flow.setHgap(35);
-	    flow.setPrefWrapLength(sceneWidth - 130);
-	    flow.setPrefHeight(sceneHeight + 200);
+		flow.setTranslateX(flowX);
+		flow.setTranslateY(flowY);
+		
+		flow.setVgap(flowGapV);
+	    flow.setHgap(flowGapH);
 	    
+	    flow.setPrefWrapLength(flowWrap);
+	    flow.setPrefHeight(flowPrefH);
 	    
-	    TabPane tabPane = new TabPane();
-	    Tab nTab = new Tab(); 
-	    nTab.setText("Nursery Plant Selection");
-	    
-	    // creates tabs for all the plants linked with button
+		// if filter then use cList size
+		
 	    for (int i = 1; i < allPlants.size(); i++) {
 	    	
 	    	Button b1 = new Button();
@@ -124,44 +146,12 @@ public class ViewPage2 extends View {
 	    	
 			Tab t = new Tab(); 
 			b1.setOnAction(e -> tabPane.getTabs().addAll(t));
-			setTabInfo(allPlants.get(i), t);
-			
+			setTabInfo(allPlants.get(i), t);		
 	    }
 	    
-	    tabPane.getTabs().add(nTab); // main tab with plant buttons
-	    
-	    tBox.getChildren().addAll(flow, getDropDown());
-	    
-		nTab.setContent(tBox);
-		
-		ScrollPane sc = new ScrollPane(vb);
-		sc.setPrefViewportHeight(sceneHeight + 100);
-		sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
-
-		Label label2 = new Label("Greenery Tour");
-		label2.setFont(new Font("Arial", 20));
-		label2.setTranslateX(400);
-	 	label2.setTranslateY(10);
-	 		 	
-	 	Button go = new Button("Go to Garden");
-	 	
-	 	hb.getChildren().addAll(label2, homeButton, go);
-		vb.getChildren().addAll(hb, tabPane); 
-		sc.setContent(vb);
-
-		vb.setBackground(new Background(myBG));
-
-		 homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
-		 go.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));
-		 
-		 scene2 = new Scene(sc, sceneWidth, sceneHeight);	
-		
-	   	theStage.setScene(scene2); 
-	   	  theStage.show(); 		
-
-		
-	} 
+		return flow;
+	}
+	
 	
 	/**
 	 * Description: Creates a new tab with plant info when specified plant button is clicked
@@ -170,28 +160,29 @@ public class ViewPage2 extends View {
 	 * 		 	Tab  Holds the plant information
 	 */
 	public void setTabInfo(Plant p, Tab t) {
-		VBox pInfo = new VBox(20);
+		
+		VBox pInfo = new VBox(boxSize);
 
 		Text name = new Text(p.getName());
-		name.setTranslateX(250);
-		name.setTranslateY(20);
+		name.setTranslateX(nameX);
+		name.setTranslateY(nameY);
 
 		name.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 		name.setFill(Color.WHITE); 
-		name.setStrokeWidth(2); 
+	    name.setStrokeWidth(2); 
 		name.setStroke(Color.BLUE);
 		    
 		t.setText(p.getName());
 		
 		ImageView planImg =  new ImageView(new Image(p.getImgName(), 
-    			plantImgW, plantImgH, false, false));
+    			imgWidth, imgHeight, false, false));
 		
-		planImg.setTranslateX(plantImgW);
+		planImg.setTranslateX(imgWidth);
 
 		Text desc = new Text(p.getDesc());
 		
 		Button g = new Button("Add to Garden");
-		g.setTranslateX(gButtonX);
+		g.setTranslateX(addButtonX);
 		g.setOnAction(e -> myPlants.add(p)); // adds to the user's plant arraylist
 		
 		pInfo.getChildren().addAll(name, planImg, g, desc);
@@ -199,21 +190,14 @@ public class ViewPage2 extends View {
 		t.setContent(pInfo); // adds all plant info to tab
 		
 	}
+	
 	/**
 	 * Description: Creates a VBox with contents of all filter options for plants
 	 * 
 	 * @return	VBox  Returns all the Combo boxes in a vertical format
 	 */
-	Boolean color;
-	Boolean type;
-	Boolean ht;
-	Boolean fruit;
-	Boolean water;
-	Boolean month;
-
-
 	public VBox getDropDown() {
-		VBox v = new VBox(20);
+		VBox v = new VBox(boxSize);
 
 		// a combo box = drop down to select a choice
 		ComboBox<String> colorBox = new ComboBox<>();
@@ -227,7 +211,8 @@ public class ViewPage2 extends View {
         		color = true;
         		for (Plant c: cList) {
             		System.out.println(c.getName());
-                }            }    
+                }          
+        	}    
         });
 		
 		ComboBox<String> typeBox = new ComboBox<>();
@@ -242,7 +227,7 @@ public class ViewPage2 extends View {
         		for (Plant c: cList) {
         		System.out.println(c.getName());
             }    
-            }
+          }
         });
 		
 		ComboBox<String> htBox = new ComboBox<>();
@@ -264,9 +249,7 @@ public class ViewPage2 extends View {
 
 		v.getChildren().addAll(colorBox, typeBox, htBox, fruitBox, waterBox, monthBox);
 		
-		
 		return v;
-		
 	}
 	
 	 
@@ -279,23 +262,4 @@ public class ViewPage2 extends View {
 		return scene2;
 	}
 	
-	/**
-	 * Description: This function takes in the current plant and creates a file and image that
-	 * will be presented as a button
-	 * 
-	 * @param name based on the plant currently on
-	 * @return String of data based on the plant
-	 * @throws Exception
-	 * 
-	 */
-	 public String createImage(String name) throws Exception {
-		 String file = new String("plantImg/" + name + ".txt"); 
-		 String data = ""; 
-		 
-		 data = new String(Files.readAllBytes(Paths.get(file))); 
-		 return data;
-	  }
-
-	 
-
 }
