@@ -1,9 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
 import javafx.application.Application;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -14,6 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
@@ -21,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +33,7 @@ import javafx.stage.Stage;
  *
  */
 public class View extends Application {
+	
   	
 	// value of the height and width of screen
 		int canvasWidth = 1380;
@@ -38,14 +42,14 @@ public class View extends Application {
 		int sceneHeight = 600;
 		
 		int fontSize = 40;
+		int boxSize = 20;
 			
 		int labelX = 300;
 		int labelY = 15;
 		
-	// value of the size of the image
-		static final int imgWidthOrig = 100;
-		static final int imgHeightOrig = 100;
-
+		int buttonWidth = 100;
+		int buttonHeight = 100;
+		
 		int imgWidth = 300;
 		int imgHeight = 300;
 	    
@@ -70,6 +74,7 @@ public class View extends Application {
 		Controller control;
 		
 		 Scene scene1;
+		 BackgroundImage myBG;
 		 
 		 //grid shindig
 		 //GridPane grid
@@ -99,6 +104,18 @@ public class View extends Application {
 		 
 	public View() {
 		control = new Controller(this);
+		
+		Image back = new Image("file:images/bg2.png");
+		ImageView bg = new ImageView(back);
+		
+
+		bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+		bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		 myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		 
+		 
+		
 	}
 		 
 		 /**
@@ -110,14 +127,14 @@ public class View extends Application {
 			 */
 	@Override
 	public void start(Stage theStage) throws Exception {
-		Image back = new Image("file:images/bg.png");
-		ImageView bg = new ImageView(back);
+	//	Image back = new Image("file:images/bg.png");
+	//	ImageView bg = new ImageView(back);
 		
-		Group root = new Group();
-		root.getChildren().add(bg);
+	//	Group root = new Group();
+	//	root.getChildren().add(bg);
 		
 		
-		
+
 		
 		theStage.setTitle("Create a Garden");
 		
