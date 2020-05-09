@@ -42,7 +42,7 @@ public class ViewPage5 extends View {
 
 	//practice numbers for now
 	
-	int happyStars = 3;
+	int colorStars = 3;
 	int bloomStars = 4; 
 	int animalStars = 2; 
 	int compatStars = 5; 
@@ -141,8 +141,8 @@ public class ViewPage5 extends View {
 	 * @return none
 	 */
 	
-public void presentHappiness(int happy){
-	  happyStars = happy;
+public void presentColor(int color){
+	  colorStars = color;
 }
 
 /**
@@ -197,24 +197,24 @@ transitStars = transit;
 public void start(Stage theStage){
 	  Image image = new Image("file:starD.png", STARH, STARW, true, true);
 	  //ImageView imageView = new ImageView(image);
-	  Label hapl = new Label("Plant Happiness Rating");
+	  Label coll = new Label("Color Rating");
 	  Label blol = new Label("Continuous Bloom Rating");
 	  Label anil = new Label("Animal Rating");
 	  Label coml = new Label("Compatablity Rating");
 	  Label tral = new Label("Transitional Rating (from Edge)");
 	  Label overl = new Label("Overall Rating");
 	  
-	  HBox hap = new HBox();
+	  HBox col = new HBox();
 	  HBox blo = new HBox();
 	  HBox ani = new HBox();
 	  HBox com = new HBox();
 	  HBox tra = new HBox();
 	  HBox over = new HBox();
 	  
-	  for(int i = 0; i<happyStars; i++) {
+	  for(int i = 0; i<colorStars; i++) {
 		  System.out.print("*");
 		  ImageView imageView = new ImageView(image);
-		  hap.getChildren().add(imageView);
+		  col.getChildren().add(imageView);
 		 
 	  }
 	  System.out.println("");
@@ -256,7 +256,7 @@ public void start(Stage theStage){
 		 
 	  }
 	 //System.out.println("Hi");
-	  layout2.getChildren().addAll(hapl,hap,blol,blo,anil,ani,coml,com,tral,tra, overl, over);
+	  layout2.getChildren().addAll(coll,col,blol,blo,anil,ani,coml,com,tral,tra, overl, over);
 	  
 	  
 }
