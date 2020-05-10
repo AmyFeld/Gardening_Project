@@ -11,6 +11,7 @@ import java.util.ArrayList;
 	
 	ArrayList<Plant> allPlants = readAllPlants();
 	ArrayList<Plant> inGarden = new ArrayList<Plant>();
+	ArrayList<Plant> OnGardenPage = new ArrayList<Plant>();
 	int happinessRating;
 	int contBloomRating;
 	int animalsFedRating;
@@ -104,13 +105,6 @@ import java.util.ArrayList;
 	public ArrayList<Plant> Filter(String category, String type){
 		ArrayList<Plant> temp = new ArrayList<Plant>();
 		switch(category) {
-		case "name":
-			for(Plant p : this.allPlants) {
-				if(p.name.equals(type)) {
-					temp.add(p);
-				}
-			}
-			return temp;
 		case "type":
 			for(Plant p : this.allPlants) {
 				if(p.type.equals(type)) {
@@ -141,7 +135,7 @@ import java.util.ArrayList;
 			return temp;
 		case "color":
 			for(Plant p : this.allPlants) {
-				if(p.color.equals(type)) {
+				if(p.color.equals(type.toLowerCase())) {
 					temp.add(p);
 				}
 			}
@@ -160,8 +154,9 @@ import java.util.ArrayList;
 				}
 			}
 			return temp;
+		default:
+			return this.allPlants;
 		}
-		return temp;
 		
 	}
 	
