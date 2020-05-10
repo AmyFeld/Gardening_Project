@@ -83,11 +83,11 @@ public class Controller extends Application {
 
 	public void release(MouseEvent event){
 		Node n = (Node) event.getSource();
-		if(n.getTranslateX() >=view.tile.getLayoutX()){
+		if(n.getTranslateX()>= 0&& contX<1000){
 			//System.out.println("First Part of If");
-			view.addImage(n.getTranslateX(), n.getTranslateY());
+			view.addImage(model.getX(), model.getY());
 		}
-		else{
+		else if(n.getTranslateX()<0&&contX>=1000){
 			n.setVisible(false);
 			//System.out.println("Second part of if");
 		}
@@ -96,6 +96,30 @@ public class Controller extends Application {
 
 	public EventHandler<MouseEvent> getHandlerForRelease(){
 		return event -> release((MouseEvent) event);
+	}
+	
+	public EventHandler<MouseEvent> getHandlerForReleaseGen(){
+		return event -> releaseGen((MouseEvent) event);
+	}
+	public void releaseGen(MouseEvent event) {
+		Node n = (Node) event.getSource();
+		if(n.getTranslateX()>= 0&& contX<1000) {//n.getTranslateX() >=view.tile.getLayoutX()){
+			//System.out.println("First Part of If");
+			System.out.println(model.getX() + " "+ model.getY());
+			view.imageView.setTranslateX(model.getX());
+		 	view.imageView.setTranslateY(model.getY());
+		 	if(getOriginX() <= view.tile.getLayoutX()) {
+		 		view.grid.getChildren().add(view.imageView);
+		 	}
+		 	
+		 
+			//view.addImage(model.getX() , model.getY());//-50, model.getY() - 100);
+		}
+		else if(n.getTranslateX()<0&&contX>=1000){
+			n.setVisible(false);
+			//System.out.println("Second part of if");
+		}
+		System.out.println("RELEASE :)");
 	}
 
 	public void click(MouseEvent event){
