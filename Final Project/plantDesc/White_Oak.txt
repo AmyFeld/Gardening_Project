@@ -7,4 +7,8 @@ Fruit: Nuts
 Bloom Color: Green
 
 Synopsis:
-The White Oak is a strong tree that provides from planting to chopping. White Oak grow incredibly tall but will guarantee the best shade when the sun is just too much. Its interesting grey and white bark makes it stand out from other trees and its wood is known to be one of the most essential lumber in the industry. It tkaes its time growing in your yard but only takes moderate amounts of water but the White Oak is sure to last you a lifetime.
+The White Oak is a strong tree that provides from planting to chopping. White Oak grow
+incredibly tall but will guarantee the best shade when the sun is just too much. Its
+interesting grey and white bark makes it stand out from other trees and its wood is known
+to be one of the most essential lumber in the industry. It takes its time growing in your
+yard but only takes moderate amounts of water but the White Oak is sure to last you a lifetime.

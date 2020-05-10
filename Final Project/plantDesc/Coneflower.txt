@@ -7,4 +7,10 @@ Fruit: None
 Bloom Color: Yellow
 
 Synopsis:
-The Coneflower is an herb known for its unique flower, which has petals shying away from the cone shaped center, causing the petals to droop. The Coneflower bloooms with an interesting combinatino of colors as the petals transition from a deep red at the base to a birght sunshine yellow at the tips. It requires high maintenance and water usage and were once used my the Cherokee to cure earaches. The Coneflower can live in most kinds of soil and are considered a decorative flower, meant to brighten up and add color to your garden. 
+The Coneflower is an herb known for its unique flower, which has petals shying
+away from the cone shaped center, causing the petals to droop. The Coneflower blooms
+with an interesting combinatino of colors as the petals transition from a deep red at
+the base to a birght sunshine yellow at the tips. It requires high maintenance and water
+usage and were once used my the Cherokee to cure earaches. The Coneflower can live in
+most kinds of soil and are considered a decorative flower, meant to brighten up and
+add color to your garden. 

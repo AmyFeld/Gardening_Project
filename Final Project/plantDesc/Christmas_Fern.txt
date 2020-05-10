@@ -7,4 +7,10 @@ Fruit: None
 Bloom Color: None
 
 Synopsis:
-The Christmas Fern stands out in our greenery for being one of the few plants that don't change much year round. This easy to plant fern is ideal for beginner gardeners or those planning to accent their gardens or edges. This plant is able to stay green throughout any season, including winter, which is how it obtained it's name as the Christmas Fern. Its fronds differ from all other plants due to the shape and texture differing from your typicaly shrub or tree leaf. It requires a moderate amount of water and greatly enjoy shade near trees or taller plants.
+The Christmas Fern stands out in our greenery for being one of the few plants that
+don't change much year round. This easy to plant fern is ideal for beginner gardeners
+or those planning to accent their gardens or edges. This plant is able to stay green
+throughout any season, including winter, which is how it obtained it's name as the
+Christmas Fern. Its fronds differ from all other plants due to the shape and texture
+differing from your typicaly shrub or tree leaf. It requires a moderate amount of water
+and greatly enjoy shade near trees or taller plants.

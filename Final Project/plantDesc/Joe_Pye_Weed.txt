@@ -7,4 +7,10 @@ Fruit: None
 Bloom Color: Pink
 
 Synopsis:
-The Joe Pye Weed is an herb that can bloom with either pink flowers or purple flowers but our greenery only offers Joe Pye Weed with a pink bloom. While it is a flowering herb, it grows quite tall. Due to its height, it is commonly used to decorate the backs of the garden since it is taller than most showy plants while still being visible in front of trees. It is also a large source of honey and nectar for bees and seeds for sparrows as well. Just make sure that while it shines best wehn being behind other plants that it gets the high amount of water it needs.
+The Joe Pye Weed is an herb that can bloom with either pink flowers or purple flowers
+but our greenery only offers Joe Pye Weed with a pink bloom. While it is a flowering herb,
+it grows quite tall. Due to its height, it is commonly used to decorate the backs of the
+garden since it is taller than most showy plants while still being visible in front of trees.
+It is also a large source of honey and nectar for bees and seeds for sparrows as well.
+Just make sure that while it shines best wehn being behind other plants that it gets the
+high amount of water it needs.

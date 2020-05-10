@@ -7,3 +7,9 @@ Fruit: Red Berries
 Bloom Color: Pink
 
 Synopsis:
+The Shagbark Hickory is a tree that grows tall and has a crown of leaves up top. As the
+leaves start off as a yellow-green, the transition to Fall sees also the transition into
+a regal gold color, perfect for the season. Its hickory nuts are edible and are normally
+eaten during the colder months. It also produces milk which is an essential ingredient
+for recipes such as corn cakes and hominy.
+

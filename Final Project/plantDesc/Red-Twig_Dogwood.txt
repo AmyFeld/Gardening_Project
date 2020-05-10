@@ -7,4 +7,8 @@ Fruit: Green Berries
 Bloom Color: White
 
 Synopsis:
-The Red-Twig Dogwood is very similar to teh other Dogwood tree available in our greenery. Like the Dogwood, it produces a light colored flower during bloom time but the Red-Twig blooms right as the Dogwood stops. It also provides heavily for wild birds and its leaves in the AUtumn are very colorful. During the winter, the branch don a red hue and stand out greatly through the northeastern winters and snow fall. 
+The Red-Twig Dogwood is very similar to the other Dogwood tree available in our greenery.
+Like the Dogwood, it produces a light colored flower during bloom time but the Red-Twig
+blooms right as the Dogwood stops. It also provides heavily for wild birds and its leaves
+in the AUtumn are very colorful. During the winter, the branch don a red hue and stand out
+greatly through the northeastern winters and snow fall. 

@@ -7,4 +7,9 @@ Fruit: None
 Bloom Color: Purple
 
 Synopsis:
-The Moss Phlox is a herb that blooms with pink flowers, white flowers or purple flowers but our greenery only provides Moss Phlox that has purple bloom. This plant is clearly meant to be placed in front of the garden due to its very small height. Its bold purple makes it an eye catcher. Being low maintanence while also being resistant, the Moss Phlox is guaranteed to last in your garden. It is known to creep however, so it is best to keep track of it as beautiful as it is. 
+The Moss Phlox is a herb that blooms with pink flowers, white flowers or purple flowers
+but our greenery only provides Moss Phlox that has purple bloom. This plant is clearly
+meant to be placed in front of the garden due to its very small height. Its bold purple
+makes it an eye catcher. Being low maintanence while also being resistant, the Moss Phlox
+is guaranteed to last in your garden. It is known to creep however, so it is best to keep
+track of it as beautiful as it is. 

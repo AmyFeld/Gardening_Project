@@ -7,4 +7,10 @@ Fruit: Small Red Berries
 Bloom Color: Pink
 
 Synopsis:
-The Ninebark is a shrub that comes in all types of colors, from purple, to orange, to mixes of colors. The color of this plant comes from it's foliage but our greenery only offers the Ninebark with pink blooms. Ninabark's primariry benefit is it's foliage color and how it attracts insects for pollenation. Be careful however, this shrub is considered toxic for animals and humans so make sure to handle this one with a lot of care! Otherwise, the Ninebark doesn't require much water usage and you'll be able to enjoy the adorable albeit short lived bloom.
+The Ninebark is a shrub that comes in all types of colors, from purple, to orange,
+to mixes of colors. The color of this plant comes from it's foliage but our greenery
+only offers the Ninebark with pink blooms. Ninabark's primariry benefit is it's foliage
+color and how it attracts insects for pollenation. Be careful however, this shrub is
+considered toxic for animals and humans so make sure to handle this one with a lot of
+care! Otherwise, the Ninebark doesn't require much water usage and you'll be able to
+enjoy the adorable albeit short lived bloom.

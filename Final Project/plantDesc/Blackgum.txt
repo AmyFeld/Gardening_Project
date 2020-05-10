@@ -7,4 +7,8 @@ Fruit: Dark Purple Berries
 Bloom Color: Green
 
 Synopsis:
-The Blackgum is a tree with a special place for each and every honey bee. It can be a main provier for thier pollen collection and honey production, making it a gentle giant of trees. Growing from upwards of 100 feet, this tree needs quite a bit of water to survive. The usual dark green leaves lighten and turn a golden yellow. It will begin to grow from a straight trunk into a more twisted one, giving it an eery but mysterious atmosphere.
+The Blackgum is a tree with a special place for each and every honey bee. It can be a
+main provier for thier pollen collection and honey production, making it a gentle giant
+of trees. Growing from upwards of 100 feet, this tree needs quite a bit of water to survive.
+The usual dark green leaves lighten and turn a golden yellow. It will begin to grow from
+a straight trunk into a more twisted one, giving it an eery but mysterious atmosphere.

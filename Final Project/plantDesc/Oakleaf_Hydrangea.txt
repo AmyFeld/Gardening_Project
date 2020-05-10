@@ -7,4 +7,10 @@ Fruit: None
 Bloom Color: White
 
 Synopsis:
-The Oakleaf Hydrangea is a shrub that blooms with gorgeous hydrangea flowers before turning a gorgeous firey red throughout the year. This shrub starts off with large oak leaves and light green buds but as spring approaches, the flowers bloom, shedding the green and becoming a white. During the Fall, these shrubs have a similar appearance to oak trees as their leaves become a strong red. The Oakleaf Hydrangea's four-season beauty make is a good option for year long appearances. It alos have multiple different flower shapes, one of the most popular being the snow flake shape. 
+The Oakleaf Hydrangea is a shrub that blooms with gorgeous hydrangea flowers before
+turning a gorgeous firey red throughout the year. This shrub starts off with large
+oak leaves and light green buds but as spring approaches, the flowers bloom, shedding
+the green and becoming a white. During the Fall, these shrubs have a similar appearance
+to oak trees as their leaves become a strong red. The Oakleaf Hydrangea's four-season
+beauty make is a good option for year long appearances. It alos have multiple different
+flower shapes, one of the most popular being the snow flake shape. 

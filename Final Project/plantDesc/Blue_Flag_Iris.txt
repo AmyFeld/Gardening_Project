@@ -7,4 +7,9 @@ Fruit: None
 Bloom Color: Blue
 
 Synopsis:
-The Blue Flag Iris, while having blue in its name, blooms with either purple flowers or blue flowers but our greenery only offers Blue Flag Iris with blue bloom. This iris blooms fofr a short period during the spring has one of the more beautiful blooms with it's vibrant blue petals and capsule like shape. It is a fragile flower as it is susceptible to insects and parasites but with the right care, will add a dash of blue beauty that other plants may not be able to provide.
+The Blue Flag Iris, while having blue in its name, blooms with either purple flowers or
+blue flowers but our greenery only offers Blue Flag Iris with blue bloom. This iris
+blooms fofr a short period during the spring has one of the more beautiful blooms with
+it's vibrant blue petals and capsule like shape. It is a fragile flower as it is
+susceptible to insects and parasites but with the right care, will add a dash of blue
+beauty that other plants may not be able to provide.

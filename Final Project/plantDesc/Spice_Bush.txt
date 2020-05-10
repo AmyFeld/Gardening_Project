@@ -7,4 +7,10 @@ Fruit: Red Berries
 Bloom Color: Yellow
 
 Synopsis:
-The Spice Bush is a shrub that has multiple benefits. The flowers that bloom from this plant are aromatic and conspicuous, making your yard smell wonderful. An interesting use for this shrub is that it's leaves and twisg can be made into a tea while it's berries can be dried and powdered into a spice, thus it's name as the Spice Bush. It primarily attracts butterflies to its flowers which can liven up any front yard or garden. With only needing medium quantities of water, the Spice Bush can bring in some wonderful color to any property.
+The Spice Bush is a shrub that has multiple benefits. The flowers that bloom from this
+plant are aromatic and conspicuous, making your yard smell wonderful. An interesting
+use for this shrub is that it's leaves and twigs can be made into a tea while its berries
+can be dried and powdered into a spice, thus it's name as the Spice Bush. It primarily
+attracts butterflies to its flowers which can liven up any front yard or garden. With
+only needing medium quantities of water, the Spice Bush can bring in some wonderful
+color to any property.

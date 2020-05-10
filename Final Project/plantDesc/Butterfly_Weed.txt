@@ -7,4 +7,11 @@ Fruit: None
 Bloom Color: Orange
 
 Synopsis:
-The Butterfly Weed is a plant that blooms with either yellow or orange flowers but our greenery only offers Butterfly Weed with orange bloom. These herbs are usually use as ornamental plants, especially due to their long and vibrant bloom. While the roots are said to be edible and used as a medicine, the roots and sap are poisonous in larger quantities. The Butterfly Weed gets its name from beinga  primary food source for many your larvae of butterflies, such as the Monarch Butterfly and the Queen Butterfly. Hummingbirds also prefer their nectar and the Butterfly Weed is a very low maintenance, high return plant. 
+The Butterfly Weed is a plant that blooms with either yellow or orange flowers but our
+greenery only offers Butterfly Weed with orange bloom. These herbs are usually use as
+ornamental plants, especially due to their long and vibrant bloom. While the roots are
+said to be edible and used as a medicine, the roots and sap are poisonous in larger
+quantities. The Butterfly Weed gets its name from beinga  primary food source for many
+your larvae of butterflies, such as the Monarch Butterfly and the Queen Butterfly.
+Hummingbirds also prefer their nectar and the Butterfly Weed is a very low maintenance,
+high return plant. 
