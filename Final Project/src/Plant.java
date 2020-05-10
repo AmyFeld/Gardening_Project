@@ -119,7 +119,7 @@ public class Plant {
 		System.out.println(name);
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("file:" + name+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader("plantDesc/" + name+".txt"));
 			   String line = null;
 			   while ((line = br.readLine()) != null) {
 			       s = s+line+"\n";
@@ -138,7 +138,7 @@ public class Plant {
 		System.out.println(name);
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("file:" + name+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader("plantDesc/" + name+".txt"));
 			   String line = null;
 			   while ((line = br.readLine()) != null) {
 				   if(line.contains("Synopsis")) {
