@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import javafx.scene.Node;
 /**
  * This class communicates with the controller to tell the view the current state of the Garden,
  *  the current plant and the triggering of garden
@@ -16,6 +17,9 @@ public class Model {
 	
 	Garden currentGarden = new Garden();
 	Plant currentPlant;
+	
+		double modelX;
+	double modelY;
 	
 	/**
 	 * Description: This is a setter for the Garden attribute in Model
@@ -149,6 +153,31 @@ public class Model {
 					e.printStackTrace();
 					}
 			return temp;
+	}
+
+		//Basic Getters and Setters for the Garden Drag and Drop
+
+	// This is what I added :)
+	
+	public void setX(double x){
+		modelX = x;
+	}
+
+	public void setY(double y){
+		modelY =y;
+	}
+
+	public double getX(){
+		return modelX;
+	}
+
+	public double getY(){
+		return modelY;
+	}
+
+	public void setImage(Node n){
+		n.setTranslateX(getX());
+		n.setTranslateY(getY());
 	}
 
 }
