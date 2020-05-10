@@ -116,19 +116,46 @@ public class Plant {
 	public String getDesc() {
 		String s = "";
 		String name = this.name.replace(" ", "_");
+		System.out.println(name);
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("file:plantDesc/" + name+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader("file:" + name+".txt"));
 			   String line = null;
 			   while ((line = br.readLine()) != null) {
 			       s = s+line+"\n";
 			   }
 			   
 			}catch (Exception e) {
-				System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
+				System.err.format("Exception occurred trying to read '%s'.", name+".txt");
 				e.printStackTrace();
 				}
 		return s;
+	}
+	
+	public String greeneryHover() {
+		String s = "";
+		String name = this.name.replace(" ", "_");
+		System.out.println(name);
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("file:" + name+".txt"));
+			   String line = null;
+			   while ((line = br.readLine()) != null) {
+				   if(line.contains("Synopsis")) {
+					   break;
+				   }
+			       s = s+line+"\n";
+			   }
+			   
+			}catch (Exception e) {
+				System.err.format("Exception occurred trying to read '%s'.", name+".txt");
+				e.printStackTrace();
+				}
+		return s;
+	}
+	
+	public String gardenHover() {
+		return this.name;
 	}
 	
 }
