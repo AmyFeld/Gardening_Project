@@ -1,13 +1,11 @@
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
-import javafx.scene.Node;
-
-
 
 /**
  * This class communicates with the controller to tell the view the current state of the Garden,
  *  the current plant and the triggering of garden
- *
+ * 
  * @author Tara Fishman
  *
  */
@@ -19,11 +17,6 @@ public class Model {
 	Garden currentGarden = new Garden();
 	Plant currentPlant;
 	
-	double modelX;
-	double modelY;
-
-	//ArrayList<Plant> inGarden = new ArrayList<Plant>();
-
 	/**
 	 * Description: This is a setter for the Garden attribute in Model
 	 * 
@@ -33,9 +26,8 @@ public class Model {
 	 */
 	public void setGarden(Garden g){
 		currentGarden = g;
-        }
-
-        
+	}
+	
 	/**
 	 * Description: This is a setter for the Plant attribute in Model
 	 * 
@@ -72,14 +64,28 @@ public class Model {
 	
 	
 	/**
-	 * Description: rateGarden takes in the Model's garden and uses all other rate functions to get an average
-	 * star rating for the garden from 1 to 5
-	 * @param Garden. the Model's current Garden
-	 * @return. int. the overall grade for the Garden
+	 * Description: rateGarden takes in the arraylist of used plants and returns all rating in an arraylist,
+	 * including overall rating
+	 * @param ArrayList<Plant> for the plants used on the drag and drop.
+	 * @return. ArrayList<Integer> for all ratings made
 	 * @throws no exception
 	 */
-	public int rateGarden(Garden g) {
-		return 0;
+	public ArrayList<Integer> rateGarden(ArrayList<Plant> temp) {
+		ArrayList<Integer> ahhh = new ArrayList<Integer>();
+		currentGarden.colorRating = currentGarden.calculateColorRating(temp);
+		currentGarden.animalsFedRating = currentGarden.calculateAnimalsFedRating(temp);
+		currentGarden.compatibilityRating = currentGarden.calculateCompatibilityRating(temp);
+		currentGarden.contBloomRating = currentGarden.calculateContBloomRating(temp);
+		currentGarden.transitionRating = currentGarden.calculateTransitionRating(temp);
+		ahhh.add(currentGarden.colorRating);
+		ahhh.add(currentGarden.contBloomRating);
+		ahhh.add(currentGarden.animalsFedRating);
+		ahhh.add(currentGarden.compatibilityRating);
+		ahhh.add(currentGarden.transitionRating);
+		int overall = currentGarden.colorRating + currentGarden.contBloomRating + currentGarden.animalsFedRating + currentGarden.compatibilityRating + currentGarden.transitionRating;
+		overall /= 5;
+		ahhh.add(overall);
+		return ahhh;
 	}
 	
 	/**
@@ -127,30 +133,22 @@ public class Model {
 		currentPlant = null;
 		currentGarden = new Garden(); // removeAll?
 	}
-
-	//Basic Getters and Setters for the Garden Drag and Drop
-
-	// This is what I added :)
 	
-	public void setX(double x){
-		modelX = x;
-	}
-
-	public void setY(double y){
-		modelY =y;
-	}
-
-	public double getX(){
-		return modelX;
-	}
-
-	public double getY(){
-		return modelY;
-	}
-
-	public void setImage(Node n){
-		n.setTranslateX(getX());
-		n.setTranslateY(getY());
+	public String interpretFinalRating(int i) {
+		String temp = "";
+		String name = "rating/"+Integer.toString(i)+".txt";
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(name));
+				   String line = null;
+				   while ((line = br.readLine()) != null) {
+				       temp = temp+line+"\n";
+				   }
+				   
+				}catch (Exception e) {
+					System.err.format("Exception occurred trying to read '%s'.", name);
+					e.printStackTrace();
+					}
+			return temp;
 	}
 
 }
