@@ -102,54 +102,47 @@ import java.util.ArrayList;
 		return 0;
 	}
 	
-	public ArrayList<Plant> Filter(String category, String type){
+	public ArrayList<Plant> Filter(String category, String type, ArrayList<Plant> currentList){
 		ArrayList<Plant> temp = new ArrayList<Plant>();
 		switch(category) {
 		case "type":
-			for(Plant p : this.allPlants) {
+			for(Plant p : currentList) {
 				if(p.type.equals(type)) {
 					temp.add(p);
 				}
 			}
 			return temp;
 		case "height":
-			for(Plant p : this.allPlants) {
-				if(p.height == Integer.parseInt(type)) {
+			for(Plant p : currentList) {
+				if(p.height >= Integer.parseInt(type) && p.height <= (Integer.parseInt(type)+60)) {
 					temp.add(p);
 				}
 			}
 			return temp;
 		case "hasFruit":
-			for(Plant p : this.allPlants) {
+			for(Plant p : currentList) {
 				if(p.hasFruit == Boolean.parseBoolean(type)) {
 					temp.add(p);
 				}
 			}
 			return temp;
 		case "waterUse":
-			for(Plant p : this.allPlants) {
+			for(Plant p : currentList) {
 				if(p.waterUse.equals(type)) {
 					temp.add(p);
 				}
 			}
 			return temp;
 		case "color":
-			for(Plant p : this.allPlants) {
+			for(Plant p : currentList) {
 				if(p.color.equals(type.toLowerCase())) {
 					temp.add(p);
 				}
 			}
 			return temp;
 		case "start":
-			for(Plant p : this.allPlants) {
-				if(p.start == Integer.parseInt(type)) {
-					temp.add(p);
-				}
-			}
-			return temp;
-		case "end":
-			for(Plant p : this.allPlants) {
-				if(p.end == Integer.parseInt(type)) {
+			for(Plant p : currentList) {
+				if(p.start <= Integer.parseInt(type) && p.end >= Integer.parseInt(type)) {
 					temp.add(p);
 				}
 			}
