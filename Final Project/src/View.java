@@ -187,7 +187,7 @@ public class View extends Application {
 			System.out.println(imageView.getTranslateY());
 			//System.out.println(tile.getChildren());
 	    	//System.out.println("Hi "+ iv.getId());
-			ImageView ivg = new ImageView((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+			ImageView ivg = new ImageView((new Image(myPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
 			
 	    	//ivg.setImage((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
 	    	//ivg.setImage(im);
@@ -206,11 +206,12 @@ public class View extends Application {
 	    	//System.out.println(grid.getChildren());
 	    	//ivg.toFront();
 	    	//tileBox.getChildren().add(ivg);
-	    	tileBox.getChildren().add(i, ivg);
-	    	
-	    	grid.getChildren().add(imageView);
-	    	grid.getChildren().add(imageView);
-	    	gridPlants.add(allPlants.get(i));
+	    	if(control.getOriginX() <= tile.getLayoutX()){
+		 	tileBox.getChildren().add(i, ivg);
+	    	    	grid.getChildren().add(imageView);
+	    		//grid.getChildren().add(imageView);
+	    		gridPlants.add(myPlants.get(i));
+		}
 	    	//System.out.println(i);
 	    	//gridPlants.add();
 	    	//System.out.println(grid.getChildren());
@@ -225,14 +226,7 @@ public class View extends Application {
 	
 	
 	 public boolean setI(ImageView imgview) {
-		/*	for(int m= 0; m< ivArr.size(); m++ ) {
-				//if(ivArr.contains(imgview)) {
-					
-					i =m;
-					System.out.println(i);
-					return true;
-				}
-			}*/
+		
 		 if(ivArr.contains(imgview)) {
 			 i = ivArr.indexOf(imgview);
 		 	return true;
