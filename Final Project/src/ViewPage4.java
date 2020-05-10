@@ -127,35 +127,35 @@ public class ViewPage4 extends View {
     	
     	ivHouse.setOnMouseDragged(control.getHandlerForDrag());
     	ivHouse.setOnMousePressed(control.getHandlerForClick());
-    	ivHouse.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	ivHouse.setOnMouseReleased(control.getHandlerForRelease());
     	//Pool
     	ivPool.setPreserveRatio(true);
 	  	ivPool.setFitHeight(100);
     	
     	ivPool.setOnMouseDragged(control.getHandlerForDrag());
     	ivPool.setOnMousePressed(control.getHandlerForClick());
-    	ivPool.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	ivPool.setOnMouseReleased(control.getHandlerForRelease());
     	//Fence
     	ivFence.setPreserveRatio(true);
 	  	ivFence.setFitHeight(100);
     	
     	ivFence.setOnMouseDragged(control.getHandlerForDrag());
     	ivFence.setOnMousePressed(control.getHandlerForClick());
-    	ivFence.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	ivFence.setOnMouseReleased(control.getHandlerForRelease());
     	//Road
     	ivRoad.setPreserveRatio(true);
 	  	ivRoad.setFitHeight(100);
     	
     	ivRoad.setOnMouseDragged(control.getHandlerForDrag());
     	ivRoad.setOnMousePressed(control.getHandlerForClick());
-    	ivRoad.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	ivRoad.setOnMouseReleased(control.getHandlerForRelease());
     	//DriveWay
     	ivDriveWay.setPreserveRatio(true);
 	  	ivDriveWay.setFitHeight(100);
     	
     	ivDriveWay.setOnMouseDragged(control.getHandlerForDrag());
     	ivDriveWay.setOnMousePressed(control.getHandlerForClick());
-    	ivDriveWay.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	ivDriveWay.setOnMouseReleased(control.getHandlerForRelease());
     	
 	//Pretend lawn for grid
 		Rectangle r = new Rectangle(600, 600);
