@@ -12,7 +12,8 @@ import java.util.ArrayList;
 	ArrayList<Plant> allPlants = readAllPlants();
 	ArrayList<Plant> inGarden = new ArrayList<Plant>();
 	ArrayList<Plant> OnGardenPage = new ArrayList<Plant>();
-	int happinessRating;
+	ArrayList<String> feedingPlants = getFeedingPlants();
+	int colorRating;
 	int contBloomRating;
 	int animalsFedRating;
 	int compatibilityRating;
@@ -48,15 +49,36 @@ import java.util.ArrayList;
 		return temp;
 	}
 	
+	public ArrayList<String> getFeedingPlants(){
+		ArrayList<String> temp = new ArrayList<String>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("feedingPlants.txt"));
+			String line = reader.readLine();
+			while ((line = reader.readLine()) != null) {
+				temp.add(line);
+				}
+			reader.close();
+		} catch (Exception e) {
+			System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
+			e.printStackTrace();
+			}
+		return temp;
+	}
+	
 	/**
-	 * Description: calculateHappinessRating is a function that analyzes a garden and based on what plants are present,
+	 * Description: calculateColorRating is a function that analyzes a garden and based on what plants are present,
 	 * returns its rating from 1-5 stars.
 	 * @param A garden to check it's contained plants
 	 * @return int. whihc represents a number of stars from 1-5.
 	 * @throws no exceptions
 	 */
-	public int calculateHappinessRating(Garden g){
-		return 0;
+	public int calculateColorRating(ArrayList<Plant> usedPlants){
+		int result = 0;
+		String[] colors = {"red", "orange", "yellow", "green", "blue", "purple", "pink", "white"};
+		for(Plant p : usedPlants) {
+			
+		}
+		return result;
 	}
 	
 	/**
@@ -66,8 +88,12 @@ import java.util.ArrayList;
 	 * @return int. whihc represents a number of stars from 1-5.
 	 * @throws no exceptions
 	 */
-	public int calculateContBloomRating(Garden g){
-		return 0;
+	public int calculateContBloomRating(ArrayList<Plant> usedPlants){
+		int result = 0;
+		for(Plant p : usedPlants) {
+			
+		}
+		return result;
 	}
 	/**
 	 * Description: calculateAnimalsFedRating is a function that analyzes a garden and based on what plants are present,
@@ -76,8 +102,12 @@ import java.util.ArrayList;
 	 * @return int. whihc represents a number of stars from 1-5.
 	 * @throws no exceptions
 	 */
-	public int calculateAnimalsFedRating(Garden g){
-		return 0;
+	public int calculateAnimalsFedRating(ArrayList<Plant> usedPlants){
+		int result = 0;
+		for(Plant p : usedPlants) {
+			
+		}
+		return result;
 	}
 	
 	/**
@@ -87,20 +117,44 @@ import java.util.ArrayList;
 	 * @return int. whihc represents a number of stars from 1-5.
 	 * @throws no exceptions
 	 */	
-	public int calculateCompatibilityRating(Garden g){
-		return 0;
+	public int calculateCompatibilityRating(ArrayList<Plant> usedPlants){
+		int result = 0;
+		for(Plant p : usedPlants) {
+			
+		}
+		return result;
 	}
 	
 	/**
 	 * Description: calculateTransitionRating is a function that analyzes a garden and based on what plants are present,
 	 * returns its rating from 1-5 stars.
 	 * @param A garden to check it's contained plants
-	 * @return int. whihc represents a number of stars from 1-5.
+	 * @return int. which represents a number of stars from 1-5.
 	 * @throws no exceptions
 	 */
-	public int calculateTransitionRating(Garden g) {
-		return 0;
-	}
+	public int calculateTransitionRating(ArrayList<Plant> usedPlants) {
+		int treesCount = 0, shrubsCount = 0, herbsCount = 0;
+		for(Plant p : usedPlants) {
+			if(p.type.equals("tree")) {
+				treesCount++;
+			}else if(p.type.equals("shrub")) {
+				shrubsCount++;
+			}else {
+				herbsCount++;
+			}
+		}
+		if(treesCount == shrubsCount && herbsCount == treesCount) {
+			return 5;
+		}else if(treesCount == 0 || shrubsCount == 0 || herbsCount == 0) {
+			return 1;
+		}else if((Math.abs(treesCount - shrubsCount) >= 7.0) || (Math.abs(treesCount - herbsCount) >= 7.0) || (Math.abs(herbsCount - shrubsCount) >= 7.0)){
+			return 2;
+		}else if((Math.abs(treesCount - shrubsCount) >= 4.0) || (Math.abs(treesCount - herbsCount) >= 4.0) || (Math.abs(herbsCount - shrubsCount) >= 4.0)){
+			return 3;
+		}else {
+			return 4;
+		}
+	} 
 	
 	public ArrayList<Plant> Filter(String category, String type, ArrayList<Plant> currentList){
 		ArrayList<Plant> temp = new ArrayList<Plant>();
