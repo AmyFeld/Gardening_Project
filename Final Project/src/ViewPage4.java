@@ -173,10 +173,13 @@ public class ViewPage4 extends View {
       
      //setting the grid and tile to places 
       
-      ScrollPane sc = new ScrollPane(tile);
+       ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(tileBox.getHeight());
+      //sc.maxWidth(100);
+     // sc.setFitToWidth(false);
+      sc.setPrefWidth(plaWidth);
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-      sc.autosize();
+     // sc.autosize();
      
       	grid.setPrefHeight(600);
     	
