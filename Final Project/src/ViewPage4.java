@@ -49,38 +49,8 @@ public class ViewPage4 extends View {
 	Scene scene4;
 	private BorderPane border;
 	
-	/* ImageView iv0;
-	 ImageView iv1;
-	 ImageView iv2;
-	 ImageView iv3;
-	 ImageView iv4;
-	 ImageView iv5;
-	 ImageView iv6;
-	 ImageView iv7;
-	 ImageView iv8;
-	 ImageView iv9;
-	 ImageView iv10;
-	 ImageView iv11;
-	 ImageView iv12;
-	*/
-/*	 GridPane grid;
 	
-	//private TilePane tile;
-	
-
-	Garden g = new Garden();
-	ArrayList<Plant> allPlants = g.allPlants;		
-	ArrayList<Plant> myPlants = new ArrayList<Plant>();
-	ArrayList<Plant> gridPlants = new ArrayList<Plant>();
-	
-	int plaWidth = 100;
-	int plaHeight = 100;
-
-    ImageView imageView;
-    Image im1; 
-    int i;
-    int l;*/
-   // ImageView iv1;
+  
 	/**
 	 * For the user to view the garden and drag & drop, creates the scene that would work
 	 * This would add the buttons as well as and calls the other methods
@@ -137,17 +107,61 @@ public class ViewPage4 extends View {
 	 *
 	 */
 	public void start(Stage stage) {
-	//Pretend Images
-		Image backup_house = new Image("file:backup_house.png", 100, 100, false, false);
-		ImageView iv;// = new ImageView(backup_house);
-		Image plant1 = new Image("file:plant1.png", 100, 100, false, false);
-		//ImageView iv2 = new ImageView(plant1);
-		Image plant2 = new Image("file:plant2.png", 100, 100, false, false);
-		//ImageView iv3 = new ImageView(plant2);
+	ImageView iv;
+	//Generic Yard Images
+		Image backup_house = new Image("file:images/backup_house.png", 100, 100, false, false);
+		ImageView ivHouse = new ImageView(backup_house);
+		Image pool = new Image("file:images/pool.png", 100, 100, false, false);
+		ImageView ivPool = new ImageView(pool);
+		Image fence = new Image("file:images/fence.png", 150, 50, false, false);
+		ImageView ivFence = new ImageView(fence);
+		Image road= new Image("file:images/road.png", 100, 100, false, false);
+		ImageView ivRoad = new ImageView(road);
+		Image driveWay= new Image("file:images/road.png", 100, 100, false, false);
+		ImageView ivDriveWay = new ImageView(driveWay);
+		
 	
+		//moving generic images
+		ivHouse.setPreserveRatio(true);
+	  	ivHouse.setFitHeight(100);
+    	
+    	ivHouse.setOnMouseDragged(control.getHandlerForDrag());
+    	ivHouse.setOnMousePressed(control.getHandlerForClick());
+    	ivHouse.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	//Pool
+    	ivPool.setPreserveRatio(true);
+	  	ivPool.setFitHeight(100);
+    	
+    	ivPool.setOnMouseDragged(control.getHandlerForDrag());
+    	ivPool.setOnMousePressed(control.getHandlerForClick());
+    	ivPool.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	//Fence
+    	ivFence.setPreserveRatio(true);
+	  	ivFence.setFitHeight(100);
+    	
+    	ivFence.setOnMouseDragged(control.getHandlerForDrag());
+    	ivFence.setOnMousePressed(control.getHandlerForClick());
+    	ivFence.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	//Road
+    	ivRoad.setPreserveRatio(true);
+	  	ivRoad.setFitHeight(100);
+    	
+    	ivRoad.setOnMouseDragged(control.getHandlerForDrag());
+    	ivRoad.setOnMousePressed(control.getHandlerForClick());
+    	ivRoad.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	//DriveWay
+    	ivDriveWay.setPreserveRatio(true);
+	  	ivDriveWay.setFitHeight(100);
+    	
+    	ivDriveWay.setOnMouseDragged(control.getHandlerForDrag());
+    	ivDriveWay.setOnMousePressed(control.getHandlerForClick());
+    	ivDriveWay.setOnMouseReleased(control.getHandlerForReleaseGen());
+    	
 	//Pretend lawn for grid
 		Rectangle r = new Rectangle(600, 600);
 		r.setFill(Color.LIGHTGREEN);
+		
+		grid.setStyle("-fx-background-color: #05F861;");
 		
 	//Creating Basic Tile Params
 	 // tile.setTileAlignment(Pos.CENTER_LEFT);
@@ -160,59 +174,21 @@ public class ViewPage4 extends View {
      //setting the grid and tile to places 
       
       ScrollPane sc = new ScrollPane(tile);
-      sc.setPrefViewportHeight(sceneHeight);
+      sc.setPrefViewportHeight(tileBox.getHeight());
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
       sc.autosize();
-      
-      
-      	//sp.setContent(tile);
-      	//flow.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-      	//flow.setStyle()
-      	//   grid.setBackground(new Background(flowBG));
-      	//  grid.setBackground(new Background(r));
+     
       	grid.setPrefHeight(600);
-    	Image back = new Image("file:images/bg2.png",canvasWidth, canvasHeight, false, false);
-    	ImageView bg = new ImageView(back);
-    	//grid.setBackground(bg);
-      	//grid.getChildren().add(r);
-      	//flow.setColumnHalignment(HPos.CENTER);
-      	//flow.setPrefWrapLength(3*canvasWidth/4);
+    	
       	border.setLeft(sc);
       	border.setCenter(grid);
         grid.setGridLinesVisible(true);
- 
-
-       /*  iv0 = new ImageView(new Image(allPlants.get(0).getImgName(), plaWidth, plaHeight, false, false));
-         iv1 = new ImageView(new Image(allPlants.get(1).getImgName(), plaWidth, plaHeight, false, false));
-         iv2 = new ImageView(new Image(allPlants.get(2).getImgName(), plaWidth, plaHeight, false, false));
-         iv3 = new ImageView(new Image(allPlants.get(3).getImgName(), plaWidth, plaHeight, false, false));
-         iv4 = new ImageView(new Image(allPlants.get(4).getImgName(), plaWidth, plaHeight, false, false));
-         iv5 = new ImageView(new Image(allPlants.get(5).getImgName(), plaWidth, plaHeight, false, false));
-         iv6 = new ImageView(new Image(allPlants.get(6).getImgName(), plaWidth, plaHeight, false, false));
-         iv7 = new ImageView(new Image(allPlants.get(7).getImgName(), plaWidth, plaHeight, false, false));
-         iv8 = new ImageView(new Image(allPlants.get(8).getImgName(), plaWidth, plaHeight, false, false));
-         iv9 = new ImageView(new Image(allPlants.get(9).getImgName(), plaWidth, plaHeight, false, false));
-         iv10 = new ImageView(new Image(allPlants.get(10).getImgName(), plaWidth, plaHeight, false, false));
-         iv11 = new ImageView(new Image(allPlants.get(11).getImgName(), plaWidth, plaHeight, false, false));
-         iv12= new ImageView(new Image(allPlants.get(12).getImgName(), plaWidth, plaHeight, false, false));
-        
-        ivArr = new ImageView[]{iv0, iv1, iv2, iv3, iv4, iv5, iv6, iv7, iv8, iv9, iv10, iv11, iv12};
-   */
+      
    //Setting up the image views and moving them 
-        //while(i<myPlants.length())
-       // ivArr = new ImageView[] {} ;
-      for(  i=0; i< 13; i++) {
-    	  //tileBox.getChildren().add(ivArr[i]);
-    	  // im1 = new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false);
-    	  //ImageView iv1  = new ImageView(im1);
-    	  //setImageView(iv1);
-    	  //	control.model.setX(iv.getTranslateX());
-    	  //	control.model.setY(iv.getTranslateY());
-    	  	
-    	  	// so when making don't take in i get plant name and then take that name to get image? we shall see -- notes for me for tonight
-    	//  img[i].
-    	  	
-    	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+  
+      for(  i=0; i< myPlants.size(); i++) {
+    	
+    	  	iv = new ImageView(new Image(myPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
     		
     		//ivArr.insert(i, iv);
     	//  	ivArr.
@@ -240,7 +216,7 @@ public class ViewPage4 extends View {
     	   // tile.getChildren().add(iv1);
       } 
      
-      
+      tileBox.getChildren().addAll(ivHouse, ivPool, ivFence, ivRoad, ivDriveWay);
 
       System.out.println("Grid Children: "+ grid.getChildren());
       
@@ -252,208 +228,10 @@ public class ViewPage4 extends View {
        tile.getChildren().add(tileBox);
       sc.setContent(tile);
      
-      
-      //EXTRA CODE THAT I THOUGHT MIGHT WORK 
-      
-      
-     
-      //   	  iv1.set
-	  //Working on the IV to select images to drag and drop
-	  
-	/*  iv1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-		  public void handle(MouseEvent event) {
-			  
-			/*  Dragboard db2 = iv1.startDragAndDrop(TransferMode.COPY);
-			  System.out.println("hi :)");
-			  iv1.setMouseTransparent(true);
-	    		 System.out.println("mouse pressed");
-	    		 event.setDragDetect(true);
-	    		 ClipboardContent content = new ClipboardContent();
-	    		 content.putAll(content);
-	    		 db2.setContent(content);
-	    		 
-	    		 event.consume();
-			  
-		  }
-	  });
-	  l = i;
-	  iv1.setOnMouseReleased(new EventHandler<MouseEvent>() {
-	    	 public void handle(MouseEvent event) {
-	    		 iv1.setMouseTransparent(false);
-	    		 System.out.println("mouse released");
-	    		 addImage(event.getX(), event.getY(), l, iv1);
-	    	 }
-	     });
-	     
-	     iv1.setOnMouseDragged(new EventHandler<MouseEvent>() {
-	    	 public void handle(MouseEvent event) {
-	    		 //Node n = (Node) event.getSource();
-	    		 iv1.setTranslateX(iv1.getTranslateX() + event.getX());
-	    		 iv1.setTranslateY(iv1.getTranslateY()+ event.getY());
-	    		 event.setDragDetect(false);
-	    		
-	    		 System.out.println("mouse dragged");
-	    	 }
-	     });*/
-	     
-	   /*  iv1.setOnDragDetected(new EventHandler<MouseEvent>() {
-	    	 public void handle(MouseEvent event) {
-	    		 //iv1.startFullDrag();
-	    		 Dragboard db2 = iv1.startDragAndDrop(TransferMode.COPY);
-   			  System.out.println("hi :)");
-   			  iv1.setMouseTransparent(true);
-   	    		 System.out.println("mouse pressed");
-   	    		 event.setDragDetect(true);
-   	    		 ClipboardContent content = new ClipboardContent();
-   	    		 content.putAll(content);
-   	    		 db2.setContent(content);
-   	    		 
-   	    		 event.consume();
-	    		 
-	    		 System.out.println("drag detected");
-	    	 }
-	     });*/
-	    // int l = i;
-	   /*  iv1.setOnDragDetected((MouseEvent event)-> {
-	    	 imageView = new ImageView(new Image(allPlants.get(l).getImgName(), plaWidth, plaHeight, false, false));
-	    	 try {
-	    			Thread.sleep(500);
-	    		} catch (InterruptedException e) {
-	    			e.printStackTrace();
-	    		}
-	    	    
-	    		System.out.println("eventX:" + event.getX() + " > tile X:" + 7*tile.getWidth()/12); // debugging
-
-	    	    
-	    	   // if(event.getX() > 7 * tile.getWidth()/12) { //boundaries to whether is plant is dragged in flow pane
-	    	    	    	
-	    	    	grid.getChildren().add(imageView); 
-
-	    	           Dragboard db = imageView.startDragAndDrop(TransferMode.COPY); 
-	    	           ClipboardContent content = new ClipboardContent();
-	    	           
-	    	           // Store node ID in order to know what is dragged.
-	    	           content.putString(imageView.getId());
-	    	           db.setContent(content);
-	    	           event.consume();
-	    	   // }
-	     //});
-	     
-	    
-	     /*
-	      * iv2.setOnDragDetected((MouseEvent event) -> {
-
-ImageView iv1 = new ImageView(im1);
-
-try {
-	Thread.sleep(500);
-} catch (InterruptedException e) {
-	e.printStackTrace();
-}
-
-System.out.println("eventX:" + event.getX() + " > tile X:" + 7*tile.getWidth()/12); // debugging
-
-
-if(event.getX() > 7 * tile.getWidth()/12) { //boundaries to whether is plant is dragged in flow pane
-	    	
-	flow.getChildren().add(iv1); 
-
-       Dragboard db = iv1.startDragAndDrop(TransferMode.COPY); 
-       ClipboardContent content = new ClipboardContent();
-       
-       // Store node ID in order to know what is dragged.
-       content.putString(iv1.getId());
-       db.setContent(content);
-       event.consume();
-}
-  
-});
-
-	      */
-	/*     grid.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
-	    	 public void handle(MouseDragEvent event) {
-	    		 System.out.println("mouse dragged: grid");
-	    	 }
-	     });
-	     
-	     grid.setOnDragOver(new EventHandler<DragEvent>() {
-	    	 public void handle(DragEvent event) {
-	    		event.acceptTransferModes(TransferMode.COPY);
-	    		event.consume();
-	    	 }
-	     });
-	     
-	     grid.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
-	    	 public void handle(MouseDragEvent event) {
-	    		 
-	    		 System.out.println("mouse drag over: grid");
-	    	 }
-	     });
-	     
-	     grid.setOnMouseDragReleased(new EventHandler<MouseDragEvent>() {
-	    	 public void handle(MouseDragEvent event) {
-	    		 //int x = (int)event.getX();
-	    		 //int y= (int)event.getY();
-	    		// grid.add(iv2, x, y);
-	    		// grid.add(child, columnIndex, rowIndex);
-	    		 System.out.println("mouse drag release");
-	    		 //grid.getChildren().add();
-	    	 }
-	    	 
-	     });
-	     */
-      // });
-      //tile.setHgap(20);
-      //tile.getChildren().addAll(iv, iv2, iv3);
- 
-     // border.getRight().setStyle("-fx-border-color: lightgreen;");
-     
-    //  flow.setStyle("-fx-border-color: POWDERBLUE;");
 	}
    
       
 
-   	
-	
-	
-	
-	
-	//hi
-	//This is a function that will take 
-	/* public void addImage(double x,double y, int i, ImageView iv) {//, MouseEvent e) {
-			iv.setTranslateX(x);
-			iv.setTranslateY(y);
-	    	ImageView ivg = new ImageView();
-	    
-	    	//Image im2 = ;
-	    	ivg.setImage((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
-	    	ivg.setPreserveRatio(true);
-	    	ivg.setFitHeight(100);
-	    	System.out.println("Hi:)");
-	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
-	    	ivg.setOnMousePressed(control.getHandlerForClick());
-	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
-	    	//ivg.setX(x);
-	    	//ivg.setY(y);
-	    	ivg.setTranslateX(x);
-	    	ivg.setTranslateY(y);
-	    	System.out.println(grid.getChildren());
-	    	grid.getChildren().add(ivg);
-	    	gridPlants.add(allPlants.get(i));
-	    	System.out.println(grid.getChildren());
-	    	for(int j=0; j< gridPlants.size(); j++) {
-	    		System.out.print(gridPlants.get(j).getName());
-	    	}
-	    	//border.getChildren().add(ivg);
-	    }
-	 */
-	
-/*	public void setI(ImageView imgview) {
-		for(int m= 0; m< ivArr.length; m++ ) {
-			if(ivArr[m].equals(imgview))
-				i =m;
-		}
-	}*/
 
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
