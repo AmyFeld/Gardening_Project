@@ -135,12 +135,13 @@ public class ViewPage2 extends View {
 	    
 		// if filter then use cList size
 		
-	    for (int i = 1; i < allPlants.size(); i++) {
+	    for (Plant p : allPlants) {
 	    	
 	    	Button b1 = new Button();
 	    	
-	    	b1.setGraphic(new ImageView(new Image(allPlants.get(i).getImgName(), 
+	    	b1.setGraphic(new ImageView(new Image(p.getImgName(), 
 	    			buttonWidth, buttonHeight, false, false))); 
+		b1.setTooltip(new Tooltip(p.greeneryHover()));
 	    	
 	    	flow.getChildren().addAll(b1);	    	
 	    	
