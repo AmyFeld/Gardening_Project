@@ -42,12 +42,12 @@ public class ViewPage5 extends View {
 
 	//practice numbers for now
 	
-	int colorStars = 3;
-	int bloomStars = 4; 
-	int animalStars = 2; 
-	int compatStars = 5; 
-	int transitStars = 1; 
-	int overallStars = 4; // have to add to model
+	int colorStars;
+	int bloomStars; 
+	int animalStars; 
+	int compatStars; 
+	int transitStars; 
+	int overallStars; // have to add to model
 	
 	int STARH = 75;
 	int STARW = 75;
@@ -134,6 +134,15 @@ public class ViewPage5 extends View {
 		return scene5;
 	}
 
+	public void setAllRatings() {
+		presentColor(ratings.get(0));
+		presentContBloom(ratings.get(1));
+		presentAnimalsFedRating(ratings.get(2));
+		presentCompatibilityRating(ratings.get(3));
+		presentTransitionRating(ratings.get(4));
+		presentOverallRating(ratings.get(5));
+	}
+	
 	/**
 	 * Description: basic setter for taking in int from View that consumes from Model
 	 * 
@@ -186,6 +195,10 @@ public void presentTransitionRating(int transit){
 transitStars = transit;
 }
 
+
+public void presentOverallRating(int overall) {
+	overallStars = overall;
+}
 
 /**
  * Description: takes in the integer and presents each of the ratings and overall evaluation as 
