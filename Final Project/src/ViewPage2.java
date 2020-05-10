@@ -147,7 +147,7 @@ public class ViewPage2 extends View {
 	    	
 			Tab t = new Tab(); 
 			b1.setOnAction(e -> tabPane.getTabs().addAll(t));
-			setTabInfo(allPlants.get(i), t);		
+			setTabInfo(p, t);		
 	    }
 	    
 		return flow;
