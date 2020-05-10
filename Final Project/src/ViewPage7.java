@@ -29,6 +29,7 @@ import javafx.stage.Stage;
  */
 public class ViewPage7 extends View {
 	Scene scene7;
+	int strokeWidth = 2;
 
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
@@ -38,18 +39,14 @@ public class ViewPage7 extends View {
 	 *
 	 */
 	public ViewPage7(Stage theStage) {		
-		Image back = new Image("file:images/bg2.png",canvasWidth, canvasHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
-		
-		VBox layout = new VBox(20);     
+		VBox layout = new VBox(boxSize);     
 	    Text label1 = new Text("Resources");
 		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(2); 
+	    label1.setStrokeWidth(strokeWidth); 
 	    label1.setStroke(Color.BLUE);
 	    Text whereText = new Text();
 	    Text faqText = new Text();
@@ -69,7 +66,6 @@ public class ViewPage7 extends View {
 		}
 	    
 
-	  	//Button home = new Button("Home");
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
 	  	Tab where = new Tab();
