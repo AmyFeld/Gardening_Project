@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane.TabClosingPolicy;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -43,7 +45,7 @@ public class ViewPage2 extends View {
 	int flowY = 20;
 	int flowGapV = 20;
 	int flowGapH = 35;
-	int flowWrap = sceneWidth - 130;
+	int flowWrap = sceneWidth - 140;
 	int flowPrefH = sceneHeight + 200;
 	
 	int scrollPrefH = sceneHeight + 100;
@@ -52,21 +54,24 @@ public class ViewPage2 extends View {
 	int nameX = 250;
 	int nameY = 20;
 	
-	int titleX = 400;
-	int titleY = 10;
+	int titleX = 220;
+	
+	int dboxSize = 35;
+	int dPrefWidth = 100;
 	
 	Boolean color;
 	Boolean type;
 	Boolean ht;
 	Boolean fruit;
 	Boolean water;
-	Boolean month;
+	Boolean start;
 		
 	ArrayList<Plant> cList = new ArrayList<>();
  	Button garButton = new Button("Go to Garden");
+ 	Button addButton;
  	
 	VBox vb = new VBox(boxSize); // assembles the title, tabs, and button 
-	HBox hb = new HBox(boxSize); // home button and go to garden button
+	HBox hb = new HBox(); // holds home button and go to garden button
 	HBox dropBox = new HBox(boxSize); // holds flow pane & combo boxes (drop down)
     
     TabPane tabPane = new TabPane();
@@ -85,26 +90,29 @@ public class ViewPage2 extends View {
 	    mainTab.setText("Nursery Plant Selection");
 	    tabPane.getTabs().add(mainTab); // main tab with plant buttons
 	    
-	    dropBox.getChildren().addAll(setButtons(tabPane), getDropDown());
+	    dropBox.getChildren().addAll(setButtons(tabPane, allPlants), getDropDown());
 		mainTab.setContent(dropBox);
+		mainTab.setClosable(false);
 		
 		ScrollPane sc = new ScrollPane(vb);
 		sc.setPrefViewportHeight(scrollPrefH);
 		sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		Label title = new Label("Greenery Tour");
-		title.setFont(new Font("Arial", fontSize));
+		Text title = new Text("Greenery Tour");
+		title.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+		title.setFill(Color.WHITE); 
+	    title.setStrokeWidth(strokeWidth); 
+		title.setStroke(Color.BLUE);
 		title.setTranslateX(titleX);
-	 	title.setTranslateY(titleY);
-	 		 	
-	 	hb.getChildren().addAll(title, homeButton, garButton);
+		    
+	 	hb.getChildren().addAll(homeButton, title, garButton);
 		vb.getChildren().addAll(hb, tabPane); 
 		sc.setContent(vb);
 		
 		vb.setBackground(new Background(myBG));
 		
 		homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
-		garButton.setTranslateX(labelX);
+		garButton.setTranslateX(addButtonX); 
 		garButton.setOnAction(e -> theStage.setScene(new ViewPage4(theStage).getScene4()));
 		
 		scene2 = new Scene(sc, sceneWidth, sceneHeight);	
@@ -120,7 +128,7 @@ public class ViewPage2 extends View {
 	 * @return 	FlowPane  Organizes the layout of plant buttons on the main tab
 	 * 
 	 * 	 */
-	public FlowPane setButtons(TabPane tabPane) {
+	public FlowPane setButtons(TabPane tabPane, ArrayList<Plant> alst) {
 		
 		FlowPane flow = new FlowPane(); 
 		
@@ -134,22 +142,30 @@ public class ViewPage2 extends View {
 	    flow.setPrefHeight(flowPrefH);
 	    
 		// if filter then use cList size
-		
-	    for (Plant p : allPlants) {
+	    for (int i = 1; i < alst.size(); i++) {
 	    	
 	    	Button b1 = new Button();
+			Plant p = allPlants.get(i);  
 	    	
 	    	b1.setGraphic(new ImageView(new Image(p.getImgName(), 
 	    			buttonWidth, buttonHeight, false, false))); 
-		b1.setTooltip(new Tooltip(p.greeneryHover()));
+	    	
+			b1.setTooltip(new Tooltip(p.greeneryHover()));
+
 	    	
 	    	flow.getChildren().addAll(b1);	    	
 	    	
 			Tab t = new Tab(); 
 			b1.setOnAction(e -> tabPane.getTabs().addAll(t));
+			
 			setTabInfo(p, t);		
-	    }
-	    
+			addButton.setOnAction(e -> { 
+				myPlants.add(p); // adds to the user's plant arraylist
+			
+			//	for (Plant k: myPlants) 
+			//		System.out.print(k.getName() + ", ");
+				 });
+			}
 		return flow;
 	}
 	
@@ -170,7 +186,7 @@ public class ViewPage2 extends View {
 
 		name.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 		name.setFill(Color.WHITE); 
-	    name.setStrokeWidth(2); 
+	    name.setStrokeWidth(strokeWidth); 
 		name.setStroke(Color.BLUE);
 		    
 		t.setText(p.getName());
@@ -182,71 +198,99 @@ public class ViewPage2 extends View {
 
 		Text desc = new Text(p.getDesc());
 		
-		Button g = new Button("Add to Garden");
-		g.setTranslateX(addButtonX);
-		g.setOnAction(e -> myPlants.add(p)); // adds to the user's plant arraylist
-		
-		pInfo.getChildren().addAll(name, planImg, g, desc);
+		addButton = new Button("Add to Garden");
+		addButton.setTranslateX(addButtonX);
+
+		pInfo.getChildren().addAll(name, planImg, addButton, desc);
 		
 		t.setContent(pInfo); // adds all plant info to tab
 		
 	}
 	
 	/**
-	 * Description: Creates a VBox with contents of all filter options for plants
+	 * Description: Creates a VBox with contents of all filter options for plants; 
+	 *  a combo box = drop down to select a choice
+
 	 * 
 	 * @return	VBox  Returns all the Combo boxes in a vertical format
 	 */
 	public VBox getDropDown() {
-		VBox v = new VBox(boxSize);
+		VBox v = new VBox(dboxSize);
+		v.setTranslateY(20);
 
-		// a combo box = drop down to select a choice
 		ComboBox<String> colorBox = new ComboBox<>();
 		colorBox.getItems().addAll("white", "red", "pink", "orange", "yellow", "green", "blue", "purple", "none");
 		colorBox.setValue("Color");
+		colorBox.setPrefWidth(dPrefWidth);
 		colorBox.valueProperty().addListener(new ChangeListener<String>() {
-           
 			@Override 
             public void changed(ObservableValue ov, String t, String t1) {                
         		cList = g.Filter("color", (String) ov.getValue());
-        		color = true;
-        		for (Plant c: cList) {
-            		System.out.println(c.getName());
-                }          
+        		setButtons(tabPane, cList);
+        		color = true;         
         	}    
         });
 		
 		ComboBox<String> typeBox = new ComboBox<>();
 		typeBox.getItems().addAll("herb", "shrub", "tree");
 		typeBox.setValue("Type");
+		typeBox.setPrefWidth(dPrefWidth);
 		typeBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override 
             public void changed(ObservableValue ov, String t, String t1) {                
         		cList = g.Filter("type", (String) ov.getValue());
-        		type = true;
-        		
-        		for (Plant c: cList) {
-        		System.out.println(c.getName());
-            }    
+        		type = true;       	  
           }
         });
 		
 		ComboBox<String> htBox = new ComboBox<>();
-		htBox.getItems().addAll("0-10", "10-20", "20-30", "30-40", "40+");
+		htBox.getItems().addAll("0-10 ft", "10-20 ft", "20-30 ft", "30-40 ft", "40+ ft");
 		htBox.setValue("Height");
+		htBox.setPrefWidth(dPrefWidth);
+		htBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override 
+            public void changed(ObservableValue ov, String t, String t1) {                
+        		cList = g.Filter("height", (String) ov.getValue());
+        		ht = true;    
+          }
+        });
 
 		ComboBox<String> fruitBox = new ComboBox<>();
 		fruitBox.getItems().addAll("Fruit", "No Fruit");
 		fruitBox.setValue("Fruit");
+		fruitBox.setPrefWidth(dPrefWidth);
+		fruitBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override 
+            public void changed(ObservableValue ov, String t, String t1) {                
+        		cList = g.Filter("hasFruit", (String) ov.getValue());
+        		fruit = true;  
+          }
+        });
 		
 		ComboBox<String> waterBox = new ComboBox<>();	
 		waterBox.getItems().addAll("Low", "Medium", "High");
-		waterBox.setValue("Water Usage");
+		waterBox.setValue("Water");
+		waterBox.setPrefWidth(dPrefWidth);
+		waterBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override 
+            public void changed(ObservableValue ov, String t, String t1) {                
+        		cList = g.Filter("waterUse", (String) ov.getValue());
+        		water = true;   
+          }
+        });
 
 		ComboBox<String> monthBox = new ComboBox<>();	
-		monthBox.getItems().addAll("Jan", "Feb", "March",
-				"April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec");
-		monthBox.setValue("Start Month");
+		monthBox.getItems().addAll("January", "February", "March",
+				"April", "May", "June", "July", "August", "September", "October", "November", "December");
+		monthBox.setValue("Start");
+		monthBox.setPrefWidth(dPrefWidth);
+		monthBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override 
+            public void changed(ObservableValue ov, String t, String t1) {                
+        		cList = g.Filter("start", (String) ov.getValue());
+        		start = true;    
+          }
+        });
 
 		v.getChildren().addAll(colorBox, typeBox, htBox, fruitBox, waterBox, monthBox);
 		
