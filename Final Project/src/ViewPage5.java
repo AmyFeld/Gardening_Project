@@ -111,7 +111,7 @@ public class ViewPage5 extends View {
 	  		});
 	    */
   layout2.getChildren().add(layout1);
-  start(theStage);
+  	start(theStage);
   
   //root.getChildren().add(layout2);
   layout2.setBackground(new Background(myBG));
@@ -121,7 +121,7 @@ public class ViewPage5 extends View {
   theStage.setScene(scene5); 
 	   	 theStage.show(); 	
 	   	 
-	   	// start();
+	   	 //start(theStage);
 		
 	   	 //layout2.getChildren();
 	
@@ -145,6 +145,10 @@ public class ViewPage5 extends View {
 	 * 
 	 */
 	public void setAllRatings() {
+		System.out.println(ratings);
+	      ratings = control.model.rateGarden(gridPlants);
+	      System.out.println(ratings);
+	      
 		presentColor(ratings.get(cs1));
 		presentContBloom(ratings.get(cs2));
 		presentAnimalsFedRating(ratings.get(cs3));
@@ -218,7 +222,8 @@ public void presentOverallRating(int overall) {
  * @return none
  */
 public void start(Stage theStage){
-	  Image image = new Image("file:starD.png", STARH, STARW, true, true);
+	setAllRatings();
+	  Image image = new Image("file:images/starD.png", STARH, STARW, true, true);
 	  //ImageView imageView = new ImageView(image);
 	  Label coll = new Label("Color Rating");
 	  Label blol = new Label("Continuous Bloom Rating");
@@ -236,46 +241,46 @@ public void start(Stage theStage){
 	  
 	  for(int i = 0; i<colorStars; i++) {
 		  System.out.print("*");
-		  ImageView imageView = new ImageView(image);
-		  col.getChildren().add(imageView);
+		  ImageView imageViewC = new ImageView(image);
+		  col.getChildren().add(imageViewC);
 		 
 	  }
 	  System.out.println("");
 	  
 	  for(int i = 0; i<bloomStars; i++) {
 		  System.out.print("*");
-		  ImageView imageView = new ImageView(image);
-		  blo.getChildren().add(imageView);
+		  ImageView imageViewB = new ImageView(image);
+		  blo.getChildren().add(imageViewB);
 	  }
 	  System.out.println("");
 	  
 	  for(int i = 0; i<animalStars; i++) {
 		  System.out.print("*");
-		  ImageView imageView = new ImageView(image);
-		  ani.getChildren().add(imageView);
+		  ImageView imageViewA = new ImageView(image);
+		  ani.getChildren().add(imageViewA);
 		 
 	  }
 	  System.out.println("");
 	  
 	  for(int i = 0; i<compatStars; i++) {
 		  System.out.print("*");
-		  ImageView imageView = new ImageView(image);
-		  com.getChildren().add(imageView);
+		  ImageView imageViewP = new ImageView(image);
+		  com.getChildren().add(imageViewP);
 		 
 	  }
 	  System.out.println("");
 	  
 	  for(int i = 0; i<transitStars; i++) {
 		  System.out.print("*");
-		  ImageView imageView = new ImageView(image);
-		  tra.getChildren().add(imageView);
+		  ImageView imageViewT = new ImageView(image);
+		  tra.getChildren().add(imageViewT);
 		 
 	  }
 	  
 	  for(int i = 0; i<overallStars; i++) {
 		  System.out.print("*");
-		  ImageView imageView = new ImageView(image);
-		  over.getChildren().add(imageView);
+		  ImageView imageViewO = new ImageView(image);
+		  over.getChildren().add(imageViewO);
 		 
 	  }
 	 //System.out.println("Hi");
