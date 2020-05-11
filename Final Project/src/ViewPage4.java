@@ -49,7 +49,7 @@ public class ViewPage4 extends View {
 	Scene scene4;
 	private BorderPane border;
 	
-	
+	//ArrayList<Plant> page4Plants = new ArrayList<Plant>();
   
 	/**
 	 * For the user to view the garden and drag & drop, creates the scene that would work
@@ -85,7 +85,7 @@ public class ViewPage4 extends View {
 		start(theStage);
 	    layout1.setAlignment(Pos.TOP_CENTER);
 		border.setTop(layout1);
-		
+	//	page4Plants = myPlant;
 			
 		scene4 = new Scene(border, sceneWidth, sceneHeight); // the
 
@@ -175,8 +175,7 @@ public class ViewPage4 extends View {
       
        ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(tileBox.getHeight());
-      //sc.maxWidth(100);
-     // sc.setFitToWidth(false);
+      
       sc.setPrefWidth(plaWidth);
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
      // sc.autosize();
@@ -188,42 +187,52 @@ public class ViewPage4 extends View {
         grid.setGridLinesVisible(true);
       
    //Setting up the image views and moving them 
-  
-      for(  i=0; i< myPlants.size(); i++) {
-    	
-    	  	iv = new ImageView(new Image(myPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+    //    System.out.println(page4Plants.toString());
+        
+      //  myPlants = getMyPlants();
+       System.out.println(control.model.getMyPlant().toString());
+     //   control.model.myPlants.add(allPlants.get(7));
+      for(  i=0; i< allPlants.size(); i++) {
+    	  	
+    	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
     		
     		//ivArr.insert(i, iv);
     	//  	ivArr.
 
+
+        	
+        	
     	  	iv.setPreserveRatio(true);
     	  	iv.setFitHeight(100);
-        	
+    	  	
+    	  	iv.setOnMousePressed(control.getHandlerForClick());
+    	  	System.out.println("CLISKkahsdfkjhasf");
+    	  	
         	iv.setOnMouseDragged(control.getHandlerForDrag());
-        	iv.setOnMousePressed(control.getHandlerForClick());
+        	
         	iv.setOnMouseReleased(control.getHandlerForRelease());
     	  	// FIX to be an array list
     	  //	ivArr.add(i, iv);
     	  	//ivArr.add(iv);
         	
         	System.out.println(ivArr.add(iv));
-        	System.out.println(ivArr.indexOf(iv));
-        	//addImage(control.getOriginX(), control.getOriginY(), 1, iv1);
         	System.out.println("ADDING IMAGE " + i);
-        	//addImage(iv1.getTranslateX(), iv1.getTranslateY(), i, iv1);
-        	//iv1.setTranslateX(control.getStartingX());
-    		//iv1.setTranslateY(control.getStartingY());
-    	  
+      
 
         	tileBox.getChildren().add(iv);
+        	if(!grid.getChildren().isEmpty()) {
+          	  for(int z = 0; z< grid.getChildren().size(); z++)
+          	  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
+            System.out.println("blah");	
+            }
     	   // tile.getChildren().add(iv1);
       } 
+    // ivArr.add(ivHouse);
+    // ivArr.add(ivPool);
+    // ivArr.add(ivFence);
+    //ivArr.add(ivDriveWay);
      
-		     ivArr.add(ivHouse);
-     ivArr.add(ivPool);
-     ivArr.add(ivFence);
-     ivArr.add(ivDriveWay);
-      tileBox.getChildren().addAll(ivHouse, ivPool, ivFence, ivDriveWay);
+    //  tileBox.getChildren().addAll(ivHouse, ivPool, ivFence, ivDriveWay);
 
       System.out.println("Grid Children: "+ grid.getChildren());
       
@@ -234,7 +243,11 @@ public class ViewPage4 extends View {
      //tile.getChildren().add(iv0);
        tile.getChildren().add(tileBox);
       sc.setContent(tile);
-     
+      if(!grid.getChildren().isEmpty()) {
+    	  for(int z = 0; z< grid.getChildren().size(); z++)
+    	  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
+      System.out.println("blah");	
+      }
 	}
    
       
