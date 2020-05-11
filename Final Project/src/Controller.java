@@ -98,29 +98,6 @@ public class Controller extends Application {
 		return event -> release((MouseEvent) event);
 	}
 	
-	public EventHandler<MouseEvent> getHandlerForReleaseGen(){
-		return event -> releaseGen((MouseEvent) event);
-	}
-	public void releaseGen(MouseEvent event) {
-		Node n = (Node) event.getSource();
-		if(n.getTranslateX()>= 0&& contX<1000) {//n.getTranslateX() >=view.tile.getLayoutX()){
-			//System.out.println("First Part of If");
-			System.out.println(model.getX() + " "+ model.getY());
-			view.imageView.setTranslateX(model.getX());
-		 	view.imageView.setTranslateY(model.getY());
-		 	if(getOriginX() <= view.tile.getLayoutX()) {
-		 		view.grid.getChildren().add(view.imageView);
-		 	}
-		 	
-		 
-			//view.addImage(model.getX() , model.getY());//-50, model.getY() - 100);
-		}
-		else if(n.getTranslateX()<0&&contX>=1000){
-			n.setVisible(false);
-			//System.out.println("Second part of if");
-		}
-		System.out.println("RELEASE :)");
-	}
 
 	public void click(MouseEvent event){
 		Node n = (Node)event.getSource();
