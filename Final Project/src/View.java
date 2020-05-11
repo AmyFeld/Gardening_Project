@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
@@ -83,7 +84,7 @@ public class View extends Application {
 		 //GridPane grid
 		 TilePane tile;
 		 
-		 GridPane grid;
+		AnchorPane grid;
 	//		private BorderPane border;
 			//private TilePane tile;
 			
@@ -252,16 +253,21 @@ public class View extends Application {
 	    	
 	    }
 	 
-	 public void moveGridImage(double x, double y, Node n) {
-		 imgVL = (ImageView)n;
-		 setL(imgVL);
+	public void moveImageView() {
 		 
-		 imgVL.setTranslateX(x);
-		 imgVL.setTranslateY(y);
-			
-		    	
-	 }
+		 
+		 ivg = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+		 ivg.setTranslateX(200);
+		 ivg.setTranslateY(200);
+		 
+			ivg.setOnMouseDragged(control.getHandlerForDrag());
+	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
+		 
+		 grid.getChildren().add(ivg);
+		 
+	   } 
 	
+
 	
 	 public boolean setI(ImageView imgview) {
 		
