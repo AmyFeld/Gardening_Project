@@ -37,6 +37,8 @@ public class Controller extends Application {
      */
     @Override
 	public void start(Stage theStage) {	
+		model.update(view.currPla);
+    	 view.update();
 		
  /*	new EventHandler<ActionEvent>() {
  		@Override 
@@ -71,8 +73,11 @@ public class Controller extends Application {
 //
 	public void drag(MouseEvent event){
 		Node n = (Node)event.getSource();
-		model.setX(model.getX() + event.getX());
-		model.setY(model.getY() + event.getY());
+		n.setVisible(true);
+		//model.setX(model.getX() + event.getX());
+		//model.setY(model.getY() + event.getY());
+		model.setX(event.getSceneX() - view.grid.getLayoutX() - view.plaWidth/2); //view.imageView.getFitWidth()/2);
+		model.setY(event.getSceneY() - view.grid.getLayoutY() - view.plaHeight/2);//view.imageView.getFitHeight()/2);
 		model.setImage(n);
 		//System.out.println("DRAG");
 	}
@@ -83,14 +88,15 @@ public class Controller extends Application {
 
 	public void release(MouseEvent event){
 		Node n = (Node) event.getSource();
-		if(n.getTranslateX()>= 0&& contX<1000){
+		/*if(n.getTranslateX()>= 0&& contX<1000){
 			//System.out.println("First Part of If");
 			view.addImage(model.getX(), model.getY());
 		}
 		else if(n.getTranslateX()<0&&contX>=1000){
 			n.setVisible(false);
 			//System.out.println("Second part of if");
-		}
+		}*/
+		view.imageView.setOnMouseDragged(getHandlerForDrag());
 		System.out.println("RELEASE");
 	}
 
@@ -105,12 +111,10 @@ public class Controller extends Application {
 		
 		view.imageView = (ImageView)n;
 		view.setI(view.imageView);
-	
-		model.setX(n.getTranslateX());
-		model.setY(n.getTranslateY());
-		contX = n.getTranslateX();
-		contY = n.getTranslateY();
 		
+		view.moveImageView();
+	
+				
 		System.out.println("click");
 		
 	}
