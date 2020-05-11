@@ -11,8 +11,6 @@ import java.util.ArrayList;
 	
 	ArrayList<Plant> allPlants = readAllPlants();
 	ArrayList<Plant> inGarden = new ArrayList<Plant>();
-	ArrayList<Plant> OnGardenPage = new ArrayList<Plant>();
-	ArrayList<String> feedingPlants = getFeedingPlants();
 	int colorRating;
 	int contBloomRating;
 	int animalsFedRating;
@@ -89,11 +87,29 @@ import java.util.ArrayList;
 	 * @throws no exceptions
 	 */
 	public int calculateContBloomRating(ArrayList<Plant> usedPlants){
-		int result = 0;
-		for(Plant p : usedPlants) {
-			
+		ArrayList<Integer> months = new ArrayList<Integer>();
+		for(int i = 1; i < 13; i++) {
+			months.add(i);
 		}
-		return result;
+		for(Plant p : usedPlants) {
+			for(int i = p.start; i <= p.end; i++) {
+				if(months.size() == 0) {
+					return 5;
+				}else if(months.contains(i)) {
+					months.remove(i);
+				}
+			}
+		}
+		if(months.size() <= 2) {
+			return 4;
+		}else if(months.size() <= 4) {
+			return 3;
+		}else if(months.size() <= 6) {
+			return 2;
+		}else {
+			return 1;
+		}
+		
 	}
 	/**
 	 * Description: calculateAnimalsFedRating is a function that analyzes a garden and based on what plants are present,
@@ -103,11 +119,23 @@ import java.util.ArrayList;
 	 * @throws no exceptions
 	 */
 	public int calculateAnimalsFedRating(ArrayList<Plant> usedPlants){
-		int result = 0;
+		ArrayList<String> feedingPlants = getFeedingPlants();
 		for(Plant p : usedPlants) {
-			
+			if(feedingPlants.contains(p.name)) {
+				feedingPlants.remove(p.name);
+			}
 		}
-		return result;
+		if(feedingPlants.size() == 0) {
+			return 5;
+		}else if(feedingPlants.size() >= 3) {
+			return 4;
+		}else if(feedingPlants.size() >= 5) {
+			return 3;
+		}else if(feedingPlants.size() >= 8) {
+			return 2;
+		}else {
+			return 1;
+		}
 	}
 	
 	/**
