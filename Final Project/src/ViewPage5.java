@@ -37,8 +37,8 @@ public class ViewPage5 extends View {
 	//String title;
 	//private Text buttonPressed;
 	
-	int canvasWidth ;
-	int canvasHeight ;
+	//int canvasWidth ;
+	//int canvasHeight ;
 
 	//practice numbers for now
 	
@@ -48,13 +48,19 @@ public class ViewPage5 extends View {
 	int compatStars; 
 	int transitStars; 
 	int overallStars; // have to add to model
+	int cs1 = 0;
+	int cs2 = 1;
+	int cs3 = 2;
+	int cs4 = 3;
+	int cs5 = 4;
+	int cs6 = 5;
 	
 	int STARH = 75;
 	int STARW = 75;
 	
 	 VBox layout2 = new VBox();
 	
-
+	 int hboxInt = 20;
 	Scene scene5;
 	
 	/**
@@ -67,16 +73,14 @@ public class ViewPage5 extends View {
 	public ViewPage5(Stage theStage) {
 		
 		
-		Image back = new Image("file:images/bg2.png", canvasWidth, canvasHeight, false, false);
-		ImageView bg = new ImageView(back);
-		//bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
-		//bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
+		
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
   theStage.setTitle("Rate My Garden");
 
-  HBox layout1 = new HBox(20);     
+  HBox layout1 = new HBox(hboxInt);     
 	    Label label1 = new Label("Rate My Garden");
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
@@ -90,7 +94,7 @@ public class ViewPage5 extends View {
 	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	    back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
+	  //  back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
 	    
 	    
 	    
@@ -134,13 +138,19 @@ public class ViewPage5 extends View {
 		return scene5;
 	}
 
+	/**
+	 * Description: sets all of the ratings based on the model calculated ratings
+	 * 
+	 * 
+	 * 
+	 */
 	public void setAllRatings() {
-		presentColor(ratings.get(0));
-		presentContBloom(ratings.get(1));
-		presentAnimalsFedRating(ratings.get(2));
-		presentCompatibilityRating(ratings.get(3));
-		presentTransitionRating(ratings.get(4));
-		presentOverallRating(ratings.get(5));
+		presentColor(ratings.get(cs1));
+		presentContBloom(ratings.get(cs2));
+		presentAnimalsFedRating(ratings.get(cs3));
+		presentCompatibilityRating(ratings.get(cs4));
+		presentTransitionRating(ratings.get(cs5));
+		presentOverallRating(ratings.get(cs6));
 	}
 	
 	/**
