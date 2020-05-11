@@ -61,6 +61,7 @@ public class ViewPage9 extends View {
 	    Text unhappyText = new Text();
 	    Text bestText = new Text();
 	    Text startText = new Text();
+	    Text invasiveText = new Text();
 	    
 	    // textFiles folder: unhappy.txt, best.txt, start.txt
 
@@ -81,7 +82,7 @@ public class ViewPage9 extends View {
 			e2.printStackTrace();
 		}
 	    try {
-	 			startText.setText(uploadText("invasive"));
+	    	invasiveText.setText(uploadText("invasive"));
 	 		} catch (Exception e2) {
 	 			e2.printStackTrace();
 	 		}
@@ -102,7 +103,7 @@ public class ViewPage9 extends View {
 	  	
 		Tab invasive = new Tab();
 	  	invasive.setText("Invasive Plants");
-	  	invasive.setContent(startText);
+	  	invasive.setContent(invasiveText);
 
 		TabPane tabPane = new TabPane();
 		tabPane.getTabs().addAll(unhappy, best, start, invasive);
