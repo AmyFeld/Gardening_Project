@@ -101,6 +101,7 @@ public class View extends Application {
 		    //ImageView[] ivArr;
 		    ArrayList<ImageView> ivArr = new ArrayList<ImageView>();
 		//Scene scene2;
+		ArrayList<Integer> ratings = new ArrayList<Integer>();
 		 
 	public View() {
 		control = new Controller(this);
@@ -171,6 +172,7 @@ public class View extends Application {
 	 * 
 	 */
 	public void update() {
+		ratings = control.model.rateGarden(gridPlants);
 	//	control = new Controller();
 	} 
 	
