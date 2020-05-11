@@ -71,12 +71,29 @@ import java.util.ArrayList;
 	 * @throws no exceptions
 	 */
 	public int calculateColorRating(ArrayList<Plant> usedPlants){
-		int result = 0;
+		ArrayList<String> colorList = new ArrayList<String>();
 		String[] colors = {"red", "orange", "yellow", "green", "blue", "purple", "pink", "white"};
-		for(Plant p : usedPlants) {
-			
+		for(int i = 0; i < colors.length; i++) {
+			colorList.add(colors[i]);
 		}
-		return result;
+		for(Plant p : usedPlants) {
+			if(colorList.size() == 0) {
+				return 5;
+			}
+			if(colorList.contains(p.color)) {
+				colorList.remove(p.color);
+			}
+		}
+		if(colorList.size() <= 2) {
+			return 4;
+		}else if(colorList.size() <= 4) {
+			return 3;
+		}else if(colorList.size() <= 6) {
+			return 2;
+		}else {
+			return 1;
+		}
+		
 	}
 	
 	/**
@@ -121,17 +138,18 @@ import java.util.ArrayList;
 	public int calculateAnimalsFedRating(ArrayList<Plant> usedPlants){
 		ArrayList<String> feedingPlants = getFeedingPlants();
 		for(Plant p : usedPlants) {
+			if(feedingPlants.size() == 0) {
+				return 5;
+			}
 			if(feedingPlants.contains(p.name)) {
 				feedingPlants.remove(p.name);
 			}
 		}
-		if(feedingPlants.size() == 0) {
-			return 5;
-		}else if(feedingPlants.size() >= 3) {
+		if(feedingPlants.size() <= 3) {
 			return 4;
-		}else if(feedingPlants.size() >= 5) {
+		}else if(feedingPlants.size() <= 5) {
 			return 3;
-		}else if(feedingPlants.size() >= 8) {
+		}else if(feedingPlants.size() <= 8) {
 			return 2;
 		}else {
 			return 1;
