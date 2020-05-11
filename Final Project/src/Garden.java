@@ -164,11 +164,30 @@ import java.util.ArrayList;
 	 * @throws no exceptions
 	 */	
 	public int calculateCompatibilityRating(ArrayList<Plant> usedPlants){
-		int result = 0;
+		int lowCount = 0, mediumCount = 0, highCount = 0;
 		for(Plant p : usedPlants) {
-			
+			if(p.waterUse.equals("low")) {
+				lowCount++;
+			}else if(p.waterUse.equals("medium")) {
+				mediumCount++;
+			}else {
+				highCount++;
+			}
 		}
-		return result;
+		int highLowDif = Math.abs(highCount - lowCount);
+		int medHighDif = Math.abs(highCount - mediumCount);
+		int medLowDif = Math.abs(lowCount - mediumCount);
+		if(highCount == usedPlants.size() || mediumCount == usedPlants.size() || lowCount == usedPlants.size()) {
+			return 5;
+		}else if(highLowDif <= 4 || medHighDif <= 4 || medLowDif <= 4){
+			return 2; 
+		}else if(highLowDif <= 8 || medHighDif <= 8 || medLowDif <= 8){
+			return 3;
+		}else if(highLowDif <= 15 || medHighDif <= 15 || medLowDif <= 15){
+			return 4;
+		}else{
+			return 1; 
+		}
 	}
 	
 	/**
