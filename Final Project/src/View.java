@@ -54,6 +54,8 @@ public class View extends Application {
 		int imgWidth = 300;
 		int imgHeight = 300;
 	    
+	
+	int strokeWidth = 2;
 	    Scene theScene;
 
 	    GraphicsContext gc;
