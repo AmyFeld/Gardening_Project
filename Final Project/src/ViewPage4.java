@@ -26,6 +26,7 @@ import javafx.event.EventTarget;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -69,7 +70,7 @@ public class ViewPage4 extends View {
 	  	Button back = new Button("Plant Nursery");
 	    // set tile pane height/?
 	    tile = new TilePane(Orientation.VERTICAL);
-		grid = new GridPane();
+		grid = new AnchorPane();
 		border = new BorderPane();
 		
 	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
@@ -195,26 +196,13 @@ public class ViewPage4 extends View {
       for(  i=0; i< allPlants.size(); i++) {
     	  	
     	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
-    		
-    		//ivArr.insert(i, iv);
-    	//  	ivArr.
-
-
-        	
-        	
+    	  	
     	  	iv.setPreserveRatio(true);
     	  	iv.setFitHeight(100);
     	  	
     	  	iv.setOnMousePressed(control.getHandlerForClick());
     	  	System.out.println("CLISKkahsdfkjhasf");
-    	  	
-        	iv.setOnMouseDragged(control.getHandlerForDrag());
-        	
-        	iv.setOnMouseReleased(control.getHandlerForRelease());
-    	  	// FIX to be an array list
-    	  //	ivArr.add(i, iv);
-    	  	//ivArr.add(iv);
-        	
+    	  	        	
         	System.out.println(ivArr.add(iv));
         	System.out.println("ADDING IMAGE " + i);
       
@@ -222,7 +210,7 @@ public class ViewPage4 extends View {
         	tileBox.getChildren().add(iv);
         	if(!grid.getChildren().isEmpty()) {
           	  for(int z = 0; z< grid.getChildren().size(); z++)
-          	  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
+          	//  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
             System.out.println("blah");	
             }
     	   // tile.getChildren().add(iv1);
@@ -243,11 +231,6 @@ public class ViewPage4 extends View {
      //tile.getChildren().add(iv0);
        tile.getChildren().add(tileBox);
       sc.setContent(tile);
-      if(!grid.getChildren().isEmpty()) {
-    	  for(int z = 0; z< grid.getChildren().size(); z++)
-    	  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
-      System.out.println("blah");	
-      }
 	}
    
       
