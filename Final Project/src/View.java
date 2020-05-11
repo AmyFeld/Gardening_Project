@@ -59,7 +59,10 @@ public class View extends Application {
 
 	    Image background;
 	    Image[] img;		
-		
+	    Media media = new Media("harp.mp3"); 
+	    Mediaplayer mediaPlayer = new MediaPlayer(media); 
+	    MediaPlayer.setAutoPlay(true); 
+	
 		//variables to determine the location of image
 		double x = 0;
 		double y = 0;
