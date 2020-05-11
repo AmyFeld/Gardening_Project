@@ -219,7 +219,11 @@ public class ViewPage4 extends View {
     	   // tile.getChildren().add(iv1);
       } 
      
-      tileBox.getChildren().addAll(ivHouse, ivPool, ivFence, ivRoad, ivDriveWay);
+		     ivArr.add(ivHouse);
+     ivArr.add(ivPool);
+     ivArr.add(ivFence);
+     ivArr.add(ivDriveWay);
+      tileBox.getChildren().addAll(ivHouse, ivPool, ivFence, ivDriveWay);
 
       System.out.println("Grid Children: "+ grid.getChildren());
       
