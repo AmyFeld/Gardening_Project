@@ -94,7 +94,7 @@ public class ViewPage5 extends View {
 	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	  //  back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
+	    back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
 	    
 	    
 	    
