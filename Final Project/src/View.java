@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -34,10 +35,10 @@ import javafx.stage.Stage;
  */
 public class View extends Application {
 	
-  	
+  	 
 	// value of the height and width of screen
-		int canvasWidth = 1380;
-		int canvasHeight = 940;
+		//int canvasWidth = 1380;
+		//int canvasHeight = 940;
 		int sceneWidth = 900;
 		int sceneHeight = 600;
 		
@@ -59,10 +60,7 @@ public class View extends Application {
 
 	    Image background;
 	    Image[] img;		
-	    Media media = new Media("harp.mp3"); 
-	    Mediaplayer mediaPlayer = new MediaPlayer(media); 
-	    MediaPlayer.setAutoPlay(true); 
-	
+		
 		//variables to determine the location of image
 		double x = 0;
 		double y = 0;
@@ -90,21 +88,28 @@ public class View extends Application {
 		 	VBox tileBox;
 			Garden g = new Garden();
 			ArrayList<Plant> allPlants = g.allPlants;		
-			ArrayList<Plant> myPlants = new ArrayList<Plant>();
+			//ArrayList<Plant> myPlants = new ArrayList<Plant>();
 			ArrayList<Plant> gridPlants = new ArrayList<Plant>();
+			
+			Plant currPla;
 			
 			int plaWidth = 100;
 			int plaHeight = 100;
 
 		    ImageView imageView;
+		    ImageView imgVL;
 		    Image im1; 
-		    int i;
-		    int l;
+		    int i=0;
+		    int l=0;
+		    
+		    ImageView ivg;
 		 
 		    //ImageView[] ivArr;
 		    ArrayList<ImageView> ivArr = new ArrayList<ImageView>();
 		//Scene scene2;
-		ArrayList<Integer> ratings = new ArrayList<Integer>();
+		    //VP5
+		    ArrayList<Integer> ratings = new ArrayList<Integer>();
+		    
 		 
 	public View() {
 		control = new Controller(this);
@@ -112,6 +117,7 @@ public class View extends Application {
 		Image back = new Image("file:images/bg2.png");
 		ImageView bg = new ImageView(back);
 		
+		imageView = new ImageView();
 
 		bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
 		bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
@@ -146,7 +152,7 @@ public class View extends Application {
 		theStage.show(); 		
 	}
 	
-	public static void main(String args[]){   
+	public static void main(String args[]){  			
 	      launch(args);     
 	   } 
 	
@@ -176,51 +182,83 @@ public class View extends Application {
 	 */
 	public void update() {
 		ratings = control.model.rateGarden(gridPlants);
+		System.out.println(ratings.get(1));
+		
 	//	control = new Controller();
 	} 
 	
+	/*public void updateMyPlants(Plant p) {
+		myPlants.add(p);
+		myPlants.set(i, p);
+		i++;
+	}
+
+	public ArrayList<Plant> getMyPlants() {
+		return myPlants;
+	}*/
 	public void setImageView(ImageView iv) {
 		imageView = iv;
 	}
+
 	 public void addImage(double x,double y) {//, MouseEvent e) {
-			imageView.setTranslateX(x);
+			
+		 	imageView.setTranslateX(x);
 			imageView.setTranslateY(y);
  		    	
-			System.out.println(imageView.getTranslateX());
-			System.out.println(imageView.getTranslateY());
-			ImageView ivg;
-			if(control.model.myPlants.contains(imageView)) {
-				 ivg = new ImageView((new Image(control.model.myPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+			ivg = new ImageView((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+			/*if(ivArr.contains(imageView)) {
+				 ivg = new ImageView((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+				 System.out.println("Don't Cry");
 			}
 			else {
-				Image genIm = imageView.getImage();
+				Image genIm = ivArr.get(i).getImage();
 				ivg = new ImageView(genIm);
-			}
+			}*/
 	    	
 	    	ivg.setPreserveRatio(true);
 	    	ivg.setFitHeight(100);
 	    	
 	    	System.out.println("Hi:)");
-	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
+
 	    	ivg.setOnMousePressed(control.getHandlerForClick());
+	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
 	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
 	    
 	    	ivg.setTranslateX(control.getOriginX());
 	    	ivg.setTranslateY(control.getOriginY());
 	    	
-	    	if(control.getOriginX() <= tile.getLayoutX()){
+	    	if(control.getOriginX() >= tile.getLayoutX()){
 	    			tileBox.getChildren().add(i, ivg);
-	    	    	//if(myPlants.contains(imageView))
-	    	    	grid.getChildren().add(imageView);
-	    		//grid.getChildren().add(imageView);
-	    		//gridPlants.add(myPlants.get(i));
-	    	}
+	    	    	grid.getChildren().add( imageView);
+	    	   
+	    	    	gridPlants.add(allPlants.get(i));
+	    	    	//l++;
+	    	    	
+	    	} 
+	    	
+	    	/*if(!gridPlants.isEmpty()) {
+	      	  for(int z = 0; z< grid.getChildren().size(); z++)
+	      	  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
+	        System.out.println("blah");	
+	        }*/
+			
 	 
 	    	for(int j=0; j< gridPlants.size(); j++) {
 	    		System.out.print(gridPlants.get(j).getName()+ " "+ j);
 	    	}
+	    	
+	    	
 	    }
 	 
+	 public void moveGridImage(double x, double y, Node n) {
+		 imgVL = (ImageView)n;
+		 setL(imgVL);
+		 
+		 imgVL.setTranslateX(x);
+		 imgVL.setTranslateY(y);
+			
+		    	
+	 }
 	
 	
 	 public boolean setI(ImageView imgview) {
@@ -232,6 +270,13 @@ public class View extends Application {
 	 
 			return false;
 		}
+	 
+	 public boolean setL(ImageView imgview) {
+		 if(grid.getChildren().contains(imgview)) {
+			 l = grid.getChildren().indexOf(imgview);
+		 	return true;}
+		 return false;
+	 }
 
 
 }
