@@ -182,47 +182,40 @@ public class View extends Application {
 	 public void addImage(double x,double y) {//, MouseEvent e) {
 			imageView.setTranslateX(x);
 			imageView.setTranslateY(y);
-
-	    	
-	    	
+ 		    	
 			System.out.println(imageView.getTranslateX());
 			System.out.println(imageView.getTranslateY());
-			//System.out.println(tile.getChildren());
-	    	//System.out.println("Hi "+ iv.getId());
-			ImageView ivg = new ImageView((new Image(myPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
-			
-	    	//ivg.setImage((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
-	    	//ivg.setImage(im);
+			ImageView ivg;
+			if(control.model.myPlants.contains(imageView)) {
+				 ivg = new ImageView((new Image(control.model.myPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
+			}
+			else {
+				Image genIm = imageView.getImage();
+				ivg = new ImageView(genIm);
+			}
+	    	
 	    	ivg.setPreserveRatio(true);
 	    	ivg.setFitHeight(100);
-	    	//ivg.setX(x);
-	    	//ivg.setY(y);
+	    	
 	    	System.out.println("Hi:)");
 	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
 	    	ivg.setOnMousePressed(control.getHandlerForClick());
 	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
-	    	//ivg.setX(x);
-	    	//ivg.setY(y);
+	    
 	    	ivg.setTranslateX(control.getOriginX());
 	    	ivg.setTranslateY(control.getOriginY());
-	    	//System.out.println(grid.getChildren());
-	    	//ivg.toFront();
-	    	//tileBox.getChildren().add(ivg);
+	    	
 	    	if(control.getOriginX() <= tile.getLayoutX()){
-		 	tileBox.getChildren().add(i, ivg);
+	    			tileBox.getChildren().add(i, ivg);
+	    	    	//if(myPlants.contains(imageView))
 	    	    	grid.getChildren().add(imageView);
 	    		//grid.getChildren().add(imageView);
-	    		gridPlants.add(myPlants.get(i));
-		}
-	    	//System.out.println(i);
-	    	//gridPlants.add();
-	    	//System.out.println(grid.getChildren());
+	    		//gridPlants.add(myPlants.get(i));
+	    	}
+	 
 	    	for(int j=0; j< gridPlants.size(); j++) {
 	    		System.out.print(gridPlants.get(j).getName()+ " "+ j);
 	    	}
-	    	
-	    	//System.out.println(im.toString());
-	    	//border.getChildren().add(ivg);
 	    }
 	 
 	
