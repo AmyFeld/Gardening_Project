@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * 
  * @author Tara Fishman
  *
- */public class Garden {
+ */public class Garden implements Serializable{
 	
 	ArrayList<Plant> allPlants = readAllPlants();
 	ArrayList<Plant> inGarden = new ArrayList<Plant>();
@@ -232,15 +233,24 @@ import java.util.ArrayList;
 			}
 			return temp;
 		case "height":
-			for(Plant p : currentList) {
-				if(p.height >= Integer.parseInt(type) && p.height <= (Integer.parseInt(type)+60)) {
-					temp.add(p);
+			if(type.equals("40")) {
+				for(Plant p : currentList) {
+					if(p.height >= (12*Integer.parseInt(type))) {
+						temp.add(p);
+					}
 				}
+				return temp;
+			}else {
+				for(Plant p : currentList) {
+					if(p.height >= (12 *Integer.parseInt(type)) && p.height <= ((12*Integer.parseInt(type))+120)) {
+						temp.add(p);
+					}
+				}
+				return temp;
 			}
-			return temp;
 		case "hasFruit":
 			for(Plant p : currentList) {
-				if(p.hasFruit == Boolean.parseBoolean(type)) {
+				if(p.hasFruit == Boolean.parseBoolean(type.toLowerCase())) {
 					temp.add(p);
 				}
 			}
