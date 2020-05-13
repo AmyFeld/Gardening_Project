@@ -255,7 +255,6 @@ public class ViewPage2 extends View {
 	/**
 	 * Description: Creates a VBox with contents of all filter options for plants; 
 	 *  a combo box = drop down to select a choice
-
 	 * 
 	 * @return	VBox  Returns all the Combo boxes in a vertical format
 	 */
@@ -271,8 +270,7 @@ public class ViewPage2 extends View {
 
 		colorBox.setOnAction((event) -> {
 		   String colorPick = colorBox.getSelectionModel().getSelectedItem();    
-		this.filteredPlants = g.Filter("color", colorPick, this.filteredPlants);
-		color = true;
+		   this.filteredPlants = g.Filter("color", colorPick, this.filteredPlants);
 		   
 		       dropBox.getChildren().clear();
 		       dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
@@ -324,8 +322,6 @@ public class ViewPage2 extends View {
 				this.filteredPlants = g.Filter("height", "30", this.filteredPlants);
 			case("40+"):
 				this.filteredPlants = g.Filter("height", "40", this.filteredPlants);
-		//	default:
-				//htPick = "0";
 			}	
 						
 			
@@ -392,7 +388,32 @@ public class ViewPage2 extends View {
 
 			String month = monthBox.getSelectionModel().getSelectedItem();
 			
-			this.filteredPlants = g.Filter("start", month, this.filteredPlants);
+			switch(month) {
+			case "January":
+				this.filteredPlants = g.Filter("start", "1", this.filteredPlants);
+			case "February":
+				this.filteredPlants = g.Filter("start", "2", this.filteredPlants);
+			case "March":
+				this.filteredPlants = g.Filter("start", "3", this.filteredPlants);
+			case "April":
+				this.filteredPlants = g.Filter("start", "4", this.filteredPlants);
+			case "May":
+				this.filteredPlants = g.Filter("start", "5", this.filteredPlants);
+			case "June":
+				this.filteredPlants = g.Filter("start", "6", this.filteredPlants);
+			case "July":
+				this.filteredPlants = g.Filter("start", "7", this.filteredPlants);
+			case "August":
+				this.filteredPlants = g.Filter("start", "8", this.filteredPlants);
+			case "September":
+				this.filteredPlants = g.Filter("start", "9", this.filteredPlants);
+			case "October":
+				this.filteredPlants = g.Filter("start", "10", this.filteredPlants);
+			case "November":
+				this.filteredPlants = g.Filter("start", "11", this.filteredPlants);
+			case "December":
+				this.filteredPlants = g.Filter("start", "12", this.filteredPlants);
+			}
 
 			       
 			        dropBox.getChildren().clear();
