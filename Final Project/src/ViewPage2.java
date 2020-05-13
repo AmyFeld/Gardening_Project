@@ -64,7 +64,8 @@ public class ViewPage2 extends View {
 	Boolean water;
 	Boolean start;
 		
-	ArrayList<Plant> myPlants; // empty
+	ArrayList<Plant> fPlants = g.allPlants; // empty
+	ArrayList<Plant> filteredPlants = g.allPlants;
 	ArrayList<Plant> cList;
 	ArrayList<Plant> tList;
 	ArrayList<Plant> hList;
@@ -267,132 +268,158 @@ public class ViewPage2 extends View {
 		colorBox.getItems().addAll("white", "red", "pink", "orange", "yellow", "green", "blue", "purple", "none");
 		colorBox.setValue("Color");
 		colorBox.setPrefWidth(dPrefWidth);
-		
-		colorBox.setOnAction((event) -> {
-		    String colorPick = colorBox.getSelectionModel().getSelectedItem();		    
-			cList = g.Filter("color", colorPick, allPlants);
-			color = true;
-    		
-      	    dropBox.getChildren().clear();
-    	    dropBox.getChildren().addAll(setButtons(tabPane, cList), getDropDown());
-    	    
-    	    mainTab.setContent(dropBox);
 
-    		for (Plant p: cList) 
-    			System.out.print(p.getName() + ", "); 
+		colorBox.setOnAction((event) -> {
+		   String colorPick = colorBox.getSelectionModel().getSelectedItem();    
+		this.filteredPlants = g.Filter("color", colorPick, this.filteredPlants);
+		color = true;
+		   
+		       dropBox.getChildren().clear();
+		       dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+		       
+		       mainTab.setContent(dropBox);
+
+		    for (Plant p: this.filteredPlants)
+		    System.out.print(p.getName() + ", ");
 		});
-		
+
 		ComboBox<String> typeBox = new ComboBox<>();
 		typeBox.getItems().addAll("herb", "shrub", "tree");
 		typeBox.setValue("Type");
 		typeBox.setPrefWidth(dPrefWidth);
 		typeBox.setOnAction((event) -> {
-			
-			String typePick = typeBox.getSelectionModel().getSelectedItem();		 			
-        		
-			/*if (!color) {
-		        tList = g.Filter("type", typePick, allPlants);
-		       // tList.addAll(cList);
-			}
-			else { */
-		        tList = g.Filter("type", typePick, cList);
-		//	}
-        		
-        		dropBox.getChildren().clear();
-        		dropBox.getChildren().addAll(setButtons(tabPane, tList), getDropDown());
-        		
-        		mainTab.setContent(dropBox);
-        		
-        		for (Plant p: tList) 
-        			System.out.print(p.getName() + ", "); 
-        	 
-        });
+
+		String typePick = typeBox.getSelectionModel().getSelectedItem();
 		
-	/*	ComboBox<String> htBox = new ComboBox<>();
+		this.filteredPlants = g.Filter("type", typePick, this.filteredPlants);
+
+		       
+		        dropBox.getChildren().clear();
+		        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+		       
+		        mainTab.setContent(dropBox);
+		       
+		        for (Plant p: this.filteredPlants)
+		        System.out.print(p.getName() + ", ");
+		       
+		        });
+	
+	//	
+		ComboBox<String> htBox = new ComboBox<>();
 		htBox.getItems().addAll("0-10 ft", "10-20 ft", "20-30 ft", "30-40 ft", "40+ ft");
 		htBox.setValue("Height");
 		htBox.setPrefWidth(dPrefWidth);
-		htBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override 
-            public void changed(ObservableValue ov, String t, String t1) {                
-        		hList = g.Filter("height", (String) ov.getValue(), tList);
-        		
-           		dropBox.getChildren().clear();
-        		dropBox.getChildren().addAll(setButtons(tabPane, hList), getDropDown());
-        		
-        		mainTab.setContent(dropBox);
-        		
-        		for (Plant p: hList) 
-        			System.out.print(p.getName() + ", "); 
-        		}          
-        }); */
+		htBox.setOnAction((event) -> {
+
+			String htPick = htBox.getSelectionModel().getSelectedItem();
+			
+			switch(htPick) {
+			case("0-10"):
+				this.filteredPlants = g.Filter("height", "0", this.filteredPlants);
+			case("10-20"):
+				this.filteredPlants = g.Filter("height", "10", this.filteredPlants);
+			case("20-30"):
+				this.filteredPlants = g.Filter("height", "20", this.filteredPlants);
+			case("30-40"):
+				this.filteredPlants = g.Filter("height", "30", this.filteredPlants);
+			case("40+"):
+				this.filteredPlants = g.Filter("height", "40", this.filteredPlants);
+		//	default:
+				//htPick = "0";
+			}	
+						
+			
+ 
+			        dropBox.getChildren().clear();
+			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+			       
+			        mainTab.setContent(dropBox);
+			       
+			        for (Plant p: this.filteredPlants)
+			        System.out.print(p.getName() + ", ");
+		        
+        }); 
 
 		ComboBox<String> fruitBox = new ComboBox<>();
 		fruitBox.getItems().addAll("true", "false");
 		fruitBox.setValue("Fruit");
 		fruitBox.setPrefWidth(dPrefWidth);
-		fruitBox.valueProperty().addListener(new ChangeListener<String>() {
-    		String fruit;
+		fruitBox.setOnAction((event) -> {
 
-            @Override 
-            public void changed(ObservableValue ov, String t, String t1) {    
-            	/*if (ov.getValue() == "Fruit") 
-            		fruit = "true";
-            	else 
-            		fruit = "false"; */
- 
-            	
-            	fList = g.Filter("hasFruit", (String) ov.getValue(), tList);
-        		
-           		dropBox.getChildren().clear();
-        		dropBox.getChildren().addAll(setButtons(tabPane, fList), getDropDown());
-        		
-        		mainTab.setContent(dropBox);
-        		
-        		for (Plant p: fList) 
-        			System.out.print(p.getName() + ", "); 
-        		} 
-        });
+			String fruitPick = fruitBox.getSelectionModel().getSelectedItem();
+			
+			this.filteredPlants = g.Filter("hasFruit", fruitPick, this.filteredPlants);
+
+			       
+			        dropBox.getChildren().clear();
+			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+			       
+			        mainTab.setContent(dropBox);
+			       
+			        for (Plant p: this.filteredPlants)
+			        System.out.print(p.getName() + ", ");
+			       
+			        });
+		
 		
 		ComboBox<String> waterBox = new ComboBox<>();	
 		waterBox.getItems().addAll("low", "medium", "high");
 		waterBox.setValue("Water");
 		waterBox.setPrefWidth(dPrefWidth);
-		waterBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override 
-            public void changed(ObservableValue ov, String t, String t1) {                
-        		
-            	wList = g.Filter("waterUse", (String) ov.getValue(), fList);
-        		dropBox.getChildren().clear();
-        		dropBox.getChildren().addAll(setButtons(tabPane, wList), getDropDown());
-        		
-        		mainTab.setContent(dropBox);
-        		
-        		for (Plant p: wList) 
-        			System.out.print(p.getName() + ", "); 
-        		}          
-        });
+		waterBox.setOnAction((event) -> {
 
-	/*	ComboBox<String> monthBox = new ComboBox<>();	
+			String water = waterBox.getSelectionModel().getSelectedItem();
+			
+			this.filteredPlants = g.Filter("waterUse", water, this.filteredPlants);
+
+			       
+			        dropBox.getChildren().clear();
+			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+			       
+			        mainTab.setContent(dropBox);
+			       
+			        for (Plant p: this.filteredPlants)
+			        System.out.print(p.getName() + ", ");
+			       
+			        });
+		
+		ComboBox<String> monthBox = new ComboBox<>();	
 		monthBox.getItems().addAll("January", "February", "March",
 				"April", "May", "June", "July", "August", "September", "October", "November", "December");
 		monthBox.setValue("Start");
 		monthBox.setPrefWidth(dPrefWidth);
-		monthBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override 
-            public void changed(ObservableValue ov, String t, String t1) {                
-        		mList = g.Filter("start", (String) ov.getValue(), allPlants);
-        		dropBox.getChildren().clear();
-        		dropBox.getChildren().addAll(setButtons(tabPane, wList), getDropDown());
-        		
-        		mainTab.setContent(dropBox);
-        		
-        		for (Plant p: mList) 
-        			System.out.print(p.getName() + ", ");    
-          }
-        }); */
+		monthBox.setOnAction((event) -> {
 
-		v.getChildren().addAll(colorBox, typeBox /*,htBox */, fruitBox, waterBox /*, monthBox */);
+			String month = monthBox.getSelectionModel().getSelectedItem();
+			
+			this.filteredPlants = g.Filter("start", month, this.filteredPlants);
+
+			       
+			        dropBox.getChildren().clear();
+			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+			       
+			        mainTab.setContent(dropBox);
+			       
+			        for (Plant p: this.filteredPlants)
+			        System.out.print(p.getName() + ", ");
+			       
+			        });
+		
+
+		Button reset =  new Button("Reset");
+		reset.setOnAction((event) -> {
+			
+			this.filteredPlants = g.allPlants;
+
+	        dropBox.getChildren().clear();
+	        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
+	       
+	        mainTab.setContent(dropBox);
+	       
+			        });
+		
+
+		v.getChildren().addAll(colorBox, typeBox, htBox, fruitBox, waterBox, reset);
 		
 		return v;
 	}
