@@ -40,7 +40,7 @@ public class ViewPage1 extends View {
 				
 		  // home button if fired
 		
-		Image back = new Image("file:images/bg.png", canvasWidth, canvasHeight, false, false);
+		Image back = new Image("file:images/bg.png", sceneWidth, sceneHeight, false, false);
 		ImageView bg = new ImageView(back);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
