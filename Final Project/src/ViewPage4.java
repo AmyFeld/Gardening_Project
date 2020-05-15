@@ -1,38 +1,20 @@
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
-import javafx.event.EventTarget;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -74,6 +56,18 @@ public class ViewPage4 extends View {
 		border = new BorderPane();
 		
 	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
+	     
+	  	Slider sl = new Slider();
+	      sl.setOrientation(Orientation.VERTICAL);
+	      sl.setMin(0);
+	      sl.setMax(100);
+	      sl.setMaxHeight(300);
+	      sl.setValue(40);
+	      sl.setShowTickLabels(true);
+	      sl.setShowTickMarks(true);
+	      sl.setMajorTickUnit(50);
+	      sl.setMinorTickCount(0);
+	      sl.setBlockIncrement(20);
 		
 	  	//scene4 = new Scene(layout1, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
@@ -85,6 +79,7 @@ public class ViewPage4 extends View {
 	    
 		start(theStage);
 	    layout1.setAlignment(Pos.TOP_CENTER);
+	    border.setRight(sl);
 		border.setTop(layout1);
 	//	page4Plants = myPlant;
 			
@@ -159,10 +154,13 @@ public class ViewPage4 extends View {
     	ivDriveWay.setOnMouseReleased(control.getHandlerForRelease());
     	
 	//Pretend lawn for grid
-		Rectangle r = new Rectangle(600, 600);
-		r.setFill(Color.LIGHTGREEN);
+	/*	Rectangle r = new Rectangle(600, 600);
+		r.setFill(Color.LIGHTGREEN); */
+    	BackgroundImage bg = new BackgroundImage(new Image("file:images/grid.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+    	grid.setBackground(new Background(bg));
 		
-		grid.setStyle("-fx-background-color: #05F861;");
+	 //	grid.setStyle("-fx-background-color: #05F861;");
 		
 	//Creating Basic Tile Params
 	 // tile.setTileAlignment(Pos.CENTER_LEFT);
@@ -176,27 +174,33 @@ public class ViewPage4 extends View {
       
        ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(tileBox.getHeight());
-      
       sc.setPrefWidth(plaWidth);
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
      // sc.autosize();
-     
+      
       	grid.setPrefHeight(600);
     	
       	border.setLeft(sc);
       	border.setCenter(grid);
-        grid.setGridLinesVisible(true);
+    //    grid.setGridLinesVisible(true);
       
    //Setting up the image views and moving them 
     //    System.out.println(page4Plants.toString());
         
       //  myPlants = getMyPlants();
-       System.out.println(control.model.getMyPlant().toString());
+ //      System.out.println(control.model.getMyPlant().toString());
      //   control.model.myPlants.add(allPlants.get(7));
       for(  i=0; i< allPlants.size(); i++) {
     	  	
+  	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+
+    	/*  if ()
     	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
-    	  	
+      }
+      else if () {
+      }
+      else {
+    	  } */
     	  	iv.setPreserveRatio(true);
     	  	iv.setFitHeight(100);
     	  	
@@ -230,10 +234,12 @@ public class ViewPage4 extends View {
      //tile.getChildren().addAll(imageView);
      //tile.getChildren().add(iv0);
        tile.getChildren().add(tileBox);
+       
       sc.setContent(tile);
 	}
    
       
+	
 
 
 	/**
