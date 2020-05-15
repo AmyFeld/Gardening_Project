@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 /**
  * This class is used to present the About Arden tab and include the 
- * content and buttons that will present the information
+ * content and buttons that will present the information.
  * 
  * @author Lisa Pathania
  *
@@ -39,7 +39,7 @@ public class ViewPage6 extends View {
 	 *
 	 */
 	public ViewPage6(Stage theStage) {
-		Image back = new Image("file:images/bg2.png",canvasWidth, canvasHeight, false, false);
+		Image back = new Image("file:images/bg2.png",sceneWidth, sceneHeight, false, false);
 		ImageView bg = new ImageView(back);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
