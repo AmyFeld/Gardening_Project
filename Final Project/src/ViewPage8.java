@@ -39,7 +39,7 @@ public class ViewPage8 extends View {
 	 */
 
 	public ViewPage8(Stage theStage) {
-		Image back = new Image("file:images/bg2.png", canvasWidth, canvasHeight, false, false);
+		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
 		ImageView bg = new ImageView(back);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
