@@ -116,7 +116,6 @@ public class Plant {
 	public String getDesc() {
 		String s = "";
 		String name = this.name.replace(" ", "_");
-		System.out.println(name);
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("plantDesc/" + name+".txt"));
@@ -135,7 +134,6 @@ public class Plant {
 	public String greeneryHover() {
 		String s = "";
 		String name = this.name.replace(" ", "_");
-		System.out.println(name);
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("plantDesc/" + name+".txt"));
