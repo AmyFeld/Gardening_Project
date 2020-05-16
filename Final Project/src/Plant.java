@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Collection;
+import java.io.Serializable;
 
 /**
  * This class is meant to handle the types of plants and handle plant sorting/filtering
@@ -8,7 +9,7 @@ import java.util.Collection;
  * @author Tara Fishman 
  *
  */
-public class Plant {
+public class Plant implements Serializable{
 
 	String name;
 	String type;
