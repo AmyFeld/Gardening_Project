@@ -36,13 +36,7 @@ import java.io.ObjectOutputStream;
 //This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
 
 public class ViewPage5 extends View {
-	//String title;
-	//private Text buttonPressed;
 	
-	//int canvasWidth ;
-	//int canvasHeight ;
-
-	//practice numbers for now
 	
 	int colorStars;
 	int bloomStars; 
@@ -73,13 +67,8 @@ public class ViewPage5 extends View {
 	 *
 	 */
 	public ViewPage5(Stage theStage) {
-		
-		
-		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
-		
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		
-		
+			
+				
   		theStage.setTitle("Rate My Garden");
 
   		HBox layout1 = new HBox(hboxInt);     
@@ -88,8 +77,8 @@ public class ViewPage5 extends View {
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
 	  	Label buttonPressed = new Label("");
-		Button back2g = new Button("Back to Garden");	  	
-	  	layout1.getChildren().addAll(label1, homeButton, back2g, save, buttonPressed);
+		//Button back2g = new Button("Back to Garden");	  	
+	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
 		
 	  	//Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
@@ -98,14 +87,14 @@ public class ViewPage5 extends View {
 	    	homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    	back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
 	    	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-      public void handle(ActionEvent e)  { 
-          	buttonPressed.setText("Here you will able to save to computer to share :)"); 
-      } 
-  };
+     			public void handle(ActionEvent e)  { 
+          			buttonPressed.setText("Here you will able to save to computer to share :)"); 
+      			} 
+  		};
   
-  save.setOnAction(event);
+  		save.setOnAction(event);
 	    
-	    save.setOnAction(e -> { 
+	    	save.setOnAction(e -> { 
 		    String filepath = "";
 	  		try {
 				FileOutputStream fileOut = new FileOutputStream(filepath);
@@ -117,22 +106,16 @@ public class ViewPage5 extends View {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-	    });
+	    	});
 	    
-  layout2.getChildren().add(layout1);
-  	start(theStage);
+  		layout2.getChildren().add(layout1);
+  		start(theStage);
   
-  //root.getChildren().add(layout2);
-  layout2.setBackground(new Background(myBG));
-	//root.setEffect(new Effect(myBG));	
-	  // 	 layout2.getChildren();
-	scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
-  theStage.setScene(scene5); 
-	   	 theStage.show(); 	
-	   	 
-	   	 //start(theStage);
-		
-	   	 //layout2.getChildren();
+  		layout2.setBackground(new Background(myBG));
+	
+		scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
+  		theStage.setScene(scene5); 
+	   	theStage.show();
 	
 	}
 	
@@ -155,8 +138,8 @@ public class ViewPage5 extends View {
 	 */
 	public void setAllRatings() {
 		System.out.println(ratings);
-	      ratings = control.model.rateGarden(gridPlants);
-	      System.out.println(ratings);
+	        ratings = control.model.rateGarden(gridPlants);
+	        System.out.println(ratings);
 	      
 		presentColor(ratings.get(cs1));
 		presentContBloom(ratings.get(cs2));
@@ -173,129 +156,122 @@ public class ViewPage5 extends View {
 	 * @return none
 	 */
 	
-public void presentColor(int color){
-	  colorStars = color;
-}
+	public void presentColor(int color){
+		colorStars = color;
+	}
 
-/**
- * Description: basic setter for taking in int from View that consumes from Model
- * 
- * @param int bloom rating int calculated
- * @return none
- */
-public void presentContBloom(int bloom){
-bloomStars = bloom;
-}
+	/**
+ 	 * Description: basic setter for taking in int from View that consumes from Model
+ 	 * 
+ 	 * @param int bloom rating int calculated
+ 	 * @return none
+ 	 */
+	public void presentContBloom(int bloom){
+		bloomStars = bloom;
+	}
 
-/**
- * Description: basic setter for taking in int from View that consumes from Model
- * 
- * @param int animal rating int calculated
- * @return none
- */
+	/**
+ 	 * Description: basic setter for taking in int from View that consumes from Model
+ 	 * 
+ 	 * @param int animal rating int calculated
+ 	 * @return none
+ 	 */
 
-public void presentAnimalsFedRating(int animal){
-	  animalStars = animal;
-}
+	public void presentAnimalsFedRating(int animal){
+		animalStars = animal;
+	}
 
-/**
- * Description: basic setter for taking in int from View that consumes from Model
- * 
- * @param int compatibility rating int calculated
- * @return none
- */
-public void presentCompatibilityRating(int compat){
-compatStars = compat;
-}
+	/**
+ 	 * Description: basic setter for taking in int from View that consumes from Model
+ 	 * 
+ 	 * @param int compatibility rating int calculated
+ 	 * @return none
+ 	 */
+	 public void presentCompatibilityRating(int compat){
+		compatStars = compat;
+	 }
 
-/**
- * Description: basic setter for taking in int from View that consumes from Model
- * 
- * @param int transition rating int calculated
- * @return none
- */
-public void presentTransitionRating(int transit){
-transitStars = transit;
-}
+	/**
+  	 * Description: basic setter for taking in int from View that consumes from Model
+ 	 * 
+ 	 * @param int transition rating int calculated
+ 	 * @return none
+ 	 */
+	 public void presentTransitionRating(int transit){
+	 	transitStars = transit;
+	 }
 
 
-public void presentOverallRating(int overall) {
-	overallStars = overall;
-}
+	public void presentOverallRating(int overall) {
+		overallStars = overall;
+	}
 
-/**
- * Description: takes in the integer and presents each of the ratings and overall evaluation as 
- * a star added to a layout to be presented to the user
- * 
- * @param theStage 
- * @return none
- */
-public void start(Stage theStage){
-	setAllRatings();
-	  Image image = new Image("file:images/starD.png", STARH, STARW, true, true);
-	  //ImageView imageView = new ImageView(image);
-	  Label coll = new Label("Color Rating");
-	  Label blol = new Label("Continuous Bloom Rating");
-	  Label anil = new Label("Animal Rating");
-	  Label coml = new Label("Compatablity Rating");
-	  Label tral = new Label("Transitional Rating (from Edge)");
-	  Label overl = new Label("Overall Rating");
+	/**
+ 	 * Description: takes in the integer and presents each of the ratings and overall evaluation as 
+ 	 * a star added to a layout to be presented to the user
+ 	 * 
+ 	 * @param theStage 
+ 	 * @return none
+ 	 */
+	 public void start(Stage theStage){
+		setAllRatings();
+	  	Image image = new Image("file:images/starD.png", STARH, STARW, true, true);
+	  	//ImageView imageView = new ImageView(image);
+	  	Label coll = new Label("Color Rating");
+	  	Label blol = new Label("Continuous Bloom Rating");
+	  	Label anil = new Label("Animal Rating");
+	  	Label coml = new Label("Compatablity Rating");
+	  	Label tral = new Label("Transitional Rating (from Edge)");
+	  	Label overl = new Label("Overall Rating");
 	  
-	  HBox col = new HBox();
-	  HBox blo = new HBox();
-	  HBox ani = new HBox();
-	  HBox com = new HBox();
-	  HBox tra = new HBox();
-	  HBox over = new HBox();
+		HBox col = new HBox();
+	  	HBox blo = new HBox();
+	  	HBox ani = new HBox();
+	  	HBox com = new HBox();
+	  	HBox tra = new HBox();
+	  	HBox over = new HBox();
+		  
+		for(int i = 0; i<colorStars; i++) {
+			System.out.print("*");
+		  	ImageView imageViewC = new ImageView(image);
+		  	col.getChildren().add(imageViewC);
+		}
+	  	System.out.println("");
 	  
-	  for(int i = 0; i<colorStars; i++) {
-		  System.out.print("*");
-		  ImageView imageViewC = new ImageView(image);
-		  col.getChildren().add(imageViewC);
-		 
-	  }
-	  System.out.println("");
+	  	for(int i = 0; i<bloomStars; i++) {
+			System.out.print("*");
+		  	ImageView imageViewB = new ImageView(image);
+		  	blo.getChildren().add(imageViewB);
+	  	}
+	  	System.out.println("");
 	  
-	  for(int i = 0; i<bloomStars; i++) {
-		  System.out.print("*");
-		  ImageView imageViewB = new ImageView(image);
-		  blo.getChildren().add(imageViewB);
-	  }
-	  System.out.println("");
+		for(int i = 0; i<animalStars; i++) {
+			System.out.print("*");
+		  	ImageView imageViewA = new ImageView(image);
+		  	ani.getChildren().add(imageViewA);
+		 }
+	  	System.out.println("");
 	  
-	  for(int i = 0; i<animalStars; i++) {
-		  System.out.print("*");
-		  ImageView imageViewA = new ImageView(image);
-		  ani.getChildren().add(imageViewA);
-		 
-	  }
-	  System.out.println("");
+	  	for(int i = 0; i<compatStars; i++) {
+			System.out.print("*");
+		  	ImageView imageViewP = new ImageView(image);
+		  	com.getChildren().add(imageViewP);
+		 }
+	  	System.out.println("");
 	  
-	  for(int i = 0; i<compatStars; i++) {
-		  System.out.print("*");
-		  ImageView imageViewP = new ImageView(image);
-		  com.getChildren().add(imageViewP);
-		 
-	  }
-	  System.out.println("");
+	  	for(int i = 0; i<transitStars; i++) {
+			System.out.print("*");
+		  	ImageView imageViewT = new ImageView(image);
+		  	tra.getChildren().add(imageViewT);
+ 		}
 	  
-	  for(int i = 0; i<transitStars; i++) {
-		  System.out.print("*");
-		  ImageView imageViewT = new ImageView(image);
-		  tra.getChildren().add(imageViewT);
-		 
-	  }
-	  
-	  for(int i = 0; i<overallStars; i++) {
-		  System.out.print("*");
-		  ImageView imageViewO = new ImageView(image);
-		  over.getChildren().add(imageViewO);
-		 
-	  }
-	 //System.out.println("Hi");
-	  layout2.getChildren().addAll(coll,col,blol,blo,anil,ani,coml,com,tral,tra, overl, over);
-	  
-	  
-}
+	  	for(int i = 0; i<overallStars; i++) {
+			System.out.print("*");
+		  	ImageView imageViewO = new ImageView(image);
+		  	over.getChildren().add(imageViewO);
+	  	}
+	  	layout2.getChildren().addAll(coll,col,blol,blo,anil,ani,coml,com,tral,tra, overl, over);
+	    
+	}
 
 }
