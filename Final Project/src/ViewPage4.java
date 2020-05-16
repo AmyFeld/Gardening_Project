@@ -21,6 +21,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+
 import java.util.ArrayList;
 
 import javafx.beans.value.ChangeListener;
@@ -37,10 +39,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+
 
 /**
  * This class presents the garden and includes the drag and drop feature to add new items to the garden
@@ -69,30 +71,61 @@ public class ViewPage4 extends View {
 	public ViewPage4(Stage theStage) {
 				
 		  // home button if fired
-		HBox layout1 = new HBox(20);     
-	    Label label1 = new Label("Edit Your Garden");
-	    Button rate = new Button("Rate My Garden");
+		HBox layout1 = new HBox(boxSize);     
+		Label label1 = new Label("Edit Your Garden");
+		Button rate = new Button("Rate My Garden");
 	  	Button back = new Button("Plant Nursery");
 	    // set tile pane height/?
-	    tile = new TilePane(Orientation.VERTICAL);
+	    	tile = new TilePane(Orientation.VERTICAL);
 		grid = new AnchorPane();
 		border = new BorderPane();
 		
 	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
 	     
-	  	Slider sl = new Slider();
-	      sl.setOrientation(Orientation.VERTICAL);
-	      sl.setMin(0);
-	      sl.setMax(100);
-	      sl.setMaxHeight(300);
-	      sl.setValue(40);
-	      sl.setShowTickLabels(true);
-	      sl.setShowTickMarks(true);
-	      sl.setMajorTickUnit(50);
-	      sl.setMinorTickCount(0);
-	      sl.setBlockIncrement(20);
+	  	Slider sl = new Slider(0,3,0);
+	      	sl.setOrientation(Orientation.VERTICAL);
+	      	sl.setMin(0);
+	      	sl.setMax(2);
+	      //	sl.setMaxHeight(300);
+	      	sl.setValue(1);
+	      	sl.setShowTickLabels(true);
+	      	sl.setShowTickMarks(true);
+	      	sl.setMajorTickUnit(1);
+	      	sl.setMinorTickCount(0);
+	      	sl.setLabelFormatter(new StringConverter<Double>() {
+	    	  public String toString(Double n) {
+	    		  if (n<0.5) return"Fall";
+	    		  if(n<1.5) return "Spring";
+	    		   return "Winter";
+	    		  
+	    		  //return "bye";
+	    	  }
+
+			@Override
+			public Double fromString(String s) {
+				switch (s) {
+              			case "Fall":
+                  			return 0d;
+                		case "Spring":
+                    			return 1d;
+                		case "Winter":
+                    			return 2d;
+               
+				}
+				return x;
+
+			}
+			
+			public void setImages() {
+				/* 
+				 * create function in plants that goes in for loop with switch cases and 
+				 * will set all plant images based the file so set file settings aka file \plantImg\winter\... 
+				 */
+				//control.model.allPlants.
+			}
+	      });
 		
-	        Image trash = new Image("file:images/Trash.png", 100, 100, false, false);
+	      Image trash = new Image("file:images/Trash.png", 100, 100, false, false);
 	      ImageView imtrash = new ImageView(trash);
 	     // Button label = new Button("Create new label");
 	      TextField userlabel = new TextField("Create new label"); 
@@ -111,7 +144,7 @@ public class ViewPage4 extends View {
 	      };
 	      
 	      userlabel.setOnAction(event);	
-		 VBox right = new VBox(50);
+              VBox right = new VBox(50);
 	      right.getChildren().addAll(sl, userlabel, imtrash);
 	  	//scene4 = new Scene(layout1, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
@@ -122,23 +155,23 @@ public class ViewPage4 extends View {
 	    
 	    //How To    
 	    Alert explain = new Alert(AlertType.INFORMATION);
-	    explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location.");
+	    explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location. To Remove, drag the image to the trashcan. To add labels, type up what you want to add and drag to the location you would like.");
 	    explain.show();
 		
-		start(theStage);
+	    start(theStage);
 	    layout1.setAlignment(Pos.TOP_CENTER);
 	    border.setRight(right);
-		border.setTop(layout1);
+	    border.setTop(layout1);
 	//	page4Plants = myPlant;
 			
-		scene4 = new Scene(border, sceneWidth, sceneHeight); // the
+	    scene4 = new Scene(border, sceneWidth, sceneHeight); // the
 
 		 //tile.setFill(Color.LIGHTGREEN); 
 	  	//tile.setBackground(new Background(new BackgroundFill(Color.web("#" + FFFFFF), CornerRadii.EMPTY, Insets.EMPTY)));
 		
 		  
-	   	 theStage.setScene(scene4); 
-	   	 theStage.show(); 	
+	    theStage.setScene(scene4); 
+	    theStage.show(); 	
 
 	}	
 	
@@ -151,7 +184,7 @@ public class ViewPage4 extends View {
 	 *
 	 */
 	public void start(Stage stage) {
-	ImageView iv;
+		ImageView iv;
 	//Generic Yard Images
 		Image backup_house = new Image("file:images/backup_house.png", 100, 100, false, false);
 		ImageView ivHouse = new ImageView(backup_house);
@@ -159,8 +192,6 @@ public class ViewPage4 extends View {
 		ImageView ivPool = new ImageView(pool);
 		Image fence = new Image("file:images/fence.png", 150, 50, false, false);
 		ImageView ivFence = new ImageView(fence);
-		Image road= new Image("file:images/road.png", 100, 100, false, false);
-		ImageView ivRoad = new ImageView(road);
 		Image driveWay= new Image("file:images/road.png", 100, 100, false, false);
 		ImageView ivDriveWay = new ImageView(driveWay);
 		
@@ -203,7 +234,7 @@ public class ViewPage4 extends View {
       
      //setting the grid and tile to places 
       
-       ScrollPane sc = new ScrollPane(tile);
+      ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(tileBox.getHeight());
       sc.setPrefWidth(plaWidth);
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -231,7 +262,7 @@ public class ViewPage4 extends View {
 	      	Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
     	  	
     	  	//iv.setOnMousePressed(control.getHandlerForClick());
-	      iv.setOnMouseClicked(e -> control.click(e));//control.getHandlerForClick());  
+	    	iv.setOnMouseClicked(e -> control.click(e));//control.getHandlerForClick());  
 	      
         	System.out.println(ivArr.add(iv));
 
