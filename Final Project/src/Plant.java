@@ -165,6 +165,8 @@ public class Plant implements Serializable{
 			return 100;
 		case("tree"):
 			return 150;
+		default:
+			return 0;
 		}
 	}
 	
