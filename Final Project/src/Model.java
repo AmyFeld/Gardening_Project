@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-
+import java.io.Serializable;
 import javafx.scene.Node;
 /**
  * This class communicates with the controller to tell the view the current state of the Garden,
@@ -11,7 +11,7 @@ import javafx.scene.Node;
  *
  */
 
-public class Model {
+public class Model implements Serializable{
 	
 	Boolean startGardening = false;
 	
