@@ -157,4 +157,15 @@ public class Plant implements Serializable{
 		return this.name;
 	}
 	
+	public int scaling() {
+		switch(this.type) {
+		case("herb"):
+			return 50;
+		case("shrub"):
+			return 100;
+		case("tree"):
+			return 150;
+		}
+	}
+	
 }
