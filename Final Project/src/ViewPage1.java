@@ -40,19 +40,15 @@ public class ViewPage1 extends View {
 				
 		  // home button if fired
 		
-		Image back = new Image("file:images/bg.png", sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		
-		VBox layout2 = new VBox(20);
+		VBox layout2 = new VBox(boxSize);
 		
 		
-		HBox layout1 = new HBox(20); 
+		HBox layout1 = new HBox(boxSize); 
 		Text label1 = new Text("Create Your Own Garden");
 		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	     label1.setFill(Color.WHITE); 
-	     label1.setStrokeWidth(2); 
-	     label1.setStroke(Color.BLUE);    
+	     	label1.setFill(Color.WHITE); 
+	     	label1.setStrokeWidth(2); 
+	     	label1.setStroke(Color.BLUE);    
 	   // Label label1 = new Label("Create Your Own Garden");
 	    
 	  	Button button1 = new Button("Start Planting");
@@ -76,7 +72,7 @@ public class ViewPage1 extends View {
 	  	scene1 = new Scene(layout2,sceneWidth, sceneHeight); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
-	    button1.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));	 
+	  	button1.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));	 
 	  	page6.setOnAction(e-> theStage.setScene(new ViewPage6(theStage).getScene6()));
 	  	page7.setOnAction(e-> theStage.setScene(new ViewPage7(theStage).getScene7()));
 	  	page8.setOnAction(e-> theStage.setScene(new ViewPage8(theStage).getScene8()));
