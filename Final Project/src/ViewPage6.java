@@ -39,14 +39,10 @@ public class ViewPage6 extends View {
 	 *
 	 */
 	public ViewPage6(Stage theStage) {
-		Image back = new Image("file:images/bg2.png",sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
-		
-		VBox layout1 = new VBox(20);     
+	    VBox layout1 = new VBox(boxSize);     
 	    Text label1 = new Text("About Arden");
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
@@ -80,31 +76,28 @@ public class ViewPage6 extends View {
 	  	//Button home = new Button("Home");
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
-	  	Tab ms = new Tab();
-	  	ms.setText("Mission Statement");
-	  	ms.setContent(msText);
-	
-	  	
-	  	Tab purp = new Tab();
-	  	purp.setText("Purpose");
-	  	purp.setContent(purpText);
-
-	  	
-	  	Tab hist = new Tab();
-	  	hist.setText("History");
-	  	hist.setContent(histText);
-
-	    
-		TabPane tabPane = new TabPane();
-		tabPane.getTabs().addAll(ms, purp, hist);
+	    Tab ms = new Tab();
+	    ms.setText("Mission Statement");
+	    ms.setContent(msText);
 		
-	  	layout1.getChildren().addAll(label1, tabPane, homeButton); 
-	  	layout1.setBackground(new Background(myBG));
-	  	scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
+	    Tab purp = new Tab();
+	    purp.setText("Purpose");
+	    purp.setContent(purpText);
+	
+    	    Tab hist = new Tab();
+	    hist.setText("History");
+	    hist.setContent(histText);
+
+	    TabPane tabPane = new TabPane();
+	    tabPane.getTabs().addAll(ms, purp, hist);
+		
+	    layout1.getChildren().addAll(label1, tabPane, homeButton); 
+	    layout1.setBackground(new Background(myBG));
+	    scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
 
 	  	
-	   	 theStage.setScene(scene6); 
-	   	 theStage.show(); 	
+	    theStage.setScene(scene6); 
+	    theStage.show(); 	
 
 	}	
 	
