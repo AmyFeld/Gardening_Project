@@ -39,14 +39,10 @@ public class ViewPage8 extends View {
 	 */
 
 	public ViewPage8(Stage theStage) {
-		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
-		
-		VBox layout = new VBox(20);     
+	    VBox layout = new VBox(boxSize);     
 	    Text label1 = new Text("Benefits of a Garden");
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
@@ -79,27 +75,27 @@ public class ViewPage8 extends View {
 	  	//Button home = new Button("Home");
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
-	  	Tab animals = new Tab();
-	  	animals.setText("Animals");
-	  	animals.setContent(animalText);
+	    Tab animals = new Tab();
+	    animals.setText("Animals");
+	    animals.setContent(animalText);
 	  	
-	  	Tab edge = new Tab();
-	  	edge.setText("Stopping An Edge");
-	  	edge.setContent(edgeText);
+	    Tab edge = new Tab();
+	    edge.setText("Stopping An Edge");
+	    edge.setContent(edgeText);
 	  	
-		Tab appear = new Tab();
-	  	appear.setText("Aesthetics and Appearances");
-	  	appear.setContent(appearText);
+	    Tab appear = new Tab();
+	    appear.setText("Aesthetics and Appearances");
+	    appear.setContent(appearText);
 
-		TabPane tabPane = new TabPane();
-		tabPane.getTabs().addAll(animals, edge, appear);
+	    TabPane tabPane = new TabPane();
+	    tabPane.getTabs().addAll(animals, edge, appear);
 		
-	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
-	  	layout.setBackground(new Background(myBG));
-	  	scene8 = new Scene(layout, sceneWidth, sceneHeight); 
+	    layout.getChildren().addAll(label1, tabPane, homeButton); 
+	    layout.setBackground(new Background(myBG));
+	    scene8 = new Scene(layout, sceneWidth, sceneHeight); 
 		  	
-	   	 theStage.setScene(scene8); 
-	   	 theStage.show(); 	
+	    theStage.setScene(scene8); 
+	    theStage.show(); 	
 
 	}	
 	
@@ -122,12 +118,12 @@ public class ViewPage8 extends View {
 		 * @return none
 		 * @throws Exception
 		 */
-		 public String uploadText(String name) throws Exception {
-			 String file = new String("textFiles/Page8/" + name + ".txt"); 
-			 String data = ""; 
+	public String uploadText(String name) throws Exception {
+		 String file = new String("textFiles/Page8/" + name + ".txt"); 
+		 String data = ""; 
 			 
-			 data = new String(Files.readAllBytes(Paths.get(file))); 
-			 return data;
-		  }
+		 data = new String(Files.readAllBytes(Paths.get(file))); 
+		 return data;
+	}
 
 }

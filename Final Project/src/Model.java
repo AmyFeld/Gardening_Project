@@ -161,7 +161,13 @@ public class Model implements Serializable{
 
 		//Basic Getters and Setters for the Garden Drag and Drop
 
-	// This is what I added :)
+	public void update(Plant p) {
+		myPlants.add(p);
+	}
+	
+	public ArrayList<Plant> getMyPlant() {
+		return myPlants;
+	}
 	
 	public void setX(double x){
 		modelX = x;
@@ -193,10 +199,13 @@ public class Model implements Serializable{
 		printGrid();
 	}
 	
-	public void addImageView(int i) {
-		setPlant(allPlants.get(i));
-		gridPlants.add(currentPlant);
-		 printGrid();
+	public int addImageView(int i) {
+		if(i<allPlants.size()) {
+			setPlant(allPlants.get(i));
+			gridPlants.add(currentPlant);
+		}
+		printGrid();
+		return currentPlant.scaling();
 	}
 	
 	public void printGrid() {

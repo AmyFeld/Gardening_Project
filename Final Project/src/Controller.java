@@ -23,8 +23,8 @@ public class Controller extends Application {
 	
 	public Controller(View view) {
 		
-	     this.view = view;	
-       	 this.model = new Model();
+		this.view = view;
+		this.model = new Model();
 	}
 
     /**
@@ -37,8 +37,8 @@ public class Controller extends Application {
      */
     @Override
 	public void start(Stage theStage) {	
-		model.update(view.currPla);
-    	 view.update();
+		//model.update(view.currPla);
+    	 //view.update();
 		
  /*	new EventHandler<ActionEvent>() {
  		@Override 
@@ -52,6 +52,7 @@ public class Controller extends Application {
     	
         public void handle(long currentNanoTime) { 
             try {
+		model.update(p);
                 Thread.sleep(100);
                 
             } catch (InterruptedException e) {
@@ -88,14 +89,7 @@ public class Controller extends Application {
 
 	public void release(MouseEvent event){
 		Node n = (Node) event.getSource();
-		/*if(n.getTranslateX()>= 0&& contX<1000){
-			//System.out.println("First Part of If");
-			view.addImage(model.getX(), model.getY());
-		}
-		else if(n.getTranslateX()<0&&contX>=1000){
-			n.setVisible(false);
-			//System.out.println("Second part of if");
-		}*/
+		
 		view.imageView.setOnMouseDragged(getHandlerForDrag());
 		System.out.println("RELEASE");
 		if(n.getTranslateX() > 600) {
@@ -120,6 +114,7 @@ public class Controller extends Application {
 		
 		view.imageView = (ImageView)n;
 		view.setI(view.imageView);
+		int plaSize = model.addImageView(view.i);
 		
 		view.moveImageView();
 		model.addImageView(view.i);
@@ -132,6 +127,29 @@ public class Controller extends Application {
 	public EventHandler<MouseEvent> getHandlerForClick(){
 		return event -> click((MouseEvent) event);
 	}
+	
+	public void click2(MouseEvent e){
+		Node n = (Node)e.getSource();
+		n.setMouseTransparent(true);
+			
+		view.imageView = (ImageView)n;
+		view.setI(view.imageView);
+		//model.setPlant(p);
+				
+		view.moveGenImage();
+				
+		
+		//view.newImageView();
+		
+		System.out.println("click");
+		
+	}
+	
+	public EventHandler getHandlerForClick2(){
+		
+		return event -> click((MouseEvent) event);
+	}
+
 
 	public double getStartingX(){
 		return model.getX();
