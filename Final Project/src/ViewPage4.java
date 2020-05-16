@@ -1,20 +1,43 @@
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventTarget;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -143,41 +166,24 @@ public class ViewPage4 extends View {
 		
 	
 		//moving generic images
-		ivHouse.setPreserveRatio(true);
-	  	ivHouse.setFitHeight(100);
-    	
-    	ivHouse.setOnMouseDragged(control.getHandlerForDrag());
-    	ivHouse.setOnMousePressed(control.getHandlerForClick());
-    	ivHouse.setOnMouseReleased(control.getHandlerForRelease());
-    	//Pool
-    	ivPool.setPreserveRatio(true);
-	  	ivPool.setFitHeight(100);
-    	
-    	ivPool.setOnMouseDragged(control.getHandlerForDrag());
-    	ivPool.setOnMousePressed(control.getHandlerForClick());
-    	ivPool.setOnMouseReleased(control.getHandlerForRelease());
-    	//Fence
-    	ivFence.setPreserveRatio(true);
-	  	ivFence.setFitHeight(100);
-    	
-    	ivFence.setOnMouseDragged(control.getHandlerForDrag());
-    	ivFence.setOnMousePressed(control.getHandlerForClick());
-    	ivFence.setOnMouseReleased(control.getHandlerForRelease());
-    	//Road
-    	ivRoad.setPreserveRatio(true);
-	  	ivRoad.setFitHeight(100);
-    	
-    	ivRoad.setOnMouseDragged(control.getHandlerForDrag());
-    	ivRoad.setOnMousePressed(control.getHandlerForClick());
-    	ivRoad.setOnMouseReleased(control.getHandlerForRelease());
-    	//DriveWay
-    	ivDriveWay.setPreserveRatio(true);
-	  	ivDriveWay.setFitHeight(100);
-    	
-    	ivDriveWay.setOnMouseDragged(control.getHandlerForDrag());
-    	ivDriveWay.setOnMousePressed(control.getHandlerForClick());
-    	ivDriveWay.setOnMouseReleased(control.getHandlerForRelease());
-    	
+		//Generic Image
+		ArrayList<ImageView> genIm = new ArrayList<>();
+		genIm.add(ivHouse);
+		genIm.add(ivPool);
+		genIm.add(ivFence);
+		genIm.add(ivDriveWay);
+		
+		for(int z = 0; z< genIm.size(); z++) {
+			genIm.get(z).setPreserveRatio(true);
+			genIm.get(z).setFitHeight(100);
+	    	
+			//genIm.get(z).setOnMouseDragged(control.getHandlerForDrag());
+			genIm.get(z).setOnMousePressed(control.getHandlerForClick());
+			//genIm.get(z).setOnMouseReleased(control.getHandlerForRelease());
+	  
+
+		}
+		
 	//Pretend lawn for grid
 	/*	Rectangle r = new Rectangle(600, 600);
 		r.setFill(Color.LIGHTGREEN); */
@@ -219,28 +225,18 @@ public class ViewPage4 extends View {
     	  	
   	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
 
-    	/*  if ()
-    	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
-      }
-      else if () {
-      }
-      else {
-    	  } */
     	  	iv.setPreserveRatio(true);
     	  	iv.setFitHeight(100);
+	      
+	      	Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
     	  	
-    	  	iv.setOnMousePressed(control.getHandlerForClick());
-    	  	System.out.println("CLISKkahsdfkjhasf");
-    	  	        	
+    	  	//iv.setOnMousePressed(control.getHandlerForClick());
+	      iv.setOnMouseClicked(e -> control.click(e));//control.getHandlerForClick());  
+	      
         	System.out.println(ivArr.add(iv));
-        	System.out.println("ADDING IMAGE " + i);
-      
 
         	tileBox.getChildren().add(iv);
-        	if(!grid.getChildren().isEmpty()) {
-          	  for(int z = 0; z< grid.getChildren().size(); z++)
-          	//  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
-            System.out.println("blah");	
+        	
             }
     	   // tile.getChildren().add(iv1);
       } 
@@ -253,6 +249,7 @@ public class ViewPage4 extends View {
 
       System.out.println("Grid Children: "+ grid.getChildren());
       
+	tileBox.getChildren().addAll(genIm);
      
       System.out.println(tileBox.getChildren());
      
