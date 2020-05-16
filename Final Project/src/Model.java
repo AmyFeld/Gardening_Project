@@ -16,10 +16,14 @@ public class Model implements Serializable{
 	Boolean startGardening = false;
 	
 	Garden currentGarden = new Garden();
+	ArrayList<Plant> allPlants = currentGarden.allPlants;
 	Plant currentPlant;
 	
-		double modelX;
+	double modelX;
 	double modelY;
+	
+	ArrayList<Plant> myPlants = new ArrayList<Plant>();
+	ArrayList<Plant> gridPlants = new ArrayList<Plant>();
 	
 	/**
 	 * Description: This is a setter for the Garden attribute in Model
@@ -178,6 +182,27 @@ public class Model implements Serializable{
 	public void setImage(Node n){
 		n.setTranslateX(getX());
 		n.setTranslateY(getY());
+	}
+	
+	public void removeImageView(int i) {
+		setPlant(allPlants.get(i));
+		System.out.println(currentPlant.name);
+		gridPlants.remove(currentPlant);
+	//	System.out.println(gridPlants.get(i).getName());
+		//gridPlants.remove(i);
+		printGrid();
+	}
+	
+	public void addImageView(int i) {
+		setPlant(allPlants.get(i));
+		gridPlants.add(currentPlant);
+		 printGrid();
+	}
+	
+	public void printGrid() {
+		for(int j=0; j< gridPlants.size(); j++) {
+	 		System.out.print(gridPlants.get(j).getName()+ " "+ j);
+	 	}
 	}
 
 }
