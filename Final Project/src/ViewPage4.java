@@ -69,6 +69,27 @@ public class ViewPage4 extends View {
 	      sl.setMinorTickCount(0);
 	      sl.setBlockIncrement(20);
 		
+	        Image trash = new Image("file:images/Trash.png", 100, 100, false, false);
+	      ImageView imtrash = new ImageView(trash);
+	     // Button label = new Button("Create new label");
+	      TextField userlabel = new TextField("Create new label"); 
+	      
+	      //label.setOnAction(new EventHandler<ActionEvent>() {
+	      EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+	      public void handle(ActionEvent e) {
+	    		  //Label userlabel = new Label(new TextField().getText());
+	    		
+	    		  Label l = new Label();
+	    		  l.setText(userlabel.getText());
+	    		  grid.getChildren().add(l);
+	    		  l.setOnMouseDragged(control.getHandlerForDrag());
+	    		  l.setOnMouseReleased(control.getHandlerForRelease());
+	    	  }
+	      };
+	      
+	      userlabel.setOnAction(event);	
+		 VBox right = new VBox(50);
+	      right.getChildren().addAll(sl, userlabel, imtrash);
 	  	//scene4 = new Scene(layout1, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
@@ -76,10 +97,14 @@ public class ViewPage4 extends View {
 	    rate.setOnAction(e-> theStage.setScene(new ViewPage5(theStage).getScene5()));
 	    back.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));
 	    
-	    
+	    //How To    
+	    Alert explain = new Alert(AlertType.INFORMATION);
+	    explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location.");
+	    explain.show();
+		
 		start(theStage);
 	    layout1.setAlignment(Pos.TOP_CENTER);
-	    border.setRight(sl);
+	    border.setRight(right);
 		border.setTop(layout1);
 	//	page4Plants = myPlant;
 			
