@@ -98,6 +98,15 @@ public class Controller extends Application {
 		}*/
 		view.imageView.setOnMouseDragged(getHandlerForDrag());
 		System.out.println("RELEASE");
+		if(n.getTranslateX() > 600) {
+			System.out.println("REMOVE");
+		//	model.setPlant(view.getPlant());
+		//	model.removePlant();4
+			//view.imageView = (ImageView)n;
+			view.setI(view.imageView);
+			model.removeImageView(view.i);
+			view.removeImageView();
+		}
 	}
 
 	public EventHandler<MouseEvent> getHandlerForRelease(){
@@ -113,7 +122,8 @@ public class Controller extends Application {
 		view.setI(view.imageView);
 		
 		view.moveImageView();
-	
+		model.addImageView(view.i);
+		model.setPlant(view.getImageName());
 				
 		System.out.println("click");
 		
