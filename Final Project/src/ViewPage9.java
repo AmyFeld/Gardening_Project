@@ -31,11 +31,7 @@ import javafx.stage.Stage;
 public class ViewPage9 extends View {
 	
 	Scene scene9;
-	//int fontSize = 40; 
-	//int labelX = 300;
-	//int labelY = 15;
-
-
+	
 
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
@@ -45,14 +41,10 @@ public class ViewPage9 extends View {
 	 *
 	 */
 	public ViewPage9(Stage theStage) {
-		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		
-			
-		VBox layout = new VBox(20);     
+	
+	    VBox layout = new VBox(boxSize);     
 	    Text label1 = new Text("Tips to Start");
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
@@ -82,10 +74,10 @@ public class ViewPage9 extends View {
 			e2.printStackTrace();
 		}
 	    try {
-	    	invasiveText.setText(uploadText("invasive"));
-	 		} catch (Exception e2) {
-	 			e2.printStackTrace();
-	 		}
+	    		invasiveText.setText(uploadText("invasive"));
+	 	} catch (Exception e2) {
+	 		e2.printStackTrace();
+	 	}
 	 	    
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
@@ -135,12 +127,12 @@ public class ViewPage9 extends View {
 	 * @return none
 	 * @throws Exception
 	 */
-		 public String uploadText(String name) throws Exception {
-			 String file = new String("textFiles/Page9/" + name + ".txt"); 
-			 String data = ""; 
+	public String uploadText(String name) throws Exception {
+		 String file = new String("textFiles/Page9/" + name + ".txt"); 
+		 String data = ""; 
 			 
-			 data = new String(Files.readAllBytes(Paths.get(file))); 
-			 return data;	  
+		 data = new String(Files.readAllBytes(Paths.get(file))); 
+		 return data;	  
 	}
 
 }
