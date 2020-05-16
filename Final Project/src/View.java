@@ -202,72 +202,59 @@ public class View extends Application {
 	public void setImageView(ImageView iv) {
 		imageView = iv;
 	}
-
-	 public void addImage(double x,double y) {//, MouseEvent e) {
-			
-		 	imageView.setTranslateX(x);
-			imageView.setTranslateY(y);
- 		    	
-			ivg = new ImageView((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
-			/*if(ivArr.contains(imageView)) {
-				 ivg = new ImageView((new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false)));
-				 System.out.println("Don't Cry");
-			}
-			else {
-				Image genIm = ivArr.get(i).getImage();
-				ivg = new ImageView(genIm);
-			}*/
-	    	
-	    	ivg.setPreserveRatio(true);
-	    	ivg.setFitHeight(100);
-	    	
-	    	System.out.println("Hi:)");
-
-	    	ivg.setOnMousePressed(control.getHandlerForClick());
-	    	ivg.setOnMouseDragged(control.getHandlerForDrag());
-	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
-	    
-	    	ivg.setTranslateX(control.getOriginX());
-	    	ivg.setTranslateY(control.getOriginY());
-	    	
-	    	if(control.getOriginX() >= tile.getLayoutX()){
-	    			tileBox.getChildren().add(i, ivg);
-	    	    	grid.getChildren().add( imageView);
-	    	   
-	    	    	gridPlants.add(allPlants.get(i));
-	    	    	//l++;
-	    	    	
-	    	} 
-	    	
-	    	/*if(!gridPlants.isEmpty()) {
-	      	  for(int z = 0; z< grid.getChildren().size(); z++)
-	      	  grid.getChildren().get(z).setOnMousePressed(control.getHandlerForClick());
-	        System.out.println("blah");	
-	        }*/
-			
 	 
-	    	for(int j=0; j< gridPlants.size(); j++) {
-	    		System.out.print(gridPlants.get(j).getName()+ " "+ j);
-	    	}
-	    	
-	    	
-	    }
-	 
+	Circle circ;
 	public void moveImageView() {
 		 
 		 
-		 ivg = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
-		 ivg.setTranslateX(200);
-		 ivg.setTranslateY(200);
+		circ = new Circle(plaWidth/2);
+		circ.setStroke(Color.BISQUE);
+		//Image im = new Image(allPlants.get(i).getImgName());
+		circ.setFill(new ImagePattern(imageView.getImage()));
+		 		
+		circ.setTranslateX(sceneWidth/3);
+		circ.setTranslateY(sceneHeight/3);		 
 		 
-			ivg.setOnMouseDragged(control.getHandlerForDrag());
-	    	ivg.setOnMouseReleased(control.getHandlerForRelease());
-		 
-		 grid.getChildren().add(ivg);
+		circ.setOnMouseDragged(control.getHandlerForDrag());
+		circ.setOnMouseReleased(control.getHandlerForRelease());
+
+	 	//circ.addEventHandler(KeyEvent.KEY_PRESSED, control.getHandlerForRemove());
+	 	imageView.setOnMouseClicked(control.getHandlerForClick());
+		
+	   System.out.println("Hi");
+	 
+	 //	newImageView();
+	 	
+		grid.getChildren().add(circ);
 		 
 	   } 
 	
-
+	 public void removeImageView() {
+		 
+		 grid.getChildren().remove(circ);
+		 
+		// grid.getChildren().remove(i);
+		// if()
+	 }
+	
+	 public void newImageView() {
+			ImageView iv = new ImageView(imageView.getImage());
+	  	  	
+	 		iv.setPreserveRatio(true);
+	 		iv.setFitHeight(100);
+	  	
+	 		//Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
+	  	
+	 		iv.setOnMousePressed(control.getHandlerForClick());
+	    	
+	 		System.out.println(ivArr.add(iv));
+		
+	 		tileBox.getChildren().remove(i);
+	 		tileBox.getChildren().add(i, iv);
+	 		
+	 		System.out.println("BLEH" + iv);
+	 }
+	 
 	
 	 public boolean setI(ImageView imgview) {
 		
@@ -284,6 +271,16 @@ public class View extends Application {
 			 l = grid.getChildren().indexOf(imgview);
 		 	return true;}
 		 return false;
+	 }
+	
+	 Plant imName;
+	 public Plant getImageName() {
+		 
+		 imName = allPlants.get(i);
+		 
+		// imName = imageView.getId();
+		 System.out.println("HiIIIII" + imName.name);
+		 return imName;
 	 }
 
 
