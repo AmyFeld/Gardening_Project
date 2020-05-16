@@ -21,6 +21,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the
@@ -58,9 +60,9 @@ public class ViewPage5 extends View {
 	int STARH = 75;
 	int STARW = 75;
 	
-	 VBox layout2 = new VBox();
+	VBox layout2 = new VBox();
 	
-	 int hboxInt = 20;
+	int hboxInt = 20;
 	Scene scene5;
 	
 	/**
@@ -78,10 +80,10 @@ public class ViewPage5 extends View {
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
-  theStage.setTitle("Rate My Garden");
+  		theStage.setTitle("Rate My Garden");
 
-  HBox layout1 = new HBox(hboxInt);     
-	    Label label1 = new Label("Rate My Garden");
+  		HBox layout1 = new HBox(hboxInt);     
+	        Label label1 = new Label("Rate My Garden");
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
@@ -93,23 +95,30 @@ public class ViewPage5 extends View {
 	  	//root.getChildren().addAll(layout1);
 	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	    back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
-	    
-	    
-	    
-	    EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
+	    	homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	    	back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
+	    	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
       public void handle(ActionEvent e)  { 
-          buttonPressed.setText("Here you will able to save to computer to share :)"); 
+          	buttonPressed.setText("Here you will able to save to computer to share :)"); 
       } 
   };
   
   save.setOnAction(event);
 	    
-	    /*save.setOnAction(e -> { 
-	  		buttonPressed.setText("Here you will be able to save to email and share...");
-	  		});
-	    */
+	    save.setOnAction(e -> { 
+		    String filepath = "";
+	  		try {
+				FileOutputStream fileOut = new FileOutputStream(filepath);
+				ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+				objectOut.writeObject(controller.model);
+				objectOut.close();
+				System.out.println("Your garden has been saved!");
+				buttonPressed.setText("Saved");
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+	    });
+	    
   layout2.getChildren().add(layout1);
   	start(theStage);
   
