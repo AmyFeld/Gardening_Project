@@ -24,6 +24,7 @@ public class Model implements Serializable{
 	
 	ArrayList<Plant> myPlants = new ArrayList<Plant>();
 	ArrayList<Plant> gridPlants = new ArrayList<Plant>();
+	ArrayList<Integer> rating = new ArrayList<Integer>();
 	
 	/**
 	 * Description: This is a setter for the Garden attribute in Model
@@ -213,5 +214,10 @@ public class Model implements Serializable{
 	 		System.out.print(gridPlants.get(j).getName()+ " "+ j);
 	 	}
 	}
-
+	
+	public ArrayList<Integer> setRating() {
+		rating = rateGarden(gridPlants);
+		System.out.println(rating);
+		return rating;
+	}
 }
