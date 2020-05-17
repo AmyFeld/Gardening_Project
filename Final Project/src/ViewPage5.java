@@ -1,14 +1,29 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
@@ -38,13 +53,13 @@ public class ViewPage5 extends View {
 	int cs4 = 3;
 	int cs5 = 4;
 	int cs6 = 5;
-	int hboxInt = 20;
+	
 	int STARH = 75;
 	int STARW = 75;
 	
 	VBox layout2 = new VBox();
-	Controller cont = new Controller(this);
 	
+	int hboxInt = 20;
 	Scene scene5;
 	
 	/**
@@ -64,37 +79,36 @@ public class ViewPage5 extends View {
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
-	  	Label buttonPressed = new Label();
-		Button back2g = new Button("Back to Garden");	  	
-	  	layout1.getChildren().addAll(label1, homeButton, save, back2g);
+	  	Label buttonPressed = new Label("");
+		//Button back2g = new Button("Back to Garden");	  	
+	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
 		
 	  	//Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
 	  			 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
-	    	homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	    	back2g.setOnAction(e-> theStage.setScene(new ViewPage4(theStage).getScene4()));
-	    	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-     			public void handle(ActionEvent e)  { 
-          			buttonPressed.setText("Here you will able to save to computer to share :)"); 
-      			} 
-  		};
-  
-  		save.setOnAction(event);
+	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    
-	    	save.setOnAction(e -> { 
-		    String filepath = "User.ser";
+  
+  		save.setOnAction(e -> { 
+		    FileChooser fileChooser = new FileChooser();
 	  		try {
-				FileOutputStream fileOut = new FileOutputStream(filepath);
-				ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-				objectOut.writeObject(cont.model);
-				objectOut.close();
-				System.out.println("Your garden has been saved!");
-				buttonPressed.setText("Saved");
+	  			fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Ser", ".ser"));
+	  			File file = fileChooser.showSaveDialog(theStage);
+	  			if(file != null) {
+	  				FileOutputStream fileOut = new FileOutputStream(file);
+					ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+	  				objectOut.writeObject(control.model);
+					objectOut.close();
+					fileOut.close();
+					save.setText("Saved");
+	  			}
+
 			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-	    	});
+
+				ex.printStackTrace();}
+  		});
+  		
 	    
   		layout2.getChildren().add(layout1);
   		start(theStage);
@@ -121,18 +135,20 @@ public class ViewPage5 extends View {
 	/**
 	 * Description: sets all of the ratings based on the model calculated ratings
 	 * 
+	 * 
+	 * 
 	 */
 	public void setAllRatings() {
 		System.out.println(ratings);
-	        ratings = control.model.rateGarden(anchorPlants);
-	        System.out.println(ratings);
+	    //ratings = getRatings();
+	     //   System.out.println(ratings);
 	      
-		presentColor(ratings.get(cs1));
+		/*presentColor(ratings.get(cs1));
 		presentContBloom(ratings.get(cs2));
 		presentAnimalsFedRating(ratings.get(cs3));
 		presentCompatibilityRating(ratings.get(cs4));
 		presentTransitionRating(ratings.get(cs5));
-		presentOverallRating(ratings.get(cs6));
+		presentOverallRating(ratings.get(cs6));*/
 	}
 	
 	/**
