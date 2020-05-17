@@ -36,6 +36,10 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
@@ -56,6 +60,10 @@ import javafx.scene.layout.VBox;
 public class ViewPage4 extends View {
 	Scene scene4;
 	private BorderPane border;
+	
+	//ArrayList<ImageView> season = new ArrayList<ImageView>();
+	String season = "spring";
+	Slider sl = new Slider(0,3,0);
 	
 	//ArrayList<Plant> page4Plants = new ArrayList<Plant>();
   
@@ -82,7 +90,7 @@ public class ViewPage4 extends View {
 		
 	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
 	     
-	  	Slider sl = new Slider(0,3,0);
+	  	//Slider sl = new Slider(0,3,0);
 	      	sl.setOrientation(Orientation.VERTICAL);
 	      	sl.setMin(0);
 	      	sl.setMax(2);
@@ -94,9 +102,19 @@ public class ViewPage4 extends View {
 	      	sl.setMinorTickCount(0);
 	      	sl.setLabelFormatter(new StringConverter<Double>() {
 	    	  public String toString(Double n) {
-	    		  if (n<0.5) return"Fall";
-	    		  if(n<1.5) return "Spring";
-	    		   return "Winter";
+	    		  if (n<0.5) {
+	    			  //System.out.println("Fall");
+	    			 /// season = "fall";
+	    			  return"Fall";
+	    		  }
+	    		  if(n<1.5) {
+	    			//  System.out.println("Spring");
+	    			  //season = "spring";
+	    			  return "Spring";
+	    		  }
+	    		 // System.out.println("Winterzxscccccccdfffffffffffffffffffc");
+	    		  //season = "winter";
+	    		  return "Winter";
 	    		  
 	    		  //return "bye";
 	    	  }
@@ -116,14 +134,48 @@ public class ViewPage4 extends View {
 
 			}
 			
-			public void setImages() {
-				/* 
+			
+		/*	public void setImages(String s) {
+				switch(s) {
+				case "Fall":
+					for(int i = 0; i< allPlants.size(); i++) {
+						String name = allPlants.get(i).getName();
+						ImageView iv = new ImageView("file:/seasonImages/fallPlants"+ name);
+						season.add(iv);
+						//iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+					}
+					System.out.println("Fall");
+					break;
+				case "Spring": 
+					for(int i = 0; i< allPlants.size(); i++) {
+						String name = allPlants.get(i).getName();
+						ImageView iv = new ImageView("file:/seasonImages/springPlants"+ name);
+						season.add(iv);
+						//iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+					}
+					System.out.println("Spring");
+					break;
+				case "Winter":
+					for(int i = 0; i< allPlants.size(); i++) {
+						String name = allPlants.get(i).getName();
+						ImageView iv = new ImageView("file:/seasonImages/winterPlants"+ name);
+						season.add(iv);
+						//iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+					}
+					System.out.println("Winterzxscccccccdfffffffffffffffffffc");
+					break;
+				}
+				 
 				 * create function in plants that goes in for loop with switch cases and 
 				 * will set all plant images based the file so set file settings aka file \plantImg\winter\... 
 				 */
 				//control.model.allPlants.
-			}
+			//}
 	      });
+	      	
+	      
+			
+	      //	System.out.println(season);
 		
 	      Image trash = new Image("file:images/Trash.png", 100, 100, false, false);
 	      ImageView imtrash = new ImageView(trash);
@@ -208,27 +260,21 @@ public class ViewPage4 extends View {
 			genIm.get(z).setPreserveRatio(true);
 			genIm.get(z).setFitHeight(100);
 	    	
-			//genIm.get(z).setOnMouseDragged(control.getHandlerForDrag());
-			genIm.get(z).setOnMousePressed(control.getHandlerForClick());
-			//genIm.get(z).setOnMouseReleased(control.getHandlerForRelease());
-	  
-
-		}
+			genIm.get(z).setOnMousePressed(control.getHandlerForClick2());
+	  	}
 		
-	//Pretend lawn for grid
-	/*	Rectangle r = new Rectangle(600, 600);
-		r.setFill(Color.LIGHTGREEN); */
+
     	BackgroundImage bg = new BackgroundImage(new Image("file:images/grid.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     	grid.setBackground(new Background(bg));
 		
-	 //	grid.setStyle("-fx-background-color: #05F861;");
+	 	grid.setStyle("-fx-background-color: #05F861;");
 		
 	//Creating Basic Tile Params
 	 // tile.setTileAlignment(Pos.CENTER_LEFT);
       //tile.setPrefRows(5);
       tile.setMaxWidth(plaWidth);
-      tileBox = new VBox(20);
+      tileBox = new VBox(boxSize);
       
       //create scroll pane :)
       
@@ -244,55 +290,68 @@ public class ViewPage4 extends View {
     	
       	border.setLeft(sc);
       	border.setCenter(grid);
-    //    grid.setGridLinesVisible(true);
-      
-   //Setting up the image views and moving them 
-    //    System.out.println(page4Plants.toString());
-        
-      //  myPlants = getMyPlants();
- //      System.out.println(control.model.getMyPlant().toString());
-     //   control.model.myPlants.add(allPlants.get(7));
-      for(  i=0; i< allPlants.size(); i++) {
-    	  	
-  	  	iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+      	makeIm();
+    	sl.valueProperty().addListener(
+      		new ChangeListener<Number>() {
+      			 public String toString(Double n) {
+      		   		  if (n<0.5) {
+      		   			  return"fall";
+      		   		  }
+      		   		  if(n<1.5) {
+      		   			  return "spring";
+      		   		  }
+      		   		 // System.out.println("Winterzxscccccccdfffffffffffffffffffc");
+      		   		 
+      		   		  return "winter";
+      		   	  }
+      				 
+				public void changed(ObservableValue<? extends Number> arg0, Number oldVal, Number newVal) {
+					season = toString(newVal.doubleValue());
+					//for(int j = 0; j<allPlants.size(); j++)
+						//tileBox.getChildren().remove(j);
+					//ivArr.clear();
+					tileBox.getChildren().removeAll(ivArr);
+					makeIm();
+				    
 
-    	  	iv.setPreserveRatio(true);
-    	  	iv.setFitHeight(100);
-	      
-	      	Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
-    	  	
-    	  	//iv.setOnMousePressed(control.getHandlerForClick());
-	    	iv.setOnMouseClicked(e -> control.click(e));//control.getHandlerForClick());  
-	      
-        	System.out.println(ivArr.add(iv));
-
-        	tileBox.getChildren().add(iv);
-        	
-            }
-    	   // tile.getChildren().add(iv1);
-      } 
-    // ivArr.add(ivHouse);
-    // ivArr.add(ivPool);
-    // ivArr.add(ivFence);
-    //ivArr.add(ivDriveWay);
-     
-    //  tileBox.getChildren().addAll(ivHouse, ivPool, ivFence, ivDriveWay);
-
+				} }
+		);
+    	     
       System.out.println("Grid Children: "+ grid.getChildren());
       
-	tileBox.getChildren().addAll(genIm);
+    //  tileBox.getChildren().addAll(ivArr);
+      tileBox.getChildren().addAll(genIm);
      
       System.out.println(tileBox.getChildren());
      
-     //tile.getChildren().addAll(imageView);
-     //tile.getChildren().add(iv0);
-       tile.getChildren().add(tileBox);
+     //  tile.getChildren().add(tileBox);
        
-      sc.setContent(tile);
+      sc.setContent(tileBox);
 	}
-   
-      
 	
+	
+	public void makeIm() {
+		
+		ImageView iv;
+		
+		  for( i=0; i< allPlants.size(); i++) {
+	    	  	
+			  	Image im = new Image("file:seasonImages/"+season+"Plants/"+allPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
+	  	  		iv = new ImageView(im);
+
+	    	  	iv.setPreserveRatio(true);
+	    	  	iv.setFitHeight(100);
+		      
+		      	Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
+	    	  	
+	    	  	//iv.setOnMousePressed(control.getHandlerForClick());
+		    	iv.setOnMouseClicked(e -> control.click(e));//control.getHandlerForClick());  
+		    	ivArr.add(i, iv);
+	   
+	            } 	
+		  tileBox.getChildren().addAll(ivArr);
+	}
+
 
 
 	/**
@@ -303,9 +362,6 @@ public class ViewPage4 extends View {
 	 */
 	public Scene getScene4() {
 		return scene4;
-	}
-
-	
+	}	
 }
-
 
