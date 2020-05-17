@@ -23,6 +23,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -71,7 +74,7 @@ public class View extends Application {
 		
 	Image back = new Image("file:images/bg2.png",sceneWidth, sceneHeight, false, false);
 		
-	BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+	BackgroundImage myBG;// = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 	// Image home = new Image("icons/home.png", 50, 50, false, false);
 	Button homeButton = new Button("Home");//, new ImageView(home));
@@ -81,7 +84,7 @@ public class View extends Application {
 	Controller control;
 		
 	Scene scene1;
-	BackgroundImage myBG;
+	
 		 
 	//grid shindig
 	//GridPane grid
@@ -104,7 +107,6 @@ public class View extends Application {
 
 	ImageView imageView;
 	ImageView imgVL;
-	Image im1; 
 	int i=0;
 	int l=0;
 		    
@@ -184,7 +186,8 @@ public class View extends Application {
 	 * 
 	 */
 	public void update() {
-		ratings = control.model.rateGarden(gridPlants);
+		
+		//ratings = control.model.rateGarden(gridPlants);
 		System.out.println(ratings.get(1));
 		
 	//	control = new Controller();
@@ -204,7 +207,7 @@ public class View extends Application {
 	}
 	 
 	Circle circ;
-	public void moveImageView() {
+	public void moveImageView(int scale) {
 				 
 		circ = new Circle(scale/2);
 		circ.setStroke(Color.BISQUE);
@@ -230,8 +233,9 @@ public class View extends Application {
 	
 	 public void removeImageView() {
 		 
-		 grid.getChildren().remove(circ);
-		 
+		 //grid.getChildren().remove(circ);
+		// grid.getChildren().get(i).setOpacity(0);
+		 circ.setOpacity(0);
 		// grid.getChildren().remove(i);
 		// if()
 	 }
@@ -265,10 +269,10 @@ public class View extends Application {
 	 	System.out.println("BLEH" + iv);
 	 }
 	 
-	/*public ArrayList<Integer> getRatings() {
+	public void getRatings() {
 		 
-		// return control.model.rateGarden(anchorPlants);
-	 }*/
+		 //return control.getRating();
+	 }
 	
 	 public boolean setI(ImageView imgview) {
 		
@@ -291,5 +295,5 @@ public class View extends Application {
 		 return imName;
 	 }
 
-
+	 
 }
