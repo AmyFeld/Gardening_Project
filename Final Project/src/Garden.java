@@ -109,16 +109,18 @@ import java.util.ArrayList;
 		for(int i = 1; i < 13; i++) {
 			months.add(i);
 		}
+		
 		for(Plant p : usedPlants) {
 			for(int i = p.start; i <= p.end; i++) {
-				if(months.size() == 0) {
-					return 5;
-				}else if(months.contains(i)) {
-					months.remove(i);
-				}
+				
+				/*}else if(months.contains(i)) {
+					//months.remove(i);
+				}*/
 			}
 		}
-		if(months.size() <= 2) {
+		if(months.size() == 0) {
+			return 5;
+		} else if(months.size() <= 2) {
 			return 4;
 		}else if(months.size() <= 4) {
 			return 3;
