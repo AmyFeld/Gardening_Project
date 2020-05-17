@@ -30,3 +30,27 @@ Black-Eyed Susans,herb,24,false,medium,yellow,6,10
 Golden Alexanders,herb,36,false,medium,yellow,4,6
 Moss Phlox,herb,6,false,medium,purple,3,5
 Stonecrop,herb,18,false,low,red,9,11
+Astro Arugula,herb,10,false,medium,white,8,11
+African Blue Basil,herb,24,false,high,purple,3,10
+Santo Cilantro,herb,18,false,high,white,3,5
+Fernleaf Dill,herb,22,false,medium,yellow,9,10
+Hidcote Lavender,herb,22,false,low,purple,7,8
+Munstead Lavender,herb,15,false,low,purple,7,8
+Lemongrass,herb,72,false,high,none,0,0
+Peppermint Mint,herb,18,false,high,none,0,0
+Arp Rosemary,herb,42,false,low,blue,4,6
+Flat Leaf Parsley,herb,12,false,medium,white,6,8
+Girards Pleasant White Azalea,shrub,24,false,medium,white,5,5
+Red Chokeberry,shrub,84,true,medium,red,4,4
+Scarlet Bottlebrush,shrub,132,true,low,red,4,8
+Vanhouttei Spirea,shrub,78,false,medium,white,4,5
+Western Sand Cherry,shrub,66,true,low,white,3,5
+Sweet Fern,shrub,42,false,medium,green,4,6
+Hummingbird Summersweet,shrub,54,true,medium,white,7,8
+Limelight Hydrangea,shrub,84,false,medium,green,7,10
+Oleander,shrub,72,true,low,pink,6,9
+Soft Caress Mahonia,shrub,36,true,medium,yellow,9,11
+Heritage Birch Tree,tree,600,true,medium,brown,5,6
+Hybrid Poplar,tree,540,true,high,red,5,6
+Howard McMinn Manzanita,tree,66,true,medium,pink,3,4
+Modesto Ash,tree,480,true,low,green,3,5
