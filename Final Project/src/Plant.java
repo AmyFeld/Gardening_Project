@@ -108,6 +108,12 @@ public class Plant implements Serializable{
 		temp = "file:plantImg/" + temp + ".jpg";
 		return temp; 
 	}
+	
+	public String getImgNameGard() {
+		String temp = this.name.replace(" ", "_");
+		temp =  temp + ".jpg";
+		return temp; 
+	}
 	/*
 	 * Description: getDesc uses a plant's name to return the contents of the appropriate description file
 	 * @param none
