@@ -1,25 +1,13 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -50,13 +38,13 @@ public class ViewPage5 extends View {
 	int cs4 = 3;
 	int cs5 = 4;
 	int cs6 = 5;
-	
+	int hboxInt = 20;
 	int STARH = 75;
 	int STARW = 75;
 	
 	VBox layout2 = new VBox();
+	Controller cont = new Controller(this);
 	
-	int hboxInt = 20;
 	Scene scene5;
 	
 	/**
@@ -76,9 +64,9 @@ public class ViewPage5 extends View {
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
-	  	Label buttonPressed = new Label("");
-		//Button back2g = new Button("Back to Garden");	  	
-	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
+	  	Label buttonPressed = new Label();
+		Button back2g = new Button("Back to Garden");	  	
+	  	layout1.getChildren().addAll(label1, homeButton, save, back2g);
 		
 	  	//Group root = new Group();
 	  	//root.getChildren().addAll(layout1);
@@ -95,11 +83,11 @@ public class ViewPage5 extends View {
   		save.setOnAction(event);
 	    
 	    	save.setOnAction(e -> { 
-		    String filepath = "";
+		    String filepath = "User.ser";
 	  		try {
 				FileOutputStream fileOut = new FileOutputStream(filepath);
 				ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-				objectOut.writeObject(controller.model);
+				objectOut.writeObject(cont.model);
 				objectOut.close();
 				System.out.println("Your garden has been saved!");
 				buttonPressed.setText("Saved");
@@ -133,12 +121,10 @@ public class ViewPage5 extends View {
 	/**
 	 * Description: sets all of the ratings based on the model calculated ratings
 	 * 
-	 * 
-	 * 
 	 */
 	public void setAllRatings() {
 		System.out.println(ratings);
-	        ratings = control.model.rateGarden(gridPlants);
+	        ratings = control.model.rateGarden(anchorPlants);
 	        System.out.println(ratings);
 	      
 		presentColor(ratings.get(cs1));
