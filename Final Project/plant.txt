@@ -54,3 +54,8 @@ Heritage Birch Tree,tree,600,true,medium,brown,5,6
 Hybrid Poplar,tree,540,true,high,red,5,6
 Howard McMinn Manzanita,tree,66,true,medium,pink,3,4
 Modesto Ash,tree,480,true,low,green,3,5
+Nanking Cherry,tree,98,true,medium,pink,3,4
+Newport Plum,tree,210,true,medium,pink,4,4
+Okame Cherry Tree,tree,275,false,medium,pink,3,4
+Paper Birch,tree,720,true,high,yellow,4,4
+Thundercloud Plum,tree,210,true,medium,pink,4,4
