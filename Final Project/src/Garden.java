@@ -249,12 +249,21 @@ import java.util.ArrayList;
 				return temp;
 			}
 		case "hasFruit":
-			for(Plant p : currentList) {
-				if(p.hasFruit == Boolean.parseBoolean(type.toLowerCase())) {
-					temp.add(p);
+			if(type.equals("True")) {
+				for(Plant p : currentList) {
+					if(p.hasFruit) {
+						temp.add(p);
+					}
 				}
+				return temp;
+			}else {
+				for(Plant p : currentList) {
+					if(!p.hasFruit) {
+						temp.add(p);
+					}
+				}
+				return temp;
 			}
-			return temp;
 		case "waterUse":
 			for(Plant p : currentList) {
 				if(p.waterUse.equals(type)) {
