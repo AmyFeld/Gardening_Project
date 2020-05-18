@@ -314,7 +314,7 @@ public class ViewPage4 extends View {
 		
 		  for( i=0; i< myPlants.size(); i++) {
 	    	  	
-			  	Image im = new Image("file:seasonImages/"+season+"Plants/"+myPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
+			  	Image im = new Image(Image im = new Image(myPlants.get(i).getImgName(season), plaWidth, plaHeight, false, false);
 	  	  		iv = new ImageView(im);
 
 	    	  	iv.setPreserveRatio(true);
