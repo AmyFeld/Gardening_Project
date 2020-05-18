@@ -145,14 +145,12 @@ public class View extends Application {
 	 */
 	@Override
 	public void start(Stage theStage) throws Exception {
-	//	Image back = new Image("file:images/bg.png");
-	//	ImageView bg = new ImageView(back);
-		
-	//	Group root = new Group();
-	//	root.getChildren().add(bg);
-			
+		File file = new File("harp.mp3");
+		Media media = new Media((file).toURI().toString());
+		AudioClip mediaplayer = new AudioClip(media.getSource());
+		mediaplayer.play();
+		System.out.println("music");
 		theStage.setTitle("Create a Garden");
-		
 		theStage.setScene(new ViewPage1(theStage).getScene1()); 
 		theStage.show(); 		
 	}
