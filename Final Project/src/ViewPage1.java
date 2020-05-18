@@ -42,6 +42,10 @@ public class ViewPage1 extends View {
 		
 		VBox layout2 = new VBox(boxSize);
 		
+		back = new Image("file:images/bg.png", sceneWidth, sceneHeight, false, false);
+		myBG  = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
 		
 		HBox layout1 = new HBox(boxSize); 
 		Text label1 = new Text("Create Your Own Garden");
