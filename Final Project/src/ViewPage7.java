@@ -1,5 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,9 +42,9 @@ public class ViewPage7 extends View {
 	 */
 	public ViewPage7(Stage theStage) {		
 		
-	    VBox layout = new VBox(boxSize);     
+		VBox layout = new VBox(boxSize);     
 	    Text label1 = new Text("Resources");
-	    label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
@@ -68,24 +70,26 @@ public class ViewPage7 extends View {
 
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
 
-	    Tab where = new Tab();
-	    where.setText("Where to Buy");
-	    where.setContent(whereText);
+	  	Tab where = new Tab();
+	  	where.setText("Where to Buy");
+	  	where.setContent(whereText);
 	
 	  	
-	    Tab faq = new Tab();
-	    faq.setText("FAQ");
-	    faq.setContent(faqText);
+	  	Tab faq = new Tab();
+	  	faq.setText("FAQ");
+	  	faq.setContent(faqText);
 
-	    TabPane tabPane = new TabPane();
-	    tabPane.getTabs().addAll(where, faq);
+		TabPane tabPane = new TabPane();
+		tabPane.getTabs().addAll(where, faq);
 		
-	    layout.getChildren().addAll(label1, tabPane, homeButton); 
-	    layout.setBackground(new Background(myBG));
-	    scene7 = new Scene(layout, sceneWidth, sceneHeight); 
+	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
+	  	layout.setBackground(new Background(myBG));
+	  	scene7 = new Scene(layout, sceneWidth, sceneHeight); 
+	  	scene7.setCursor(new ImageCursor(mouse));
+
 	  	
-	    theStage.setScene(scene7); 
-	    theStage.show(); 	
+	   	 theStage.setScene(scene7); 
+	   	 theStage.show(); 	
 
 	}	
 	
