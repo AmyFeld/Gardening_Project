@@ -1,7 +1,9 @@
+package src;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.Collection;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * This class is meant to handle the types of plants and handle plant sorting/filtering
@@ -14,13 +16,14 @@ public class Plant implements Serializable{
 	String name;
 	String type;
 	int height;
-	boolean hasFruit;
+	String hasFruit;
 	String waterUse;
 	String color;
 	int start;
 	int end;
 	
-	public Plant(String name, String type, int height, boolean hadFruit, String waterUse, String color, int start, int end){
+
+	public Plant(String name, String type, int height, String hadFruit, String waterUse, String color, int start, int end){
 		this.name = name;
 		this.type = type;
 		this.height = height;
@@ -42,60 +45,6 @@ public class Plant implements Serializable{
 	public String getName() {
 		return name;
 	}
-	
-	/*
-	 * Description: sortByType takes in nothing and returns nothing but is meant to be used on an array of plants
-	 * to sort it in order of type tree, shrub, herb
-	 * @param none
-	 * @return. nothing
-	 * @throws nothing
-	 */
-	public void sortByType() {	
-	
-	}
-	
-	/*
-	 * Description: sortByFruition takes in nothing and returns nothing but is meant to be used on an array of plants
-	 * to sort it in order of hasFruit is true to hasFruit is false
-	 * @param none
-	 * @return. nothing
-	 * @throws nothing
-	 */
-	public void sortByFruition() {
-	
-	}
-	
-	/*
-	 * Description: sortByWaterUse takes in nothing and returns nothing but is meant to be used on an array of plants
-	 * to sort it in order of low wateruse, medium wateruse and high wateruse
-	 * @param none
-	 * @return. nothing
-	 * @throws nothing
-	 */
-	public void sortByWaterUse() {
-		
-	}
-	
-	/*
-	 * Description: sortByColor takes in nothing and returns nothing but is meant to be used on an array of plants
-	 * to sort it in order of the rainbow
-	 * @param none
-	 * @return. nothing
-	 * @throws nothing
-	 */
-	public void sortByColor() {
-		
-	}
-	
-	/*
-	 * Input: a plant collection and String 
-	 * Output: none
-	 * Function: filters based on the string 
-	 */
-	public void filter(Collection<Plant> pList, String filterOption) {
-		
-	}
-	
 	/*
 	 * Description: getImgName uses a plant's name to return the name of the img file that has the plant
 	 * @param none
@@ -103,15 +52,18 @@ public class Plant implements Serializable{
 	 * @throws nothing
 	 */
 	
-	public String getImgName() {
+	public String getImgName(String whichOne) {
 		String temp = this.name.replace(" ", "_");
-		temp = "file:plantImg/" + temp + ".jpg";
-		return temp; 
-	}
-	
-	public String getImgNameGard() {
-		String temp = this.name.replace(" ", "_");
-		temp =  temp + ".jpg";
+		switch(whichOne) {
+		case "original":
+			temp = "file:plantImg/" + temp + ".jpg";
+		case "spring":
+			temp = "file:seasonImages/springPlants/" + temp + ".jpg";
+		case "fall":
+			temp = "file:seasonImages/fallPlants/" + temp + ".jpg";
+		case "winter":
+			temp = "file:seasonImages/winterPlants/" + temp + ".jpg";
+		}
 		return temp; 
 	}
 	/*
@@ -141,7 +93,7 @@ public class Plant implements Serializable{
 	public String greeneryHover() {
 		String s = "";
 		String name = this.name.replace(" ", "_");
-		
+		System.out.println(name);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("plantDesc/" + name+".txt"));
 			   String line = null;
@@ -171,9 +123,7 @@ public class Plant implements Serializable{
 			return 100;
 		case("tree"):
 			return 150;
-		default:
-			return 0;
 		}
+		return 100;
 	}
-	
 }
