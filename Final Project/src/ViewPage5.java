@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +27,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the
@@ -62,7 +62,6 @@ public class ViewPage5 extends View {
 	
 	int hboxInt = 20;
 	Scene scene5;
-	Stage theStage;
 	
 	/**
 	 * For the user to get results of their garden rating this class will consume numbers to show based on stars and also be able to share further
@@ -73,23 +72,16 @@ public class ViewPage5 extends View {
 	 */
 	public ViewPage5(Stage theStage) {
 			
-		this.theStage = theStage;	
+				
   		theStage.setTitle("Rate My Garden");
 
   		HBox layout1 = new HBox(hboxInt);     
 	        Label label1 = new Label("Rate My Garden");
-	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
-	  	//Button faq = new Button("Frequently Asked Questions");
-	  	Label buttonPressed = new Label("");
-		//Button back2g = new Button("Back to Garden");	  	
+	  	Label buttonPressed = new Label(""); 	
 	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
 		
-	  	//Group root = new Group();
-	  	//root.getChildren().addAll(layout1);
-	  			 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	        homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    
   
   		save.setOnAction(e -> { 
@@ -113,11 +105,13 @@ public class ViewPage5 extends View {
   		
 	    
   		layout2.getChildren().add(layout1);
-  		//start(theStage);
+  		start(theStage);
   
   		layout2.setBackground(new Background(myBG));
 	
 		scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
+	  	scene5.setCursor(new ImageCursor(mouse));
+
   		theStage.setScene(scene5); 
 	   	theStage.show();
 	
@@ -140,19 +134,17 @@ public class ViewPage5 extends View {
 	 * 
 	 * 
 	 */
-	public void setAllRatings(ArrayList<Integer> ratings) {
+	public void setAllRatings() {
 		System.out.println(ratings);
 	    //ratings = getRatings();
 	     //   System.out.println(ratings);
 	      
-		presentColor(ratings.get(cs1));
-		System.out.println(ratings.get(cs1));
+		/*presentColor(ratings.get(cs1));
 		presentContBloom(ratings.get(cs2));
 		presentAnimalsFedRating(ratings.get(cs3));
 		presentCompatibilityRating(ratings.get(cs4));
 		presentTransitionRating(ratings.get(cs5));
-		presentOverallRating(ratings.get(cs6));
-		start(theStage);
+		presentOverallRating(ratings.get(cs6));*/
 	}
 	
 	/**
@@ -220,8 +212,7 @@ public class ViewPage5 extends View {
  	 * @return none
  	 */
 	 public void start(Stage theStage){
-		//setAllRatings(ratings);
-		 System.out.println("Hi");
+		setAllRatings();
 	  	Image image = new Image("file:images/starD.png", STARH, STARW, true, true);
 	  	//ImageView imageView = new ImageView(image);
 	  	Label coll = new Label("Color Rating");
@@ -239,7 +230,7 @@ public class ViewPage5 extends View {
 	  	HBox over = new HBox();
 		  
 		for(int i = 0; i<colorStars; i++) {
-			System.out.print("*");		
+			System.out.print("*");
 		  	ImageView imageViewC = new ImageView(image);
 		  	col.getChildren().add(imageViewC);
 		}
