@@ -1,3 +1,4 @@
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -218,12 +219,9 @@ public class ViewPage4 extends View {
 	    border.setTop(layout1);
 	//	page4Plants = myPlant;
 			
-	    scene4 = new Scene(border, sceneWidth, sceneHeight); // the
+	    scene4 = new Scene(border, sceneWidth, sceneHeight); 
+	  	scene4.setCursor(new ImageCursor(mouse));
 
-		 //tile.setFill(Color.LIGHTGREEN); 
-	  	//tile.setBackground(new Background(new BackgroundFill(Color.web("#" + FFFFFF), CornerRadii.EMPTY, Insets.EMPTY)));
-		
-		  
 	    theStage.setScene(scene4); 
 	    theStage.show(); 	
 

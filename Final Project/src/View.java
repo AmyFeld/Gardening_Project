@@ -1,16 +1,11 @@
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -18,16 +13,14 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -73,6 +66,8 @@ public class View extends Application {
 	Button nextButton;
 		
 	Image back = new Image("file:images/bg2.png",sceneWidth, sceneHeight, false, false);
+	Image mouse = new Image("file:images/leaf.png");
+
 		
 	BackgroundImage myBG;// = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
@@ -90,7 +85,7 @@ public class View extends Application {
 	//GridPane grid
 	TilePane tile;
 	 
-	AnchorPane grid;
+	AnchorPane anchor;
 	//		private BorderPane border;
 	//private TilePane tile;
 			
@@ -145,10 +140,12 @@ public class View extends Application {
 	 */
 	@Override
 	public void start(Stage theStage) throws Exception {
+		
 		File file = new File("harp.mp3");
 		Media media = new Media((file).toURI().toString());
 		AudioClip mediaplayer = new AudioClip(media.getSource());
 		mediaplayer.play();
+		
 		System.out.println("music");
 		theStage.setTitle("Create a Garden");
 		theStage.setScene(new ViewPage1(theStage).getScene1()); 
@@ -196,7 +193,6 @@ public class View extends Application {
 		myPlants.set(i, p);
 		i++;
 	}
-
 	public ArrayList<Plant> getMyPlants() {
 		return myPlants;
 	}*/
@@ -225,7 +221,7 @@ public class View extends Application {
 	 
 	 //	newImageView();
 	 	
-		grid.getChildren().add(circ);
+		anchor.getChildren().add(circ);
 		 
 	   } 
 	
@@ -247,7 +243,7 @@ public class View extends Application {
 		// ImageView imv = (ivArr.get(i));
 		rect.setOnMouseDragged(control.getHandlerForDrag());
 		rect.setOnMouseReleased(control.getHandlerForRelease());
-		grid.getChildren().add(rect);
+		anchor.getChildren().add(rect);
 	 }
 	
 	 public void newImageView() {
