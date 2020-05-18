@@ -1,3 +1,5 @@
+package src;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Serializable;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 			while ((line = reader.readLine()) != null) {
 				String[] plantInfo = line.split(",");
 				temp.add(new Plant(plantInfo[0], plantInfo[1], Integer.parseInt(plantInfo[2]),
-						Boolean.parseBoolean(plantInfo[3]), plantInfo[4], plantInfo[5], Integer.parseInt(plantInfo[6]), 
+						plantInfo[3], plantInfo[4], plantInfo[5], Integer.parseInt(plantInfo[6]), 
 						Integer.parseInt(plantInfo[7])));
 
 				}
@@ -109,18 +111,16 @@ import java.util.ArrayList;
 		for(int i = 1; i < 13; i++) {
 			months.add(i);
 		}
-		
 		for(Plant p : usedPlants) {
 			for(int i = p.start; i <= p.end; i++) {
-				
-				/*}else if(months.contains(i)) {
-					//months.remove(i);
-				}*/
+				if(months.size() == 0) {
+					return 5;
+				}else if(months.contains(i)) {
+					months.remove(i);
+				}
 			}
 		}
-		if(months.size() == 0) {
-			return 5;
-		} else if(months.size() <= 2) {
+		if(months.size() <= 2) {
 			return 4;
 		}else if(months.size() <= 4) {
 			return 3;
@@ -251,21 +251,12 @@ import java.util.ArrayList;
 				return temp;
 			}
 		case "hasFruit":
-			if(type.equals("True")) {
-				for(Plant p : currentList) {
-					if(p.hasFruit) {
-						temp.add(p);
-					}
+			for(Plant p : currentList) {
+				if(p.hasFruit.equals(type.toLowerCase())) {
+					temp.add(p);
 				}
-				return temp;
-			}else {
-				for(Plant p : currentList) {
-					if(!p.hasFruit) {
-						temp.add(p);
-					}
-				}
-				return temp;
 			}
+				return temp;
 		case "waterUse":
 			for(Plant p : currentList) {
 				if(p.waterUse.equals(type)) {
