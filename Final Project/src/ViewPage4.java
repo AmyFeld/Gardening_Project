@@ -60,15 +60,13 @@ import javafx.scene.layout.VBox;
 public class ViewPage4 extends View {
 	Scene scene4;
 	private BorderPane border;
-	ViewPage5 vp5;
 	
 	//ArrayList<ImageView> season = new ArrayList<ImageView>();
 	String season = "spring";
 	Slider sl = new Slider(0,3,0);
-	Model m = new Model();
 	ArrayList<Plant> myPlants = new ArrayList<Plant>();
 
-	   
+	
 	//ArrayList<Plant> page4Plants = new ArrayList<Plant>();
   
 	/**
@@ -81,15 +79,15 @@ public class ViewPage4 extends View {
 	 */
 
 	public ViewPage4(Stage theStage) {
-		vp5 = new ViewPage5(theStage);		
+				
 		  // home button if fired
 		HBox layout1 = new HBox(boxSize);     
 		Label label1 = new Label("Edit Your Garden");
 		Button rate = new Button("Rate My Garden");
 	  	Button back = new Button("Plant Nursery");
 	    // set tile pane height/?
-	    tile = new TilePane(Orientation.VERTICAL);
-		grid = new AnchorPane();
+	    	tile = new TilePane(Orientation.VERTICAL);
+		anchor = new AnchorPane();
 		border = new BorderPane();
 		
 	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
@@ -139,7 +137,42 @@ public class ViewPage4 extends View {
 			}
 			
 			
-		
+		/*	public void setImages(String s) {
+				switch(s) {
+				case "Fall":
+					for(int i = 0; i< allPlants.size(); i++) {
+						String name = allPlants.get(i).getName();
+						ImageView iv = new ImageView("file:/seasonImages/fallPlants"+ name);
+						season.add(iv);
+						//iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+					}
+					System.out.println("Fall");
+					break;
+				case "Spring": 
+					for(int i = 0; i< allPlants.size(); i++) {
+						String name = allPlants.get(i).getName();
+						ImageView iv = new ImageView("file:/seasonImages/springPlants"+ name);
+						season.add(iv);
+						//iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+					}
+					System.out.println("Spring");
+					break;
+				case "Winter":
+					for(int i = 0; i< allPlants.size(); i++) {
+						String name = allPlants.get(i).getName();
+						ImageView iv = new ImageView("file:/seasonImages/winterPlants"+ name);
+						season.add(iv);
+						//iv = new ImageView(new Image(allPlants.get(i).getImgName(), plaWidth, plaHeight, false, false));
+					}
+					System.out.println("Winterzxscccccccdfffffffffffffffffffc");
+					break;
+				}
+				 
+				 * create function in plants that goes in for loop with switch cases and 
+				 * will set all plant images based the file so set file settings aka file \plantImg\winter\... 
+				 */
+				//control.model.allPlants.
+			//}
 	      });
 	      	
 	      
@@ -158,35 +191,26 @@ public class ViewPage4 extends View {
 	    		
 	    		  Label l = new Label();
 	    		  l.setText(userlabel.getText());
-	    		  grid.getChildren().add(l);
+	    		  anchor.getChildren().add(l);
 	    		  l.setOnMouseDragged(control.getHandlerForDrag());
 	    		  l.setOnMouseReleased(control.getHandlerForRelease());
 	    	  }
 	      };
 	      
-	      
-	      Alert explain = new Alert(AlertType.INFORMATION);
-		    explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location. To Remove, drag the image to the trashcan. To add labels, type up what you want to add and drag to the location you would like.");
-		    Button tut = new Button(); 
-		    tut.setText("Tutorial");
-		    tut.setOnAction(e -> explain.show() );
-		    
 	      userlabel.setOnAction(event);	
               VBox right = new VBox(50);
-	      right.getChildren().addAll(tut, sl, userlabel, imtrash);
+	      right.getChildren().addAll(sl, userlabel, imtrash);
 	  	//scene4 = new Scene(layout1, 900, 600); // the button and label
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	    rate.setOnAction(e-> { m.updateGarden(); theStage.setScene(vp5.getScene5());vp5.setAllRatings(ratings);
-	    
-	    });
+	    rate.setOnAction(e-> theStage.setScene(new ViewPage5(theStage).getScene5()));
 	    back.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));
 	    
 	    //How To    
-	    
-	    
-		ImageView iv;
+	    Alert explain = new Alert(AlertType.INFORMATION);
+	    explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location. To Remove, drag the image to the trashcan. To add labels, type up what you want to add and drag to the location you would like.");
+	    explain.show();
 		
 	    start(theStage);
 	    layout1.setAlignment(Pos.TOP_CENTER);
@@ -214,7 +238,7 @@ public class ViewPage4 extends View {
 	 *
 	 */
 	public void start(Stage stage) {
-		
+		ImageView iv;
 	//Generic Yard Images
 		Image backup_house = new Image("file:images/backup_house.png", 100, 100, false, false);
 		ImageView ivHouse = new ImageView(backup_house);
@@ -242,11 +266,11 @@ public class ViewPage4 extends View {
 	  	}
 		
 
-    	BackgroundImage bg = new BackgroundImage(new Image("file:images/grid.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+    	BackgroundImage bg = new BackgroundImage(new Image("file:images/anchor.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-    	grid.setBackground(new Background(bg));
+    	anchor.setBackground(new Background(bg));
 		
-	 	grid.setStyle("-fx-background-color: #05F861;");
+	 	anchor.setStyle("-fx-background-color: #05F861;");
 		
 	//Creating Basic Tile Params
 	 // tile.setTileAlignment(Pos.CENTER_LEFT);
@@ -256,7 +280,7 @@ public class ViewPage4 extends View {
       
       //create scroll pane :)
       
-     //setting the grid and tile to places 
+     //setting the anchor and tile to places 
       
       ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(tileBox.getHeight());
@@ -264,10 +288,10 @@ public class ViewPage4 extends View {
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
      // sc.autosize();
       
-      	grid.setPrefHeight(600);
+      	anchor.setPrefHeight(600);
     	
       	border.setLeft(sc);
-      	border.setCenter(grid);
+      	border.setCenter(anchor);
       	makeIm();
     	sl.valueProperty().addListener(
       		new ChangeListener<Number>() {
@@ -277,9 +301,7 @@ public class ViewPage4 extends View {
       		   		  }
       		   		  if(n<1.5) {
       		   			  return "spring";
-      		   		  }
-      		   		 // System.out.println("Winterzxscccccccdfffffffffffffffffffc");
-      		   		 
+      		   		  }      		   		 
       		   		  return "winter";
       		   	  }
       				 
@@ -295,7 +317,7 @@ public class ViewPage4 extends View {
 				} }
 		);
     	     
-      System.out.println("Grid Children: "+ grid.getChildren());
+      System.out.println("anchor Children: "+ anchor.getChildren());
       
     //  tileBox.getChildren().addAll(ivArr);
       tileBox.getChildren().addAll(genIm);
@@ -314,25 +336,23 @@ public class ViewPage4 extends View {
 		
 		  for( i=0; i< myPlants.size(); i++) {
 	    	  	
-			  	Image im = new Image("file:seasonImages/"+season+"Plants/"+myPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
+			  	Image im = new Image("file:seasonImages/"+season+"Plants/" + myPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
 	  	  		iv = new ImageView(im);
 
 	    	  	iv.setPreserveRatio(true);
 	    	  	iv.setFitHeight(100);
+		      
+		      	Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
 	    	  	
-		      //	Tooltip.install(iv, new Tooltip(control.model.myPlants.get(i).greeneryHover()));
-	//    	  	iv.onMousePressedProperty().bind(e -> control.click(e));
-//	    	  	iv.eventDispatcherProperty().bind(control.getHandlerForClick());
 	    	  	//iv.setOnMousePressed(control.getHandlerForClick());
 		    	iv.setOnMouseClicked(e -> control.click(e));//control.getHandlerForClick());  
-		    	
 		    	ivArr.add(i, iv);
 	   
 	            } 	
 		  tileBox.getChildren().addAll(ivArr);
 	}
 
-	
+
 	public void setMyPlants(ArrayList<Plant> alst) {
 		myPlants = alst;
 		makeIm();
@@ -349,4 +369,3 @@ public class ViewPage4 extends View {
 		return scene4;
 	}	
 }
-
