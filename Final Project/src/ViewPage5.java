@@ -76,18 +76,11 @@ public class ViewPage5 extends View {
 
   		HBox layout1 = new HBox(hboxInt);     
 	        Label label1 = new Label("Rate My Garden");
-	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
-	  	//Button faq = new Button("Frequently Asked Questions");
-	  	Label buttonPressed = new Label("");
-		//Button back2g = new Button("Back to Garden");	  	
+	  	Label buttonPressed = new Label(""); 	
 	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
 		
-	  	//Group root = new Group();
-	  	//root.getChildren().addAll(layout1);
-	  			 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+	        homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
 	    
   
   		save.setOnAction(e -> { 
