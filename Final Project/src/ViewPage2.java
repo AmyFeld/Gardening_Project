@@ -68,7 +68,7 @@ public class ViewPage2 extends View {
 	int dboxSize = 35;
 	int dPrefWidth = 100;
 	
-	String color = "Color";
+	String colorName = "Color";
 	String type = "Type";
 	String ht = "Height";
 	String fruit = "Fruit";
@@ -267,15 +267,13 @@ public class ViewPage2 extends View {
 		
 		ComboBox<String> colorBox = new ComboBox<>();
 		colorBox.getItems().addAll("white", "red", "pink", "orange", "yellow", "green", "blue", "purple", "none");
-		colorBox.setValue(color);
+		colorBox.setValue("Color");
 		colorBox.setPrefWidth(dPrefWidth);
 
 		colorBox.setOnAction((event) -> {
 		   String colorPick = colorBox.getSelectionModel().getSelectedItem(); 
-		   this.filteredPlants = g.Filter(color, colorPick, this.filteredPlants);
+		   this.filteredPlants = g.Filter("color", colorPick, this.filteredPlants);
 		   
-		   color = colorBox.getValue().toString();
-
 		       dropBox.getChildren().clear();
 		       dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
 		       
@@ -287,16 +285,14 @@ public class ViewPage2 extends View {
 
 		ComboBox<String> typeBox = new ComboBox<>();
 		typeBox.getItems().addAll("herb", "shrub", "tree");
-		typeBox.setValue(type);
+		typeBox.setValue("Type");
 		typeBox.setPrefWidth(dPrefWidth);
 		typeBox.setOnAction((event) -> {
 
 		String typePick = typeBox.getSelectionModel().getSelectedItem();
 		
-		this.filteredPlants = g.Filter(type, typePick, this.filteredPlants);
-		
-		type = typeBox.getValue().toString();
-		       
+		this.filteredPlants = g.Filter("type", typePick, this.filteredPlants);
+				       
 		        dropBox.getChildren().clear();
 		        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
 		       
@@ -315,7 +311,6 @@ public class ViewPage2 extends View {
 		htBox.setOnAction((event) -> {
 
 			String htPick = htBox.getSelectionModel().getSelectedItem();
-			ht = htBox.getValue().toString();
 
 			switch(htPick) {
 			case("0-10"):
@@ -341,7 +336,7 @@ public class ViewPage2 extends View {
         }); 
 
 		ComboBox<String> fruitBox = new ComboBox<>();
-		fruitBox.getItems().addAll("true", "false");
+		fruitBox.getItems().addAll("True", "False");
 		fruitBox.setValue(fruit);
 		fruitBox.setPrefWidth(dPrefWidth);
 		fruitBox.setOnAction((event) -> {
@@ -349,18 +344,16 @@ public class ViewPage2 extends View {
 			String fruitPick = fruitBox.getSelectionModel().getSelectedItem();
 			
 			this.filteredPlants = g.Filter("hasFruit", fruitPick, this.filteredPlants);
-			fruit = fruitBox.getValue().toString();
 
-			       
 			        dropBox.getChildren().clear();
 			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
 			       
 			        mainTab.setContent(dropBox);
 			       
-			        for (Plant p: this.filteredPlants)
-			        System.out.print(p.getName() + ", ");
+			      /*  for (Plant p: this.filteredPlants)
+			        System.out.print(p.hasFruit == true);*/
 			       
-			        });
+			        });  
 		
 		
 		ComboBox<String> waterBox = new ComboBox<>();	
@@ -372,8 +365,6 @@ public class ViewPage2 extends View {
 			String waterPick = waterBox.getSelectionModel().getSelectedItem();
 			
 			this.filteredPlants = g.Filter("waterUse", waterPick, this.filteredPlants);
-
-			water = waterBox.getValue().toString();
 
 			        dropBox.getChildren().clear();
 			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
@@ -393,8 +384,6 @@ public class ViewPage2 extends View {
 		monthBox.setOnAction((event) -> {
 
 			String monthPick = monthBox.getSelectionModel().getSelectedItem();
-			month = monthBox.getValue().toString();
-
 			
 			switch(monthPick) {
 			case "January":
@@ -444,11 +433,10 @@ public class ViewPage2 extends View {
 	        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
 	       
 	        mainTab.setContent(dropBox);
-	       
-			        });
+	        });
 		
 
-		v.getChildren().addAll(colorBox, typeBox, htBox, fruitBox, waterBox, monthBox, reset);
+		v.getChildren().addAll(colorBox, typeBox,  waterBox, fruitBox, htBox, monthBox, reset);
 		
 		return v;
 	}
