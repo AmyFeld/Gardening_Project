@@ -64,6 +64,8 @@ public class ViewPage4 extends View {
 	//ArrayList<ImageView> season = new ArrayList<ImageView>();
 	String season = "spring";
 	Slider sl = new Slider(0,3,0);
+	ArrayList<Plant> myPlants = new ArrayList<Plant>();
+
 	
 	//ArrayList<Plant> page4Plants = new ArrayList<Plant>();
   
@@ -85,7 +87,7 @@ public class ViewPage4 extends View {
 	  	Button back = new Button("Plant Nursery");
 	    // set tile pane height/?
 	    	tile = new TilePane(Orientation.VERTICAL);
-		grid = new AnchorPane();
+		anchor = new AnchorPane();
 		border = new BorderPane();
 		
 	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
@@ -189,7 +191,7 @@ public class ViewPage4 extends View {
 	    		
 	    		  Label l = new Label();
 	    		  l.setText(userlabel.getText());
-	    		  grid.getChildren().add(l);
+	    		  anchor.getChildren().add(l);
 	    		  l.setOnMouseDragged(control.getHandlerForDrag());
 	    		  l.setOnMouseReleased(control.getHandlerForRelease());
 	    	  }
@@ -264,11 +266,11 @@ public class ViewPage4 extends View {
 	  	}
 		
 
-    	BackgroundImage bg = new BackgroundImage(new Image("file:images/grid.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+    	BackgroundImage bg = new BackgroundImage(new Image("file:images/anchor.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-    	grid.setBackground(new Background(bg));
+    	anchor.setBackground(new Background(bg));
 		
-	 	grid.setStyle("-fx-background-color: #05F861;");
+	 	anchor.setStyle("-fx-background-color: #05F861;");
 		
 	//Creating Basic Tile Params
 	 // tile.setTileAlignment(Pos.CENTER_LEFT);
@@ -278,7 +280,7 @@ public class ViewPage4 extends View {
       
       //create scroll pane :)
       
-     //setting the grid and tile to places 
+     //setting the anchor and tile to places 
       
       ScrollPane sc = new ScrollPane(tile);
       sc.setPrefViewportHeight(tileBox.getHeight());
@@ -286,10 +288,10 @@ public class ViewPage4 extends View {
       sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
      // sc.autosize();
       
-      	grid.setPrefHeight(600);
+      	anchor.setPrefHeight(600);
     	
       	border.setLeft(sc);
-      	border.setCenter(grid);
+      	border.setCenter(anchor);
       	makeIm();
     	sl.valueProperty().addListener(
       		new ChangeListener<Number>() {
@@ -299,9 +301,7 @@ public class ViewPage4 extends View {
       		   		  }
       		   		  if(n<1.5) {
       		   			  return "spring";
-      		   		  }
-      		   		 // System.out.println("Winterzxscccccccdfffffffffffffffffffc");
-      		   		 
+      		   		  }      		   		 
       		   		  return "winter";
       		   	  }
       				 
@@ -317,7 +317,7 @@ public class ViewPage4 extends View {
 				} }
 		);
     	     
-      System.out.println("Grid Children: "+ grid.getChildren());
+      System.out.println("anchor Children: "+ anchor.getChildren());
       
     //  tileBox.getChildren().addAll(ivArr);
       tileBox.getChildren().addAll(genIm);
@@ -334,9 +334,9 @@ public class ViewPage4 extends View {
 		
 		ImageView iv;
 		
-		  for( i=0; i< allPlants.size(); i++) {
+		  for( i=0; i< myPlants.size(); i++) {
 	    	  	
-			  	Image im = new Image("file:seasonImages/"+season+"Plants/"+allPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
+			  	Image im = new Image("file:seasonImages/"+season+"Plants/"+myPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
 	  	  		iv = new ImageView(im);
 
 	    	  	iv.setPreserveRatio(true);
@@ -353,6 +353,11 @@ public class ViewPage4 extends View {
 	}
 
 
+	public void setMyPlants(ArrayList<Plant> alst) {
+		myPlants = alst;
+		makeIm();
+	}
+
 
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
@@ -364,4 +369,3 @@ public class ViewPage4 extends View {
 		return scene4;
 	}	
 }
-
