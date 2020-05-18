@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
@@ -15,6 +17,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,11 +29,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Alert;
-
 
  /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
@@ -54,7 +57,7 @@ public class ViewPage2 extends View {
 	int flowWrap = sceneWidth - 150;
 	int flowPrefH = sceneHeight + 200;
 	
-	int scrollPrefH = sceneHeight + 100;
+	int scrollPrefH = sceneHeight + 600;
 	int addButtonX = 400;
 	
 	int nameX = 250;
@@ -76,6 +79,8 @@ public class ViewPage2 extends View {
 	Button addButton =  new Button("Add to Garden");
 	Text title = new Text("Greenery Tour");
 	
+	Image back = new Image("file:images/bg2.png",sceneWidth+1000, sceneHeight+1200, false, false);
+	
 	ArrayList<Plant> filteredPlants = g.allPlants;
 
 	VBox vb = new VBox(boxSize); // assembles the title, tabs, and button 
@@ -86,7 +91,6 @@ public class ViewPage2 extends View {
     TabPane tabPane = new TabPane();
     Tab mainTab = new Tab(); 
     Model m = new Model();
-    ArrayList<Plant> views = new ArrayList<>();
     
 	ScrollPane sc = new ScrollPane(vb);
 	ViewPage4 vp4; 
@@ -101,8 +105,10 @@ public class ViewPage2 extends View {
 	public ViewPage2(Stage theStage) {
 		
 		vp4 = new ViewPage4(theStage);
-
-	//	model.setGarden(g1);
+		
+		myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
 		setPlantNursery();
 		
 		Alert explain = new Alert(AlertType.INFORMATION);
@@ -156,15 +162,6 @@ public class ViewPage2 extends View {
 		scene2.setCursor(new ImageCursor(mouse));
 
 	}
-	
-/*	public void setPlants(Plant p) {
-		p0.add(p);
-		
-	}
-	
-	public ArrayList<Plant> getPlants() {
-		return p0;
-	} */
 	
 	/**
 	 * Description: Creates tabs for all the plants linked with button
@@ -244,14 +241,11 @@ public class ViewPage2 extends View {
 		
 		addButton.setOnAction(new EventHandler<ActionEvent>() { 
 			   public void handle(ActionEvent event) { 
-				//   p0.add(p);
 				 m.update(p);
 
 				   } 
 				});
 		  
-		  // g1.setMyPlants(p0);
-
 		pInfo.getChildren().addAll(name, planImg, addButton, desc);
 		
 		t.setContent(pInfo); // adds all plant info to tab
