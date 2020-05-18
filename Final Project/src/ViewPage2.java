@@ -25,6 +25,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
+
+
  /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
  * information page when a plant is selected and includes a slider to show back and forth between times
@@ -100,6 +104,10 @@ public class ViewPage2 extends View {
 
 	//	model.setGarden(g1);
 		setPlantNursery();
+		
+		Alert explain = new Alert(AlertType.INFORMATION);
+		explain.setContentText("Welcome to the Plant Nursery! Click on a plant you would like to view and go into the tab to add to garden! To filter plants based on different requirements, view the filters to the right. When ready, click go to garden.");
+		explain.show();
 		
 		garButton.setTranslateX(addButtonX); 
 		homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
