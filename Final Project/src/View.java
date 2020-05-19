@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +32,8 @@ import javafx.stage.Stage;
  *
  */
 public class View extends Application {
-	
+	// added things
+	TextField userlabel;
   	 
 	// value of the height and width of screen
 	//int canvasWidth = 1380;
@@ -103,7 +105,9 @@ public class View extends Application {
 	ImageView imageView;
 	ImageView imgVL;
 	int i=0;
-	int l=0;
+	//new magic numbers
+	int home=0; 
+	int strokeWid = 2;
 		    
 	ImageView ivg;
 		 
@@ -191,14 +195,7 @@ public class View extends Application {
 	//	control = new Controller();
 	} 
 	
-	/*public void updateMyPlants(Plant p) {
-		myPlants.add(p);
-		myPlants.set(i, p);
-		i++;
-	}
-	public ArrayList<Plant> getMyPlants() {
-		return myPlants;
-	}*/
+
 	public void setImageView(ImageView iv) {
 		imageView = iv;
 	}
@@ -266,10 +263,6 @@ public class View extends Application {
 	 	System.out.println("BLEH" + iv);
 	 }
 	 
-	public void getRatings() {
-		 
-		 //return control.getRating();
-	 }
 	
 	 public boolean setI(ImageView imgview) {
 		
