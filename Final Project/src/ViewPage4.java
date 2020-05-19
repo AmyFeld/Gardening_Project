@@ -178,7 +178,10 @@ public class ViewPage4 extends View {
 		 //   scene1.setFill(Color.LIGHTGREEN);
 	  		  	
 	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
-	    rate.setOnAction(e-> { m.updateGarden(); theStage.setScene(vp5.getScene5());vp5.setAllRatings(ratings);
+	    rate.setOnAction(e-> {
+	    	m.updateGarden(); 
+	    	theStage.setScene(vp5.getScene5());
+	    	vp5.setAllRatings(ratings);
 	    
 	    });
 	    back.setOnAction(e -> theStage.setScene(new ViewPage2(theStage).getScene2()));
@@ -314,7 +317,7 @@ public class ViewPage4 extends View {
 		
 		  for( i=0; i< myPlants.size(); i++) {
 	    	  	
-			  	Image im = new Image(Image im = new Image(myPlants.get(i).getImgName(season), plaWidth, plaHeight, false, false);
+			  	Image im = new Image("file:seasonImages/"+season+"Plants/"+myPlants.get(i).getImgNameGard(), plaWidth, plaHeight, false, false);
 	  	  		iv = new ImageView(im);
 
 	    	  	iv.setPreserveRatio(true);
