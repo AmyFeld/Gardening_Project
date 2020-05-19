@@ -88,7 +88,7 @@ public class View extends Application {
 	TilePane tile;
 	 
 	AnchorPane anchor;
-	//		private BorderPane border;
+	//		private BorderPane border; 
 	//private TilePane tile;
 			
 	VBox tileBox;
@@ -108,8 +108,13 @@ public class View extends Application {
 	//new magic numbers
 	int home=0; 
 	int strokeWid = 2;
+	int sizingGen = 2;
+	int sizingPla =3;
 		    
 	ImageView ivg;
+	int opac = 0;
+	
+	double vol = 0.05;
 		 
 	//ImageView[] ivArr;
 	ArrayList<ImageView> ivArr = new ArrayList<ImageView>();
@@ -117,7 +122,9 @@ public class View extends Application {
 	   //VP5
 	ArrayList<Integer> ratings = new ArrayList<Integer>();
 		    
-		 
+	/**
+	 * sets the generalities of the abstract view	 
+	 */
 	public View() {
 		control = new Controller(this);
 		
@@ -148,7 +155,7 @@ public class View extends Application {
 		File file = new File("harp.mp3");
 		Media media = new Media((file).toURI().toString());
 		AudioClip mediaplayer = new AudioClip(media.getSource());
-		mediaplayer.setVolume(0.05);
+		mediaplayer.setVolume(vol);
 		
 		mediaplayer.play();
 	
@@ -195,12 +202,19 @@ public class View extends Application {
 	//	control = new Controller();
 	} 
 	
-
+	/**
+	 * Basic getter setting the current imageView
+	 * @param iv
+	 */
 	public void setImageView(ImageView iv) {
 		imageView = iv;
 	}
 	 
 	Circle circ;
+	/**
+	 * add a plant to the garden and gives ability to move it; scaled based on type
+	 * @param scale
+	 */
 	public void moveImageView(int scale) {
 				 
 		circ = new Circle(scale/2);
@@ -208,8 +222,8 @@ public class View extends Application {
 		//Image im = new Image(allPlants.get(i).getImgName());
 		circ.setFill(new ImagePattern(imageView.getImage()));
 		 		
-		circ.setTranslateX(sceneWidth/3);
-		circ.setTranslateY(sceneHeight/3);		 
+		circ.setTranslateX(sceneWidth/sizingPla);
+		circ.setTranslateY(sceneHeight/sizingPla);		 
 		 
 		circ.setOnMouseDragged(control.getHandlerForDrag());
 		circ.setOnMouseReleased(control.getHandlerForRelease());
@@ -229,14 +243,17 @@ public class View extends Application {
 		 
 		 //grid.getChildren().remove(circ);
 		// grid.getChildren().get(i).setOpacity(0);
-		 circ.setOpacity(0);
+		 circ.setOpacity(opac);
 		// grid.getChildren().remove(i);
 		// if()
 	 }
 	
 	 Rectangle rect;
+	 /**
+	  * Moves a generic image within the garden
+	  */
 	 public void moveGenImage() {
-		rect = new Rectangle(plaWidth/2, plaWidth/2);
+		rect = new Rectangle(plaWidth/sizingGen, plaWidth/sizingGen);
 		rect.setStroke(Color.BISQUE);
 			//Image im = new Image(allPlants.get(i).getImgName());
 		rect.setFill(new ImagePattern(imageView.getImage()));
@@ -246,24 +263,11 @@ public class View extends Application {
 		anchor.getChildren().add(rect);
 	 }
 	
-	 public void newImageView() {
-		ImageView iv = new ImageView(imageView.getImage());
-	  	  	
-	 	iv.setPreserveRatio(true);
-	 	iv.setFitHeight(100);
-	  	
-	 	//Tooltip.install(iv, new Tooltip(control.model.allPlants.get(i).greeneryHover()));
-	  	
-	 	iv.setOnMousePressed(control.getHandlerForClick());
-	    	
-	 	System.out.println(ivArr.add(iv));
-		tileBox.getChildren().remove(i);
-	 	tileBox.getChildren().add(i, iv);
-	 		
-	 	System.out.println("BLEH" + iv);
-	 }
-	 
-	
+	/**
+	 * Sets the variable i in order to see where it is in the array
+	 * @param imgview
+	 * @return boolean
+	 */
 	 public boolean setI(ImageView imgview) {
 		
 		 if(ivArr.contains(imgview)) {
@@ -276,6 +280,10 @@ public class View extends Application {
 	
 	
 	 Plant imName;
+	 /**
+	  * Description: gets the plant based on all of the plants in database
+	  * @return Plant
+	  */
 	 public Plant getImageName() {
 		 
 		 imName = allPlants.get(i);
