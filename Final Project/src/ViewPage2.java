@@ -34,17 +34,12 @@ import javafx.stage.Stage;
 
  /**
  * This class is a subclass of view that will draw out the greenery tour page. It also presents the plant 
- * information page when a plant is selected and includes a slider to show back and forth between times
+ * information page when a plant is selected and a "add to garden" button to add a specified plant to garden. 
  * 
  * @author Lisa Pathania & Tara Fishman
  *
  */
 
-/* Additional info: 
-* in plant class, the function getDescr will be used to determine how this class will be presented 
-* the button will also have to set model's current plant model.setCurrenPlant() model.getCurrentPlant().getDesc
-* model.getCurrentPlant().inGarden = True; <-- will add to garden tile pane 
-*/
 
 public class ViewPage2 extends View {
 	
@@ -62,38 +57,29 @@ public class ViewPage2 extends View {
 	
 	int nameX = 250;
 	int nameY = 20;
-	
 	int titleX = 220;
 	
 	int dboxSize = 35;
 	int dPrefWidth = 100;
-	
-	String colorName = "Color";
-	String type = "Type";
-	String ht = "Height";
-	String fruit = "Fruit";
-	String water = "Water";
-	String month = "Month";
 
  	Button garButton = new Button("Go to Garden");
 	Button addButton =  new Button("Add to Garden");
+	Button reset =  new Button("Reset");
 	Text title = new Text("Greenery Tour");
+	Image back = new Image("file:images/bg2.png", sceneWidth+1000, sceneHeight+1200, false, false);
 	
-	Image back = new Image("file:images/bg2.png",sceneWidth+1000, sceneHeight+1200, false, false);
-	
+	ViewPage4 vp4; 
+    Controller c = new Controller();
 	ArrayList<Plant> filteredPlants = g.allPlants;
-
+	
 	VBox vb = new VBox(boxSize); // assembles the title, tabs, and button 
 	HBox hb = new HBox(); // holds home button and go to garden button
 	HBox dropBox = new HBox(boxSize); // holds flow pane & combo boxes (drop down)
-    
-	Garden g1 = new Garden();
+
     TabPane tabPane = new TabPane();
     Tab mainTab = new Tab(); 
-    Model m = new Model();
-    
 	ScrollPane sc = new ScrollPane(vb);
-	ViewPage4 vp4; 
+	
 
 	/**
 	 * Description: Sets up the another stage of the application with background
@@ -112,17 +98,18 @@ public class ViewPage2 extends View {
 		setPlantNursery();
 		
 		Alert explain = new Alert(AlertType.INFORMATION);
-		explain.setContentText("Welcome to the Plant Nursery! Click on a plant you would like to view and go into the tab to add to garden! To filter plants based on different requirements, view the filters to the right. When ready, click go to garden.");
+		explain.setContentText("Welcome to the Plant Nursery! Click on a plant you would like to"
+				+ " view and go into the tab to add to garden! To filter plants based on different requirements, "
+				+ "view the filters to the right. When ready, click go to garden.");
 		explain.show();
 		
 		garButton.setTranslateX(addButtonX); 
 		homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
 		garButton.setOnAction( new EventHandler<ActionEvent>() { 
 			   public void handle(ActionEvent event) { 
-				    m.updateGarden();
-				    
+				 				    
 					theStage.setScene(vp4.getScene4());
-				    vp4.setMyPlants(m.myPlants);
+				    vp4.setMyPlants(c.getMyPlants());
 				    } 
 				});
 		  
@@ -241,8 +228,7 @@ public class ViewPage2 extends View {
 		
 		addButton.setOnAction(new EventHandler<ActionEvent>() { 
 			   public void handle(ActionEvent event) { 
-				 m.update(p);
-
+				 c.setMyPlants(p);
 				   } 
 				});
 		  
@@ -252,8 +238,7 @@ public class ViewPage2 extends View {
 				
 	}
 	
-	
-	
+		
 	/**
 	 * Description: Creates a VBox with contents of all filter options for plants; 
 	 *  a combo box = drop down to select a choice
@@ -306,7 +291,7 @@ public class ViewPage2 extends View {
 	//	
 		ComboBox<String> htBox = new ComboBox<>();
 		htBox.getItems().addAll("0-10 ft", "10-20 ft", "20-30 ft", "30-40 ft", "40+ ft");
-		htBox.setValue(ht);
+		htBox.setValue("Height");
 		htBox.setPrefWidth(dPrefWidth);
 		htBox.setOnAction((event) -> {
 
@@ -337,7 +322,7 @@ public class ViewPage2 extends View {
 
 		ComboBox<String> fruitBox = new ComboBox<>();
 		fruitBox.getItems().addAll("True", "False");
-		fruitBox.setValue(fruit);
+		fruitBox.setValue("Fruit");
 		fruitBox.setPrefWidth(dPrefWidth);
 		fruitBox.setOnAction((event) -> {
 
@@ -358,7 +343,7 @@ public class ViewPage2 extends View {
 		
 		ComboBox<String> waterBox = new ComboBox<>();	
 		waterBox.getItems().addAll("low", "medium", "high");
-		waterBox.setValue(water);
+		waterBox.setValue("Water");
 		waterBox.setPrefWidth(dPrefWidth);
 		waterBox.setOnAction((event) -> {
 
@@ -379,7 +364,7 @@ public class ViewPage2 extends View {
 		ComboBox<String> monthBox = new ComboBox<>();	
 		monthBox.getItems().addAll("January", "February", "March",
 				"April", "May", "June", "July", "August", "September", "October", "November", "December");
-		monthBox.setValue(month);
+		monthBox.setValue("Month");
 		monthBox.setPrefWidth(dPrefWidth);
 		monthBox.setOnAction((event) -> {
 
@@ -424,7 +409,6 @@ public class ViewPage2 extends View {
 			        });
 		
 
-		Button reset =  new Button("Reset");
 		reset.setOnAction((event) -> {
 			
 			this.filteredPlants = g.allPlants;
@@ -440,8 +424,7 @@ public class ViewPage2 extends View {
 		
 		return v;
 	}
-	
-	 
+		 
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
 	 * 
