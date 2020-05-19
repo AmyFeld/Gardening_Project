@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class ViewPage7 extends View {
 	Scene scene7;
-	int strokeWidth = 2;
+	
 
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
@@ -68,7 +68,7 @@ public class ViewPage7 extends View {
 		}
 	    
 
-	    homeButton.setOnAction(e -> control.goHomeButton(theStage, 1));
+	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 
 	  	Tab where = new Tab();
 	  	where.setText("Where to Buy");
