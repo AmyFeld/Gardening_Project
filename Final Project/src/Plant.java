@@ -89,25 +89,7 @@ public class Plant implements Serializable{
 		return temp; 
 	}
 	
-	/**
-	 * Takes the plant name and converts to find image of it
-	 * @return String temp;
-	 */
-	public String getImgName() {
-		String temp = this.name.replace(" ", "_");
-		temp =  "file:plantImg/" + temp + ".jpg";
-		return temp; 
-	}
-
-	/**
-	 * Takes the plant name and converts to find the image of it to be used for seasonImages
-	 * @return
-	 */
-	public String getImgNameGard() {
-		String temp = this.name.replace(" ", "_");
-		temp =  temp + ".jpg";
-		return temp; 
-	}
+	
 	/**
 	 * Description: getDesc uses a plant's name to return the contents of the appropriate description file
 	 * @param none
