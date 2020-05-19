@@ -160,14 +160,15 @@ public class ViewPage4 extends View {
 		tut.setOnAction(e -> explain.show() );
 		    
 	    userlabel.setOnAction(e -> control.label(e));	
-        VBox right = new VBox(boxRight);
+            VBox right = new VBox(boxRight);
 	    right.getChildren().addAll(tut, sl, userlabel, imtrash);
 	  
 	  		  	
 	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));	 
 	    rate.setOnAction(e-> {
 	    	m.updateGarden(); 
-	    	control.goHomeButton(theStage, fifth);
+	    	theStage.setScene(vp5.getScene5());
+		//control.goHomeButton(theStage, fifth);
 	    	vp5.setAllRatings(ratings);
 	    
 	    });
