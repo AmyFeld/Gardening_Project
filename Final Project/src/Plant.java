@@ -20,7 +20,22 @@ public class Plant implements Serializable{
 	int start;
 	int end;
 	
-
+	int shrubSize = 100;
+	int herbSize = 50; 
+	int treeSize= 150; 
+	int genSize = 75;
+	
+	/**
+	 * Description: Sets the plants information
+	 * @param name
+	 * @param type
+	 * @param height
+	 * @param hadFruit
+	 * @param waterUse
+	 * @param color
+	 * @param start
+	 * @param end
+	 */
 	public Plant(String name, String type, int height, Boolean hadFruit, String waterUse, String color, int start, int end){
 		this.name = name;
 		this.type = type;
@@ -31,10 +46,15 @@ public class Plant implements Serializable{
 		this.start = start;
 		this.end = end;
 	}
+	
+	/**
+	 * Generic plant constuctor- sets nothing
+	 */
 	public Plant() {
 		// TODO Auto-generated constructor stub
 	}
-	/*
+
+	/**
 	 * Description: getName takes in a Plant and returns its name
 	 * @param none
 	 * @return. String which represents the name stored in a plant
@@ -43,7 +63,7 @@ public class Plant implements Serializable{
 	public String getName() {
 		return name;
 	}
-	/*
+	/**
 	 * Description: getImgName uses a plant's name to return the name of the img file that has the plant
 	 * @param none
 	 * @return. String that represents the name of the apporpriate img file
@@ -68,8 +88,27 @@ public class Plant implements Serializable{
 		}
 		return temp; 
 	}
+	
+	/**
+	 * Takes the plant name and converts to find image of it
+	 * @return String temp;
+	 */
+	public String getImgName() {
+		String temp = this.name.replace(" ", "_");
+		temp =  "file:plantImg/" + temp + ".jpg";
+		return temp; 
+	}
 
-	/*
+	/**
+	 * Takes the plant name and converts to find the image of it to be used for seasonImages
+	 * @return
+	 */
+	public String getImgNameGard() {
+		String temp = this.name.replace(" ", "_");
+		temp =  temp + ".jpg";
+		return temp; 
+	}
+	/**
 	 * Description: getDesc uses a plant's name to return the contents of the appropriate description file
 	 * @param none
 	 * @return. String that is teh contents of the appropriate txt file
@@ -93,6 +132,10 @@ public class Plant implements Serializable{
 		return s;
 	}
 	
+	/**
+	 * Description: creates a string based on the current plant to be used for hovering
+	 * @return String s
+	 */
 	public String greeneryHover() {
 		String s = "";
 		String name = this.name.replace(" ", "_");
@@ -114,19 +157,19 @@ public class Plant implements Serializable{
 		return s;
 	}
 	
-	public String gardenHover() {
-		return this.name;
-	}
-	
+	/**
+	 * Description: Based on the type of plant, the imgHeight will be determined - used for creating imageView in garden
+	 * @return integer size
+	 */
 	public int scaling() {
 		switch(this.type) {
 		case("herb"):
-			return 50;
+			return herbSize;
 		case("shrub"):
-			return 100;
+			return shrubSize;
 		case("tree"):
-			return 150;
+			return treeSize;
 		}
-		return 100;
+		return genSize;
 	}
 }
