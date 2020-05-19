@@ -144,8 +144,11 @@ public class View extends Application {
 		File file = new File("harp.mp3");
 		Media media = new Media((file).toURI().toString());
 		AudioClip mediaplayer = new AudioClip(media.getSource());
-		mediaplayer.play();
+		mediaplayer.setVolume(0.05);
 		
+		mediaplayer.play();
+	
+	
 		System.out.println("music");
 		theStage.setTitle("Create a Garden");
 		theStage.setScene(new ViewPage1(theStage).getScene1()); 
