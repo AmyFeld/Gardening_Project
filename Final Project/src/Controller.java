@@ -31,7 +31,10 @@ public class Controller extends Application {
 	double contY;
 	Scene scene;
 
-	
+	/**
+	 * Constructor for controller - sets the view to the parameter and creates a new model
+	 * @param view
+	 */
 	public Controller(View view) {
 		
 		this.view = view;
@@ -43,7 +46,7 @@ public class Controller extends Application {
      * in model & view
      * 
      * @param Stage  a container holding the scene
-     * @throws Exception if an error occurred in Thread.sleep(100)
+     * 
      *
      */
     @Override
@@ -52,14 +55,19 @@ public class Controller extends Application {
     	theStage.show();
     }
    
+    /**
+     * main method for program, but the program runs from the view so just prints "Work" 
+     * @param args
+     */
 	public static void main(String[] args) {
         System.out.println("WORK");
 		launch(args);
     }
 
-// Mouse Events 
-// Javadoc to follow once fully functioning
-//
+	/**
+	 * changes the x and y position of the image in the model based on the mouseEvent
+	 * @param event
+	 */
 	public void drag(MouseEvent event){
 		Node n = (Node)event.getSource();
 		n.setVisible(true);
@@ -70,10 +78,18 @@ public class Controller extends Application {
 		//System.out.println("DRAG");
 	}
 
+	/**
+	 * Event handler for the images when dragged
+	 * @return Event
+	 */
 	public EventHandler<MouseEvent> getHandlerForDrag(){
 		return event -> drag((MouseEvent) event);
 	}
 
+	/**
+	 * allows plants/images to be redragged after release and depending on the release location will remove it from the grid and view panes
+	 * @param event
+	 */
 	public void release(MouseEvent event){
 		Node n = (Node) event.getSource();
 		
@@ -91,11 +107,18 @@ public class Controller extends Application {
 		System.out.println(view.ratings);
 	}
 
+	/**
+	 * Event handler for the images when released 
+	 * @return Event
+	 */
 	public EventHandler<MouseEvent> getHandlerForRelease(){
 		return event -> release((MouseEvent) event);
 	}
 	
-
+	/**
+	 * adds the plant images in the garden on both the view and model aspect by calling functions in each
+	 * @param event
+	 */
 	public void click(MouseEvent event){
 		Node n = (Node)event.getSource();
 		n.setMouseTransparent(true);
@@ -113,10 +136,18 @@ public class Controller extends Application {
 		
 	}
 	
+	/**
+	 * Event handler for the plant images click 
+	 * @return Event
+	 */
 	public EventHandler<MouseEvent> getHandlerForClick(){
 		return event -> click((MouseEvent) event);
 	}
 	
+	/**
+	 * adds the generic images to the view when clicked and calls functions in view
+	 * @param e
+	 */
 	public void click2(MouseEvent e){
 		Node n = (Node)e.getSource();
 		n.setMouseTransparent(true);
@@ -132,19 +163,35 @@ public class Controller extends Application {
 		
 	}
 	
+	/**
+	 * Event handler for the generic images click 
+	 * @return Event
+	 */
 	public EventHandler getHandlerForClick2(){
 		
 		return event -> click((MouseEvent) event);
 	}
 
+	/**
+	 * basic setter for updating and setting the current plant in the model
+	 * @param p
+	 */
 	public void setMyPlants(Plant p) {	
 		model.update(p);
 	}
 
+	/**
+	 * basic getter for recieving the lists of myPlants from the model
+	 * @return ArrayList<Plant>
+	 */
 	public ArrayList<Plant> getMyPlants() {
 		return model.myPlants;	
 	}
 	
+	/**
+	 * gives the labels the same ability to move within the garden, once a label is made
+	 * @param e
+	 */
 	public void label(ActionEvent e) {
 		 Label l = new Label();
 		 l.setText(view.userlabel.getText());
@@ -153,6 +200,11 @@ public class Controller extends Application {
 		 l.setOnMouseReleased(getHandlerForRelease());
 	}
 
+	/**
+	 * Event handler that takes the event and stage and allows you to save a file wherever the user would like within their computer
+	 * @param e
+	 * @param theStage
+	 */
 	public void chooseFile(ActionEvent e, Stage theStage) {
 		FileChooser fileChooser = new FileChooser();
   		try {
@@ -172,6 +224,11 @@ public class Controller extends Application {
 			ex.printStackTrace();}
 	}
 	
+	/**
+	 * Event handler for buttons to set the scene based on the certain page it is on and the page it is trying to get to
+	 * @param s
+	 * @param num
+	 */
 	public void goHomeButton(Stage s, int num) {
 
 		switch (num) {
@@ -203,6 +260,11 @@ public class Controller extends Application {
 
 		s.setScene(scene);
 	}
+	
+	/**
+	 * Basic getter for recieving the rating given by the model
+	 * @return ArrayList<Integer>
+	 */
 	public ArrayList<Integer> getRating() {
 		return model.setRating();
 	}
