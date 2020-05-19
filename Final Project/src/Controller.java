@@ -22,12 +22,15 @@ public class Controller extends Application {
 	Model model;
 	double contX;
 	double contY;
-
 	
 	public Controller(View view) {
 		
 		this.view = view;
 		this.model = new Model();
+	}
+	
+	public Controller() {
+		this.model = new Model();	
 	}
 
     /**
@@ -39,34 +42,9 @@ public class Controller extends Application {
      *
      */
     @Override
-	public void start(Stage theStage) {	
-    	 
-		//model.update(view.currPla);
-    	 //view.update();
-		
- /*	new EventHandler<ActionEvent>() {
- 		@Override 
- 		public void handle(ActionEvent event) {
-            System.out.print("Hello World !!");
-            view.setOnAction(event);
-            }		 	     
-    };
-    */
-    new AnimationTimer() {
-    	
-        public void handle(long currentNanoTime) { 
-            try {
-		//model.update(p);
-                Thread.sleep(100);
-                
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        
-    }.start();
+	public void start(Stage theStage) {	      
     theStage.show();
-}
+    }
    
 	public static void main(String[] args) {
         System.out.println("WORK");
@@ -74,17 +52,15 @@ public class Controller extends Application {
     }
 
 // Mouse Events 
-// Javadoc to follow once fully functioning
-//
 	public void drag(MouseEvent event){
 		Node n = (Node)event.getSource();
 		n.setVisible(true);
 		//model.setX(model.getX() + event.getX());
 		//model.setY(model.getY() + event.getY());
-		model.setX(event.getSceneX() - view.grid.getLayoutX() - view.plaWidth/2); //view.imageView.getFitWidth()/2);
-		model.setY(event.getSceneY() - view.grid.getLayoutY() - view.plaHeight/2);//view.imageView.getFitHeight()/2);
+		model.setX(event.getSceneX() - view.anchor.getLayoutX() - view.plaWidth/2); //view.imageView.getFitWidth()/2);
+		model.setY(event.getSceneY() - view.anchor.getLayoutY() - view.plaHeight/2);//view.imageView.getFitHeight()/2);
 		model.setImage(n);
-		//System.out.println("DRAG");
+		view.ratings = model.setRating();
 	}
 
 	public EventHandler<MouseEvent> getHandlerForDrag(){
@@ -104,7 +80,6 @@ public class Controller extends Application {
 			//view.imageView = (ImageView)n;
 			view.setI(view.imageView);
 			model.removeImageView(view.i);
-			//view.imageView.setOpacity(0);
 			view.removeImageView();
 		}
 		view.ratings = model.setRating();
@@ -128,9 +103,19 @@ public class Controller extends Application {
 		model.addImageView(view.i);
 		model.setPlant(view.getImageName());
 				
+		view.ratings = model.setRating();
 		System.out.println("click");
 		
 	}
+	
+	public void setMyPlants(Plant p) {	
+		model.update(p);
+	}
+	
+	public ArrayList<Plant> getMyPlants() {
+		return model.myPlants;	
+	}
+	
 	
 	public EventHandler<MouseEvent> getHandlerForClick(){
 		return event -> click((MouseEvent) event);
@@ -142,19 +127,14 @@ public class Controller extends Application {
 			
 		view.imageView = (ImageView)n;
 		view.setI(view.imageView);
-		//model.setPlant(p);
 				
 		view.moveGenImage();
-				
-		
-		//view.newImageView();
 		
 		System.out.println("click");
 		
 	}
 	
 	public EventHandler getHandlerForClick2(){
-		
 		return event -> click((MouseEvent) event);
 	}
 
