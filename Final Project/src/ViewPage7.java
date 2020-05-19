@@ -48,7 +48,7 @@ public class ViewPage7 extends View {
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(strokeWidth); 
+	    label1.setStrokeWidth(strokeWid); 
 	    label1.setStroke(Color.BLUE);
 	    Text whereText = new Text();
 	    Text faqText = new Text();
