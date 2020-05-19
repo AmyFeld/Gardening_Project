@@ -77,38 +77,20 @@ public class ViewPage5 extends View {
   		theStage.setTitle("Rate My Garden");
 
   		HBox layout1 = new HBox(hboxInt);     
-	        Label label1 = new Label("Rate My Garden");
+	    Label label1 = new Label("Rate My Garden");
 	  	//Button home = new Button("Home");
 	  	Button save = new Button("Save to");
 	  	//Button faq = new Button("Frequently Asked Questions");
 	  	Label buttonPressed = new Label("");
 		//Button back2g = new Button("Back to Garden");	  	
 	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
-		
-	  	//Group root = new Group();
-	  	//root.getChildren().addAll(layout1);
-	  			 //   scene1.setFill(Color.LIGHTGREEN);
-	  		  	
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));	 
+			  	
+	    homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
 	    
   
-  		save.setOnAction(e -> { 
-		    FileChooser fileChooser = new FileChooser();
-	  		try {
-	  			fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Ser", ".ser"));
-	  			File file = fileChooser.showSaveDialog(theStage);
-	  			if(file != null) {
-	  				FileOutputStream fileOut = new FileOutputStream(file);
-					ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-	  				objectOut.writeObject(control.model);
-					objectOut.close();
-					fileOut.close();
-					save.setText("Saved");
-	  			}
-
-			} catch (Exception ex) {
-
-				ex.printStackTrace();}
+  		save.setOnAction(e -> {
+  			control.chooseFile(e, theStage);
+  			save.setText("Saved");		   
   		});
   		
 	    
@@ -137,8 +119,7 @@ public class ViewPage5 extends View {
 	/**
 	 * Description: sets all of the ratings based on the model calculated ratings
 	 * 
-	 * 
-	 * 
+	 * @param ratings
 	 */
 	public void setAllRatings(ArrayList<Integer> ratings) {
 		System.out.println(ratings);
@@ -207,7 +188,11 @@ public class ViewPage5 extends View {
 	 	transitStars = transit;
 	 }
 
-
+	 /**
+	  * Description: basic setter for taking in an int from the ratings and setting the overall
+	  * 
+	  * @param overall
+	  */
 	public void presentOverallRating(int overall) {
 		overallStars = overall;
 	}
