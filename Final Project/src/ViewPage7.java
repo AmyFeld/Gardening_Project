@@ -68,7 +68,7 @@ public class ViewPage7 extends View {
 		}
 	    
 
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+	    homeButton.setOnAction(e -> control.goHomeButton(theStage, 1));
 
 	  	Tab where = new Tab();
 	  	where.setText("Where to Buy");
