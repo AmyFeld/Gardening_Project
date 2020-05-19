@@ -1,5 +1,3 @@
-package src;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Serializable;
@@ -64,6 +62,18 @@ public class Plant implements Serializable{
 		case "winter":
 			temp = "file:seasonImages/winterPlants/" + temp + ".jpg";
 		}
+		return temp; 
+	}
+	
+	public String getImgName() {
+		String temp = this.name.replace(" ", "_");
+		temp =  "file:plantImg/" + temp + ".jpg";
+		return temp; 
+	}
+
+	public String getImgNameGard() {
+		String temp = this.name.replace(" ", "_");
+		temp =  temp + ".jpg";
 		return temp; 
 	}
 	/*
