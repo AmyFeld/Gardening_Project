@@ -55,27 +55,20 @@ public class Plant implements Serializable{
 		switch(whichOne) {
 		case "original":
 			temp = "file:plantImg/" + temp + ".jpg";
+			break;
 		case "spring":
 			temp = "file:seasonImages/springPlants/" + temp + ".jpg";
+			break;
 		case "fall":
 			temp = "file:seasonImages/fallPlants/" + temp + ".jpg";
+			break;
 		case "winter":
 			temp = "file:seasonImages/winterPlants/" + temp + ".jpg";
+			break;
 		}
 		return temp; 
 	}
-	
-	public String getImgName() {
-		String temp = this.name.replace(" ", "_");
-		temp =  "file:plantImg/" + temp + ".jpg";
-		return temp; 
-	}
 
-	public String getImgNameGard() {
-		String temp = this.name.replace(" ", "_");
-		temp =  temp + ".jpg";
-		return temp; 
-	}
 	/*
 	 * Description: getDesc uses a plant's name to return the contents of the appropriate description file
 	 * @param none
