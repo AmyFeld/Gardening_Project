@@ -48,6 +48,10 @@ import java.util.ArrayList;
 		return temp;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> getFeedingPlants(){
 		ArrayList<String> temp = new ArrayList<String>();
 		try {
@@ -55,7 +59,7 @@ import java.util.ArrayList;
 			String line = reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				temp.add(line);
-				}
+			}
 			reader.close();
 		} catch (Exception e) {
 			System.err.format("Exception occurred trying to read '%s'.", "plant.txt");
@@ -222,6 +226,13 @@ import java.util.ArrayList;
 		}
 	} 
 	
+	/**
+	 * Description: takes in strings and an array list to create a temporary arraylist that prints a version with only those qualities 
+	 * @param category
+	 * @param type
+	 * @param currentList
+	 * @return ArrayList<Plant>
+	 */
 	public ArrayList<Plant> Filter(String category, String type, ArrayList<Plant> currentList){
 		ArrayList<Plant> temp = new ArrayList<Plant>();
 		switch(category) {
