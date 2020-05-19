@@ -32,7 +32,8 @@ import javafx.stage.Stage;
 public class ViewPage6 extends View {
 	
 	Scene scene6;
-
+	
+	
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
 	 * 
@@ -41,18 +42,14 @@ public class ViewPage6 extends View {
 	 *
 	 */
 	public ViewPage6(Stage theStage) {
-		Image back = new Image("file:images/bg2.png",sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		
-		
-		VBox layout1 = new VBox(20);     
+	
+	    VBox layout1 = new VBox(boxSize);     
 	    Text label1 = new Text("About Arden");
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    label1.setTranslateX(labelX);
 	    label1.setTranslateY(labelY);
 	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(2); 
+	    label1.setStrokeWidth(strokeWid); 
 	    label1.setStroke(Color.BLUE);	  
 	    Text msText = new Text();
 	    msText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
@@ -80,7 +77,7 @@ public class ViewPage6 extends View {
 		}
 
 	  	//Button home = new Button("Home");
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 
 	  	Tab ms = new Tab();
 	  	ms.setText("Mission Statement");
