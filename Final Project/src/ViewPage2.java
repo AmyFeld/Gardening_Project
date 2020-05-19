@@ -373,28 +373,40 @@ public class ViewPage2 extends View {
 			switch(monthPick) {
 			case "January":
 				this.filteredPlants = g.Filter("start", "1", this.filteredPlants);
+				break;
 			case "February":
 				this.filteredPlants = g.Filter("start", "2", this.filteredPlants);
+				break;
 			case "March":
 				this.filteredPlants = g.Filter("start", "3", this.filteredPlants);
+				break;
 			case "April":
 				this.filteredPlants = g.Filter("start", "4", this.filteredPlants);
+				break;
 			case "May":
 				this.filteredPlants = g.Filter("start", "5", this.filteredPlants);
+				break;
 			case "June":
 				this.filteredPlants = g.Filter("start", "6", this.filteredPlants);
+				break;
 			case "July":
 				this.filteredPlants = g.Filter("start", "7", this.filteredPlants);
+				break;
 			case "August":
 				this.filteredPlants = g.Filter("start", "8", this.filteredPlants);
+				break;
 			case "September":
 				this.filteredPlants = g.Filter("start", "9", this.filteredPlants);
+				break;
 			case "October":
 				this.filteredPlants = g.Filter("start", "10", this.filteredPlants);
+				break;
 			case "November":
 				this.filteredPlants = g.Filter("start", "11", this.filteredPlants);
+				break;
 			case "December":
 				this.filteredPlants = g.Filter("start", "12", this.filteredPlants);
+				break;
 			}
 
 			       
