@@ -1,6 +1,5 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,7 +32,6 @@ public class ViewPage6 extends View {
 	
 	Scene scene6;
 	
-	
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
 	 * 
@@ -43,41 +41,40 @@ public class ViewPage6 extends View {
 	 */
 	public ViewPage6(Stage theStage) {
 	
-	    VBox layout1 = new VBox(boxSize);     
-	    Text label1 = new Text("About Arden");
-	    label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	    label1.setTranslateX(labelX);
-	    label1.setTranslateY(labelY);
-	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(strokeWid); 
-	    label1.setStroke(Color.BLUE);	  
-	    Text msText = new Text();
-	    msText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
-	    Text purpText = new Text();
-	    Text histText = new Text();
+	    	VBox layout1 = new VBox(boxSize);     
+	    	Text label1 = new Text("About Arden");
+	    	label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    	label1.setTranslateX(labelX);
+	    	label1.setTranslateY(labelY);
+	    	label1.setFill(Color.WHITE); 
+	    	label1.setStrokeWidth(strokeWid); 
+	    	label1.setStroke(Color.BLUE);	  
+	    	Text msText = new Text();
+	    	msText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
+	    	Text purpText = new Text();
+	    	Text histText = new Text();
 	    
 	    // textFiles folder: ms.txt, purp.txt, hist.txt
 
-	    try {
+	    	try {
 			msText.setText(uploadText("ms"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 	    
-	    try {
+	    	try {
 			purpText.setText(uploadText("purp"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 	    
-	    try {
+	    	try {
 			histText.setText(uploadText("hist"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 
-	  	//Button home = new Button("Home");
-	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
+	    	homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 
 	  	Tab ms = new Tab();
 	  	ms.setText("Mission Statement");
@@ -101,11 +98,9 @@ public class ViewPage6 extends View {
 	  	layout1.setBackground(new Background(myBG));
 	  	scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
 	  	scene6.setCursor(new ImageCursor(mouse));
-
-
 	  	
-	   	 theStage.setScene(scene6); 
-	   	 theStage.show(); 	
+	   	theStage.setScene(scene6); 
+	   	theStage.show(); 	
 
 	}	
 	
@@ -131,7 +126,6 @@ public class ViewPage6 extends View {
 	 public String uploadText(String name) throws Exception {
 		 String file = new String("textFiles/Page6/" + name + ".txt"); 
 		 String data = ""; 
-		 
 		 data = new String(Files.readAllBytes(Paths.get(file))); 
 		 return data;
 	  }
