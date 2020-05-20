@@ -82,70 +82,11 @@ public class ViewPage4 extends View {
 	 */
 
 	public ViewPage4(Stage theStage) {
-		vp5 = new ViewPage5(theStage);		
-		// home button if fired
-		HBox layout1 = new HBox(boxSize);     
-		Label label1 = new Label("Edit Your Garden");
-		Button rate = new Button("Rate My Garden");
-	  	Button back = new Button("Plant Nursery");
-	    	// set tile pane height/?
-	    	tile = new TilePane(Orientation.VERTICAL);
-		anchor = new AnchorPane();
-		border = new BorderPane();
-	    layout1.getChildren().addAll(back, label1, homeButton, rate);
-	    sl.setOrientation(Orientation.VERTICAL);
-	    sl.setMin(min);
-	    sl.setMax(max);
-	    sl.setValue(tick);
-	    sl.setShowTickLabels(true);
-	    sl.setShowTickMarks(true);
-	    sl.setMajorTickUnit(tick);
-	    sl.setMinorTickCount(min);
-	    sl.setLabelFormatter(new StringConverter<Double>() {
-	    	public String toString(Double n) {
-	    	  if (n<n1) {
-	    		  return"Fall";
-	    	  }
-	    	  if(n<n2) {
-	    		 return "Spring";
-	    	 }
-	    	  return "Winter";
-	    	}
-			@Override
-			public Double fromString(String s) {
-				switch (s) {
-              			case "Fall":
-                  			return 0d;
-                		case "Spring":
-                    			return 1d;
-                		case "Winter":
-                    			return 2d;
-				}
-					return x;
-			}
-							
-	    });	      		      
-	    Image trash = new Image("file:images/Trash.png", plaHeight, plaWidth, false, false);
-	    ImageView imtrash = new ImageView(trash);
-	    userlabel = new TextField("Create new label");       
-	    Alert explain = new Alert(AlertType.INFORMATION);
-		explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location. To Remove, drag the image to the trashcan. To add labels, type up what you want to add and drag to the location you would like.");
-		Button tut = new Button(); 
-		tut.setText("Tutorial");
-		tut.setOnAction(e -> explain.show() );
-	    userlabel.setOnAction(e -> control.label(e));	
-        VBox right = new VBox(boxRight);
-	    right.getChildren().addAll(tut, sl, userlabel, imtrash);	  	
-	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));	 
-	    rate.setOnAction(e-> control.setRatings(theStage, vp5)); 
-
-	    back.setOnAction(e -> control.goHomeButton(theStage, second ));     
-		ImageView iv;
+		setScene(theStage);
+	 	
+	    createSlider();
+	    
 	    start(theStage);
-	    layout1.setAlignment(Pos.TOP_CENTER);
-	    border.setRight(right);
-	    border.setTop(layout1);
-	    scene4 = new Scene(border, sceneWidth, sceneHeight); // the
 	    theStage.setScene(scene4); 
 	    theStage.show(); 	
 	}	
@@ -252,7 +193,83 @@ public class ViewPage4 extends View {
 		myPlants = alst;
 		makeIm();
 	}
+	
+	/**
+	 * sets the visual aspects of the layouts with the button for tutorial and labels as well as images
+	 * @param theStage
+	 */
+	public void setScene(Stage theStage) {
+		vp5 = new ViewPage5(theStage);		
+		// home button if fired
+		HBox layout1 = new HBox(boxSize);     
+		Label label1 = new Label("Edit Your Garden");
+		Button rate = new Button("Rate My Garden");
+	  	Button back = new Button("Plant Nursery");
+	    	// set tile pane height/?
+	   	tile = new TilePane(Orientation.VERTICAL);
+		anchor = new AnchorPane();
+		border = new BorderPane();
+	    	layout1.getChildren().addAll(back, label1, homeButton, rate);
+		Image trash = new Image("file:images/Trash.png", plaHeight, plaWidth, false, false);
+		ImageView imtrash = new ImageView(trash);
+		userlabel = new TextField("Create new label");       
+		Alert explain = new Alert(AlertType.INFORMATION);
+		explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location. To Remove, drag the image to the trashcan. To add labels, type up what you want to add and drag to the location you would like.");
+		Button tut = new Button(); 
+		tut.setText("Tutorial");
+		tut.setOnAction(e -> explain.show() );
+		userlabel.setOnAction(e -> control.label(e));	
+	    	VBox right = new VBox(boxRight);
+		right.getChildren().addAll(tut, sl, userlabel, imtrash);	  	
+		homeButton.setOnAction(e -> control.goHomeButton(theStage, home));	 
+		rate.setOnAction(e-> control.setRatings(theStage, vp5)); 
 
+		back.setOnAction(e -> control.goHomeButton(theStage, second ));     
+		ImageView iv;
+		    
+		layout1.setAlignment(Pos.TOP_CENTER);
+		border.setRight(right);
+		border.setTop(layout1);
+		scene4 = new Scene(border, sceneWidth, sceneHeight);
+	}
+
+	/**
+	 * Creates the slider values to be fall, winter or spring
+	 */
+	public void createSlider() {
+		    sl.setOrientation(Orientation.VERTICAL);
+		    sl.setMin(min);
+		    sl.setMax(max);
+		    sl.setValue(tick);
+		    sl.setShowTickLabels(true);
+		    sl.setShowTickMarks(true);
+		    sl.setMajorTickUnit(tick);
+		    sl.setMinorTickCount(min);
+		    sl.setLabelFormatter(new StringConverter<Double>() {
+		    	public String toString(Double n) {
+		    	  if (n<n1) {
+		    		  return"Fall";
+		    	  }
+		    	  if(n<n2) {
+		    		 return "Spring";
+		    	 }
+		    	  return "Winter";
+		    	}
+				@Override
+				public Double fromString(String s) {
+					switch (s) {
+	              			case "Fall":
+	                  			return 0d;
+	                		case "Spring":
+	                    			return 1d;
+	                		case "Winter":
+	                    			return 2d;
+					}
+						return x;
+				}
+								
+		    });
+	}
 
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on home screens 
