@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 public class ViewPage7 extends View {
 	Scene scene7;
 	VBox layout = new VBox(boxSize);     
-    Text label1 = new Text("Resources");
+    	Text label1 = new Text("Resources");
 	
 
 	/**
@@ -47,13 +47,13 @@ public class ViewPage7 extends View {
 	    setLayout();
 	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 
-	  	layout.setBackground(new Background(myBG));
+	    layout.setBackground(new Background(myBG));
 	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
-	  	scene7 = new Scene(layout, sceneWidth, sceneHeight); 
-	  	scene7.setCursor(new ImageCursor(mouse));
+	    scene7 = new Scene(layout, sceneWidth, sceneHeight); 
+	    scene7.setCursor(new ImageCursor(mouse));
 	  	
-	  	theStage.setScene(scene7);
-	  	theStage.show(); 	
+	    theStage.setScene(scene7);
+	    theStage.show(); 	
 
 	}
 	/**
@@ -61,22 +61,22 @@ public class ViewPage7 extends View {
 	 */
 	public void setLayout() {
 	
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	    label1.setTranslateX(labelX);
-	    label1.setTranslateY(labelY);
-	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(strokeWid); 
-	    label1.setStroke(Color.BLUE);
-	    Text whereText = new Text();
-	    Text faqText = new Text();
+	    	label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    	label1.setTranslateX(labelX);
+	    	label1.setTranslateY(labelY);
+	    	label1.setFill(Color.WHITE); 
+		label1.setStrokeWidth(strokeWid); 
+	    	label1.setStroke(Color.BLUE);
+	    	Text whereText = new Text();
+	    	Text faqText = new Text();
 	    
-	    try {
+	    	try {
 			whereText.setText(uploadText("where"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 	    
-	    try {
+	    	try {
 			faqText.setText(uploadText("faq"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
