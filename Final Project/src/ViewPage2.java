@@ -78,8 +78,8 @@ public class ViewPage2 extends View {
 	HBox hb = new HBox(); // holds home button and go to garden button
 	HBox dropBox = new HBox(boxSize); // holds flow pane & combo boxes (drop down)
 
-    	TabPane tabPane = new TabPane();
-    	Tab mainTab = new Tab(); 
+    TabPane tabPane = new TabPane();
+    Tab mainTab = new Tab(); 
 	ScrollPane sc = new ScrollPane(vb);
 	
 
@@ -93,7 +93,9 @@ public class ViewPage2 extends View {
 	public ViewPage2(Stage theStage) {
 		
 		vp4 = new ViewPage4(theStage);
-		myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		
+		myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		setPlantNursery();
 		
@@ -117,10 +119,10 @@ public class ViewPage2 extends View {
 	 */
 	public void setPlantNursery() {
 		
-	    	mainTab.setText("Nursery Plant Selection");
-	    	tabPane.getTabs().add(mainTab); // main tab with plant buttons
+	    mainTab.setText("Nursery Plant Selection");
+	    tabPane.getTabs().add(mainTab); // main tab with plant buttons
 		    
-	    	dropBox.getChildren().addAll(setButtons(tabPane, allPlants), getDropDown());
+	    dropBox.getChildren().addAll(setButtons(tabPane, allPlants), getDropDown());
 	    
 		mainTab.setContent(dropBox);
 		mainTab.setClosable(false);
@@ -130,7 +132,7 @@ public class ViewPage2 extends View {
 
 		title.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 		title.setFill(Color.WHITE); 
-	    	title.setStrokeWidth(strokeWidth); 
+	    title.setStrokeWidth(strokeWidth); 
 		title.setStroke(Color.BLUE);
 		title.setTranslateX(titleX);
 		    
@@ -151,27 +153,39 @@ public class ViewPage2 extends View {
 	 * @param	TabPane   Contains main tab and all tabs created for each plant 
 	 * @return 	FlowPane  Organizes the layout of plant buttons on the main tab
 	 * 
-	 * 	 
-	 */
+	 * 	 */
 	public FlowPane setButtons(TabPane tabPane, ArrayList<Plant> alst) {
+		
 		FlowPane flow = new FlowPane(); 
+		
 		flow.setTranslateX(flowX);
 		flow.setTranslateY(flowY);
+		
 		flow.setVgap(flowGapV);
-	    	flow.setHgap(flowGapH);
-	    	flow.setPrefWrapLength(flowWrap);
-	    	flow.setPrefHeight(flowPrefH);
+	    flow.setHgap(flowGapH);
 	    
-	    	for (int i = 0; i < alst.size(); i++) {
-	    		Button b1 = new Button();
+	    flow.setPrefWrapLength(flowWrap);
+	    flow.setPrefHeight(flowPrefH);
+	    
+	    for (int i = 0; i < alst.size(); i++) {
+	    	
+	    	Button b1 = new Button();
 			Plant p = alst.get(i);  
-	    		b1.setGraphic(new ImageView(new Image(p.getImgName(), buttonWidth, buttonHeight, false, false))); 
+			
+	    	b1.setGraphic(new ImageView(new Image(p.getImgName("original"), 
+	    			buttonWidth, buttonHeight, false, false))); 
+	    	
 			b1.setTooltip(new Tooltip(p.greeneryHover()));
-	    		flow.getChildren().addAll(b1);	    	
+	    	
+	    	flow.getChildren().addAll(b1);	    	
+	    	
 			Tab t = new Tab(); 
 			b1.setOnAction(e -> tabPane.getTabs().addAll(t));
-			setTabInfo(p, t);	 
-		}
+			
+			setTabInfo(p, t);
+				 
+			}
+
 		return flow;
 	}
 	
@@ -192,12 +206,13 @@ public class ViewPage2 extends View {
 
 		name.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 		name.setFill(Color.WHITE); 
-	    	name.setStrokeWidth(strokeWidth); 
+	    name.setStrokeWidth(strokeWidth); 
 		name.setStroke(Color.BLUE);
 		    
 		t.setText(p.getName());
 		
-		ImageView planImg =  new ImageView(new Image(p.getImgName(), imgWidth, imgHeight, false, false));
+		ImageView planImg =  new ImageView(new Image(p.getImgName("original"), 
+    			imgWidth, imgHeight, false, false));
 		
 		planImg.setTranslateX(imgWidth);
 
