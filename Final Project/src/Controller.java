@@ -429,42 +429,7 @@ public class Controller extends Application {
 		vp5.setAllRatings(getRating());
 	}
 	
-	/**
-	 * Event handler for buttons to set the scene based on the certain page it is on and the page it is trying to get to
-	 * @param s
-	 * @param num
-	 */
-	public void goHomeButton(Stage s, int num) {
-
-		switch (num) {
-		case 1:
-			scene = new ViewPage1(s).getScene1();
-			break;
-		case 2:	
-			scene = new ViewPage2(s).getScene2();
-			break;
-		case 4:	
-			scene = new ViewPage4(s).getScene4();
-			break;
-		case 5:
-			scene = new ViewPage5(s).getScene5();
-			break;
-		case 6:
-			scene = new ViewPage6(s).getScene6();
-			break;
-		case 7:
-			scene = new ViewPage7(s).getScene7();
-			break;
-		case 8:
-			scene = new ViewPage8(s).getScene8();
-			break;
-		case 9:
-			scene = new ViewPage9(s).getScene9();
-			break;				
-		}
-
-		s.setScene(scene);
-	}
+	
 	
 	/**
 	 * Basic getter for recieving the rating given by the model
