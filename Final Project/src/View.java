@@ -51,7 +51,7 @@ public class View extends Application {
 	int plaWidth = 100;
 	int plaHeight = 100;
 	
-	int home = 0; 
+	int home = 1; 
 	int strokeWid = 2;
 	int sizingGen = 2;
 	int sizingPla = 3;		    
