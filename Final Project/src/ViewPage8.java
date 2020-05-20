@@ -1,5 +1,6 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,6 +31,8 @@ import javafx.stage.Stage;
  */
 public class ViewPage8 extends View {
 	Scene scene8;
+	VBox layout = new VBox(20);     
+
 	
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
@@ -41,39 +44,52 @@ public class ViewPage8 extends View {
 
 	public ViewPage8(Stage theStage) {
 		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		VBox layout = new VBox(20);     
-	    	Text label1 = new Text("Benefits of a Garden");
+		
+	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+	    
+	    setLayout();
+	    
+	  	layout.setBackground(new Background(myBG));
+	  	scene8 = new Scene(layout, sceneWidth, sceneHeight); 
+	  	scene8.setCursor(new ImageCursor(mouse));
+	  	
+	  	theStage.setScene(scene8);
+	  	theStage.show(); 	
+
+	}	
+	
+	public void setLayout() {
+	    Text label1 = new Text("Benefits of a Garden");
 		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	    	label1.setTranslateX(labelX);
-	    	label1.setTranslateY(labelY);
-	    	label1.setFill(Color.WHITE); 
-	    	label1.setStrokeWidth(2); 
-	    	label1.setStroke(Color.BLUE);
-	    	Text animalText = new Text();
-	    	Text edgeText = new Text();
-	    	Text appearText = new Text();
+	    label1.setTranslateX(labelX);
+	    label1.setTranslateY(labelY);
+	    label1.setFill(Color.WHITE); 
+	    label1.setStrokeWidth(2); 
+	    label1.setStroke(Color.BLUE);
+	    Text animalText = new Text();
+	    Text edgeText = new Text();
+	    Text appearText = new Text();
 	    
 	    // textFiles folder: animals.txt, edge.txt, appear.txt
 
-	    	try {
+	    try {
 			animalText.setText(uploadText("animals"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 	    
-	    	try {
+	    try {
 			edgeText.setText(uploadText("edge"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-	    	try {
+	    try {
 			appearText.setText(uploadText("appear"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-	    	homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+	    
 
 	  	Tab animals = new Tab();
 	  	animals.setText("Animals");
@@ -90,15 +106,9 @@ public class ViewPage8 extends View {
 		TabPane tabPane = new TabPane();
 		tabPane.getTabs().addAll(animals, edge, appear);
 		
-	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
-	  	layout.setBackground(new Background(myBG));
-	  	scene8 = new Scene(layout, sceneWidth, sceneHeight); 
-	  	scene8.setCursor(new ImageCursor(mouse));
+	  	layout.getChildren().addAll(label1, tabPane, homeButton); 		
+	}
 
-	   	theStage.setScene(scene8); 
-	   	theStage.show(); 	
-
-	}	
 	
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on screens 
@@ -110,20 +120,20 @@ public class ViewPage8 extends View {
 		return scene8;
 	}
 
-	
 	 
 	 /**
-	  * Description: takes in the text file to present to the user the basic information for that tab 
-	  * 
-	  * @param name a string of what the file is called
-	  * @return none
-	  * @throws Exception
-	  */
-	  public String uploadText(String name) throws Exception {
-		String file = new String("textFiles/Page8/" + name + ".txt"); 
-		String data = ""; 
-		data = new String(Files.readAllBytes(Paths.get(file))); 
-		return data;
-	 }
+		 * Description: takes in the text file to present to the user the basic information for that tab 
+		 * 
+		 * @param name a string of what the file is called
+		 * @return none
+		 * @throws Exception
+		 */
+		 public String uploadText(String name) throws Exception {
+			 String file = new String("textFiles/Page8/" + name + ".txt"); 
+			 String data = ""; 
+			 
+			 data = new String(Files.readAllBytes(Paths.get(file))); 
+			 return data;
+		  }
 
 }
