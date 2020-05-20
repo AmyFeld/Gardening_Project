@@ -33,11 +33,7 @@ import javafx.stage.Stage;
 public class ViewPage9 extends View {
 	
 	Scene scene9;
-	//int fontSize = 40; 
-	//int labelX = 300;
-	//int labelY = 15;
-
-
+	VBox layout = new VBox(boxSize);     
 
 	/**
 	 * This will create different tabs that will display different information depending on the tab and also allow for a home button
@@ -46,51 +42,58 @@ public class ViewPage9 extends View {
 	 * @return none  Creates an application displaying the graphics and tabs of the information
 	 *
 	 */
+	
 	public ViewPage9(Stage theStage) {
-		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
-		ImageView bg = new ImageView(back);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		
-			
-		VBox layout = new VBox(20);     
-	    Text label1 = new Text("Tips to Start");
-		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	    label1.setTranslateX(labelX);
-	    label1.setTranslateY(labelY);
-	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(2); 
-	    label1.setStroke(Color.BLUE);
-	    Text unhappyText = new Text();
-	    Text bestText = new Text();
-	    Text startText = new Text();
-	    Text invasiveText = new Text();
+	
+		setLayout();
 	    
-	    // textFiles folder: unhappy.txt, best.txt, start.txt
+		homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
+	  	layout.setBackground(new Background(myBG));
+	  	scene9 = new Scene(layout, sceneWidth, sceneHeight); 
+	  	scene9.setCursor(new ImageCursor(mouse));
+	  	
+	  	theStage.setScene(scene9);
+	  	theStage.show(); 	
 
-	    try {
+	}	
+	
+	public void setLayout() {
+		
+		Text label1 = new Text("Tips to Start");
+		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+	    	label1.setTranslateX(labelX);
+	    	label1.setTranslateY(labelY);
+	    	label1.setFill(Color.WHITE); 
+	    	label1.setStrokeWidth(2); 
+	    	label1.setStroke(Color.BLUE);
+	    
+	    	Text unhappyText = new Text();
+	    	Text bestText = new Text();
+	    	Text startText = new Text();
+	    	Text invasiveText = new Text();
+	    
+		try {
 			unhappyText.setText(uploadText("unhappy"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
  	    
-	    try {
+	    	try {
 			bestText.setText(uploadText("best"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-	    try {
+	    	try {
 			startText.setText(uploadText("start"));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-	    try {
-	    	invasiveText.setText(uploadText("invasive"));
-	 		} catch (Exception e2) {
-	 			e2.printStackTrace();
-	 		}
-	 	    
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
-
+	    	try {
+	    		invasiveText.setText(uploadText("invasive"));
+		} catch (Exception e2) {
+	 		e2.printStackTrace();
+	 	}
+		
 	  	Tab unhappy = new Tab();
 	  	unhappy.setText("Unhappy?");
 	  	unhappy.setContent(unhappyText);
@@ -111,15 +114,7 @@ public class ViewPage9 extends View {
 		tabPane.getTabs().addAll(unhappy, best, start, invasive);
 		
 	  	layout.getChildren().addAll(label1, tabPane, homeButton); 
-	  	layout.setBackground(new Background(myBG));
-	  	scene9 = new Scene(layout, sceneWidth, sceneHeight); 
-	  	scene9.setCursor(new ImageCursor(mouse));
-
-	  	
-	   	 theStage.setScene(scene9); 
-	   	 theStage.show(); 	
-
-	}	
+	}
 	
 	/**
 	 * Description: basic getter for the scene in order to receive it when buttons are pressed on screens 
@@ -139,12 +134,12 @@ public class ViewPage9 extends View {
 	 * @return none
 	 * @throws Exception
 	 */
-		 public String uploadText(String name) throws Exception {
-			 String file = new String("textFiles/Page9/" + name + ".txt"); 
-			 String data = ""; 
+	public String uploadText(String name) throws Exception {
+		 String file = new String("textFiles/Page9/" + name + ".txt"); 
+		 String data = ""; 
 			 
-			 data = new String(Files.readAllBytes(Paths.get(file))); 
-			 return data;	  
+		 data = new String(Files.readAllBytes(Paths.get(file))); 
+		 return data;	  
 	}
 
 }

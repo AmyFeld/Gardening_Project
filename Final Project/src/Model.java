@@ -114,16 +114,28 @@ public class Model implements Serializable {
 		return null;
 	}
 	
+	/**
+	 * Basic getter for the arrayList of myPlants
+	 * @return myPlants
+	 */
 	public ArrayList<Plant> getMyPlant() {
 		return myPlants;
 	}
 	
+	/**
+	 * Description: sets the model rating value based on the current gridPlant array
+	 * @return ArrayList<Integer> rating
+	 */
 	public ArrayList<Integer> setRating() {
 		rating = rateGarden(gridPlants);
 		System.out.println(rating);
 		return rating;
 	}
 	
+	/**
+	 * Description: takes in a node and sets the x and y of that node based on the model's current X and Y values
+	 * @param n
+	 */
 	public void setImage(Node n){
 		n.setTranslateX(getX());
 		n.setTranslateY(getY());
@@ -142,7 +154,11 @@ public class Model implements Serializable {
 		currentGarden = new Garden(); // removeAll?
 	}
 	
-	
+	/**
+	 * Takes in the overall rating score and gives a string of information why the user got a specific rating
+	 * @param i
+	 * @return String temp
+	 */
 	public String interpretFinalRating(int i) {
 		String temp = "";
 		String name = "rating/"+Integer.toString(i)+".txt";
@@ -160,20 +176,35 @@ public class Model implements Serializable {
 			return temp;
 	}
 
-		//Basic Getters and Setters for the Garden Drag and Drop
 	
+	/**
+	 * Description: sets the modelX value to a given double
+	 * @param x
+	 */
 	public void setX(double x){
 		modelX = x;
 	}
 
+	/**
+	 * Description: sets the modelY value to a given double
+	 * @param y
+	 */
 	public void setY(double y){
 		modelY = y;
 	}
 
+	/**
+	 * Description: basic getter for current x value in model based on the controller
+	 * @return double X value
+	 */
 	public double getX(){
 		return modelX;
 	}
 
+	/**
+	 * Description: basic getter for current y value in model based on the controller
+	 * @return double Y value
+	 */
 	public double getY(){
 		return modelY;
 	}
@@ -186,23 +217,30 @@ public class Model implements Serializable {
 	 * @throws no exception
 	 */
 	public ArrayList<Integer> rateGarden(ArrayList<Plant> temp) {
-		ArrayList<Integer> ahhh = new ArrayList<Integer>();
+		ArrayList<Integer> rateList = new ArrayList<Integer>();
 		currentGarden.colorRating = currentGarden.calculateColorRating(temp);
 		currentGarden.animalsFedRating = currentGarden.calculateAnimalsFedRating(temp);
 		currentGarden.compatibilityRating = currentGarden.calculateCompatibilityRating(temp);
 		currentGarden.contBloomRating = currentGarden.calculateContBloomRating(temp);
 		currentGarden.transitionRating = currentGarden.calculateTransitionRating(temp);
-		ahhh.add(currentGarden.colorRating);
-		ahhh.add(currentGarden.contBloomRating);
-		ahhh.add(currentGarden.animalsFedRating);
-		ahhh.add(currentGarden.compatibilityRating);
-		ahhh.add(currentGarden.transitionRating);
-		int overall = currentGarden.colorRating + currentGarden.contBloomRating + currentGarden.animalsFedRating + currentGarden.compatibilityRating + currentGarden.transitionRating;
-		overall /= 5;
-		ahhh.add(overall);
-		return ahhh;
+		rateList.add(currentGarden.colorRating);
+		rateList.add(currentGarden.contBloomRating);
+		rateList.add(currentGarden.animalsFedRating);
+		rateList.add(currentGarden.compatibilityRating);
+		rateList.add(currentGarden.transitionRating);
+		double sum = 0;
+		for(int i : rateList) {
+			sum+=i;
+		}
+		rateList.add((int)Math.round(sum/5.0));
+		return rateList;
 	}
 
+	/**
+	 * Description: takes in a integer and sets the current plant to that integer
+	 * then removes that plant from the gridPlants arrayList
+	 * @param i
+	 */
 	public void removeImageView(int i) {
 		setPlant(allPlants.get(i));
 		System.out.println(currentPlant.name);
@@ -212,6 +250,11 @@ public class Model implements Serializable {
 		printGrid();
 	}
 	
+	/**
+	 * Description: after getting what plant is currently being used adds the plant to the grid and sets the scale
+	 * @param i
+	 * @return int size
+	 */
 	public int addImageView(int i) {
 		if(i<allPlants.size()) {
 			setPlant(allPlants.get(i));
@@ -221,6 +264,9 @@ public class Model implements Serializable {
 		return currentPlant.scaling();
 	}
 	
+	/**
+	 * Description: Prints all of the plants in grid -- used for testing they are in there
+	 */
 	public void printGrid() {
 		for(int j=0; j< gridPlants.size(); j++) {
 	 		System.out.print(gridPlants.get(j).getName()+ " "+ j);
