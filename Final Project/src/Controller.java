@@ -223,7 +223,138 @@ public class Controller extends Application {
 
 			ex.printStackTrace();}
 	}
+	/**
+ *   Description: The filter method that organizes which combobox and which filter is applied. It filters 
+ *   the all plants (arraylist) given. 
+ *   
+ * @param vp2: ViewPage2 object since the method needs the objects in vp2
+ * @param cbox: the specified combobox (viewpage2 has 6 comboboxes)
+ * @param plst: the plant arraylist: all plants from the Garden class
+ * @param area: the type of combobox, in the Garden class the Filter() helps sort through which types
+ * @param g: garden specified in ViewPage2
+ * @param tp: tabPane specified in ViewPage2
+ * @param drop: the hbox assembling the plant buttons and comboboxes
+ * @param t : the main tab featuring the Plant Nursery with all buttons
+ * @param vb: the vbox assembling the comboxes on the main tab
+ */
+	public void getFilter(ViewPage2 vp2, ComboBox<String> cbox, ArrayList<Plant> plst, String area, 
+			Garden g, TabPane tp, HBox drop, Tab t, VBox vb) {
+		
+		String pick = cbox.getSelectionModel().getSelectedItem(); 
+		String val = area;
+		String spec = "";
+		
+	switch(val) {
+		case("Color"):
+			spec = "color";
+			break;
+		case("Type"):
+			spec = "type";
+			break;
+		case("Height"):
+			spec = "height";
+			break;
+		case("Fruit"):
+			spec = "hasFruit";
+			break;
+		case("Water"):
+			spec = "waterUse";
+			break;
+		case("Month"):
+			spec = "start";
+			break;
+		}
 	
+	if (spec.equals("height")) {
+		switch(pick) {
+		case("0-10"):
+			pick = "0";
+			break;
+		case("10-20"):
+			pick = "10";
+			break;
+		case("20-30"):
+			pick = "20";			
+			break;
+		case("30-40"):
+			pick = "30";
+			break;
+		case("40+"):
+			pick = "40";
+			break;
+		}
+		
+	}
+	
+	if (spec.equals("start")) {
+		switch(pick) {
+		case "January":
+			pick = "1";
+			break;
+		case "February":
+			pick = "2";
+			break;
+		case "March":
+			pick = "3";
+			break;
+		case "April":
+			pick = "4";
+			break;
+		case "May":
+			pick = "5";
+			break;
+		case "June":
+			pick = "6";
+			break;
+		case "July":
+			pick = "7";
+			break;
+		case "August":
+			pick = "8";
+			break;
+		case "September":
+			pick = "9";
+			break;
+		case "October":
+			pick = "10";
+			break;
+		case "November":
+			pick = "11";
+			break;
+		case "December":
+			pick = "12";
+			break;
+		}
+	}
+	plst = g.Filter(spec, pick, plst);
+	
+	updateNursery(vp2, plst, g, tp, drop, t, vb, false);	
+	} 
+	
+	/** 
+	 * Description: Updates the visual Plant Nursery display with the given paramters in ViewPage2. The parameters 
+	 * are needed to ensure no copies are created (only ViewPage2 objects). It displays the filtered or all plant buttons. 
+	 * @param vp2  ViewPage2 object to access methods and objects
+	 * @param plst a plant arraylist with applied filters
+	 * @param g    a garden of viewpage2
+	 * @param tp   a tabPane used in viewpage2
+	 * @param drop a dropdown used in viewpage2
+	 * @param t    the main tab used in viewpage2
+	 * @param vb   the dropdown format of comboboxes in viewpage2
+	 * @param reset a boolean to know whether to default to all 60 plants
+	 */
+	public void updateNursery(ViewPage2 vp2, ArrayList<Plant> plst, Garden g, 
+			TabPane tp, HBox drop, Tab t, VBox vb, Boolean reset) {
+		
+		if (reset) {
+			plst = g.allPlants;
+		}
+		
+		drop.getChildren().clear();
+		drop.getChildren().addAll(vp2.setButtons(tp, plst), vb);
+		t.setContent(drop);
+		
+	}
 	/**
 	 * Event handler for buttons to set the scene based on the certain page it is on and the page it is trying to get to
 	 * @param s
