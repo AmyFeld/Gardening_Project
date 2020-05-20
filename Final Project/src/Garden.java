@@ -109,20 +109,21 @@ import java.util.ArrayList;
 	 * @throws no exceptions
 	 */
 	public int calculateContBloomRating(ArrayList<Plant> usedPlants){
-		ArrayList<Integer> months = new ArrayList<Integer>();
+		ArrayList<String> months = new ArrayList<String>();
 		for(int i = 1; i < 13; i++) {
-			months.add(i);
+			months.add(String.valueOf(i));
 		}
 		for(Plant p : usedPlants) {
-			for(int i = p.start; i <= p.end; i++) {
+			for(int i = p.start; i <= p.end+1; i++) {
 				if(months.size() == 0) {
 					return 5;
-				/*}else if(months.contains(i)) {
-					months.remove(i);
-			*/	}
+					}
+				if(months.contains(String.valueOf(i))) {
+					months.remove(String.valueOf(i));
+				}
+				}
 			}
-		}
-		if(months.size() <= 2) {
+		if(months.size() <= 3) {
 			return 4;
 		}else if(months.size() <= 4) {
 			return 3;
@@ -130,8 +131,6 @@ import java.util.ArrayList;
 			return 2;
 		}else 
 			return 1;
-		
-		
 	}
 	/**
 	 * Description: calculateAnimalsFedRating is a function that analyzes a garden and based on what plants are present,
@@ -184,15 +183,16 @@ import java.util.ArrayList;
 		int medLowDif = Math.abs(lowCount - mediumCount);
 		if(highCount == usedPlants.size() || mediumCount == usedPlants.size() || lowCount == usedPlants.size()) {
 			return 5;
+		}else if(lowCount == highCount || highCount == mediumCount || mediumCount == lowCount) {
+			return 1;
 		}else if(highLowDif <= 4 || medHighDif <= 4 || medLowDif <= 4){
 			return 2; 
 		}else if(highLowDif <= 8 || medHighDif <= 8 || medLowDif <= 8){
 			return 3;
-		}else if(highLowDif <= 15 || medHighDif <= 15 || medLowDif <= 15){
-			return 4;
 		}else{
-			return 1; 
+			return 4;
 		}
+		
 	}
 	
 	/**
