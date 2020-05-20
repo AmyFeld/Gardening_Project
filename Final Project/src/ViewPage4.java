@@ -61,7 +61,7 @@ public class ViewPage4 extends View {
 	ViewPage5 vp5;
 	String season = "spring";
 	Slider sl = new Slider(0,3,0);
-	Model m = new Model();
+	//Model m = new Model();
 	ArrayList<Plant> myPlants = new ArrayList<Plant>();
 	int second = 2;
 	int fifth = 5;
@@ -92,25 +92,25 @@ public class ViewPage4 extends View {
 	    	tile = new TilePane(Orientation.VERTICAL);
 		anchor = new AnchorPane();
 		border = new BorderPane();
-	  	layout1.getChildren().addAll(back, label1, homeButton, rate);
-	    	sl.setOrientation(Orientation.VERTICAL);
-	    	sl.setMin(min);
-	    	sl.setMax(max);
-	    	sl.setValue(tick);
-	    	sl.setShowTickLabels(true);
-	    	sl.setShowTickMarks(true);
-	    	sl.setMajorTickUnit(tick);
-	    	sl.setMinorTickCount(min);
-	    	sl.setLabelFormatter(new StringConverter<Double>() {
-	    		public String toString(Double n) {
-	    		  if (n<n1) {
-	    			  return"Fall";
-	    		  }
-	    		  if(n<n2) {
-	    			 return "Spring";
-	    		 }
-			return "Winter";
-			}
+	    layout1.getChildren().addAll(back, label1, homeButton, rate);
+	    sl.setOrientation(Orientation.VERTICAL);
+	    sl.setMin(min);
+	    sl.setMax(max);
+	    sl.setValue(tick);
+	    sl.setShowTickLabels(true);
+	    sl.setShowTickMarks(true);
+	    sl.setMajorTickUnit(tick);
+	    sl.setMinorTickCount(min);
+	    sl.setLabelFormatter(new StringConverter<Double>() {
+	    	public String toString(Double n) {
+	    	  if (n<n1) {
+	    		  return"Fall";
+	    	  }
+	    	  if(n<n2) {
+	    		 return "Spring";
+	    	 }
+	    	  return "Winter";
+	    	}
 			@Override
 			public Double fromString(String s) {
 				switch (s) {
@@ -125,33 +125,29 @@ public class ViewPage4 extends View {
 			}
 							
 	    });	      		      
-	    	Image trash = new Image("file:images/Trash.png", plaHeight, plaWidth, false, false);
-	    	ImageView imtrash = new ImageView(trash);
-	    	userlabel = new TextField("Create new label");       
-	    	Alert explain = new Alert(AlertType.INFORMATION);
+	    Image trash = new Image("file:images/Trash.png", plaHeight, plaWidth, false, false);
+	    ImageView imtrash = new ImageView(trash);
+	    userlabel = new TextField("Create new label");       
+	    Alert explain = new Alert(AlertType.INFORMATION);
 		explain.setContentText("To add to the garden: click on the plant or object you would like to add it will be added to the garden. Then you can drag to the specific location. To Remove, drag the image to the trashcan. To add labels, type up what you want to add and drag to the location you would like.");
 		Button tut = new Button(); 
 		tut.setText("Tutorial");
 		tut.setOnAction(e -> explain.show() );
-	    	userlabel.setOnAction(e -> control.label(e));	
-            	VBox right = new VBox(boxRight);
-	    	right.getChildren().addAll(tut, sl, userlabel, imtrash);	  	
-	    	homeButton.setOnAction(e -> control.goHomeButton(theStage, home));	 
-	    	rate.setOnAction(e-> {
-	    		m.updateGarden(); 
-	    		theStage.setScene(vp5.getScene5());
-	    		vp5.setAllRatings(ratings);
-	    
-	    	});
-	    	back.setOnAction(e -> control.goHomeButton(theStage, second ));     
+	    userlabel.setOnAction(e -> control.label(e));	
+        VBox right = new VBox(boxRight);
+	    right.getChildren().addAll(tut, sl, userlabel, imtrash);	  	
+	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));	 
+	    rate.setOnAction(e-> control.setRatings(theStage, vp5)); 
+
+	    back.setOnAction(e -> control.goHomeButton(theStage, second ));     
 		ImageView iv;
-	    	start(theStage);
-	    	layout1.setAlignment(Pos.TOP_CENTER);
-	    	border.setRight(right);
-	    	border.setTop(layout1);
-	    	scene4 = new Scene(border, sceneWidth, sceneHeight); // the
-	    	theStage.setScene(scene4); 
-	    	theStage.show(); 	
+	    start(theStage);
+	    layout1.setAlignment(Pos.TOP_CENTER);
+	    border.setRight(right);
+	    border.setTop(layout1);
+	    scene4 = new Scene(border, sceneWidth, sceneHeight); // the
+	    theStage.setScene(scene4); 
+	    theStage.show(); 	
 	}	
 	
 	/**
@@ -164,9 +160,9 @@ public class ViewPage4 extends View {
 	 */
 	public void start(Stage stage) {		
 		ArrayList<ImageView> gen = makeGenImg();
-    		BackgroundImage bg = new BackgroundImage(new Image("file:images/anchor.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+    	BackgroundImage bg = new BackgroundImage(new Image("file:images/anchor.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-    		anchor.setBackground(new Background(bg));
+    	anchor.setBackground(new Background(bg));
 	 	anchor.setStyle("-fx-background-color: #05F861;");
 	 	tile.setMaxWidth(plaWidth);
 	 	tileBox = new VBox(boxSize);
@@ -174,11 +170,11 @@ public class ViewPage4 extends View {
 	 	sc.setPrefViewportHeight(tileBox.getHeight());
 	 	sc.setPrefWidth(plaWidth);
 	 	sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-      		anchor.setPrefHeight(anchorHeight);
-      		border.setLeft(sc);
-      		border.setCenter(anchor);
-      		makeIm();
-    		sl.valueProperty().addListener(
+      	anchor.setPrefHeight(anchorHeight);
+      	border.setLeft(sc);
+      	border.setCenter(anchor);
+      	makeIm();
+    	sl.valueProperty().addListener(
       		new ChangeListener<Number>() {
       			 public String toString(Double n) {
       		   		  if (n<n1) {
