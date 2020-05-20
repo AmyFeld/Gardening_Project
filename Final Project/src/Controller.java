@@ -371,6 +371,16 @@ public class Controller extends Application {
 	}
 	
 	/**
+	 * takes in a stage and viewpage5 to get the ratings from the garden to ViewPage5 
+	 * @param s
+	 * @param vp5
+	 */
+	public void setRatings(Stage s, ViewPage5 vp5) {
+		s.setScene(vp5.getScene5());
+		vp5.setAllRatings(getRating());
+	}
+	
+	/**
 	 * Event handler for buttons to set the scene based on the certain page it is on and the page it is trying to get to
 	 * @param s
 	 * @param num
