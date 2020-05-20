@@ -36,7 +36,7 @@ public class Plant implements Serializable{
 	 * @param start
 	 * @param end
 	 */
-	public Plant(String name, String type, int height, Boolean hadFruit, String waterUse, String color, int start, int end){
+	public Plant(String name, String type, int height, Boolean hasFruit, String waterUse, String color, int start, int end){
 		this.name = name;
 		this.type = type;
 		this.height = height;
