@@ -4,7 +4,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,17 +31,13 @@ import javafx.stage.Stage;
  *
  */
 public class View extends Application {
-	// added things
-	TextField userlabel;
-  	 
-	// value of the height and width of screen
-	//int canvasWidth = 1380;
-	//int canvasHeight = 940;
+
 	int sceneWidth = 900;
 	int sceneHeight = 600;
 	
 	int fontSize = 40;
 	int boxSize = 20;
+	int strokeWidth = 2;
 			
 	int labelX = 300;
 	int labelY = 15;
@@ -52,80 +47,58 @@ public class View extends Application {
 		
 	int imgWidth = 300;
 	int imgHeight = 300;
+	
+	int plaWidth = 100;
+	int plaHeight = 100;
+	
+	int home = 0; 
+	int strokeWid = 2;
+	int sizingGen = 2;
+	int sizingPla = 3;		    
+
+	int opac = 0;
+	double vol = 0.05;
+	int i = 0;
 	    
-	int strokeWidth = 2;
-	Scene theScene;
-
-	GraphicsContext gc;
-
-	Image background;
-	Image[] img;		
-		
-		//variables to determine the location of image
 	double x = 0;
 	double y = 0;
+	
+	TextField userlabel;
 	Button prevButton;
 	Button nextButton;
+	Button homeButton = new Button("Home");
 		
 	Image back = new Image("file:images/bg2.png",sceneWidth, sceneHeight, false, false);
 	Image mouse = new Image("file:images/leaf.png");
-
-		
-	BackgroundImage myBG;// = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-	// Image home = new Image("icons/home.png", 50, 50, false, false);
-	Button homeButton = new Button("Home");//, new ImageView(home));
-
-	View currView;
-	//ViewPage1 vp1;
-	Controller control;
-		
-	Scene scene1;
-	
-		 
-	//grid shindig
-	//GridPane grid
-	TilePane tile;
-	 
-	AnchorPane anchor;
-	//		private BorderPane border; 
-	//private TilePane tile;
-			
-	VBox tileBox;
-	Garden g = new Garden();
-	ArrayList<Plant> allPlants = g.allPlants;		
-	//ArrayList<Plant> myPlants = new ArrayList<Plant>();
-	ArrayList<Plant> gridPlants = new ArrayList<Plant>();
-			
-	Plant currPla;
-			
-	int plaWidth = 100;
-	int plaHeight = 100;
-
+	ImageView ivg;
+	BackgroundImage myBG;
 	ImageView imageView;
 	ImageView imgVL;
-	int i=0;
-	//new magic numbers
-	int home=0; 
-	int strokeWid = 2;
-	int sizingGen = 2;
-	int sizingPla =3;
-		    
-	ImageView ivg;
-	int opac = 0;
+	Circle circ;
+	Rectangle rect;
+
+	Plant imName;
+	Plant currPla;
+	View currView;
+	Controller control;
+	Scene scene1;
+	Garden g = new Garden();
+
+	TilePane tile;	 
+	AnchorPane anchor;
+	VBox tileBox;
 	
-	double vol = 0.05;
-		 
-	//ImageView[] ivArr;
+	ArrayList<Plant> allPlants = g.allPlants;		
 	ArrayList<ImageView> ivArr = new ArrayList<ImageView>();
-	//Scene scene2;
-	   //VP5
+	ArrayList<Plant> gridPlants = new ArrayList<Plant>();
 	ArrayList<Integer> ratings = new ArrayList<Integer>();
 		    
+	
 	/**
-	 * sets the generalities of the abstract view	 
+	 * Sets the generalities of the abstract view	 
 	 */
 	public View() {
+		
 		control = new Controller(this);
 		
 		g = control.model.getGarden();
@@ -141,10 +114,19 @@ public class View extends Application {
 		myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);		
 	}
+	
+	/** 
+	 * Description: Starts the entire application.
+	 * 
+	 */
+	public static void main(String args[]){  			
+	      launch(args);     
+	}
+	
 		 
 	/**
-	 * Sets up the first stage of the application with background
-	 * image & title. Adds ViewPage1 scene to the stage
+	 * Sets up the first stage of the application with background, image, title, and music.
+	 * Adds ViewPage1 scene to the stage
 	 *
 	 *@param Stage  a platform container to hold scene1 
 	 *
@@ -155,22 +137,16 @@ public class View extends Application {
 		File file = new File("harp.mp3");
 		Media media = new Media((file).toURI().toString());
 		AudioClip mediaplayer = new AudioClip(media.getSource());
-		mediaplayer.setVolume(vol);
 		
+		mediaplayer.setVolume(vol);
 		mediaplayer.play();
-	
-	
-		System.out.println("music");
+		System.out.println("music starts");
+		
 		theStage.setTitle("Create a Garden");
 		theStage.setScene(new ViewPage1(theStage).getScene1()); 
 		theStage.show(); 		
 	}
-	
-	public static void main(String args[]){  			
-	      launch(args);     
-	} 
-	
-	
+		
 	/** 
 	 * Reads in a textfile and returns the content into string format
 	 *   
@@ -187,20 +163,16 @@ public class View extends Application {
 		data = new String(Files.readAllBytes(Paths.get(file))); 
 		return data;	  
 	}
-	
-	
+		
     
 	/**
 	 * Takes in the information that was used to update and fixes the page and what should be seen
-	 * 
+
 	 */
-	public void update() {
-		
-		//ratings = control.model.rateGarden(gridPlants);
-		System.out.println(ratings.get(1));
-		
-	//	control = new Controller();
-	} 
+	public void update() {		
+		ratings = control.model.rateGarden(gridPlants);
+		// System.out.println(ratings.get(1));
+		} 
 	
 	/**
 	 * Basic getter setting the current imageView
@@ -210,7 +182,6 @@ public class View extends Application {
 		imageView = iv;
 	}
 	 
-	Circle circ;
 	/**
 	 * add a plant to the garden and gives ability to move it; scaled based on type
 	 * @param scale
@@ -219,7 +190,6 @@ public class View extends Application {
 				 
 		circ = new Circle(scale/2);
 		circ.setStroke(Color.BISQUE);
-		//Image im = new Image(allPlants.get(i).getImgName());
 		circ.setFill(new ImagePattern(imageView.getImage()));
 		 		
 		circ.setTranslateX(sceneWidth/sizingPla);
@@ -228,36 +198,24 @@ public class View extends Application {
 		circ.setOnMouseDragged(control.getHandlerForDrag());
 		circ.setOnMouseReleased(control.getHandlerForRelease());
 
-	 	//circ.addEventHandler(KeyEvent.KEY_PRESSED, control.getHandlerForRemove());
-	 	imageView.setOnMouseClicked(control.getHandlerForClick());
-		
-	  	System.out.println("Hi");
-	 
-	 //	newImageView();
+	 	imageView.setOnMouseClicked(control.getHandlerForClick());	 
 	 	
 		anchor.getChildren().add(circ);
 		 
 	   } 
 	
 	 public void removeImageView() {
-		 
-		 //grid.getChildren().remove(circ);
-		// grid.getChildren().get(i).setOpacity(0);
 		 circ.setOpacity(opac);
-		// grid.getChildren().remove(i);
-		// if()
 	 }
 	
-	 Rectangle rect;
+
 	 /**
 	  * Moves a generic image within the garden
 	  */
 	 public void moveGenImage() {
 		rect = new Rectangle(plaWidth/sizingGen, plaWidth/sizingGen);
 		rect.setStroke(Color.BISQUE);
-			//Image im = new Image(allPlants.get(i).getImgName());
 		rect.setFill(new ImagePattern(imageView.getImage()));
-		// ImageView imv = (ivArr.get(i));
 		rect.setOnMouseDragged(control.getHandlerForDrag());
 		rect.setOnMouseReleased(control.getHandlerForRelease());
 		anchor.getChildren().add(rect);
@@ -269,27 +227,19 @@ public class View extends Application {
 	 * @return boolean
 	 */
 	 public boolean setI(ImageView imgview) {
-		
 		 if(ivArr.contains(imgview)) {
 			 i = ivArr.indexOf(imgview);
-		 	return true;
+			 return true;
 		 }
-			return false;
-	}
-	 
+		 return false;
+	}	
 	
-	
-	 Plant imName;
 	 /**
 	  * Description: gets the plant based on all of the plants in database
 	  * @return Plant
 	  */
 	 public Plant getImageName() {
-		 
 		 imName = allPlants.get(i);
-		 
-		// imName = imageView.getId();
-		 System.out.println("HiIIIII" + imName.name);
 		 return imName;
 	 }
 
