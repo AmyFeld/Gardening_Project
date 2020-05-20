@@ -68,20 +68,7 @@ public class ViewPage5 extends View {
 	public ViewPage5(Stage theStage) {
 			
 		this.theStage = theStage;	
-  		theStage.setTitle("Rate My Garden");
-  		HBox layout1 = new HBox(hboxInt);     
-	    	Label label1 = new Label("Rate My Garden");
-	  	Button save = new Button("Save to");
-	  	Label buttonPressed = new Label("");
-	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);	  	
-	    	homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
-  		save.setOnAction(e -> {
-  			control.chooseFile(e, theStage);
-  			save.setText("Saved");		   
-  		});
-  		layout2.getChildren().add(layout1);
-  		layout2.setBackground(new Background(myBG));
-		scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
+  		setScene();
   		theStage.setScene(scene5); 
 	   	theStage.show();
 	}
@@ -97,6 +84,22 @@ public class ViewPage5 extends View {
 		return scene5;
 	}
 
+	public void setScene() {
+		theStage.setTitle("Rate My Garden");
+  		HBox layout1 = new HBox(hboxInt);     
+	    Label label1 = new Label("Rate My Garden");
+	  	Button save = new Button("Save to");
+	  	Label buttonPressed = new Label("");
+	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);	  	
+	    homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
+  		save.setOnAction(e -> {
+  			control.chooseFile(e, theStage);
+  			save.setText("Saved");		   
+  		});
+  		layout2.getChildren().add(layout1);
+  		layout2.setBackground(new Background(myBG));
+		scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
+	}
 	/**
 	 * Description: sets all of the ratings based on the model calculated ratings
 	 * 
