@@ -41,63 +41,7 @@ public class ViewPage6 extends View {
 	 */
 	public ViewPage6(Stage theStage) {
 	
-	    	VBox layout1 = new VBox(boxSize);     
-	    	Text label1 = new Text("About Arden");
-	    	label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	    	label1.setTranslateX(labelX);
-	    	label1.setTranslateY(labelY);
-	    	label1.setFill(Color.WHITE); 
-	    	label1.setStrokeWidth(strokeWid); 
-	    	label1.setStroke(Color.BLUE);	  
-	    	Text msText = new Text();
-	    	msText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
-	    	Text purpText = new Text();
-	    	Text histText = new Text();
-	    
-	    // textFiles folder: ms.txt, purp.txt, hist.txt
-
-	    	try {
-			msText.setText(uploadText("ms"));
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-	    
-	    	try {
-			purpText.setText(uploadText("purp"));
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-	    
-	    	try {
-			histText.setText(uploadText("hist"));
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-
-	    	homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
-
-	  	Tab ms = new Tab();
-	  	ms.setText("Mission Statement");
-	  	ms.setContent(msText);
-	
-	  	
-	  	Tab purp = new Tab();
-	  	purp.setText("Purpose");
-	  	purp.setContent(purpText);
-
-	  	
-	  	Tab hist = new Tab();
-	  	hist.setText("History");
-	  	hist.setContent(histText);
-
-	    
-		TabPane tabPane = new TabPane();
-		tabPane.getTabs().addAll(ms, purp, hist);
-		
-	  	layout1.getChildren().addAll(label1, tabPane, homeButton); 
-	  	layout1.setBackground(new Background(myBG));
-	  	scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
-	  	scene6.setCursor(new ImageCursor(mouse));
+		setLayout(theStage);
 	  	
 	   	theStage.setScene(scene6); 
 	   	theStage.show(); 	
@@ -129,6 +73,71 @@ public class ViewPage6 extends View {
 		 data = new String(Files.readAllBytes(Paths.get(file))); 
 		 return data;
 	  }
+	 
+	 /**
+	  * sets the layout of the page, creating the tabs/ tab information, labels, and heading as well as the home button
+	  * @param theStage
+	  */
+	 public void setLayout(Stage theStage) {
+		 VBox layout1 = new VBox(boxSize);     
+		 Text label1 = new Text("About Arden");
+		 label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
+		 label1.setTranslateX(labelX);
+		 label1.setTranslateY(labelY);
+		 label1.setFill(Color.WHITE); 
+		 label1.setStrokeWidth(strokeWid); 
+		 label1.setStroke(Color.BLUE);	  
+		 Text msText = new Text();
+		 msText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
+		 Text purpText = new Text();
+		 Text histText = new Text();
+		    
+		    // textFiles folder: ms.txt, purp.txt, hist.txt
+
+		    	
+		 try {
+				msText.setText(uploadText("ms"));
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		    
+		    	try {
+				purpText.setText(uploadText("purp"));
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		    
+		    	try {
+				histText.setText(uploadText("hist"));
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		    	
+		    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
+
+			Tab ms = new Tab();
+			ms.setText("Mission Statement");
+			ms.setContent(msText);
+			
+			 	
+			Tab purp = new Tab();
+			purp.setText("Purpose");
+			purp.setContent(purpText);
+
+			 	
+			Tab hist = new Tab();
+			hist.setText("History");
+			hist.setContent(histText);
+
+			    
+			TabPane tabPane = new TabPane();
+			tabPane.getTabs().addAll(ms, purp, hist);
+			
+			layout1.getChildren().addAll(label1, tabPane, homeButton); 
+			layout1.setBackground(new Background(myBG));
+			scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
+			scene6.setCursor(new ImageCursor(mouse));
+	 }
 
 
 }
