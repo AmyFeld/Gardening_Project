@@ -33,6 +33,7 @@ public class Controller extends Application {
 	double contX;
 	double contY;
 	Scene scene;
+	int outOfRange = 600;
 
 	/**
 	 * Constructor for controller - sets the view to the parameter and creates a new model
@@ -98,7 +99,7 @@ public class Controller extends Application {
 		
 		view.imageView.setOnMouseDragged(getHandlerForDrag());
 		System.out.println("RELEASE");
-		if(n.getTranslateX() > 600) {
+		if(n.getTranslateX() > outOfRange) {
 			view.circ = (Circle)n;
 			System.out.println("REMOVE");
 	
