@@ -355,6 +355,18 @@ public class Controller extends Application {
 		t.setContent(drop);
 		
 	}
+	
+	/**
+	* Description: sets user selected plants for Viewpage4 from ViewPage2
+	* @param Stage: the stage of viewpage2
+	* @param Viewpage4: to allow access to myPlants arraylist from ViewPage2 to ViewPage4 
+	*/
+	
+	public void setGardButton(Stage s, ViewPage4 vp4) {
+		s.setScene(vp4.getScene4());
+		vp4.setMyPlants(getMyPlants());		
+	}
+	
 	/**
 	 * Event handler for buttons to set the scene based on the certain page it is on and the page it is trying to get to
 	 * @param s
