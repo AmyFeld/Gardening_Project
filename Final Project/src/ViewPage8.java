@@ -44,9 +44,10 @@ public class ViewPage8 extends View {
 
 	public ViewPage8(Stage theStage) {
 		Image back = new Image("file:images/bg2.png", sceneWidth, sceneHeight, false, false);
-		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, 
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
-	    homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1()));
+		homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 	    
 	    setLayout();
 	    
