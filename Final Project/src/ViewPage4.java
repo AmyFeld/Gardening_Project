@@ -84,11 +84,11 @@ public class ViewPage4 extends View {
 	public ViewPage4(Stage theStage) {
 		setScene(theStage);
 	 	
-	    createSlider();
+	    	createSlider();
 	    
-	    start(theStage);
-	    theStage.setScene(scene4); 
-	    theStage.show(); 	
+	    	start(theStage);
+	    	theStage.setScene(scene4); 
+	    	theStage.show(); 	
 	}	
 	
 	/**
@@ -101,9 +101,9 @@ public class ViewPage4 extends View {
 	 */
 	public void start(Stage stage) {		
 		ArrayList<ImageView> gen = makeGenImg();
-    	BackgroundImage bg = new BackgroundImage(new Image("file:images/anchor.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+    		BackgroundImage bg = new BackgroundImage(new Image("file:images/anchor.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-    	anchor.setBackground(new Background(bg));
+    		anchor.setBackground(new Background(bg));
 	 	anchor.setStyle("-fx-background-color: #05F861;");
 	 	tile.setMaxWidth(plaWidth);
 	 	tileBox = new VBox(boxSize);
@@ -111,11 +111,11 @@ public class ViewPage4 extends View {
 	 	sc.setPrefViewportHeight(tileBox.getHeight());
 	 	sc.setPrefWidth(plaWidth);
 	 	sc.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-      	anchor.setPrefHeight(anchorHeight);
-      	border.setLeft(sc);
-      	border.setCenter(anchor);
-      	makeIm();
-    	sl.valueProperty().addListener(
+      		anchor.setPrefHeight(anchorHeight);
+      		border.setLeft(sc);
+      		border.setCenter(anchor);
+      		makeIm();
+    		sl.valueProperty().addListener(
       		new ChangeListener<Number>() {
       			 public String toString(Double n) {
       		   		  if (n<n1) {
@@ -132,8 +132,8 @@ public class ViewPage4 extends View {
 					makeIm();
 				} 
 		});
-    	tileBox.getChildren().addAll(gen);
-    	sc.setContent(tileBox);
+    		tileBox.getChildren().addAll(gen);
+    		sc.setContent(tileBox);
 	}
 	
 	/**
