@@ -87,11 +87,11 @@ public class ViewPage5 extends View {
 	public void setScene() {
 		theStage.setTitle("Rate My Garden");
   		HBox layout1 = new HBox(hboxInt);     
-	    Label label1 = new Label("Rate My Garden");
+	    	Label label1 = new Label("Rate My Garden");
 	  	Button save = new Button("Save to");
 	  	Label buttonPressed = new Label("");
 	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);	  	
-	    homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
+	    	homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
   		save.setOnAction(e -> {
   			control.chooseFile(e, theStage);
   			save.setText("Saved");		   
