@@ -1,8 +1,4 @@
 import java.util.ArrayList;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -15,7 +11,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -29,7 +24,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
  /**
@@ -39,7 +33,6 @@ import javafx.stage.Stage;
  * @author Lisa Pathania & Tara Fishman
  *
  */
-
 
 public class ViewPage2 extends View {
 	
@@ -63,13 +56,22 @@ public class ViewPage2 extends View {
 	int dPrefWidth = 100;
 
  	Button garButton = new Button("Go to Garden");
-	Button addButton =  new Button("Add to Garden");
 	Button reset =  new Button("Reset");
 	Text title = new Text("Greenery Tour");
 	Image back = new Image("file:images/bg2.png", sceneWidth+1000, sceneHeight+1200, false, false);
 	
+	String alert = "Welcome to the Plant Nursery! Click on a plant you would like to"
+		+ " view and go into the tab to add to garden! To filter plants based on different "
+		+ "requirements, view the filters to the right. When ready, click go to garden.";
+	
+	String colorPick = "Color";
+	String typePick = "Type";
+	String htPick = "Height";
+	String fruitPick = "Fruit";
+	String waterPick = "Water";
+	String monthPick = "Month";
+	
 	ViewPage4 vp4; 
-    Controller c = new Controller();
 	ArrayList<Plant> filteredPlants = g.allPlants;
 	
 	VBox vb = new VBox(boxSize); // assembles the title, tabs, and button 
@@ -98,28 +100,23 @@ public class ViewPage2 extends View {
 		setPlantNursery();
 		
 		Alert explain = new Alert(AlertType.INFORMATION);
-		explain.setContentText("Welcome to the Plant Nursery! Click on a plant you would like to"
-				+ " view and go into the tab to add to garden! To filter plants based on different requirements, "
-				+ "view the filters to the right. When ready, click go to garden.");
+		explain.setContentText(alert);
 		explain.show();
 		
-		garButton.setTranslateX(addButtonX); 
-		homeButton.setOnAction(e -> theStage.setScene(new ViewPage1(theStage).getScene1())); 
-		garButton.setOnAction( new EventHandler<ActionEvent>() { 
-			   public void handle(ActionEvent event) { 
-				 				    
-					theStage.setScene(vp4.getScene4());
-				    vp4.setMyPlants(c.getMyPlants());
-				    } 
-				});
-		  
+		garButton.setTranslateX(addButtonX);
+		
+		homeButton.setOnAction(e -> control.goHomeButton(theStage, 1));
+		garButton.setOnAction(e -> control.setGardButton(theStage, vp4)); 
 							
 	   	theStage.setScene(scene2);
 	   	theStage.show(); 			
 	} 
 	
-	
-	
+	/**
+	 * Description: assembles all content for the Plant Nursery Page, it holds the main tab with all plant buttons (60)
+	 * It also has the title, home button, go to garden button, scrollbar all on the main tab. It sets the
+	 *  scene and background.
+	 */
 	public void setPlantNursery() {
 		
 	    mainTab.setText("Nursery Plant Selection");
@@ -170,13 +167,11 @@ public class ViewPage2 extends View {
 	    flow.setPrefWrapLength(flowWrap);
 	    flow.setPrefHeight(flowPrefH);
 	    
-		// if filter then use cList size
 	    for (int i = 0; i < alst.size(); i++) {
 	    	
 	    	Button b1 = new Button();
 			Plant p = alst.get(i);  
 			
-	    	
 	    	b1.setGraphic(new ImageView(new Image(p.getImgName(), 
 	    			buttonWidth, buttonHeight, false, false))); 
 	    	
@@ -223,21 +218,15 @@ public class ViewPage2 extends View {
 
 		Text desc = new Text(p.getDesc());
 		
-		Button addButton =  new Button("Add to Garden");
-		addButton.setTranslateX(addButtonX);
-		
-		addButton.setOnAction(new EventHandler<ActionEvent>() { 
-			   public void handle(ActionEvent event) { 
-				 c.setMyPlants(p);
-				   } 
-				});
-		  
+		Button addButton = new Button("Add to Garden");
+		addButton.setTranslateX(addButtonX);			
+		addButton.setOnAction(e -> control.setMyPlants(p));
+				   	  
 		pInfo.getChildren().addAll(name, planImg, addButton, desc);
 		
 		t.setContent(pInfo); // adds all plant info to tab
 				
-	}
-	
+	}	
 		
 	/**
 	 * Description: Creates a VBox with contents of all filter options for plants; 
@@ -249,190 +238,55 @@ public class ViewPage2 extends View {
 		
 		VBox v = new VBox(dboxSize);
 		v.setTranslateY(20);
-		
+				
 		ComboBox<String> colorBox = new ComboBox<>();
 		colorBox.getItems().addAll("white", "red", "pink", "orange", "yellow", "green", "blue", "purple", "none");
-		colorBox.setValue("Color");
+		colorBox.setValue(colorPick);
 		colorBox.setPrefWidth(dPrefWidth);
-
-		colorBox.setOnAction((event) -> {
-		   String colorPick = colorBox.getSelectionModel().getSelectedItem(); 
-		   this.filteredPlants = g.Filter("color", colorPick, this.filteredPlants);
-		   
-		       dropBox.getChildren().clear();
-		       dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-		       
-		       mainTab.setContent(dropBox);
-
-		    for (Plant p: this.filteredPlants)
-		    System.out.print(p.getName() + ", ");
-		});
+		colorBox.setOnAction(e -> control.getFilter(this, colorBox, this.filteredPlants, colorPick,
+				g, tabPane, dropBox, mainTab, getDropDown()));
 
 		ComboBox<String> typeBox = new ComboBox<>();
 		typeBox.getItems().addAll("herb", "shrub", "tree");
-		typeBox.setValue("Type");
-		typeBox.setPrefWidth(dPrefWidth);
-		typeBox.setOnAction((event) -> {
-
-		String typePick = typeBox.getSelectionModel().getSelectedItem();
-		
-		this.filteredPlants = g.Filter("type", typePick, this.filteredPlants);
-				       
-		        dropBox.getChildren().clear();
-		        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-		       
-		        mainTab.setContent(dropBox);
-		       
-		        for (Plant p: this.filteredPlants)
-		        System.out.print(p.getName() + ", ");
-		       
-		        });
+		typeBox.setValue(typePick);
+		typeBox.setPrefWidth(dPrefWidth);		
+		typeBox.setOnAction(e-> control.getFilter(this, typeBox, this.filteredPlants, typePick, g,
+			tabPane, dropBox, mainTab, getDropDown()));
 	
-	//	
 		ComboBox<String> htBox = new ComboBox<>();
 		htBox.getItems().addAll("0-10 ft", "10-20 ft", "20-30 ft", "30-40 ft", "40+ ft");
-		htBox.setValue("Height");
+		htBox.setValue(htPick);
 		htBox.setPrefWidth(dPrefWidth);
-		htBox.setOnAction((event) -> {
-
-			String htPick = htBox.getSelectionModel().getSelectedItem();
-
-			switch(htPick) {
-			case("0-10"):
-				this.filteredPlants = g.Filter("height", "0", this.filteredPlants);
-			case("10-20"):
-				this.filteredPlants = g.Filter("height", "10", this.filteredPlants);
-			case("20-30"):
-				this.filteredPlants = g.Filter("height", "20", this.filteredPlants);
-			case("30-40"):
-				this.filteredPlants = g.Filter("height", "30", this.filteredPlants);
-			case("40+"):
-				this.filteredPlants = g.Filter("height", "40", this.filteredPlants);
-			}
-			
-			        dropBox.getChildren().clear();
-			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-			       
-			        mainTab.setContent(dropBox);
-			       
-			        for (Plant p: this.filteredPlants)
-			        System.out.print(p.getName() + ", ");
-		        
-        }); 
+		htBox.setOnAction(e-> control.getFilter(this, htBox, this.filteredPlants, htPick, g, 
+			tabPane, dropBox, mainTab, getDropDown())); 
 
 		ComboBox<String> fruitBox = new ComboBox<>();
 		fruitBox.getItems().addAll("True", "False");
-		fruitBox.setValue("Fruit");
+		fruitBox.setValue(fruitPick);
 		fruitBox.setPrefWidth(dPrefWidth);
-		fruitBox.setOnAction((event) -> {
-
-			String fruitPick = fruitBox.getSelectionModel().getSelectedItem();
-			
-			this.filteredPlants = g.Filter("hasFruit", fruitPick, this.filteredPlants);
-
-			        dropBox.getChildren().clear();
-			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-			       
-			        mainTab.setContent(dropBox);
-			       
-			      /*  for (Plant p: this.filteredPlants)
-			        System.out.print(p.hasFruit == true);*/
-			       
-			        });  
+		fruitBox.setOnAction(e-> control.getFilter(this, fruitBox, this.filteredPlants, fruitPick, g,
+				tabPane, dropBox, mainTab, getDropDown()));
 		
 		
 		ComboBox<String> waterBox = new ComboBox<>();	
 		waterBox.getItems().addAll("low", "medium", "high");
-		waterBox.setValue("Water");
+		waterBox.setValue(waterPick);
 		waterBox.setPrefWidth(dPrefWidth);
-		waterBox.setOnAction((event) -> {
-
-			String waterPick = waterBox.getSelectionModel().getSelectedItem();
-			
-			this.filteredPlants = g.Filter("waterUse", waterPick, this.filteredPlants);
-
-			        dropBox.getChildren().clear();
-			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-			       
-			        mainTab.setContent(dropBox);
-			       
-			        for (Plant p: this.filteredPlants)
-			        System.out.print(p.getName() + ", ");
-			       
-			        });
+		waterBox.setOnAction(e-> control.getFilter(this, waterBox, this.filteredPlants, waterPick, g,
+				tabPane, dropBox, mainTab, getDropDown()));
 		
 		ComboBox<String> monthBox = new ComboBox<>();	
 		monthBox.getItems().addAll("January", "February", "March",
 				"April", "May", "June", "July", "August", "September", "October", "November", "December");
-		monthBox.setValue("Month");
+		monthBox.setValue(monthPick);
 		monthBox.setPrefWidth(dPrefWidth);
-		monthBox.setOnAction((event) -> {
+		monthBox.setOnAction(e-> control.getFilter(this, monthBox, this.filteredPlants, monthPick, g,
+				tabPane, dropBox, mainTab, getDropDown()));
 
-			String monthPick = monthBox.getSelectionModel().getSelectedItem();
-			
-			switch(monthPick) {
-			case "January":
-				this.filteredPlants = g.Filter("start", "1", this.filteredPlants);
-				break;
-			case "February":
-				this.filteredPlants = g.Filter("start", "2", this.filteredPlants);
-				break;
-			case "March":
-				this.filteredPlants = g.Filter("start", "3", this.filteredPlants);
-				break;
-			case "April":
-				this.filteredPlants = g.Filter("start", "4", this.filteredPlants);
-				break;
-			case "May":
-				this.filteredPlants = g.Filter("start", "5", this.filteredPlants);
-				break;
-			case "June":
-				this.filteredPlants = g.Filter("start", "6", this.filteredPlants);
-				break;
-			case "July":
-				this.filteredPlants = g.Filter("start", "7", this.filteredPlants);
-				break;
-			case "August":
-				this.filteredPlants = g.Filter("start", "8", this.filteredPlants);
-				break;
-			case "September":
-				this.filteredPlants = g.Filter("start", "9", this.filteredPlants);
-				break;
-			case "October":
-				this.filteredPlants = g.Filter("start", "10", this.filteredPlants);
-				break;
-			case "November":
-				this.filteredPlants = g.Filter("start", "11", this.filteredPlants);
-				break;
-			case "December":
-				this.filteredPlants = g.Filter("start", "12", this.filteredPlants);
-				break;
-			}
-
-			       
-			        dropBox.getChildren().clear();
-			        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-			       
-			        mainTab.setContent(dropBox);
-			       
-			        for (Plant p: this.filteredPlants)
-			        System.out.print(p.getName() + ", ");
-			       
-			        });
 		
+		reset.setOnAction(e -> control.updateNursery(this, g.allPlants, g, tabPane, dropBox, mainTab, getDropDown(), true));
 
-		reset.setOnAction((event) -> {
-			
-			this.filteredPlants = g.allPlants;
-
-	        dropBox.getChildren().clear();
-	        dropBox.getChildren().addAll(setButtons(tabPane, this.filteredPlants), getDropDown());
-	       
-	        mainTab.setContent(dropBox);
-	        });
-		
-
-		v.getChildren().addAll(colorBox, typeBox,  waterBox, fruitBox, htBox, monthBox, reset);
+		v.getChildren().addAll(colorBox, typeBox, waterBox, fruitBox, htBox, monthBox, reset);	
 		
 		return v;
 	}
