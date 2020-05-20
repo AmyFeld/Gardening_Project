@@ -22,7 +22,6 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -40,8 +39,6 @@ import java.util.ArrayList;
 //This class presents the Rate My Garden page and takes in the ratings to present each topic using different icons
 
 public class ViewPage5 extends View {
-	
-	
 	int colorStars;
 	int bloomStars; 
 	int animalStars; 
@@ -54,12 +51,9 @@ public class ViewPage5 extends View {
 	int cs4 = 3;
 	int cs5 = 4;
 	int cs6 = 5;
-	
 	int STARH = 75;
 	int STARW = 75;
-	
 	VBox layout2 = new VBox();
-	
 	int hboxInt = 20;
 	Scene scene5;
 	Stage theStage;
@@ -75,34 +69,21 @@ public class ViewPage5 extends View {
 			
 		this.theStage = theStage;	
   		theStage.setTitle("Rate My Garden");
-
   		HBox layout1 = new HBox(hboxInt);     
-	    Label label1 = new Label("Rate My Garden");
-	  	//Button home = new Button("Home");
+	    	Label label1 = new Label("Rate My Garden");
 	  	Button save = new Button("Save to");
-	  	//Button faq = new Button("Frequently Asked Questions");
 	  	Label buttonPressed = new Label("");
-		//Button back2g = new Button("Back to Garden");	  	
-	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);
-			  	
-	    homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
-	    
-  
+	  	layout1.getChildren().addAll(label1, homeButton, save, buttonPressed);	  	
+	    	homeButton.setOnAction( e -> control.goHomeButton(theStage, home));	 
   		save.setOnAction(e -> {
   			control.chooseFile(e, theStage);
   			save.setText("Saved");		   
   		});
-  		
-	    
   		layout2.getChildren().add(layout1);
-  		//start(theStage);
-  
   		layout2.setBackground(new Background(myBG));
-	
 		scene5 = new Scene(layout2, sceneWidth, sceneHeight); // the button and label
   		theStage.setScene(scene5); 
 	   	theStage.show();
-	
 	}
 	
 	
@@ -123,9 +104,6 @@ public class ViewPage5 extends View {
 	 */
 	public void setAllRatings(ArrayList<Integer> ratings) {
 		System.out.println(ratings);
-	    //ratings = getRatings();
-	     //   System.out.println(ratings);
-	      
 		presentColor(ratings.get(cs1));
 		System.out.println(ratings.get(cs1));
 		presentContBloom(ratings.get(cs2));
@@ -205,65 +183,54 @@ public class ViewPage5 extends View {
  	 * @return none
  	 */
 	 public void start(Stage theStage){
-		//setAllRatings(ratings);
-		 System.out.println("Hi");
+		System.out.println("Hi");
 	  	Image image = new Image("file:images/starD.png", STARH, STARW, true, true);
-	  	//ImageView imageView = new ImageView(image);
 	  	Label coll = new Label("Color Rating");
 	  	Label blol = new Label("Continuous Bloom Rating");
 	  	Label anil = new Label("Animal Rating");
 	  	Label coml = new Label("Compatablity Rating");
 	  	Label tral = new Label("Transitional Rating (from Edge)");
 	  	Label overl = new Label("Overall Rating");
-	  
 		HBox col = new HBox();
 	  	HBox blo = new HBox();
 	  	HBox ani = new HBox();
 	  	HBox com = new HBox();
 	  	HBox tra = new HBox();
-	  	HBox over = new HBox();
-		  
+	  	HBox over = new HBox(); 
 		for(int i = 0; i<colorStars; i++) {
 			System.out.print("*");		
 		  	ImageView imageViewC = new ImageView(image);
 		  	col.getChildren().add(imageViewC);
 		}
 	  	System.out.println("");
-	  
 	  	for(int i = 0; i<bloomStars; i++) {
 			System.out.print("*");
 		  	ImageView imageViewB = new ImageView(image);
 		  	blo.getChildren().add(imageViewB);
 	  	}
 	  	System.out.println("");
-	  
 		for(int i = 0; i<animalStars; i++) {
 			System.out.print("*");
 		  	ImageView imageViewA = new ImageView(image);
 		  	ani.getChildren().add(imageViewA);
 		 }
 	  	System.out.println("");
-	  
 	  	for(int i = 0; i<compatStars; i++) {
 			System.out.print("*");
 		  	ImageView imageViewP = new ImageView(image);
 		  	com.getChildren().add(imageViewP);
 		 }
 	  	System.out.println("");
-	  
 	  	for(int i = 0; i<transitStars; i++) {
 			System.out.print("*");
 		  	ImageView imageViewT = new ImageView(image);
 		  	tra.getChildren().add(imageViewT);
  		}
-	  
 	  	for(int i = 0; i<overallStars; i++) {
 			System.out.print("*");
 		  	ImageView imageViewO = new ImageView(image);
 		  	over.getChildren().add(imageViewO);
 	  	}
 	  	layout2.getChildren().addAll(coll,col,blol,blo,anil,ani,coml,com,tral,tra, overl, over);
-	    
 	}
-
 }
