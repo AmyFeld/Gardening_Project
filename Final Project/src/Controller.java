@@ -9,10 +9,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+
+import javafx.scene.control.Button;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,18 +31,21 @@ import javafx.scene.shape.Circle;
  */
 
 public class Controller extends Application {
-	
 	View view;
 	Model model;
 	double contX;
 	double contY;
 	Scene scene;
+
 	int outOfRange = 600;
 
 	/**
 	 * Constructor for controller - sets the view to the parameter and creates a new model
 	 * @param view
 	 */
+
+	
+
 	public Controller(View view) {
 		
 		this.view = view;
@@ -67,11 +74,49 @@ public class Controller extends Application {
         System.out.println("WORK");
 		launch(args);
     }
+	
+	public void goHomeButton(Stage s, int num) {
+		
+		switch (num) {
+		case 1:
+			scene = new ViewPage1(s).getScene1();
+			break;
+		case 2:	
+			scene = new ViewPage2(s).getScene2();
+			break;
+		case 4:	
+			scene = new ViewPage4(s).getScene4();
+			break;
+		case 5:
+			scene = new ViewPage5(s).getScene5();
+			break;
+		case 6:
+			scene = new ViewPage6(s).getScene6();
+			break;
+		case 7:
+			scene = new ViewPage7(s).getScene7();
+			break;
+		case 8:
+			scene = new ViewPage8(s).getScene8();
+			break;
+		case 9:
+			scene = new ViewPage9(s).getScene9();
+			break;				
+		}
+		
+		s.setScene(scene);
+	}
+	
+	
+
 
 	/**
 	 * changes the x and y position of the image in the model based on the mouseEvent
 	 * @param event
 	 */
+
+	// Mouse Events 
+
 	public void drag(MouseEvent event){
 		Node n = (Node)event.getSource();
 		n.setVisible(true);
@@ -82,11 +127,14 @@ public class Controller extends Application {
 		//System.out.println("DRAG");
 	}
 
+
 	/**
 	 * Event handler for the images when dragged
 	 * @return Event
 	 */
-	public EventHandler<MouseEvent> getHandlerForDrag(){
+
+	public EventHandler<MouseEvent> getHandlerForDrag() {
+
 		return event -> drag((MouseEvent) event);
 	}
 

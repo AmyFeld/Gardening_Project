@@ -30,9 +30,11 @@ import javafx.stage.Stage;
  *
  */
 public class ViewPage7 extends View {
-	Scene scene7;
-	VBox layout = new VBox(boxSize);     
-    	Text label1 = new Text("Resources");
+	  Scene scene7;
+	  VBox layout = new VBox(boxSize);     
+   	Text label1 = new Text("Resources");
+
+
 	
 
 	/**
@@ -47,6 +49,7 @@ public class ViewPage7 extends View {
 	    setLayout();
 	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 
+
 	    layout.setBackground(new Background(myBG));
 	    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 	    scene7 = new Scene(layout, sceneWidth, sceneHeight); 
@@ -55,33 +58,36 @@ public class ViewPage7 extends View {
 	    theStage.setScene(scene7);
 	    theStage.show(); 	
 
+
 	}
 	/**
 	 * Description: sets the layout with all text information tabs of vp7
 	 */
 	public void setLayout() {
 	
+
 	    	label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
 	    	label1.setTranslateX(labelX);
 	    	label1.setTranslateY(labelY);
 	    	label1.setFill(Color.WHITE); 
-		label1.setStrokeWidth(strokeWid); 
+		    label1.setStrokeWidth(strokeWid); 
 	    	label1.setStroke(Color.BLUE);
 	    	Text whereText = new Text();
 	    	Text faqText = new Text();
 	    
 	    	try {
-			whereText.setText(uploadText("where"));
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
+
+		        whereText.setText(uploadText("where"));
+		    } catch (Exception e2) {
+			      e2.printStackTrace();
+		    }
 	    
 	    	try {
-			faqText.setText(uploadText("faq"));
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-			
+		      	faqText.setText(uploadText("faq"));
+		    } catch (Exception e2) {
+			      e2.printStackTrace();
+		    }
+
 	  	Tab where = new Tab();
 	  	where.setText("Where to Buy");
 	  	where.setContent(whereText);
