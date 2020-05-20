@@ -228,9 +228,11 @@ public class Model implements Serializable {
 		rateList.add(currentGarden.animalsFedRating);
 		rateList.add(currentGarden.compatibilityRating);
 		rateList.add(currentGarden.transitionRating);
-		int overall = currentGarden.colorRating + currentGarden.contBloomRating + currentGarden.animalsFedRating + currentGarden.compatibilityRating + currentGarden.transitionRating;
-		overall /= 5;
-		rateList.add(overall);
+		double sum = 0;
+		for(int i : rateList) {
+			sum+=i;
+		}
+		rateList.add((int)Math.round(sum/5.0));
 		return rateList;
 	}
 
