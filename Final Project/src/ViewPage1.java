@@ -75,9 +75,9 @@ public class ViewPage1 extends View {
 		HBox layout1 = new HBox(boxSize); 
 		Text label1 = new Text("Create Your Own Garden");
 		label1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, fontSize));
-	    label1.setFill(Color.WHITE); 
-	    label1.setStrokeWidth(strokeWid); 
-	    label1.setStroke(Color.BLUE); 
+	    	label1.setFill(Color.WHITE); 
+	    	label1.setStrokeWidth(strokeWid); 
+	    	label1.setStroke(Color.BLUE); 
 		Image back = new Image("file:images/bg.png", sceneWidth, sceneHeight, false, false);
 		BackgroundImage myBG = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		   
@@ -87,7 +87,7 @@ public class ViewPage1 extends View {
 	  	Button page8 = new Button("Benefits of a Garden");
 	  	Button page9 = new Button("Tips to Start");
 		
-	    button1.setOnAction(e -> control.goHomeButton(theStage,second));	 
+	    	button1.setOnAction(e -> control.goHomeButton(theStage,second));	 
 	  	page6.setOnAction(e->  control.goHomeButton(theStage,sixth));
 	  	page7.setOnAction(e->  control.goHomeButton(theStage,seventh));
 	  	page8.setOnAction(e-> control.goHomeButton(theStage,eighth));
