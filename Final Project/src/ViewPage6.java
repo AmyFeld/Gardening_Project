@@ -96,47 +96,47 @@ public class ViewPage6 extends View {
 
 		    	
 		 try {
-				msText.setText(uploadText("ms"));
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+			msText.setText(uploadText("ms"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 		    
-		    	try {
-				purpText.setText(uploadText("purp"));
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+	   	try {
+			purpText.setText(uploadText("purp"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 		    
-		    	try {
-				histText.setText(uploadText("hist"));
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+		try {
+			histText.setText(uploadText("hist"));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 		    	
-		    homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
+		 homeButton.setOnAction(e -> control.goHomeButton(theStage, home));
 
-			Tab ms = new Tab();
-			ms.setText("Mission Statement");
-			ms.setContent(msText);
+		Tab ms = new Tab();
+		ms.setText("Mission Statement");
+		ms.setContent(msText);
 			
 			 	
-			Tab purp = new Tab();
-			purp.setText("Purpose");
-			purp.setContent(purpText);
+		Tab purp = new Tab();
+		purp.setText("Purpose");
+		purp.setContent(purpText);
 
 			 	
-			Tab hist = new Tab();
-			hist.setText("History");
-			hist.setContent(histText);
+		Tab hist = new Tab();
+		hist.setText("History");
+		hist.setContent(histText);
 
 			    
-			TabPane tabPane = new TabPane();
-			tabPane.getTabs().addAll(ms, purp, hist);
+		TabPane tabPane = new TabPane();
+		tabPane.getTabs().addAll(ms, purp, hist);
 			
-			layout1.getChildren().addAll(label1, tabPane, homeButton); 
-			layout1.setBackground(new Background(myBG));
-			scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
-			scene6.setCursor(new ImageCursor(mouse));
+		layout1.getChildren().addAll(label1, tabPane, homeButton); 
+		layout1.setBackground(new Background(myBG));
+		scene6 = new Scene(layout1, sceneWidth, sceneHeight); 
+		scene6.setCursor(new ImageCursor(mouse));
 	 }
 
 
